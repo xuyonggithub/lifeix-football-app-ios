@@ -68,6 +68,7 @@
 		2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */; };
 		2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */; };
 		2DCB0EB21D0D689B00DB3234 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCB0EB11D0D689B00DB3234 /* HomeViewController.m */; };
+		2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */; };
 		2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F31D0D133800310C4C /* Main.storyboard */; };
 		2DE2C7F71D0D133800310C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F61D0D133800310C4C /* Assets.xcassets */; };
 		2DE2C7FA1D0D133800310C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F81D0D133800310C4C /* LaunchScreen.storyboard */; };
@@ -268,6 +269,8 @@
 		2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetCell.m; sourceTree = "<group>"; };
 		2DCB0EB01D0D689B00DB3234 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		2DCB0EB11D0D689B00DB3234 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
+		2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
 		2DE2C7E71D0D133800310C4C /* LiFangSport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiFangSport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE2C7F41D0D133800310C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DE2C7F61D0D133800310C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -607,6 +610,15 @@
 			path = SimulationTest;
 			sourceTree = "<group>";
 		};
+		2DDAF8191D1854D0002E5D59 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */,
+				2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		2DE2C7DE1D0D133800310C4C = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +892,7 @@
 				2D84EA571D115EAD00113404 /* VideoCenterVC.m */,
 				2DBB72641D11B510009BD38F /* VideoLearningDetVC.h */,
 				2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */,
+				2DDAF8191D1854D0002E5D59 /* Manager */,
 				2D84EA591D11684C00113404 /* Model */,
 				2D84EA5A1D11684C00113404 /* View */,
 			);
@@ -1361,6 +1374,7 @@
 				2DA4B2101D0E80C700136DA7 /* TAAbstractDotView.m in Sources */,
 				2DE2C8311D0D27E300310C4C /* main.m in Sources */,
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
+				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
 				2DA4B2121D0E80C700136DA7 /* TADotView.m in Sources */,
 				EC4D3C481D13935200285243 /* CoachCenterVC.m in Sources */,

@@ -11,6 +11,7 @@
 #import "UIBarButtonItem+SimAdditions.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import "VideoPlayerManager.h"
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
 

@@ -25,6 +25,9 @@
 #endif
 
 //Device
+#define DEVICE_IS_IPHONE (UIUserInterfaceIdiomPhone == UI_USER_INTERFACE_IDIOM())
+#define DEVICE_IS_IPAD (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM())
+
 #define IPHONE_4 (fabs(CGRectGetHeight([UIScreen mainScreen].bounds) - 480.f) < FLT_EPSILON)
 #define IPHONE_5 (fabsf(CGRectGetHeight([UIScreen mainScreen].bounds) - 568.f) < FLT_EPSILON)
 #define IPHONE_6 (fabsf(CGRectGetHeight([UIScreen mainScreen].bounds) - 667.f) < FLT_EPSILON)

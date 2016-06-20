@@ -10,6 +10,7 @@
 #import "LeftViewController.h"
 #import "UIImage+ImageEffects.h"
 #import "BaseDrawerVC.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
 @interface BaseDrawerVC ()
 {
@@ -70,17 +71,22 @@
     [self.view addSubview:_rightV.view];
     [self.view addSubview:centerNC.view];
     
-    _centerV.navigationItem.leftBarButtonItem = ({
-        UIBarButtonItem *leftB = [[UIBarButtonItem alloc] initWithTitle:@"左边" style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction:)];
-        leftB;
-    });
+    _centerV.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_left"] target:self action:@selector(leftAction:)];
+
+    
+//    _centerV.navigationItem.leftBarButtonItem = ({
+//        UIBarButtonItem *leftB = [[UIBarButtonItem alloc] initWithTitle:@"左边" style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction:)];
+//        leftB;
+//    });
     if (self.hideCenterLeftNaviBtn==YES) {
         _centerV.navigationItem.leftBarButtonItem = nil;
     }
-    _centerV.navigationItem.rightBarButtonItem = ({
-        UIBarButtonItem *rightB = [[UIBarButtonItem alloc] initWithTitle:@"右边" style:(UIBarButtonItemStylePlain) target:self action:@selector(rightAction:)];
-        rightB;
-    });
+    _centerV.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right"] target:self action:@selector(leftAction:)];
+
+//    _centerV.navigationItem.rightBarButtonItem = ({
+//        UIBarButtonItem *rightB = [[UIBarButtonItem alloc] initWithTitle:@"右边" style:(UIBarButtonItemStylePlain) target:self action:@selector(rightAction:)];
+//        rightB;
+//    });
     if (self.hideCenterRightNaviBtn==YES || _rightV == nil) {
         _centerV.navigationItem.rightBarButtonItem = nil;
     }

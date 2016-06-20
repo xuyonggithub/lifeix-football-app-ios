@@ -9,5 +9,10 @@
 #import <JSONModel/JSONModel.h>
 
 @interface VideoListModel : JSONModel
+@property(nonatomic,strong)NSArray<Optional> *cats;
+@property(nonatomic,strong)NSString<Optional> *KID;
+@property(nonatomic,strong)NSString<Optional> *name;
+@property(nonatomic,assign)NSInteger type;
+
 
 @end

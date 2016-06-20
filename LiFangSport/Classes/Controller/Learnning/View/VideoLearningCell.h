@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoListModel.h"
 
 @interface VideoLearningCell : UITableViewCell
+@property(nonatomic,strong)VideoListModel *model;
 
 @end

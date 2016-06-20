@@ -16,6 +16,10 @@
 		2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB181D17864200954C63 /* SimulationCenterVC.m */; };
 		2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */; };
 		2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */; };
+		2D6EEB221D17D9D700954C63 /* list_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB201D17D9D700954C63 /* list_left@2x.png */; };
+		2D6EEB231D17D9D700954C63 /* list_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB211D17D9D700954C63 /* list_right@2x.png */; };
+		2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */; };
+		2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */; };
 		2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */; };
 		2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA381D10F99C00113404 /* CenterSwitchModel.m */; };
 		2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA3B1D10FAED00113404 /* RightSwitchModel.m */; };
@@ -175,6 +179,10 @@
 		2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListModel.m; sourceTree = "<group>"; };
 		2D6EEB1D1D17C75100954C63 /* VideoLearningDetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetModel.h; sourceTree = "<group>"; };
 		2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetModel.m; sourceTree = "<group>"; };
+		2D6EEB201D17D9D700954C63 /* list_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_left@2x.png"; sourceTree = "<group>"; };
+		2D6EEB211D17D9D700954C63 /* list_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_right@2x.png"; sourceTree = "<group>"; };
+		2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "americaflag@2x.png"; sourceTree = "<group>"; };
+		2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2D84EA341D10F4EE00113404 /* LeftSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSwitchModel.h; sourceTree = "<group>"; };
 		2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSwitchModel.m; sourceTree = "<group>"; };
 		2D84EA371D10F99C00113404 /* CenterSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterSwitchModel.h; sourceTree = "<group>"; };
@@ -462,6 +470,8 @@
 				2DE94D791D12570200E1508D /* chinaflag@2x.png */,
 				2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */,
 				2D84EA471D11259000113404 /* leftswitchcellpic@2x.png */,
+				2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */,
+				2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1008,6 +1018,8 @@
 		2DE94D681D123BED00E1508D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				2D6EEB201D17D9D700954C63 /* list_left@2x.png */,
+				2D6EEB211D17D9D700954C63 /* list_right@2x.png */,
 				2DE94D691D123BED00E1508D /* backiconblue@2x.png */,
 				2DE94D6A1D123BED00E1508D /* backIcongray@2x.png */,
 				2DE94D6B1D123BED00E1508D /* backIconwhite@2x.png */,
@@ -1201,10 +1213,13 @@
 				2DAF7C411D104A8000B956CA /* loading_00001@2x.png in Resources */,
 				2DE94D6F1D123BED00E1508D /* backiconblue@2x.png in Resources */,
 				2DE2C8551D0D370700310C4C /* 112233@2x.png in Resources */,
+				2D6EEB221D17D9D700954C63 /* list_left@2x.png in Resources */,
 				2DE94D711D123BED00E1508D /* backIconwhite@2x.png in Resources */,
 				2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */,
 				2DE2C82F1D0D273B00310C4C /* Info.plist in Resources */,
+				2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */,
 				2DE94D7D1D12778E00E1508D /* haolindemopic@2x.png in Resources */,
+				2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */,
 				2DAF7C401D104A8000B956CA /* loading_00000@2x.png in Resources */,
 				2DBB72631D11B1D3009BD38F /* homebannerplaceholder@2x.jpg in Resources */,
 				2DE2C7FA1D0D133800310C4C /* LaunchScreen.storyboard in Resources */,
@@ -1215,6 +1230,7 @@
 				2DE94D7B1D12570200E1508D /* chinaflag@2x.png in Resources */,
 				2D84EA481D11259000113404 /* leftswitchcellpic@2x.png in Resources */,
 				2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */,
+				2D6EEB231D17D9D700954C63 /* list_right@2x.png in Resources */,
 				2DAF7C481D104A8000B956CA /* loading_00008@2x.png in Resources */,
 				2DE94D801D1291FA00E1508D /* ou1233aeer.png in Resources */,
 				2DAF7C451D104A8000B956CA /* loading_00005@2x.png in Resources */,

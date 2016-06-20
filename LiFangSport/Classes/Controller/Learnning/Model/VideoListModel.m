@@ -9,5 +9,12 @@
 #import "VideoListModel.h"
 
 @implementation VideoListModel
-
+- (id)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
+    self = [super initWithDictionary:dict error:err];
+    if(self){
+        
+        self.KID = dict[@"id"];
+    }
+    return self;
+}
 @end

@@ -14,6 +14,8 @@
 		2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8141D101E820006131B /* TopBannerSwitchView.m */; };
 		2D62E8181D101F400006131B /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8171D101F400006131B /* LineView.m */; };
 		2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB181D17864200954C63 /* SimulationCenterVC.m */; };
+		2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */; };
+		2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */; };
 		2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */; };
 		2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA381D10F99C00113404 /* CenterSwitchModel.m */; };
 		2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA3B1D10FAED00113404 /* RightSwitchModel.m */; };
@@ -169,6 +171,10 @@
 		2D62E8171D101F400006131B /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
 		2D6EEB171D17864200954C63 /* SimulationCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationCenterVC.h; sourceTree = "<group>"; };
 		2D6EEB181D17864200954C63 /* SimulationCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationCenterVC.m; sourceTree = "<group>"; };
+		2D6EEB1A1D17C72D00954C63 /* VideoListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListModel.h; sourceTree = "<group>"; };
+		2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListModel.m; sourceTree = "<group>"; };
+		2D6EEB1D1D17C75100954C63 /* VideoLearningDetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetModel.h; sourceTree = "<group>"; };
+		2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetModel.m; sourceTree = "<group>"; };
 		2D84EA341D10F4EE00113404 /* LeftSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSwitchModel.h; sourceTree = "<group>"; };
 		2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSwitchModel.m; sourceTree = "<group>"; };
 		2D84EA371D10F99C00113404 /* CenterSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterSwitchModel.h; sourceTree = "<group>"; };
@@ -474,6 +480,10 @@
 		2D84EA591D11684C00113404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2D6EEB1A1D17C72D00954C63 /* VideoListModel.h */,
+				2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */,
+				2D6EEB1D1D17C75100954C63 /* VideoLearningDetModel.h */,
+				2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1330,6 +1340,7 @@
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
 				2DA4B2121D0E80C700136DA7 /* TADotView.m in Sources */,
 				EC4D3C481D13935200285243 /* CoachCenterVC.m in Sources */,
+				2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */,
 				2DE2C8A81D0D4A8500310C4C /* WPAttributedStyleAction.m in Sources */,
 				2DE2C8A21D0D4A8500310C4C /* UIImage+SimAdditions.m in Sources */,
 				EC504A0E1D0E99E700095C63 /* MediaVC.m in Sources */,
@@ -1370,6 +1381,7 @@
 				2DAF7C4F1D105E2300B956CA /* SimulationTestVC.m in Sources */,
 				2DE2C85F1D0D3C1A00310C4C /* BaseVC.m in Sources */,
 				2DE2C8A71D0D4A8500310C4C /* UIImage+launchImage.m in Sources */,
+				2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */,
 				EC4D3C3D1D1392A800285243 /* RefereeCenterVC.m in Sources */,
 				2DE2C8731D0D495A00310C4C /* UIBarButtonItem+SimAdditions.m in Sources */,
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,

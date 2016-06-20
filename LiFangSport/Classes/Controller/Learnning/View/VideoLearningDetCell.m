@@ -31,7 +31,7 @@
     _picView = [[UIImageView alloc]initWithFrame:self.bounds];
     _picView.height = _picView.height - 20;
     _nameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, 20)];
-    _nameLab.bottom = self.bottom;
+    _nameLab.bottom = 80;
     _nameLab.textAlignment = NSTextAlignmentCenter;
     _nameLab.textColor = [UIColor blackColor];
     _nameLab.font = [UIFont systemFontOfSize:12];

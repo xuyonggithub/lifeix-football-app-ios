@@ -94,7 +94,7 @@
         _coachView.dataSource = self;
         _coachView.backgroundColor = kwhiteColor;
         _coachView.showsVerticalScrollIndicator = NO;
-        [_coachView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kReuseId];
+        [_coachView registerClass:[CoachCell class] forCellWithReuseIdentifier:kReuseId];
         [_coachView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderReuseId];
         [self.view addSubview:_coachView];
     }

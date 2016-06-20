@@ -95,7 +95,7 @@
         _refereeView.dataSource = self;
         _refereeView.backgroundColor = kwhiteColor;
         _refereeView.showsVerticalScrollIndicator = NO;
-        [_refereeView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kReuseId];
+        [_refereeView registerClass:[RefereeCell class] forCellWithReuseIdentifier:kReuseId];
         [_refereeView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderReuseId];
         [self.view addSubview:_refereeView];
     }

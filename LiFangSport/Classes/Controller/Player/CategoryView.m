@@ -13,9 +13,10 @@
 #define kbtnFont 15
 #define kbtnTag 1000
 #define klineTag 2000
-@interface CategoryView(){
-    
-}
+@interface CategoryView()
+
+@property(nonatomic, retain)UIScrollView *categaryScrollView;
+
 @end
 
 @implementation CategoryView
@@ -31,12 +32,18 @@
 
 -(void)showContent{
     CGFloat numOfCategory = self.categoryArr.count;
-    UIView *categoryView = [[UIView alloc] initWithFrame:self.bounds];
-    categoryView.backgroundColor = kclearColor;
-    CGFloat btnWidth = categoryView.width / numOfCategory;
-    CGFloat btnHeight = categoryView.height;
+    _categaryScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    _categaryScrollView.backgroundColor = kclearColor;
+    _categaryScrollView.showsHorizontalScrollIndicator = NO;
+//    CGFloat btnWidth = categoryView.width / numOfCategory;
+    CGFloat btnHeight = _categaryScrollView.height;
+    self.categaryScrollView.contentSize = CGSizeMake(0, 40);
     for(int i = 0; i < numOfCategory; i++){
-        SimButton *button = [[SimButton alloc] initWithFrame:CGRectMake(btnWidth * i, 0, btnWidth, btnHeight)];
+        NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize: 20] forKey:NSFontAttributeName];
+        CGRect contnentRect = [self.categoryArr[i] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 40, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
+        CGFloat btnWidth = contnentRect.size.width;
+        
+        SimButton *button = [[SimButton alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, 0, btnWidth, btnHeight)];
         button.titleLabel.font = [UIFont systemFontOfSize:kbtnFont];
         [button setTitleColor:kBasicColor forState:UIControlStateNormal];
         [button setTitleColor:kDetailTitleColor forState:UIControlStateSelected];
@@ -45,15 +52,24 @@
         button.tag = kbtnTag + i;
         button.backgroundColor = kclearColor;
         [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [categoryView addSubview:button];
+        [_categaryScrollView addSubview:button];
         
-        LineView *lineView = [[LineView alloc] initWithFrame:CGRectMake(btnWidth * i, button.bottom - 3, btnWidth, 2)];
+        LineView *lineView = [[LineView alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, button.bottom - 3, btnWidth, 2)];
         lineView.lineColor = kDetailTitleColor;
         lineView.hidden = (i == 0)?NO:YES;
         lineView.tag = klineTag + i;
-        [categoryView addSubview:lineView];
+        [_categaryScrollView addSubview:lineView];
+        
+        CGSize size = self.categaryScrollView.contentSize;
+        size.width += contnentRect.size.width;
+        self.categaryScrollView.contentSize = size;
     }
-    [self addSubview:categoryView];
+    if(self.categaryScrollView.contentSize.width < SCREEN_WIDTH){
+        CGRect foo = self.categaryScrollView.frame;
+        foo.origin.x = (SCREEN_WIDTH - self.categaryScrollView.contentSize.width) / 2;
+        self.categaryScrollView.frame = foo;
+    }
+    [self addSubview:_categaryScrollView];
 }
 
 - (void)clickBtn:(UIButton *)btn{
@@ -73,4 +89,5 @@
         lineView.hidden = (lineView.tag == selectedIndex + klineTag)?NO:YES;
     }
 }
+
 @end

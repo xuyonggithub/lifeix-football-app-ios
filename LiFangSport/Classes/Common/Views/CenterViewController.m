@@ -75,7 +75,7 @@
 /**
  *  右轻扫
  */
-- (void)rightswipeGestureAction:(UISwipeGestureRecognizer *)sender {
+- (void)rightswipeGestureAction:(UISwipeGestureRecognizer *)sender {   
     UINavigationController *centerNC = self.navigationController;
     
     RightViewController *rightVC = self.navigationController.parentViewController.childViewControllers[1];

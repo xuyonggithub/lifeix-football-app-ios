@@ -10,6 +10,6 @@
 
 @interface PlayerCenterViewController : CenterViewController
 
-@property(nonatomic, copy)NSString *categoryId;
+@property(nonatomic, copy)NSString *categoryName;
 
 @end

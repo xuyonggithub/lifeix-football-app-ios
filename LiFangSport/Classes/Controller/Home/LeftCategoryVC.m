@@ -128,7 +128,7 @@
             [APP_DELEGATE.window makeKeyAndVisible];
         }else if ([model.page isEqualToString:@"playerlist_page"]){
             PlayerCenterViewController *centerVC = [[PlayerCenterViewController alloc] init];
-            centerVC.categoryId = model.KID;
+            centerVC.categoryName = model.name;
             PlayerVC *playerVC = [[PlayerVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
             [ self dismissViewControllerAnimated: NO completion: nil ];
             APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

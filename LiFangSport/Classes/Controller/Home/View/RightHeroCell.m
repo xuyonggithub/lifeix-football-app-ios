@@ -7,6 +7,7 @@
 //
 
 #import "RightHeroCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface RightHeroCell ()
 @property(nonatomic,strong)UILabel *nameLab;

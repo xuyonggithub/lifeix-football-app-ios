@@ -7,6 +7,7 @@
 //
 
 #import "LeftSwitchCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface LeftSwitchCell ()
 @property(nonatomic,strong)UIImageView *picView;

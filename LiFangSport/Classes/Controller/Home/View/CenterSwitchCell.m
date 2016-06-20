@@ -7,6 +7,7 @@
 //
 
 #import "CenterSwitchCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface CenterSwitchCell ()
 @property(nonatomic,strong)UILabel *timeLab;

@@ -7,6 +7,7 @@
 //
 
 #import "VideoLearningCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface VideoLearningCell ()
 @property(nonatomic,strong)UIImageView *picView;
@@ -36,16 +37,10 @@
     _titleLab.font = [UIFont systemFontOfSize:15];
     _titleLab.text = @"详细文字";
 }
-//-(void)layoutSubviews{
-//    _picView.top = 5;
-//    _picView.height = self.height -10;
-//    _picView.image = [UIImage imageNamed:@"ou1233aeer"];
-//    _titleLab.textColor = kBlackColor;
-//    _titleLab.textAlignment = NSTextAlignmentCenter;
-//    _titleLab.font = [UIFont systemFontOfSize:19];
-//    _titleLab.text = @"详细文字";
-//    
-//}
+
+-(void)setModel:(VideoListModel *)model{
+    _titleLab.text = model.name;
+}
 
 
 - (void)awakeFromNib {

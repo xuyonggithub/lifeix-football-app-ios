@@ -1,0 +1,81 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AGWindowView (0.1.9)
+  - AKSegmentedControl (1.0.4)
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
+    - ASIHTTPRequest/CloudFiles (= 1.8.2)
+    - ASIHTTPRequest/Core (= 1.8.2)
+    - ASIHTTPRequest/S3 (= 1.8.2)
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
+  - Fabric (1.6.5)
+  - GVUserDefaults (0.9.5)
+  - INSPullToRefresh (1.1.4)
+  - iRate (1.11.4)
+  - JSONModel (0.10.0)
+  - MPNotificationView (1.1.1)
+  - Reachability (3.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SMPageControl (1.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.0)
+  - AGWindowView (~> 0.1.9)
+  - AKSegmentedControl (~> 1.0.4)
+  - ASIHTTPRequest (~> 1.8.2)
+  - Fabric
+  - GVUserDefaults (~> 0.9.4)
+  - INSPullToRefresh
+  - iRate (~> 1.11.4)
+  - JSONModel (~> 0.10.0)
+  - MPNotificationView (~> 1.1.1)
+  - SDWebImage (~> 3.7.1)
+  - SMPageControl (~> 1.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AGWindowView: 08dc8d448b8c96430e78b3945a9c2cf5b0fde754
+  AKSegmentedControl: c076491ef773c0d70b70d03a8e5a0c04a9efbf08
+  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
+  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
+  GVUserDefaults: bd3efc5beab8f501d17e566eddc7acd6f2425c2a
+  INSPullToRefresh: a27f7faf022f858f02a7680943e11a1f7ce3430a
+  iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
+  JSONModel: bf734d6ef129c8ea13b6d349113f7929c8fd0a91
+  MPNotificationView: 0f342a4a5211f75ba9b395552af6c121b4730249
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
+
+PODFILE CHECKSUM: fb2e504ab3996105190a6a8bc5d488acf72fda67
+
+COCOAPODS: 1.0.1

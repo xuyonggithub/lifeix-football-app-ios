@@ -1,0 +1,110 @@
+//
+//  CenterSwitchCell.m
+//  LiFangSport
+//
+//  Created by 张毅 on 16/6/15.
+//  Copyright © 2016年 zhangyi. All rights reserved.
+//
+
+#import "CenterSwitchCell.h"
+
+@interface CenterSwitchCell ()
+@property(nonatomic,strong)UILabel *timeLab;
+@property(nonatomic,strong)UILabel *hostTeamLab;
+@property(nonatomic,strong)UILabel *awayTeamLab;
+@property(nonatomic,strong)UILabel *vsLab;
+@property(nonatomic,strong)UIImageView *hostTeamFlagView;
+@property(nonatomic,strong)UIImageView *awayTeamFlagView;
+
+@end
+
+@implementation CenterSwitchCell
+
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+        [self createUI];
+    }
+    return self;
+}
+-(void)createUI{
+    _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 20)];
+    _timeLab.centerY = self.centerY;
+    [self addSubview:_timeLab];
+    _hostTeamLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 20, 20)];
+    _hostTeamLab.left = _timeLab.right + 50;
+    _hostTeamLab.centerY = _timeLab.centerY;
+    [self addSubview:_hostTeamLab];
+
+    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 30)];
+    _hostTeamFlagView.centerY = _timeLab.centerY;
+    _hostTeamFlagView.left= _hostTeamLab.right+17;
+    [self addSubview:_hostTeamFlagView];
+    _hostTeamFlagView.image = [UIImage imageNamed:@"chinaflag"];
+    
+    _vsLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+    _vsLab.centerY = _hostTeamLab.centerY;
+    _vsLab.left = _hostTeamFlagView.right+17;
+    [self addSubview:_vsLab];
+    
+    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 30)];
+    _awayTeamFlagView.centerY = _timeLab.centerY;
+    _awayTeamFlagView.left = _vsLab.right+17;
+    [self addSubview:_awayTeamFlagView];
+    _awayTeamFlagView.image = [UIImage imageNamed:@"americaflag"];
+    
+    _awayTeamLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 20, 20)];
+    _awayTeamLab.left = _awayTeamFlagView.right + 17;
+    _awayTeamLab.centerY = _timeLab.centerY;
+    [self addSubview:_awayTeamLab];
+    
+    _timeLab.font = [UIFont systemFontOfSize:8];
+    _hostTeamLab.font = [UIFont systemFontOfSize:11];
+    _vsLab.font = [UIFont systemFontOfSize:11];
+    _awayTeamLab.font = [UIFont systemFontOfSize:11];
+}
+
+-(void)setModel:(CenterSwitchModel *)model{
+    
+    NSTimeInterval timeIN=(NSTimeInterval)[model.competitionInfo[@"startDate"] integerValue];
+    NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
+    NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDateToTime:timeData]];
+
+    _timeLab.text = dataStr;
+    [_timeLab sizeToFit];
+    _hostTeamLab.text = model.hostTeam[@"teamInfo"][@"name"];
+    [_hostTeamLab sizeToFit];
+    _hostTeamLab.right = _hostTeamFlagView.left-17;
+    _awayTeamLab.text = model.awayTeam[@"teamInfo"][@"name"];
+    [_awayTeamLab sizeToFit];
+    _vsLab.text = @"VS";
+}
+
+//- (NSString *)extractDate:(NSDate *)date {
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"MM月dd日"];
+//    NSString *currentDateString = [NSString stringWithFormat:@"%@",
+//                                   [formatter stringFromDate:date]];
+//    return currentDateString;
+//}
+- (NSString *)extractDateToTime:(NSDate *)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    [formatter setDateFormat:@"YYYY/MM/dd / hh:mm"];
+    NSString *currenttimeString = [NSString stringWithFormat:@"%@",
+                                   [formatter stringFromDate:date]];
+    return currenttimeString;
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

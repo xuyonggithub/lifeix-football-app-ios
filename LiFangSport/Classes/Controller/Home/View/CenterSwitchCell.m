@@ -39,7 +39,7 @@
     _hostTeamLab.centerY = _timeLab.centerY;
     [self addSubview:_hostTeamLab];
 
-    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 30)];
+    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     _hostTeamFlagView.centerY = _timeLab.centerY;
     _hostTeamFlagView.left= _hostTeamLab.right+17;
     [self addSubview:_hostTeamFlagView];
@@ -50,7 +50,7 @@
     _vsLab.left = _hostTeamFlagView.right+17;
     [self addSubview:_vsLab];
     
-    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 30)];
+    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     _awayTeamFlagView.centerY = _timeLab.centerY;
     _awayTeamFlagView.left = _vsLab.right+17;
     [self addSubview:_awayTeamFlagView];
@@ -72,7 +72,9 @@
     NSTimeInterval timeIN=(NSTimeInterval)[model.competitionInfo[@"startDate"] integerValue];
     NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
     NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDateToTime:timeData]];
-
+    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.hostTeam[@"teamInfo"][@"flag"]]];
+    
+    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.awayTeam[@"teamInfo"][@"flag"]]];
     _timeLab.text = dataStr;
     [_timeLab sizeToFit];
     _hostTeamLab.text = model.hostTeam[@"teamInfo"][@"name"];
@@ -83,13 +85,6 @@
     _vsLab.text = @"VS";
 }
 
-//- (NSString *)extractDate:(NSDate *)date {
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"MM月dd日"];
-//    NSString *currentDateString = [NSString stringWithFormat:@"%@",
-//                                   [formatter stringFromDate:date]];
-//    return currentDateString;
-//}
 - (NSString *)extractDateToTime:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];

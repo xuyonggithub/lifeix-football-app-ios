@@ -46,11 +46,11 @@
     _subTitleLab.textAlignment = NSTextAlignmentCenter;
     _titleLab.font = [UIFont systemFontOfSize:16];
     _subTitleLab.font = [UIFont systemFontOfSize:12];
-    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 30)];
+    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     [self addSubview:_hostTeamFlagView];
     _hostTeamFlagView.image = [UIImage imageNamed:@"chinaflag"];
 
-    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 30)];
+    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     [self addSubview:_awayTeamFlagView];
     _awayTeamFlagView.image = [UIImage imageNamed:@"americaflag"];
 
@@ -93,9 +93,10 @@
     NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[self extractDateToTime:timeData],ss];
     _titleLab.text = dataStr;
     _subTitleLab.text = timeStr;
-//    _hostTeamFlagView.image = [UIImage imageNamed:@"chinaflag"];
-//    _awayTeamFlagView.image = [UIImage imageNamed:@"americaflag"];
-    
+    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.hostTeam[@"teamInfo"][@"flag"]]];
+
+    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.awayTeam[@"teamInfo"][@"flag"]]];
+
     _hostTeamNameLab.text = model.hostTeam[@"teamInfo"][@"name"];
     [_hostTeamNameLab sizeToFit];
     _hostTeamNameLab.centerX = _hostTeamFlagView.centerX;
@@ -112,10 +113,6 @@
     [formatter setDateFormat:@"MM月dd日"];
     NSString *currentDateString = [NSString stringWithFormat:@"%@",
                                    [formatter stringFromDate:date]];
-//    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-//    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CH"];
-//    fmt.dateFormat = @"yyyy.MM.dd";
-//    NSString *temp = [fmt stringFromDate:date];
     return currentDateString;
 }
 - (NSString *)extractDateToTime:(NSDate *)date {

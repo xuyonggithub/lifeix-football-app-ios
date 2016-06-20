@@ -21,6 +21,15 @@
     [super viewDidLoad];
     self.title = @"规则培训";
     [self createTableview];
+    [self requestData];
+}
+-(void)requestData{
+    [CommonRequest requstPath:kvideoListPath loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        
+    } failure:^(CommonRequest *request, NSError *error) {
+        
+    }];
+    
 }
 -(void)createTableview{
     if (_centerTableview==nil) {

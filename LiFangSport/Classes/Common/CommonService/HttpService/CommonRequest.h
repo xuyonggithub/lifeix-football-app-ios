@@ -56,6 +56,7 @@ typedef NS_ENUM(NSInteger, ServerErrorCode){
 #define kHeroListPath       @"games/competitions/5/teams/1/competitionTeam" //英雄榜
 #define ksinglepagePath  @"wemedia/posts/"
 
+#define kvideoListPath @"elearning/training_categories"
 
 typedef void(^FetchCachedJson)(NSDictionary *json);
 typedef void(^CompleteBlock)(BOOL success);

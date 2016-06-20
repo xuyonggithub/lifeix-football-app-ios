@@ -13,9 +13,9 @@
 @property(nonatomic,strong)UILabel *timeLab;
 @property(nonatomic,strong)UILabel *hostTeamLab;
 @property(nonatomic,strong)UILabel *awayTeamLab;
-@property(nonatomic,strong)UILabel *vsLab;
 @property(nonatomic,strong)UIImageView *hostTeamFlagView;
 @property(nonatomic,strong)UIImageView *awayTeamFlagView;
+@property(nonatomic,strong)UIImageView *vsView;
 
 @end
 
@@ -45,14 +45,15 @@
     [self addSubview:_hostTeamFlagView];
     _hostTeamFlagView.image = [UIImage imageNamed:@"chinaflag"];
     
-    _vsLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
-    _vsLab.centerY = _hostTeamLab.centerY;
-    _vsLab.left = _hostTeamFlagView.right+17;
-    [self addSubview:_vsLab];
+    _vsView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 21, 15)];
+    _vsView.centerY = _hostTeamFlagView.centerY;
+    _vsView.left = _hostTeamFlagView.right+17;
+    [self addSubview:_vsView];
+    _vsView.image = UIImageNamed(@"VSicon");
     
     _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     _awayTeamFlagView.centerY = _timeLab.centerY;
-    _awayTeamFlagView.left = _vsLab.right+17;
+    _awayTeamFlagView.left = _vsView.right+17;
     [self addSubview:_awayTeamFlagView];
     _awayTeamFlagView.image = [UIImage imageNamed:@"americaflag"];
     
@@ -63,7 +64,6 @@
     
     _timeLab.font = [UIFont systemFontOfSize:8];
     _hostTeamLab.font = [UIFont systemFontOfSize:11];
-    _vsLab.font = [UIFont systemFontOfSize:11];
     _awayTeamLab.font = [UIFont systemFontOfSize:11];
 }
 
@@ -82,7 +82,6 @@
     _hostTeamLab.right = _hostTeamFlagView.left-17;
     _awayTeamLab.text = model.awayTeam[@"teamInfo"][@"name"];
     [_awayTeamLab sizeToFit];
-    _vsLab.text = @"VS";
 }
 
 - (NSString *)extractDateToTime:(NSDate *)date {

@@ -39,11 +39,11 @@
     _coachArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor grayColor];
     self.title = @"教练";
-    [self requestDataWithId: self.categoryId];
+    [self requestData];
 }
 
--(void)requestDataWithId:(NSString *)categoryId{
-    NSString *urlStr = [NSString stringWithFormat:@"games/coaches/teamcategory/%@", categoryId];
+-(void)requestData{
+    NSString *urlStr = [NSString stringWithFormat:@"games/coaches/national"];
     [CommonRequest requstPath:urlStr loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         
         [self dealWithData: jsonDict];

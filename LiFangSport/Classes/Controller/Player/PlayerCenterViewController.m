@@ -16,9 +16,11 @@
 
 @interface PlayerCenterViewController()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, retain)NSMutableDictionary *dataDic;
-@property(nonatomic, retain)NSMutableArray *categoryArr;
-@property(nonatomic, retain)NSMutableArray *dataArr;
+@property(nonatomic, retain)NSMutableArray *topNameArr;
+@property(nonatomic, retain)NSMutableArray *categoryNameArr;
+@property(nonatomic, retain)NSMutableArray *playerArr;
+@property(nonatomic, retain)NSMutableArray *selectedDataArr;
+@property(nonatomic, retain)NSMutableArray *selectedTitleArr;
 @property(nonatomic, retain)UICollectionView *playerView;
 @property(nonatomic, retain)CategoryView *CategoryView;
 @property(nonatomic, assign)NSInteger selectedIndex;
@@ -29,30 +31,59 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _dataDic = [NSMutableDictionary dictionary];
-    _categoryArr = [NSMutableArray array];
-    _dataArr = [NSMutableArray array];
+    _topNameArr = [NSMutableArray array];
+    _selectedDataArr = [NSMutableArray array];
+    _selectedTitleArr = [NSMutableArray array];
+    _categoryNameArr = [NSMutableArray array];
+    _playerArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor grayColor];
-    self.title = @"球员";
-    [self requestDataWithCaID:self.categoryId];
-//    [self addPlayerCategoryView];
+    self.title = self.categoryName;
+    [self requestData];
 }
 
--(void)requestDataWithCaID:(NSString *)string{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"games/players/teamcategory/%@",string] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        NSDictionary *dic = (NSDictionary *)jsonDict;
-        [self.categoryArr addObjectsFromArray:[dic allKeys]];
-        [self.dataDic setDictionary:dic];
-        [self addPlayerCategoryView];
-        [self clickBtn:0];
+-(void)requestData{
+    [CommonRequest requstPath:[NSString stringWithFormat:@"games/players/national"] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [self dealWithData: jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
     }];
 }
 
--(void)addPlayerCategoryView{
+-(void)dealWithData:(id)jsonDict{
+    NSArray *jsonArr = jsonDict;
+    for(NSDictionary *dic in jsonArr) {
+        [self.topNameArr addObject:[dic objectForKey:@"topName"]];
+        NSArray *categoryArr = [dic objectForKey:@"category"];
+        NSMutableArray *titleCategoryArr = [NSMutableArray array];
+        NSMutableArray *playerArr = [NSMutableArray array];
+        for(int i = 0; i < categoryArr.count; i++){
+            [titleCategoryArr addObject:[categoryArr[i] objectForKey:@"categoryName"]];
+            NSArray *players = [categoryArr[i] objectForKey:@"players"];
+            NSMutableArray *sectionPlayerArr = [NSMutableArray array];
+            for(int j = 0; j < players.count; j++){
+                NSDictionary *dic = players[j];
+                PlayerModel *player = [[PlayerModel alloc] initWithDictionary:dic error:nil];
+                [sectionPlayerArr addObject:player];
+            }
+            [playerArr addObject:sectionPlayerArr];
+        }
+        [_categoryNameArr addObject:titleCategoryArr];
+        [_playerArr addObject:playerArr];
+    }
+    
+    [self addPlayerCategoryViewWithCategory: _categoryName];
+    [self clickBtn:0];
+}
+
+-(void)addPlayerCategoryViewWithCategory:(NSString *)category{
     DefineWeak(self);
-    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 44) category:self.categoryArr];
+    NSArray *arr;
+    if([category isEqualToString:@"男足"]){
+        arr = [NSArray arrayWithArray:self.categoryNameArr[0]];
+    }else{
+        arr = [NSArray arrayWithArray:self.categoryNameArr[1]];
+    }
+    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 44) category:arr];
     _CategoryView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
@@ -73,20 +104,21 @@
 
 -(void)clickBtn:(CGFloat)tag{
     self.selectedIndex = tag;
-    [_dataArr removeAllObjects];
-    NSArray *arr = self.dataDic.allValues;
-    NSArray *playerArr = [arr objectAtIndex:tag];
-    for(NSDictionary *dic in playerArr){
-        PlayerModel *player = [[PlayerModel alloc] initWithDictionary:dic error:nil];
-        [_dataArr addObject:player];
+    [_selectedDataArr removeAllObjects];
+    NSArray *arr;
+    if([self.categoryName isEqualToString:@"男足"]){
+        arr = [NSArray arrayWithArray:self.playerArr[0]];
+    }else{
+        arr = [NSArray arrayWithArray:self.playerArr[1]];
     }
+    [_selectedDataArr addObjectsFromArray:[arr objectAtIndex:tag]];
     [self.playerView reloadData];
 }
 
 #pragma mark -- UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 {
-    return _dataArr.count;
+    return _selectedDataArr.count;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -96,7 +128,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PlayerModel *player = [self.dataArr objectAtIndex:indexPath.item];
+    PlayerModel *player = [self.selectedDataArr objectAtIndex:indexPath.item];
     PlayerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseId forIndexPath:indexPath];
     cell.playerModel = player;
     cell.backgroundColor = kBlackColor;

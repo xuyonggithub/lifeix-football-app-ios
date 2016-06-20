@@ -20,6 +20,8 @@
 		2D6EEB231D17D9D700954C63 /* list_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB211D17D9D700954C63 /* list_right@2x.png */; };
 		2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */; };
 		2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */; };
+		2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB281D17DE3800954C63 /* VSicon@2x.png */; };
+		2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */; };
 		2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */; };
 		2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA381D10F99C00113404 /* CenterSwitchModel.m */; };
 		2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA3B1D10FAED00113404 /* RightSwitchModel.m */; };
@@ -183,6 +185,8 @@
 		2D6EEB211D17D9D700954C63 /* list_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_right@2x.png"; sourceTree = "<group>"; };
 		2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "americaflag@2x.png"; sourceTree = "<group>"; };
 		2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
+		2D6EEB281D17DE3800954C63 /* VSicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VSicon@2x.png"; sourceTree = "<group>"; };
+		2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videolistBannerLabpic@2x.png"; sourceTree = "<group>"; };
 		2D84EA341D10F4EE00113404 /* LeftSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSwitchModel.h; sourceTree = "<group>"; };
 		2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSwitchModel.m; sourceTree = "<group>"; };
 		2D84EA371D10F99C00113404 /* CenterSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterSwitchModel.h; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 		2D84EA461D11259000113404 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2D6EEB281D17DE3800954C63 /* VSicon@2x.png */,
 				2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */,
 				2DE94D781D12570200E1508D /* americaflag@2x.png */,
 				2DE94D791D12570200E1508D /* chinaflag@2x.png */,
@@ -1033,6 +1038,7 @@
 		2DE94D7E1D1291FA00E1508D /* VideoLearning */ = {
 			isa = PBXGroup;
 			children = (
+				2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */,
 				2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */,
 			);
 			path = VideoLearning;
@@ -1218,6 +1224,7 @@
 				2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */,
 				2DE2C82F1D0D273B00310C4C /* Info.plist in Resources */,
 				2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */,
+				2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */,
 				2DE94D7D1D12778E00E1508D /* haolindemopic@2x.png in Resources */,
 				2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */,
 				2DAF7C401D104A8000B956CA /* loading_00000@2x.png in Resources */,
@@ -1229,6 +1236,7 @@
 				2DE94D7A1D12570200E1508D /* americaflag@2x.png in Resources */,
 				2DE94D7B1D12570200E1508D /* chinaflag@2x.png in Resources */,
 				2D84EA481D11259000113404 /* leftswitchcellpic@2x.png in Resources */,
+				2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */,
 				2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */,
 				2D6EEB231D17D9D700954C63 /* list_right@2x.png in Resources */,
 				2DAF7C481D104A8000B956CA /* loading_00008@2x.png in Resources */,

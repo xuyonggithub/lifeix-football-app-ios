@@ -17,7 +17,7 @@
 @property(nonatomic,strong)UIImageView *awayTeamFlagView;
 @property(nonatomic,strong)UILabel *hostTeamNameLab;
 @property(nonatomic,strong)UILabel *awayTeamNameLab;
-@property(nonatomic,strong)UILabel *vsLab;
+@property(nonatomic,strong)UIImageView *vsView;
 
 @end
 
@@ -60,12 +60,11 @@
     _awayTeamFlagView.top = _hostTeamFlagView.top;
     _awayTeamFlagView.right = kScreenWidth-40;
     
-    _vsLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
-    _vsLab.centerY = _hostTeamFlagView.centerY;
-    _vsLab.centerX = kScreenWidth/2;
-    _vsLab.font = [UIFont systemFontOfSize:12];
-    _vsLab.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:_vsLab];
+    _vsView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 20)];
+    _vsView.centerY = _hostTeamFlagView.centerY;
+    _vsView.centerX = kScreenWidth/2;
+    [self addSubview:_vsView];
+    _vsView.image = UIImageNamed(@"VSicon");
     
     _hostTeamNameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
     _hostTeamNameLab.top = _hostTeamFlagView.bottom;
@@ -105,7 +104,7 @@
     [_awayTeamNameLab sizeToFit];
     _awayTeamNameLab.centerX = _awayTeamFlagView.centerX;
 
-    _vsLab.text = @"vs";
+//    _vsLab.text = @"vs";
 }
 
 - (NSString *)extractDate:(NSDate *)date {

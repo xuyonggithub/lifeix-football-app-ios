@@ -12,6 +12,7 @@
 @interface VideoLearningCell ()
 @property(nonatomic,strong)UIImageView *picView;
 @property(nonatomic,strong)UILabel *titleLab;
+@property(nonatomic,strong)UIImageView *bannerView;
 
 @end
 
@@ -25,16 +26,23 @@
     return self;
 }
 -(void)initSubviews{
-    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, kScreenWidth, 90)];
+    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, kScreenWidth, 120-5)];
     _picView.width = kScreenWidth;
     [self addSubview:_picView];
     _picView.image = [UIImage imageNamed:@"ou1233aeer"];
-    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, self.width, 15)];
-    _titleLab.bottom = _picView.bottom;
+    
+    _bannerView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, self.width, 25)];
+    _bannerView.bottom = _picView.bottom-5;
+    _bannerView.image = [UIImage imageNamed:@"videolistBannerLabpic"];
+    [self addSubview:_bannerView];
+
+    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, self.width, 20)];
+    _titleLab.centerY = _bannerView.centerY;
+    _titleLab.backgroundColor = kclearColor;
     [self addSubview:_titleLab];
-    _titleLab.textColor = kBlackColor;
-    _titleLab.textAlignment = NSTextAlignmentCenter;
-    _titleLab.font = [UIFont systemFontOfSize:15];
+    _titleLab.textColor = kwhiteColor;
+    _titleLab.textAlignment = NSTextAlignmentLeft;
+    _titleLab.font = [UIFont systemFontOfSize:19];
     _titleLab.text = @"详细文字";
 }
 

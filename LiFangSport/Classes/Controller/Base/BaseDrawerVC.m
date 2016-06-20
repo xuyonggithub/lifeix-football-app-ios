@@ -66,7 +66,6 @@
     
     centerNC.view.frame = [UIScreen mainScreen].bounds;
     
-//    [self.view addSubview:self.backimage];
     [self.view addSubview:_leftV.view];
     [self.view addSubview:_rightV.view];
     [self.view addSubview:centerNC.view];

@@ -7,6 +7,9 @@
 //
 
 #import "SimulationCenterVC.h"
+#import "LFSimulationCenterCell.h"
+
+#import "CommonRequest.h"
 
 @interface SimulationCenterVC ()
     <UITableViewDelegate, UITableViewDataSource>
@@ -25,12 +28,11 @@
     
     self.title = @"模拟测试";
     [self.view addSubview:self.tableView];
-    NSDictionary *views = NSDictionaryOfVariableBindings(_tableView);
-    NSArray *tanArray = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:0 views:views];
-    NSArray *tanArray2 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_tableView]-0-|" options:0 metrics:0 views:views];
-    
-    [self.view addConstraints:tanArray];
-    [self.view addConstraints:tanArray2];
+    [CommonRequest requstPath:@"/elearning/quiz_categories" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"+++error: %@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,11 +50,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *customCellID = @"customCellID";
+    static NSString *customCellID = @"LFSimulationCenterCellID";
     
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:customCellID];
+    LFSimulationCenterCell * cell = [tableView dequeueReusableCellWithIdentifier:customCellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:customCellID];
+        cell = [[LFSimulationCenterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"%@", @(indexPath.row)];
     
@@ -69,10 +71,11 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _tableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     return _tableView;
 }

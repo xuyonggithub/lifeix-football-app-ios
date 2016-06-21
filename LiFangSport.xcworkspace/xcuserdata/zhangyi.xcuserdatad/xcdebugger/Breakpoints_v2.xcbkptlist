@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Home/HomeBannnerDetVC.m"
-            timestampString = "488182482.974471"
+            filePath = "LiFangSport/Classes/Controller/Learnning/VideoLearningDetVC.m"
+            timestampString = "488194786.113932"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-dealWithJason:"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-headerRereshing"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiFangSport/Classes/Controller/Learnning/VideoLearningDetVC.m"
-            timestampString = "488188639.164108"
+            timestampString = "488194787.449685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-dealWithJason:"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-footerRereshing"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

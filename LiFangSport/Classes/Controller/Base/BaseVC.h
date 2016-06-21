@@ -7,8 +7,12 @@
 //
 #import "JSONModel.h"
 #import <UIKit/UIKit.h>
+#import "INSPullToRefreshBackgroundView.h"
+#import "INSAnimatable.h"
 
 @interface BaseVC : UIViewController
 
+- (UIView <INSPullToRefreshBackgroundViewDelegate> *)pullToRefreshViewFromCurrentStyle;
+- (UIView <INSAnimatable> *)infinityIndicatorViewFromCurrentStyle;
 
 @end

@@ -16,18 +16,21 @@
 #import "CommonRequest.h"
 #import "VideoLearningDetModel.h"
 #import "VideoLearningUnitModel.h"
+#import "CategoryView.h"
+#import "UIScrollView+INSPullToRefresh.h"
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
 #define kvideodetPath @"elearning/training_categories/"
 
 @interface VideoLearningDetVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
-//    MPMoviePlayerController *_player;//视频播放器
     UIView *playView;
 }
 @property(nonatomic,strong)UICollectionView *videoCollectionview;
-@property(nonatomic,assign)NSInteger index;
+@property(nonatomic,assign)NSInteger catsArrIndex;
 @property(nonatomic,strong)NSMutableArray *dataArr;
+@property(nonatomic, strong)CategoryView *CategoryView;
+@property(nonatomic, retain)NSMutableArray *topNameArr;
 
 @end
 
@@ -36,13 +39,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArr = [NSMutableArray array];
+    _topNameArr = [NSMutableArray array];
+    _catsArrIndex = 0;
+    for (VideoLearningDetModel *model in _catsArr) {
+        [_topNameArr addObject:model.name];
+    }
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
     [self createCollectionView];
-    [self requestData];
+    [self addCoachCategoryView];
+
+    [self requestDataWith:_catsArrIndex];
+    [self setupRefresh];
 }
 
--(void)requestData{
-    VideoLearningDetModel *model = _catsArr[0];
+-(void)requestDataWith:(NSInteger)index{
+    VideoLearningDetModel *model = _catsArr[index];
     [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/pages?start=%d&limit=%d",kvideodetPath,model.KID,0,20] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict];
         
@@ -56,6 +67,56 @@
     [_videoCollectionview reloadData];
 }
 
+-(void)addCoachCategoryView{
+    DefineWeak(self);
+    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 44) category:self.topNameArr];
+    _CategoryView.ClickBtn = ^(CGFloat index){
+        [Weak(self) clickBtn:(index)];
+    };
+    [self.view addSubview:_CategoryView];
+    _CategoryView.backgroundColor = kwhiteColor;
+}
+
+-(void)clickBtn:(CGFloat)index{
+    _catsArrIndex = index;
+    [self requestDataWith:_catsArrIndex];
+}
+
+#pragma mark - Reresh
+- (void)setupRefresh
+{
+    DefineWeak(self);
+    [_videoCollectionview ins_addPullToRefreshWithHeight:kDefaultRefreshHeight handler:^(UIScrollView *scrollView) {
+        [Weak(self) headerRereshing];
+    }];
+    
+    [_videoCollectionview ins_addInfinityScrollWithHeight:kDefaultRefreshHeight handler:^(UIScrollView *scrollView) {
+        [Weak(self) footerRereshing];
+    }];
+    [_videoCollectionview ins_setInfinityScrollEnabled:NO];
+    
+    UIView <INSAnimatable> *infinityIndicator = [self infinityIndicatorViewFromCurrentStyle];
+    NSLog(@"22");
+    [_videoCollectionview.ins_infiniteScrollBackgroundView addSubview:infinityIndicator];
+    [infinityIndicator startAnimating];
+    UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
+    _videoCollectionview.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
+    [_videoCollectionview.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
+}
+
+- (void)headerRereshing
+{
+//    self.minGroupClassID = @"0";
+//    self.minHomeworkID = @"0";
+//    
+//    [self requestHomeworkListWithHeaderRefresh:YES loadCacheFirst:NO];
+}
+
+- (void)footerRereshing
+{
+//    [self requestHomeworkListWithHeaderRefresh:NO loadCacheFirst:NO];
+}
+
 -(void)rollBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -64,7 +125,7 @@
     if (_videoCollectionview == nil) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, kScreenWidth, kScreenHeight-70) collectionViewLayout:flowLayout];
+        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight-100) collectionViewLayout:flowLayout];
         _videoCollectionview.delegate = self;
         _videoCollectionview.dataSource = self;
         _videoCollectionview.scrollEnabled = YES;

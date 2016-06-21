@@ -45,7 +45,7 @@
 
 -(void)setModel:(VideoLearningUnitModel *)model{
     NSString *picstr = [NSString stringWithFormat:@"%@%@",kpicHeaderPrifx,model.videos[0][@"imagePath"]];
-//    [_picView sd_setImageWithURL:[NSURL URLWithString:picstr]];
+    _nameLab.text = model.title;
 }
 
 @end

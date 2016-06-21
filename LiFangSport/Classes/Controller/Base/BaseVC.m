@@ -7,6 +7,8 @@
 //
 
 #import "BaseVC.h"
+#import "INSLappsyPullToRefresh.h"
+#import "INSLappsyInfiniteIndicator.h"
 
 @interface BaseVC ()
 
@@ -24,6 +26,21 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+
+
+#pragma mark - UIBarButtonItem
+- (UIView <INSPullToRefreshBackgroundViewDelegate> *)pullToRefreshViewFromCurrentStyle {
+    
+    CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
+    return [[INSLappsyPullToRefresh alloc] initWithFrame:defaultFrame];
+}
+
+- (UIView <INSAnimatable> *)infinityIndicatorViewFromCurrentStyle {
+    
+    CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
+    return [[INSLappsyInfiniteIndicator alloc] initWithFrame:defaultFrame];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -34,14 +51,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

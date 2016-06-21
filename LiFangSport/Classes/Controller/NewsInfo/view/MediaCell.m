@@ -20,8 +20,8 @@
         [self addSubview:self.bgImgView];
         
         // 标题
-        UIView *titleBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 120, self.bgImgView.frame.size.width, 25)];
-        titleBgView.backgroundColor = HEXRGBACOLOR(0xae1417,1.0);
+        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 120, self.bgImgView.frame.size.width, 25)];
+        titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH - 50, 25)];
         self.titleLabel.font = kBasicSmallTitleFont;
         self.titleLabel.textColor = [UIColor whiteColor];
@@ -39,9 +39,9 @@
 
 -(void)displayCell:(MediaModel *)media{
     if(media.images.count > 0){
-        [self.bgImgView sd_setImageWithURL:media.images[0] placeholderImage:[UIImage imageNamed:@"112233"]];
+        [self.bgImgView sd_setImageWithURL:media.images[0] placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
     }else{
-        self.bgImgView.image = [UIImage imageNamed:@"112233"];
+        self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];
     }
     self.titleLabel.text = media.title;
 //    self.categorylabel.text = media.categoryIds[0];

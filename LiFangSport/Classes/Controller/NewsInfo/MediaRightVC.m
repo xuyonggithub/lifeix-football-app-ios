@@ -78,6 +78,8 @@
         NSDictionary *dic = [self.dataArr objectAtIndex:indexPath.row - 1];
         cell.titleLab.text = [dic objectForKey:@"name"];
     }
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
     return cell;
 }
 
@@ -86,6 +88,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     MediaCenterVC *centerVC = [[MediaCenterVC alloc] init];
     if(indexPath.row == 0){
         centerVC.categoryIds = nil;

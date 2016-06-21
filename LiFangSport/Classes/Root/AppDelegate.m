@@ -26,6 +26,11 @@
     [self setupUIInterface];
     //SDImageCache设置缓存时间为30天
     [SDImageCache sharedImageCache].maxCacheAge = 60 * 60 * 24 * 30;
+//    UIImage *backIndicatorImage = [UIImage imageNamed:@"backIconwhite"];
+//    [UINavigationBar appearance].backIndicatorImage = backIndicatorImage;
+//    [UINavigationBar appearance].backIndicatorTransitionMaskImage = backIndicatorImage;
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -300) forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 

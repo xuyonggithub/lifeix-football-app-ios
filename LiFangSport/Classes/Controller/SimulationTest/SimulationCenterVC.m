@@ -70,7 +70,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     LFSimulationTestDetailController *simulationTestDetailCtrl = [[LFSimulationTestDetailController alloc] init];
-    simulationTestDetailCtrl.hidesBottomBarWhenPushed = YES;
+
     [self.navigationController pushViewController:simulationTestDetailCtrl animated:YES];
 }
 

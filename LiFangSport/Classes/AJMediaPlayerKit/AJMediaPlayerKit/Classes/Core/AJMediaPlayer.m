@@ -252,6 +252,7 @@ static dispatch_queue_t mediaplayer_processing_queue() {
     return self.videoPlayer.externalPlaybackActive;
 }
 
+/*
 - (void)prepareToStream:(AJMediaPlayerItem *)metadata fromDuration:(NSTimeInterval )duration uid:(NSString *)uid {
     self.userId= uid;
     [self addNotificationObservers];
@@ -289,6 +290,48 @@ static dispatch_queue_t mediaplayer_processing_queue() {
                 }
             }
         }];
+    }
+    [self submitBigdataForPlayerInit];
+}*/
+
+- (void)prepareToStream:(AJMediaPlayerItem *)metadata fromDuration:(NSTimeInterval )duration uid:(NSString *)uid {
+    self.userId= uid;
+    [self addNotificationObservers];
+    _currentUUID = [[NSUUID UUID] UUIDString];
+    
+    if ([[AJMediaPlayerAnalyticsReporter sharedReporter] shareAppMetadata]) {
+        _currentUUID = [[NSUUID UUID] UUIDString];
+    } else if ([[AJMediaPlayerSDKAnalyticsReporter sharedReporter] shareAppConfiguration]) {
+        [[AJMediaPlayerSDKAnalyticsReporter sharedReporter] creatVideoPlay];
+    }
+    
+    self.changeStreamCount = 0;
+    self.ipt = 0;
+    _isReportedBeginToPlay = NO;
+    self.currentStreamItem = metadata;
+    self.currentTimeshiftPosition = 0;
+    if (self.mediaStreamProvider && [self.mediaStreamProvider respondsToSelector:@selector(loadPlayableItemWithMetadata:timeshift:withParameter:completionHandler:)]) {
+        __weak typeof(self) weakSelf = self;
+//        [self.mediaStreamProvider loadPlayableItemWithMetadata:metadata timeshift:weakSelf.currentTimeshiftPosition withParameter:[weakSelf fetchBasicUrlWithMetadata:metadata] completionHandler:^(NSError *err, AVPlayerItem *item) {
+//            [weakSelf handleCdeError:err];
+//            [[AJMediaRecordTimeHelper sharedInstance] recordStartTimeWithKey:@"cde_end_play"];
+//            if (err.code == AJMediaPlayerErrorCdeOverLoad || weakSelf.currentPlayerItem == item || !item) {
+//                return;
+//            }
+        AVPlayerItem *item = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:metadata.preferredSchedulingStreamURL]];
+            weakSelf.currentPlayerItem = item;
+            if (weakSelf.currentPlayerItem) {
+                weakSelf.currentPlayState = AJMediaPlayerStateContentInit;
+                weakSelf.canMoveProgress = NO;
+                weakSelf.videoPlayer = [[AVPlayer alloc] init];
+                [weakSelf.videoPlayer replaceCurrentItemWithPlayerItem:weakSelf.currentPlayerItem];
+                [weakSelf addPlayerObserver];
+                [weakSelf addPlayItemObserver:weakSelf.currentPlayerItem];
+                if (duration > 0) {
+                    [weakSelf.videoPlayer seekToTime:CMTimeMakeWithSeconds(duration, NSEC_PER_SEC)];
+                }
+            }
+//        }];
     }
     [self submitBigdataForPlayerInit];
 }

@@ -1379,11 +1379,12 @@
     }
 }
 
+/*
 - (void)fetchStreamItemWithRequest:(AJMediaPlayRequest *)playRequest fromDuration:(NSTimeInterval )duration {
     if (!self.metadataFetcher) {
         self.metadataFetcher = [[AJMediaStreamSchedulingMetadataFetcher alloc] init];
     }
-
+    
     NSDictionary *authinfo = nil;
     if (playRequest.uid) {
         authinfo = @{@"uid":playRequest.uid};
@@ -1432,6 +1433,128 @@
         }
     }];
 }
+*/
+ 
+- (void)fetchStreamItemWithRequest:(AJMediaPlayRequest *)playRequest fromDuration:(NSTimeInterval )duration {
+    if (!self.metadataFetcher) {
+        self.metadataFetcher = [[AJMediaStreamSchedulingMetadataFetcher alloc] init];
+    }
+    
+    NSDictionary *authinfo = nil;
+    if (playRequest.uid) {
+        authinfo = @{@"uid":playRequest.uid};
+    }
+    [[AJMediaRecordTimeHelper sharedInstance] recordStartTimeWithKey:@"requestPlayUrlWithVid"];
+    
+    __weak typeof(self) weakSelf = self;
+    //    [self.metadataFetcher fetchStreamSchedulingMetadataWithID:playRequest.identifier streamType:playRequest.type authInfo:authinfo completionHandler:^(NSError *error, AJMediaStreamSchedulingMetadata *schedulingMetadata) {
+    //        if (schedulingMetadata) {
+    //            schedulingMetadata.resourceID = playRequest.identifier;
+    //            schedulingMetadata.resourceName = playRequest.resourceName;
+    //            schedulingMetadata.episodeid = playRequest.episodeid;
+    //            schedulingMetadata.channelEname = playRequest.channelEname;
+    //            schedulingMetadata.type = playRequest.type;
+    //            weakSelf.mediaStreamSchedulingMetadata = schedulingMetadata;
+    //            if (schedulingMetadata.status == AJMediaPlayerSchedulingNormal) {
+    
+    NSInteger requestUrlTime = [[AJMediaRecordTimeHelper sharedInstance] getRecordEndTimeWithKey:@"requestPlayUrlWithVid"];
+    [[NSUserDefaults standardUserDefaults] setObject:@(requestUrlTime) forKey:@"AJMediaPlayer_RequestUrlTime"];
+    [[AJMediaRecordTimeHelper sharedInstance] recordStartTimeWithKey:@"get_play_url"];
+    
+    
+    AJMediaPlayerItem *metadataItem = [[AJMediaPlayerItem alloc] init];
+    metadataItem.qualityName = @"高清";
+    metadataItem.isPlayable = YES;
+    metadataItem.type = AJMediaPlayerVODStreamItem;
+    metadataItem.preferredSchedulingStreamURL = playRequest.identifier;
+    //    if (metadataItem.schedulingStreamURLs.count > 0) {
+    //        metadataItem.preferredSchedulingStreamURL = metadataItem.schedulingStreamURLs[0];
+    //    }
+    
+    
+    weakSelf.currentStreamItem = [weakSelf startToFetchCurrentStreamItemWith:weakSelf.mediaStreamSchedulingMetadata];
+    weakSelf.currentStreamItem = metadataItem;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (weakSelf.currentStreamItem.type == AJMediaPlayerLiveStreamItem) {
+            if ([weakSelf checkIsSupportTimeshift]) {
+                weakSelf.mediaPlayerControlBar.isSupportTimeShift = YES;
+                [weakSelf.mediaPlayerControlBar setNeedsUpdateConstraints];
+                [weakSelf.mediaPlayerControlBar updateConstraintsIfNeeded];
+            }
+        }
+        [weakSelf updateStreamListButtonTitleWith:weakSelf.currentStreamItem];
+    });
+    //                if (weakSelf.currentStreamItem && weakSelf.currentStreamItem.preferredSchedulingStreamURL) {
+    [weakSelf.loadingBackGroundView updateTipsLabelTitle:@"正在缓冲，请稍候"];
+    [weakSelf.mediaPlayer prepareToStream:weakSelf.currentStreamItem fromDuration:duration uid:playRequest.uid];
+    //                } else {
+    //                    [weakSelf handleWithErrorState:AJMediaPlayerProxiedAPIEmptyStreamMetadataError errorInfo:error];
+    //                    [AJMediaPlayerAnalyticsEventReporter submitRequestUrlErrorEvent:@"webapi_bussiness_err" withErrorCode:[NSString stringWithFormat:@"%@",@(AJMediaPlayerProxiedAPIEmptyStreamMetadataError)]];
+    //                }
+    //            } else {
+    //                [weakSelf handleWithErrorState:schedulingMetadata.status errorInfo:error];
+    //                [AJMediaPlayerAnalyticsEventReporter submitRequestUrlErrorEvent:@"webapi_bussiness_err" withErrorCode:[NSString stringWithFormat:@"%@",@(schedulingMetadata.status)]];
+    //            }
+    //        } else {
+    //            [weakSelf handleWithErrorState:[error code] errorInfo:error];
+    //        }
+    //    }];
+}
+
+
+//- (void)fetchStreamItemWithRequest:(AJMediaPlayRequest *)playRequest fromDuration:(NSTimeInterval )duration {
+//    if (!self.metadataFetcher) {
+//        self.metadataFetcher = [[AJMediaStreamSchedulingMetadataFetcher alloc] init];
+//    }
+//
+//    NSDictionary *authinfo = nil;
+//    if (playRequest.uid) {
+//        authinfo = @{@"uid":playRequest.uid};
+//    }
+//    [[AJMediaRecordTimeHelper sharedInstance] recordStartTimeWithKey:@"requestPlayUrlWithVid"];
+//    
+//    __weak typeof(self) weakSelf = self;
+//    [self.metadataFetcher fetchStreamSchedulingMetadataWithID:playRequest.identifier streamType:playRequest.type authInfo:authinfo completionHandler:^(NSError *error, AJMediaStreamSchedulingMetadata *schedulingMetadata) {
+//        if (schedulingMetadata) {
+//            schedulingMetadata.resourceID = playRequest.identifier;
+//            schedulingMetadata.resourceName = playRequest.resourceName;
+//            schedulingMetadata.episodeid = playRequest.episodeid;
+//            schedulingMetadata.channelEname = playRequest.channelEname;
+//            schedulingMetadata.type = playRequest.type;
+//            weakSelf.mediaStreamSchedulingMetadata = schedulingMetadata;
+//            if (schedulingMetadata.status == AJMediaPlayerSchedulingNormal) {
+//                
+//                NSInteger requestUrlTime = [[AJMediaRecordTimeHelper sharedInstance] getRecordEndTimeWithKey:@"requestPlayUrlWithVid"];
+//                [[NSUserDefaults standardUserDefaults] setObject:@(requestUrlTime) forKey:@"AJMediaPlayer_RequestUrlTime"];
+//                [[AJMediaRecordTimeHelper sharedInstance] recordStartTimeWithKey:@"get_play_url"];
+//                
+//                weakSelf.currentStreamItem = [weakSelf startToFetchCurrentStreamItemWith:weakSelf.mediaStreamSchedulingMetadata];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if (weakSelf.currentStreamItem.type == AJMediaPlayerLiveStreamItem) {
+//                        if ([weakSelf checkIsSupportTimeshift]) {
+//                            weakSelf.mediaPlayerControlBar.isSupportTimeShift = YES;
+//                            [weakSelf.mediaPlayerControlBar setNeedsUpdateConstraints];
+//                            [weakSelf.mediaPlayerControlBar updateConstraintsIfNeeded];
+//                        }
+//                    }
+//                    [weakSelf updateStreamListButtonTitleWith:weakSelf.currentStreamItem];
+//                });
+//                if (weakSelf.currentStreamItem && weakSelf.currentStreamItem.preferredSchedulingStreamURL) {
+//                    [weakSelf.loadingBackGroundView updateTipsLabelTitle:@"正在缓冲，请稍候"];
+//                    [weakSelf.mediaPlayer prepareToStream:weakSelf.currentStreamItem fromDuration:duration uid:playRequest.uid];
+//                } else {
+//                    [weakSelf handleWithErrorState:AJMediaPlayerProxiedAPIEmptyStreamMetadataError errorInfo:error];
+//                    [AJMediaPlayerAnalyticsEventReporter submitRequestUrlErrorEvent:@"webapi_bussiness_err" withErrorCode:[NSString stringWithFormat:@"%@",@(AJMediaPlayerProxiedAPIEmptyStreamMetadataError)]];
+//                }
+//            } else {
+//                [weakSelf handleWithErrorState:schedulingMetadata.status errorInfo:error];
+//                [AJMediaPlayerAnalyticsEventReporter submitRequestUrlErrorEvent:@"webapi_bussiness_err" withErrorCode:[NSString stringWithFormat:@"%@",@(schedulingMetadata.status)]];
+//            }
+//        } else {
+//            [weakSelf handleWithErrorState:[error code] errorInfo:error];
+//        }
+//    }];
+//}
 
 #pragma mark - NetWork
 

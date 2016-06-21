@@ -35,10 +35,32 @@
     
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self addLandscapeConstrains];
+    [self addPortraitConstraints];
     [self toPlayWithAJMediaPlayerItem];
     
 }
+
+- (void)addPortraitConstraints
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+
+        
+
+            [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_disPlayView]|"
+                                                                                             options:0
+                                                                                             metrics:nil
+                                                                                               views:NSDictionaryOfVariableBindings(_disPlayView)]];
+    
+    [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_disPlayView]"
+                                                                                     options:0
+                                                                                     metrics:nil
+                                                                                       views:NSDictionaryOfVariableBindings(_disPlayView)]];
+    
+        [self.constraintList addObject:[NSLayoutConstraint constraintWithItem:_disPlayView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_disPlayView attribute:NSLayoutAttributeWidth multiplier:9/16.0 constant:1]];
+
+    [self.view addConstraints:self.constraintList];
+}
+
 
 - (void)addLandscapeConstrains
 {
@@ -94,21 +116,21 @@
     self.mediaPlayerViewController.isAddtionView = [notification.object boolValue];
 }
 
-#pragma mark - UIViewControllerRotation
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscapeLeft;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationLandscapeLeft;
-}
+//#pragma mark - UIViewControllerRotation
+//- (BOOL)shouldAutorotate
+//{
+//    return NO;
+//}
+//
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationMaskLandscapeLeft;
+//}
+//
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+//{
+//    return UIInterfaceOrientationLandscapeLeft;
+//}
 
 
 

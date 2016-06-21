@@ -43,7 +43,7 @@
 }
 
 -(void)requestData{
-    [CommonRequest requstPath:kcategoryPath loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:kcategoryPath loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         

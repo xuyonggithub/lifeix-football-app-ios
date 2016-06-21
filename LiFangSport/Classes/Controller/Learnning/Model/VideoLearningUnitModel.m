@@ -1,14 +1,14 @@
 //
-//  VideoLearningDetModel.m
+//  VideoLearningUnitModel.m
 //  LiFangSport
 //
-//  Created by 张毅 on 16/6/20.
+//  Created by 张毅 on 16/6/21.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "VideoLearningDetModel.h"
+#import "VideoLearningUnitModel.h"
 
-@implementation VideoLearningDetModel
+@implementation VideoLearningUnitModel
 - (id)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err{
     self = [super initWithDictionary:dict error:err];
     if(self){

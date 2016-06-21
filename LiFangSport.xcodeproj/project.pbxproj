@@ -21,6 +21,8 @@
 		2D62E8121D0FB2DB0006131B /* CenterCyclePicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8111D0FB2DB0006131B /* CenterCyclePicModel.m */; };
 		2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8141D101E820006131B /* TopBannerSwitchView.m */; };
 		2D62E8181D101F400006131B /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8171D101F400006131B /* LineView.m */; };
+		2D69960C1D19190C00B5F52D /* MulSwitchBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D69960B1D19190C00B5F52D /* MulSwitchBannerView.m */; };
+		2D69960F1D19279500B5F52D /* VideoLearningUnitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D69960E1D19279500B5F52D /* VideoLearningUnitModel.m */; };
 		2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB181D17864200954C63 /* SimulationCenterVC.m */; };
 		2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */; };
 		2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */; };
@@ -192,6 +194,10 @@
 		2D62E8141D101E820006131B /* TopBannerSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannerSwitchView.m; sourceTree = "<group>"; };
 		2D62E8161D101F400006131B /* LineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineView.h; sourceTree = "<group>"; };
 		2D62E8171D101F400006131B /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
+		2D69960A1D19190C00B5F52D /* MulSwitchBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MulSwitchBannerView.h; sourceTree = "<group>"; };
+		2D69960B1D19190C00B5F52D /* MulSwitchBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MulSwitchBannerView.m; sourceTree = "<group>"; };
+		2D69960D1D19279500B5F52D /* VideoLearningUnitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningUnitModel.h; sourceTree = "<group>"; };
+		2D69960E1D19279500B5F52D /* VideoLearningUnitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningUnitModel.m; sourceTree = "<group>"; };
 		2D6EEB171D17864200954C63 /* SimulationCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationCenterVC.h; sourceTree = "<group>"; };
 		2D6EEB181D17864200954C63 /* SimulationCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationCenterVC.m; sourceTree = "<group>"; };
 		2D6EEB1A1D17C72D00954C63 /* VideoListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListModel.h; sourceTree = "<group>"; };
@@ -540,6 +546,8 @@
 				2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */,
 				2D6EEB1D1D17C75100954C63 /* VideoLearningDetModel.h */,
 				2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */,
+				2D69960D1D19279500B5F52D /* VideoLearningUnitModel.h */,
+				2D69960E1D19279500B5F52D /* VideoLearningUnitModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -551,6 +559,8 @@
 				2D84EA5C1D11688100113404 /* VideoLearningCell.m */,
 				2DBB72671D11B659009BD38F /* VideoLearningDetCell.h */,
 				2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */,
+				2D69960A1D19190C00B5F52D /* MulSwitchBannerView.h */,
+				2D69960B1D19190C00B5F52D /* MulSwitchBannerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1404,6 +1414,7 @@
 				2DA4B2151D0E80C700136DA7 /* SDCycleScrollView.m in Sources */,
 				EC4D3C221D1387E200285243 /* CategoryView.m in Sources */,
 				2DA4B1F41D0E465C00136DA7 /* CenterViewController.m in Sources */,
+				2D69960C1D19190C00B5F52D /* MulSwitchBannerView.m in Sources */,
 				2D84EA5D1D11688100113404 /* VideoLearningCell.m in Sources */,
 				2D84EA551D11578B00113404 /* HomeBannnerDetVC.m in Sources */,
 				2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */,
@@ -1424,6 +1435,7 @@
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
 				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
+				2D69960F1D19279500B5F52D /* VideoLearningUnitModel.m in Sources */,
 				2DA4B2121D0E80C700136DA7 /* TADotView.m in Sources */,
 				EC4D3C481D13935200285243 /* CoachCenterVC.m in Sources */,
 				2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */,

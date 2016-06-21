@@ -11,6 +11,7 @@
 #import "VideoLearningDetVC.h"
 #import "CommonRequest.h"
 #import "VideoListModel.h"
+#import "VideoLearningDetModel.h"
 
 @interface VideoCenterVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *centerTableview;
@@ -24,11 +25,13 @@
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
     self.title = @"规则培训";
+    self.view.backgroundColor = [UIColor grayColor];
+
     [self createTableview];
     [self requestData];
 }
 -(void)requestData{
-    [CommonRequest requstPath:kvideoListPath loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:kvideoListPath loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         
@@ -70,6 +73,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     VideoLearningDetVC *dVC = [[VideoLearningDetVC alloc]init];
+    VideoListModel *model = _dataArray[indexPath.row];
+    dVC.catsArr = [VideoLearningDetModel arrayOfModelsFromDictionaries:model.cats];
+    dVC.title = model.name;
     [self.navigationController pushViewController:dVC animated:YES];
 }
 
@@ -77,15 +83,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

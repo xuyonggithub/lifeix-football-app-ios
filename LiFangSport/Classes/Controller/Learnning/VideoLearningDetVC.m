@@ -12,8 +12,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import "VideoPlayerManager.h"
+#import "MulSwitchBannerView.h"
+#import "CommonRequest.h"
+#import "VideoLearningDetModel.h"
+#import "VideoLearningUnitModel.h"
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
+#define kvideodetPath @"elearning/training_categories/"
 
 @interface VideoLearningDetVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
@@ -21,6 +26,8 @@
     UIView *playView;
 }
 @property(nonatomic,strong)UICollectionView *videoCollectionview;
+@property(nonatomic,assign)NSInteger index;
+@property(nonatomic,strong)NSMutableArray *dataArr;
 
 @end
 
@@ -28,10 +35,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"男足比赛2014";
+    _dataArr = [NSMutableArray array];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
     [self createCollectionView];
+    [self requestData];
 }
+
+-(void)requestData{
+    VideoLearningDetModel *model = _catsArr[0];
+    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/pages?start=%d&limit=%d",kvideodetPath,model.KID,0,20] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [self dealWithJason:jsonDict];
+        
+    } failure:^(CommonRequest *request, NSError *error) {
+        
+    }];
+}
+-(void)dealWithJason:(id )dic{
+    [_dataArr removeAllObjects];
+    _dataArr = [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
+    [_videoCollectionview reloadData];
+}
+
 -(void)rollBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -40,7 +64,7 @@
     if (_videoCollectionview == nil) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) collectionViewLayout:flowLayout];
+        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, kScreenWidth, kScreenHeight-70) collectionViewLayout:flowLayout];
         _videoCollectionview.delegate = self;
         _videoCollectionview.dataSource = self;
         _videoCollectionview.scrollEnabled = YES;
@@ -53,7 +77,7 @@
 #pragma mark -- UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 15;//_rightDataArray.count
+    return _dataArr.count;//_rightDataArray.count
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -66,9 +90,9 @@
     static NSString *identify = kvideoCollectionviewcellid;
     VideoLearningDetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
-//    if (_rightDataArray.count) {
-//        cell.model = _rightDataArray[indexPath.item];
-//    }
+    if (_dataArr.count) {
+        cell.model = _dataArr[indexPath.item];
+    }
     return cell;
 }
 #pragma mark --UICollectionViewDelegateFlowLayout

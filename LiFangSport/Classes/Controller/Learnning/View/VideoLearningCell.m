@@ -48,6 +48,9 @@
 
 -(void)setModel:(VideoListModel *)model{
     _titleLab.text = model.name;
+    
+    NSString *picstr = [NSString stringWithFormat:@"%@%@%@",kpicHeaderPrifx,@"mobile/",model.image];
+    [_picView sd_setImageWithURL:[NSURL URLWithString:picstr]];
 }
 
 

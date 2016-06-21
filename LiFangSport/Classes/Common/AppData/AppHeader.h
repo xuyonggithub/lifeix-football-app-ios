@@ -39,6 +39,6 @@
 #define kScreenWidth               [[UIScreen mainScreen] bounds].size.width
 #define kScreenHeight           [[UIScreen mainScreen] bounds].size.height
 
-
+#define kpicHeaderPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
 
 #endif

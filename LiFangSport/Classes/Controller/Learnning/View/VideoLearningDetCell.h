@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoLearningUnitModel.h"
 
 @interface VideoLearningDetCell : UICollectionViewCell
+@property(nonatomic,strong)VideoLearningUnitModel *model;
 
 @end

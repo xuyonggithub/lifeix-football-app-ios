@@ -7,6 +7,7 @@
 //
 
 #import "VideoLearningDetCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface VideoLearningDetCell ()
 @property(nonatomic,strong)UILabel *nameLab;
@@ -41,10 +42,10 @@
     [self addSubview:_picView];
     [_picView addSubview:_nameLab];
 }
--(void)layoutSubviews{
-//    [self addSubview:_picView];
-//    [_picView addSubview:_nameLab];
-    
+
+-(void)setModel:(VideoLearningUnitModel *)model{
+    NSString *picstr = [NSString stringWithFormat:@"%@%@",kpicHeaderPrifx,model.videos[0][@"imagePath"]];
+//    [_picView sd_setImageWithURL:[NSURL URLWithString:picstr]];
 }
 
 @end

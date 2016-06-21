@@ -53,7 +53,7 @@ const CGFloat topViewH = 180;
     [self.view addSubview:self.shareBtn];
     
     //webView
-    self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 44, SCREEN_WIDTH, self.view.height - 88)];
+    self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 64, SCREEN_WIDTH, self.view.height - 108)];
     self.contentWebView.delegate = self;
     //    UIScrollView *tempView = self.contentWebView.scrollView;
     //    tempView.scrollEnabled = false;
@@ -121,7 +121,7 @@ const CGFloat topViewH = 180;
 }
 
 -(void)requestData{
-    NSString *urlStr = [NSString stringWithFormat:@"wemedia/posts/57636e13e4b08f4bfcedfd90"];
+    NSString *urlStr = [NSString stringWithFormat:@"wemedia/posts/%@", self.media.mediaId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         NSDictionary *dic = jsonDict;
         self.htmlStr = [dic objectForKey:@"content"];

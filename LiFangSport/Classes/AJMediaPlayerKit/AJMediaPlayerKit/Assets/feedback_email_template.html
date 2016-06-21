@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>播放流信息</title>
+<style type="text/css">
+body {
+	font: 1em SimHei #ffffff;
+	background-color: #f5f7fa;
+}
+
+.info {
+	overflow: hidden;
+	padding: 5px 5px;
+	background-color: #ffffff;
+	border: 1px solid #cfdbe2;
+	border-top-width: 3px;
+	border-radius: 4px;
+}
+
+table {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0 auto;
+	border-collapse: collapse;
+	border-spacing: 2px;
+	border-color: grey;
+	border: 1px solid #eeeeee;
+}
+
+caption {
+	text-align: left;
+	padding: 1% 0px 20px;
+}
+
+tr {
+	border-bottom: 2px solid #eeeeee;
+}
+
+td {
+	padding: 8px;
+	word-break: break-word;
+}
+
+td:first-child {
+	color: #888;
+	width: 40%;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+	<div class="info">
+		<table>
+			<caption>系统报告</caption>
+			<tr>
+				<td>设备名称:</td>
+				<td>%%__device_name__%%</td>
+			</tr>
+			<tr>
+				<td>系统名称:</td>
+				<td>%%__system_name__%%</td>
+			</tr>
+			<tr>
+				<td>系统版本:</td>
+				<td>%%__system_version__%%</td>
+			</tr>
+			<tr>
+				<td>设备模式:</td>
+				<td>%%__device_model__%%</td>
+			</tr>
+			<tr>
+				<td>应用名称:</td>
+				<td>%%__app_name__%%</td>
+			</tr>
+			<tr>
+				<td>应用程序版本:</td>
+				<td>%%__app_version__%%</td>
+			</tr>
+
+			<tr>
+				<td>CDE 技术支持码:</td>
+				<td>%%__cde_service_code__%%</td>
+			</tr>
+            
+			<tr>
+				<td>互联网地址:</td>
+				<td>%%__ip_address__%%</td>
+			</tr>
+			<tr>
+				<td>域名解析服务器:</td>
+				<td>%%__local_dns__%%</td>
+			</tr>
+
+			<tr>
+				<td>CDN 调度地址:</td>
+				<td colspan="2">%%__scheduling_address__%%</td>
+			</tr>
+            
+            <tr>
+                <td>CDN 调度信息:</td>
+                <td colspan="2">%%__scheduling_info__%%</td>
+            </tr>
+		</table>
+	</div>
+</body>
+</html>

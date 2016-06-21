@@ -17,6 +17,7 @@ pod 'iRate', '~> 1.11.4'
 pod 'SMPageControl', '~> 1.2'
 pod 'AKSegmentedControl', '~> 1.0.4'
 pod 'Fabric'
+pod 'Masonry','~> 0.6.4'
 
 
 end

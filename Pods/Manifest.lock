@@ -35,16 +35,17 @@ PODS:
     - Reachability
   - ASIHTTPRequest/S3 (1.8.2):
     - ASIHTTPRequest/Core
-  - Fabric (1.6.5)
+  - Fabric (1.6.7)
   - GVUserDefaults (0.9.5)
-  - INSPullToRefresh (1.1.4)
+  - INSPullToRefresh (1.1.5)
   - iRate (1.11.4)
   - JSONModel (0.10.0)
+  - Masonry (0.6.4)
   - MPNotificationView (1.1.1)
   - Reachability (3.2)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
   - SMPageControl (1.2)
 
 DEPENDENCIES:
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - INSPullToRefresh
   - iRate (~> 1.11.4)
   - JSONModel (~> 0.10.0)
+  - Masonry (~> 0.6.4)
   - MPNotificationView (~> 1.1.1)
   - SDWebImage (~> 3.7.1)
   - SMPageControl (~> 1.2)
@@ -66,16 +68,17 @@ SPEC CHECKSUMS:
   AGWindowView: 08dc8d448b8c96430e78b3945a9c2cf5b0fde754
   AKSegmentedControl: c076491ef773c0d70b70d03a8e5a0c04a9efbf08
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   GVUserDefaults: bd3efc5beab8f501d17e566eddc7acd6f2425c2a
-  INSPullToRefresh: a27f7faf022f858f02a7680943e11a1f7ce3430a
+  INSPullToRefresh: 112ae2c295d2b3a76daa9dff86e7ef40ed002c47
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
   JSONModel: bf734d6ef129c8ea13b6d349113f7929c8fd0a91
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MPNotificationView: 0f342a4a5211f75ba9b395552af6c121b4730249
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-PODFILE CHECKSUM: fb2e504ab3996105190a6a8bc5d488acf72fda67
+PODFILE CHECKSUM: a095b77c61e83ef4793a6228e2216877ebeb49a8
 
 COCOAPODS: 1.0.1

@@ -28,6 +28,10 @@
     
     self.title = @"模拟测试";
     [self.view addSubview:self.tableView];
+    __weak typeof(self) weakSelf = self;
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakSelf.view);
+    }];
     [CommonRequest requstPath:@"/elearning/quiz_categories" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
 
     } failure:^(CommonRequest *request, NSError *error) {
@@ -71,7 +75,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

@@ -1,0 +1,30 @@
+ [
+  {
+  "identifier" : "mediaplayer::begin-loading",
+  "name" : "[播放器]-开始加载数据"
+  },
+  {
+  "identifier" : "mediaplayer::finished-loading",
+  "name" : "[播放器]-加载完毕开始播放"
+  },
+  {
+  "identifier" : "mediaplayer::begin-vod-loading",
+  "name" : "[播放器]-开始加载点播流"
+  },
+  {
+  "identifier" : "mediaplayer::begin-live-loading",
+  "name" : "[播放器]-开始加载直播流"
+  },
+  {
+  "identifier" : "mediaplayer::begin_station_loading",
+  "name" : "[播放器]-开始加载轮播台直播流"
+  },
+  {
+  "identifier" : "mediaplayer::received-error",
+  "name" : "[播放器]-播放错误"
+  },
+  {
+  "identifier" : "mediaplayer::cancelled-loading-manually",
+  "name" : "[播放器]-用户取消加载"
+  }
+  ]

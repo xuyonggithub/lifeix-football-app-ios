@@ -122,6 +122,57 @@
 		2DE94D801D1291FA00E1508D /* ou1233aeer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */; };
 		99D0CDED8D5BD7F1BE62BCBA /* libPods-LiFangSport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */; };
 		9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */; };
+		9CAF82361D190F560025224F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B51D190F560025224F /* .gitkeep */; };
+		9CAF82371D190F560025224F /* AJMediaPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B61D190F560025224F /* AJMediaPlayer.xcassets */; };
+		9CAF82381D190F560025224F /* feedback_email_template.html in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B71D190F560025224F /* feedback_email_template.html */; };
+		9CAF82391D190F560025224F /* feedback_recipients.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B81D190F560025224F /* feedback_recipients.plist */; };
+		9CAF823A1D190F560025224F /* mediaplayer_analytics_events.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B91D190F560025224F /* mediaplayer_analytics_events.json */; };
+		9CAF823B1D190F560025224F /* AJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81BD1D190F560025224F /* AJFoundation.m */; };
+		9CAF823C1D190F560025224F /* AJMediaPlayer+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81BF1D190F560025224F /* AJMediaPlayer+Analytics.m */; };
+		9CAF823D1D190F560025224F /* AJMediaPlayer+SDKAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81C11D190F560025224F /* AJMediaPlayer+SDKAnalytics.m */; };
+		9CAF823E1D190F560025224F /* AJMediaPlayer+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81C31D190F560025224F /* AJMediaPlayer+Statistics.m */; };
+		9CAF823F1D190F560025224F /* AJMediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81C51D190F560025224F /* AJMediaPlayer.m */; };
+		9CAF82401D190F560025224F /* AJMediaPlayerAnalyticsReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81C71D190F560025224F /* AJMediaPlayerAnalyticsReporter.m */; };
+		9CAF82411D190F560025224F /* AJMediaPlayerGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81C91D190F560025224F /* AJMediaPlayerGesture.m */; };
+		9CAF82421D190F560025224F /* AJMediaPlayerInfrastructureContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81CC1D190F560025224F /* AJMediaPlayerInfrastructureContext.m */; };
+		9CAF82431D190F560025224F /* AJMediaPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81CF1D190F560025224F /* AJMediaPlayerItem.m */; };
+		9CAF82441D190F560025224F /* AJMediaPlayerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81D11D190F560025224F /* AJMediaPlayerOverlayView.m */; };
+		9CAF82451D190F560025224F /* AJMediaPlayerRemoteDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81D31D190F560025224F /* AJMediaPlayerRemoteDisplay.m */; };
+		9CAF82461D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81D51D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.m */; };
+		9CAF82471D190F560025224F /* AJMediaPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81D71D190F560025224F /* AJMediaPlayerView.m */; };
+		9CAF82481D190F560025224F /* AJMediaRecordTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81D91D190F560025224F /* AJMediaRecordTimeHelper.m */; };
+		9CAF82491D190F560025224F /* AJMediaSessionVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81DB1D190F560025224F /* AJMediaSessionVolume.m */; };
+		9CAF824A1D190F560025224F /* AJMediaStreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81DD1D190F560025224F /* AJMediaStreamProvider.m */; };
+		9CAF824B1D190F560025224F /* AVPlayer+AJMediaPlayerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81DF1D190F560025224F /* AVPlayer+AJMediaPlayerKit.m */; };
+		9CAF824C1D190F560025224F /* AJMediaBulletInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81E21D190F560025224F /* AJMediaBulletInputView.m */; };
+		9CAF824D1D190F560025224F /* AJMediaEpisodePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81E41D190F560025224F /* AJMediaEpisodePickerView.m */; };
+		9CAF824E1D190F560025224F /* AJMediaIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81E61D190F560025224F /* AJMediaIndicatorView.m */; };
+		9CAF824F1D190F560025224F /* AJMediaMailComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81E81D190F560025224F /* AJMediaMailComposeViewController.m */; };
+		9CAF82501D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81EA1D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.m */; };
+		9CAF82511D190F560025224F /* AJMediaPlayerAirPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81EC1D190F560025224F /* AJMediaPlayerAirPlayView.m */; };
+		9CAF82521D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81EE1D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.m */; };
+		9CAF82531D190F560025224F /* AJMediaPlayerBackGroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81F01D190F560025224F /* AJMediaPlayerBackGroundView.m */; };
+		9CAF82541D190F560025224F /* AJMediaPlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81F21D190F560025224F /* AJMediaPlayerButton.m */; };
+		9CAF82551D190F560025224F /* AJMediaPlayerCaptionControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81F41D190F560025224F /* AJMediaPlayerCaptionControlPanel.m */; };
+		9CAF82561D190F560025224F /* AJMediaPlayerFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81F71D190F560025224F /* AJMediaPlayerFeedback.m */; };
+		9CAF82571D190F560025224F /* AJMediaPlayerMessageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81FA1D190F560025224F /* AJMediaPlayerMessageLayerView.m */; };
+		9CAF82581D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81FC1D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m */; };
+		9CAF82591D190F560025224F /* AJMediaPlayerProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF81FE1D190F560025224F /* AJMediaPlayerProgressView.m */; };
+		9CAF825A1D190F560025224F /* AJMediaPlayerSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82001D190F560025224F /* AJMediaPlayerSlider.m */; };
+		9CAF825B1D190F560025224F /* AJMediaPlayerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82031D190F560025224F /* AJMediaPlayerUtilities.m */; };
+		9CAF825C1D190F560025224F /* AJMediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82051D190F560025224F /* AJMediaPlayerViewController.m */; };
+		9CAF825D1D190F560025224F /* AJMediaPlayerVolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82071D190F560025224F /* AJMediaPlayerVolumeControl.m */; };
+		9CAF825E1D190F560025224F /* AJMediaPlayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82091D190F560025224F /* AJMediaPlayRequest.m */; };
+		9CAF825F1D190F560025224F /* AJMediaQualityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF820B1D190F560025224F /* AJMediaQualityPickerView.m */; };
+		9CAF82601D190F560025224F /* AJMediaStreamSchedulingMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF820D1D190F560025224F /* AJMediaStreamSchedulingMetadata.m */; };
+		9CAF82611D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF820F1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m */; };
+		9CAF82621D190F560025224F /* AJMediaTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82111D190F560025224F /* AJMediaTipsView.m */; };
+		9CAF82631D190F560025224F /* VTBulletItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82141D190F560025224F /* VTBulletItem.m */; };
+		9CAF82641D190F560025224F /* VTBulletLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82161D190F560025224F /* VTBulletLabel.m */; };
+		9CAF82651D190F560025224F /* VTBulletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82181D190F560025224F /* VTBulletModel.m */; };
+		9CAF82661D190F560025224F /* VTBulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF821A1D190F560025224F /* VTBulletView.m */; };
+		9CAF826A1D190F560025224F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF82341D190F560025224F /* LICENSE */; };
+		9CAF826B1D190F560025224F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82351D190F560025224F /* README.md */; };
 		EC4D3C221D1387E200285243 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C191D1387E200285243 /* CategoryView.m */; };
 		EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1B1D1387E200285243 /* PlayerCell.m */; };
 		EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */; };
@@ -366,6 +417,113 @@
 		2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ou1233aeer.png; sourceTree = "<group>"; };
 		9C4D6C811D17F4BA00417565 /* LFSimulationCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCenterCell.h; sourceTree = "<group>"; };
 		9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterCell.m; sourceTree = "<group>"; };
+		9CAF81B51D190F560025224F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		9CAF81B61D190F560025224F /* AJMediaPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AJMediaPlayer.xcassets; sourceTree = "<group>"; };
+		9CAF81B71D190F560025224F /* feedback_email_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = feedback_email_template.html; sourceTree = "<group>"; };
+		9CAF81B81D190F560025224F /* feedback_recipients.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = feedback_recipients.plist; sourceTree = "<group>"; };
+		9CAF81B91D190F560025224F /* mediaplayer_analytics_events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mediaplayer_analytics_events.json; sourceTree = "<group>"; };
+		9CAF81BC1D190F560025224F /* AJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJFoundation.h; sourceTree = "<group>"; };
+		9CAF81BD1D190F560025224F /* AJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJFoundation.m; sourceTree = "<group>"; };
+		9CAF81BE1D190F560025224F /* AJMediaPlayer+Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AJMediaPlayer+Analytics.h"; sourceTree = "<group>"; };
+		9CAF81BF1D190F560025224F /* AJMediaPlayer+Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AJMediaPlayer+Analytics.m"; sourceTree = "<group>"; };
+		9CAF81C01D190F560025224F /* AJMediaPlayer+SDKAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AJMediaPlayer+SDKAnalytics.h"; sourceTree = "<group>"; };
+		9CAF81C11D190F560025224F /* AJMediaPlayer+SDKAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AJMediaPlayer+SDKAnalytics.m"; sourceTree = "<group>"; };
+		9CAF81C21D190F560025224F /* AJMediaPlayer+Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AJMediaPlayer+Statistics.h"; sourceTree = "<group>"; };
+		9CAF81C31D190F560025224F /* AJMediaPlayer+Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AJMediaPlayer+Statistics.m"; sourceTree = "<group>"; };
+		9CAF81C41D190F560025224F /* AJMediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayer.h; sourceTree = "<group>"; };
+		9CAF81C51D190F560025224F /* AJMediaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayer.m; sourceTree = "<group>"; };
+		9CAF81C61D190F560025224F /* AJMediaPlayerAnalyticsReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerAnalyticsReporter.h; sourceTree = "<group>"; };
+		9CAF81C71D190F560025224F /* AJMediaPlayerAnalyticsReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerAnalyticsReporter.m; sourceTree = "<group>"; };
+		9CAF81C81D190F560025224F /* AJMediaPlayerGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerGesture.h; sourceTree = "<group>"; };
+		9CAF81C91D190F560025224F /* AJMediaPlayerGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerGesture.m; sourceTree = "<group>"; };
+		9CAF81CA1D190F560025224F /* AJMediaPlayerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerHeaders.h; sourceTree = "<group>"; };
+		9CAF81CB1D190F560025224F /* AJMediaPlayerInfrastructureContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerInfrastructureContext.h; sourceTree = "<group>"; };
+		9CAF81CC1D190F560025224F /* AJMediaPlayerInfrastructureContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerInfrastructureContext.m; sourceTree = "<group>"; };
+		9CAF81CD1D190F560025224F /* AJMediaPlayerInfrastructureContext_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerInfrastructureContext_Internal.h; sourceTree = "<group>"; };
+		9CAF81CE1D190F560025224F /* AJMediaPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerItem.h; sourceTree = "<group>"; };
+		9CAF81CF1D190F560025224F /* AJMediaPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerItem.m; sourceTree = "<group>"; };
+		9CAF81D01D190F560025224F /* AJMediaPlayerOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerOverlayView.h; sourceTree = "<group>"; };
+		9CAF81D11D190F560025224F /* AJMediaPlayerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerOverlayView.m; sourceTree = "<group>"; };
+		9CAF81D21D190F560025224F /* AJMediaPlayerRemoteDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerRemoteDisplay.h; sourceTree = "<group>"; };
+		9CAF81D31D190F560025224F /* AJMediaPlayerRemoteDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerRemoteDisplay.m; sourceTree = "<group>"; };
+		9CAF81D41D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerSDKAnalyticsReporter.h; sourceTree = "<group>"; };
+		9CAF81D51D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerSDKAnalyticsReporter.m; sourceTree = "<group>"; };
+		9CAF81D61D190F560025224F /* AJMediaPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerView.h; sourceTree = "<group>"; };
+		9CAF81D71D190F560025224F /* AJMediaPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerView.m; sourceTree = "<group>"; };
+		9CAF81D81D190F560025224F /* AJMediaRecordTimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaRecordTimeHelper.h; sourceTree = "<group>"; };
+		9CAF81D91D190F560025224F /* AJMediaRecordTimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaRecordTimeHelper.m; sourceTree = "<group>"; };
+		9CAF81DA1D190F560025224F /* AJMediaSessionVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaSessionVolume.h; sourceTree = "<group>"; };
+		9CAF81DB1D190F560025224F /* AJMediaSessionVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaSessionVolume.m; sourceTree = "<group>"; };
+		9CAF81DC1D190F560025224F /* AJMediaStreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaStreamProvider.h; sourceTree = "<group>"; };
+		9CAF81DD1D190F560025224F /* AJMediaStreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaStreamProvider.m; sourceTree = "<group>"; };
+		9CAF81DE1D190F560025224F /* AVPlayer+AJMediaPlayerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVPlayer+AJMediaPlayerKit.h"; sourceTree = "<group>"; };
+		9CAF81DF1D190F560025224F /* AVPlayer+AJMediaPlayerKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVPlayer+AJMediaPlayerKit.m"; sourceTree = "<group>"; };
+		9CAF81E11D190F560025224F /* AJMediaBulletInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaBulletInputView.h; sourceTree = "<group>"; };
+		9CAF81E21D190F560025224F /* AJMediaBulletInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaBulletInputView.m; sourceTree = "<group>"; };
+		9CAF81E31D190F560025224F /* AJMediaEpisodePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaEpisodePickerView.h; sourceTree = "<group>"; };
+		9CAF81E41D190F560025224F /* AJMediaEpisodePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaEpisodePickerView.m; sourceTree = "<group>"; };
+		9CAF81E51D190F560025224F /* AJMediaIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaIndicatorView.h; sourceTree = "<group>"; };
+		9CAF81E61D190F560025224F /* AJMediaIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaIndicatorView.m; sourceTree = "<group>"; };
+		9CAF81E71D190F560025224F /* AJMediaMailComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaMailComposeViewController.h; sourceTree = "<group>"; };
+		9CAF81E81D190F560025224F /* AJMediaMailComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaMailComposeViewController.m; sourceTree = "<group>"; };
+		9CAF81E91D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerAirPlayBackGroundView.h; sourceTree = "<group>"; };
+		9CAF81EA1D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerAirPlayBackGroundView.m; sourceTree = "<group>"; };
+		9CAF81EB1D190F560025224F /* AJMediaPlayerAirPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerAirPlayView.h; sourceTree = "<group>"; };
+		9CAF81EC1D190F560025224F /* AJMediaPlayerAirPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerAirPlayView.m; sourceTree = "<group>"; };
+		9CAF81ED1D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerAnalyticsEventReporter.h; sourceTree = "<group>"; };
+		9CAF81EE1D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerAnalyticsEventReporter.m; sourceTree = "<group>"; };
+		9CAF81EF1D190F560025224F /* AJMediaPlayerBackGroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerBackGroundView.h; sourceTree = "<group>"; };
+		9CAF81F01D190F560025224F /* AJMediaPlayerBackGroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerBackGroundView.m; sourceTree = "<group>"; };
+		9CAF81F11D190F560025224F /* AJMediaPlayerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerButton.h; sourceTree = "<group>"; };
+		9CAF81F21D190F560025224F /* AJMediaPlayerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerButton.m; sourceTree = "<group>"; };
+		9CAF81F31D190F560025224F /* AJMediaPlayerCaptionControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerCaptionControlPanel.h; sourceTree = "<group>"; };
+		9CAF81F41D190F560025224F /* AJMediaPlayerCaptionControlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerCaptionControlPanel.m; sourceTree = "<group>"; };
+		9CAF81F51D190F560025224F /* AJMediaPlayerErrorDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerErrorDefines.h; sourceTree = "<group>"; };
+		9CAF81F61D190F560025224F /* AJMediaPlayerFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerFeedback.h; sourceTree = "<group>"; };
+		9CAF81F71D190F560025224F /* AJMediaPlayerFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerFeedback.m; sourceTree = "<group>"; };
+		9CAF81F81D190F560025224F /* AJMediaPlayerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerKit.h; sourceTree = "<group>"; };
+		9CAF81F91D190F560025224F /* AJMediaPlayerMessageLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerMessageLayerView.h; sourceTree = "<group>"; };
+		9CAF81FA1D190F560025224F /* AJMediaPlayerMessageLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerMessageLayerView.m; sourceTree = "<group>"; };
+		9CAF81FB1D190F560025224F /* AJMediaPlayerPlaybackControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerPlaybackControlPanel.h; sourceTree = "<group>"; };
+		9CAF81FC1D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerPlaybackControlPanel.m; sourceTree = "<group>"; };
+		9CAF81FD1D190F560025224F /* AJMediaPlayerProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerProgressView.h; sourceTree = "<group>"; };
+		9CAF81FE1D190F560025224F /* AJMediaPlayerProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerProgressView.m; sourceTree = "<group>"; };
+		9CAF81FF1D190F560025224F /* AJMediaPlayerSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerSlider.h; sourceTree = "<group>"; };
+		9CAF82001D190F560025224F /* AJMediaPlayerSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerSlider.m; sourceTree = "<group>"; };
+		9CAF82011D190F560025224F /* AJMediaPlayerStyleDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerStyleDefines.h; sourceTree = "<group>"; };
+		9CAF82021D190F560025224F /* AJMediaPlayerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerUtilities.h; sourceTree = "<group>"; };
+		9CAF82031D190F560025224F /* AJMediaPlayerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerUtilities.m; sourceTree = "<group>"; };
+		9CAF82041D190F560025224F /* AJMediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerViewController.h; sourceTree = "<group>"; };
+		9CAF82051D190F560025224F /* AJMediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerViewController.m; sourceTree = "<group>"; };
+		9CAF82061D190F560025224F /* AJMediaPlayerVolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayerVolumeControl.h; sourceTree = "<group>"; };
+		9CAF82071D190F560025224F /* AJMediaPlayerVolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayerVolumeControl.m; sourceTree = "<group>"; };
+		9CAF82081D190F560025224F /* AJMediaPlayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaPlayRequest.h; sourceTree = "<group>"; };
+		9CAF82091D190F560025224F /* AJMediaPlayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaPlayRequest.m; sourceTree = "<group>"; };
+		9CAF820A1D190F560025224F /* AJMediaQualityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaQualityPickerView.h; sourceTree = "<group>"; };
+		9CAF820B1D190F560025224F /* AJMediaQualityPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaQualityPickerView.m; sourceTree = "<group>"; };
+		9CAF820C1D190F560025224F /* AJMediaStreamSchedulingMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaStreamSchedulingMetadata.h; sourceTree = "<group>"; };
+		9CAF820D1D190F560025224F /* AJMediaStreamSchedulingMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaStreamSchedulingMetadata.m; sourceTree = "<group>"; };
+		9CAF820E1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaStreamSchedulingMetadataFetcher.h; sourceTree = "<group>"; };
+		9CAF820F1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaStreamSchedulingMetadataFetcher.m; sourceTree = "<group>"; };
+		9CAF82101D190F560025224F /* AJMediaTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaTipsView.h; sourceTree = "<group>"; };
+		9CAF82111D190F560025224F /* AJMediaTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaTipsView.m; sourceTree = "<group>"; };
+		9CAF82131D190F560025224F /* VTBulletItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletItem.h; sourceTree = "<group>"; };
+		9CAF82141D190F560025224F /* VTBulletItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletItem.m; sourceTree = "<group>"; };
+		9CAF82151D190F560025224F /* VTBulletLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletLabel.h; sourceTree = "<group>"; };
+		9CAF82161D190F560025224F /* VTBulletLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletLabel.m; sourceTree = "<group>"; };
+		9CAF82171D190F560025224F /* VTBulletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletModel.h; sourceTree = "<group>"; };
+		9CAF82181D190F560025224F /* VTBulletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletModel.m; sourceTree = "<group>"; };
+		9CAF82191D190F560025224F /* VTBulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletView.h; sourceTree = "<group>"; };
+		9CAF821A1D190F560025224F /* VTBulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletView.m; sourceTree = "<group>"; };
+		9CAF82341D190F560025224F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9CAF82351D190F560025224F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9CAF826C1D1912D70025224F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9CAF826E1D1913E00025224F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9CAF82701D1913EC0025224F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9CAF82721D19144D0025224F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9CAF82741D1914560025224F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9CAF82761D1914610025224F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9CAF82781D1914680025224F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D0A7A1A5D17417213C535F06 /* Pods-LiFangSport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.release.xcconfig"; sourceTree = "<group>"; };
 		EC4D3C181D1387E200285243 /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
 		EC4D3C191D1387E200285243 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
@@ -677,6 +835,7 @@
 		2DE2C81D1D0D26CF00310C4C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9CAF81B21D190F560025224F /* AJMediaPlayerKit */,
 				2DE2C81E1D0D26CF00310C4C /* Common */,
 				2DE2C81F1D0D26CF00310C4C /* Controller */,
 				2DE2C8201D0D26CF00310C4C /* Library */,
@@ -1074,6 +1233,161 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		9CAF81B21D190F560025224F /* AJMediaPlayerKit */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF81B31D190F560025224F /* AJMediaPlayerKit */,
+				9CAF82341D190F560025224F /* LICENSE */,
+				9CAF82351D190F560025224F /* README.md */,
+			);
+			path = AJMediaPlayerKit;
+			sourceTree = "<group>";
+		};
+		9CAF81B31D190F560025224F /* AJMediaPlayerKit */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF81B41D190F560025224F /* Assets */,
+				9CAF81BA1D190F560025224F /* Classes */,
+			);
+			path = AJMediaPlayerKit;
+			sourceTree = "<group>";
+		};
+		9CAF81B41D190F560025224F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF81B51D190F560025224F /* .gitkeep */,
+				9CAF81B61D190F560025224F /* AJMediaPlayer.xcassets */,
+				9CAF81B71D190F560025224F /* feedback_email_template.html */,
+				9CAF81B81D190F560025224F /* feedback_recipients.plist */,
+				9CAF81B91D190F560025224F /* mediaplayer_analytics_events.json */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		9CAF81BA1D190F560025224F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF81BB1D190F560025224F /* Core */,
+				9CAF81E01D190F560025224F /* UI */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9CAF81BB1D190F560025224F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF81BC1D190F560025224F /* AJFoundation.h */,
+				9CAF81BD1D190F560025224F /* AJFoundation.m */,
+				9CAF81BE1D190F560025224F /* AJMediaPlayer+Analytics.h */,
+				9CAF81BF1D190F560025224F /* AJMediaPlayer+Analytics.m */,
+				9CAF81C01D190F560025224F /* AJMediaPlayer+SDKAnalytics.h */,
+				9CAF81C11D190F560025224F /* AJMediaPlayer+SDKAnalytics.m */,
+				9CAF81C21D190F560025224F /* AJMediaPlayer+Statistics.h */,
+				9CAF81C31D190F560025224F /* AJMediaPlayer+Statistics.m */,
+				9CAF81C41D190F560025224F /* AJMediaPlayer.h */,
+				9CAF81C51D190F560025224F /* AJMediaPlayer.m */,
+				9CAF81C61D190F560025224F /* AJMediaPlayerAnalyticsReporter.h */,
+				9CAF81C71D190F560025224F /* AJMediaPlayerAnalyticsReporter.m */,
+				9CAF81C81D190F560025224F /* AJMediaPlayerGesture.h */,
+				9CAF81C91D190F560025224F /* AJMediaPlayerGesture.m */,
+				9CAF81CA1D190F560025224F /* AJMediaPlayerHeaders.h */,
+				9CAF81CB1D190F560025224F /* AJMediaPlayerInfrastructureContext.h */,
+				9CAF81CC1D190F560025224F /* AJMediaPlayerInfrastructureContext.m */,
+				9CAF81CD1D190F560025224F /* AJMediaPlayerInfrastructureContext_Internal.h */,
+				9CAF81CE1D190F560025224F /* AJMediaPlayerItem.h */,
+				9CAF81CF1D190F560025224F /* AJMediaPlayerItem.m */,
+				9CAF81D01D190F560025224F /* AJMediaPlayerOverlayView.h */,
+				9CAF81D11D190F560025224F /* AJMediaPlayerOverlayView.m */,
+				9CAF81D21D190F560025224F /* AJMediaPlayerRemoteDisplay.h */,
+				9CAF81D31D190F560025224F /* AJMediaPlayerRemoteDisplay.m */,
+				9CAF81D41D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.h */,
+				9CAF81D51D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.m */,
+				9CAF81D61D190F560025224F /* AJMediaPlayerView.h */,
+				9CAF81D71D190F560025224F /* AJMediaPlayerView.m */,
+				9CAF81D81D190F560025224F /* AJMediaRecordTimeHelper.h */,
+				9CAF81D91D190F560025224F /* AJMediaRecordTimeHelper.m */,
+				9CAF81DA1D190F560025224F /* AJMediaSessionVolume.h */,
+				9CAF81DB1D190F560025224F /* AJMediaSessionVolume.m */,
+				9CAF81DC1D190F560025224F /* AJMediaStreamProvider.h */,
+				9CAF81DD1D190F560025224F /* AJMediaStreamProvider.m */,
+				9CAF81DE1D190F560025224F /* AVPlayer+AJMediaPlayerKit.h */,
+				9CAF81DF1D190F560025224F /* AVPlayer+AJMediaPlayerKit.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		9CAF81E01D190F560025224F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF81E11D190F560025224F /* AJMediaBulletInputView.h */,
+				9CAF81E21D190F560025224F /* AJMediaBulletInputView.m */,
+				9CAF81E31D190F560025224F /* AJMediaEpisodePickerView.h */,
+				9CAF81E41D190F560025224F /* AJMediaEpisodePickerView.m */,
+				9CAF81E51D190F560025224F /* AJMediaIndicatorView.h */,
+				9CAF81E61D190F560025224F /* AJMediaIndicatorView.m */,
+				9CAF81E71D190F560025224F /* AJMediaMailComposeViewController.h */,
+				9CAF81E81D190F560025224F /* AJMediaMailComposeViewController.m */,
+				9CAF81E91D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.h */,
+				9CAF81EA1D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.m */,
+				9CAF81EB1D190F560025224F /* AJMediaPlayerAirPlayView.h */,
+				9CAF81EC1D190F560025224F /* AJMediaPlayerAirPlayView.m */,
+				9CAF81ED1D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.h */,
+				9CAF81EE1D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.m */,
+				9CAF81EF1D190F560025224F /* AJMediaPlayerBackGroundView.h */,
+				9CAF81F01D190F560025224F /* AJMediaPlayerBackGroundView.m */,
+				9CAF81F11D190F560025224F /* AJMediaPlayerButton.h */,
+				9CAF81F21D190F560025224F /* AJMediaPlayerButton.m */,
+				9CAF81F31D190F560025224F /* AJMediaPlayerCaptionControlPanel.h */,
+				9CAF81F41D190F560025224F /* AJMediaPlayerCaptionControlPanel.m */,
+				9CAF81F51D190F560025224F /* AJMediaPlayerErrorDefines.h */,
+				9CAF81F61D190F560025224F /* AJMediaPlayerFeedback.h */,
+				9CAF81F71D190F560025224F /* AJMediaPlayerFeedback.m */,
+				9CAF81F81D190F560025224F /* AJMediaPlayerKit.h */,
+				9CAF81F91D190F560025224F /* AJMediaPlayerMessageLayerView.h */,
+				9CAF81FA1D190F560025224F /* AJMediaPlayerMessageLayerView.m */,
+				9CAF81FB1D190F560025224F /* AJMediaPlayerPlaybackControlPanel.h */,
+				9CAF81FC1D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m */,
+				9CAF81FD1D190F560025224F /* AJMediaPlayerProgressView.h */,
+				9CAF81FE1D190F560025224F /* AJMediaPlayerProgressView.m */,
+				9CAF81FF1D190F560025224F /* AJMediaPlayerSlider.h */,
+				9CAF82001D190F560025224F /* AJMediaPlayerSlider.m */,
+				9CAF82011D190F560025224F /* AJMediaPlayerStyleDefines.h */,
+				9CAF82021D190F560025224F /* AJMediaPlayerUtilities.h */,
+				9CAF82031D190F560025224F /* AJMediaPlayerUtilities.m */,
+				9CAF82041D190F560025224F /* AJMediaPlayerViewController.h */,
+				9CAF82051D190F560025224F /* AJMediaPlayerViewController.m */,
+				9CAF82061D190F560025224F /* AJMediaPlayerVolumeControl.h */,
+				9CAF82071D190F560025224F /* AJMediaPlayerVolumeControl.m */,
+				9CAF82081D190F560025224F /* AJMediaPlayRequest.h */,
+				9CAF82091D190F560025224F /* AJMediaPlayRequest.m */,
+				9CAF820A1D190F560025224F /* AJMediaQualityPickerView.h */,
+				9CAF820B1D190F560025224F /* AJMediaQualityPickerView.m */,
+				9CAF820C1D190F560025224F /* AJMediaStreamSchedulingMetadata.h */,
+				9CAF820D1D190F560025224F /* AJMediaStreamSchedulingMetadata.m */,
+				9CAF820E1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.h */,
+				9CAF820F1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m */,
+				9CAF82101D190F560025224F /* AJMediaTipsView.h */,
+				9CAF82111D190F560025224F /* AJMediaTipsView.m */,
+				9CAF82121D190F560025224F /* VTBullet */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		9CAF82121D190F560025224F /* VTBullet */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF82131D190F560025224F /* VTBulletItem.h */,
+				9CAF82141D190F560025224F /* VTBulletItem.m */,
+				9CAF82151D190F560025224F /* VTBulletLabel.h */,
+				9CAF82161D190F560025224F /* VTBulletLabel.m */,
+				9CAF82171D190F560025224F /* VTBulletModel.h */,
+				9CAF82181D190F560025224F /* VTBulletModel.m */,
+				9CAF82191D190F560025224F /* VTBulletView.h */,
+				9CAF821A1D190F560025224F /* VTBulletView.m */,
+			);
+			path = VTBullet;
+			sourceTree = "<group>";
+		};
 		EC4D3C331D1392A800285243 /* Referee */ = {
 			isa = PBXGroup;
 			children = (
@@ -1121,6 +1435,13 @@
 		F51BF2F3606128021E5C5F3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CAF82781D1914680025224F /* UIKit.framework */,
+				9CAF82761D1914610025224F /* SystemConfiguration.framework */,
+				9CAF82741D1914560025224F /* Foundation.framework */,
+				9CAF82721D19144D0025224F /* AudioToolbox.framework */,
+				9CAF82701D1913EC0025224F /* AVFoundation.framework */,
+				9CAF826E1D1913E00025224F /* Security.framework */,
+				9CAF826C1D1912D70025224F /* libz.tbd */,
 				159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */,
 			);
 			name = Frameworks;
@@ -1214,6 +1535,9 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 2DE2C7DE1D0D133800310C4C;
 			productRefGroup = 2DE2C7E81D0D133800310C4C /* Products */;
@@ -1234,9 +1558,11 @@
 			files = (
 				2DE94D731D123BED00E1508D /* simBackIcon_press@2x.png in Resources */,
 				2DAF7C421D104A8000B956CA /* loading_00002@2x.png in Resources */,
+				9CAF823A1D190F560025224F /* mediaplayer_analytics_events.json in Resources */,
 				2DAF7C431D104A8000B956CA /* loading_00003@2x.png in Resources */,
 				2DE94D721D123BED00E1508D /* icon_previous@2x.png in Resources */,
 				2DE94D741D123BED00E1508D /* simCloseIcon@2x.png in Resources */,
+				9CAF82391D190F560025224F /* feedback_recipients.plist in Resources */,
 				2DAF7C411D104A8000B956CA /* loading_00001@2x.png in Resources */,
 				2DE94D6F1D123BED00E1508D /* backiconblue@2x.png in Resources */,
 				2DE2C8551D0D370700310C4C /* 112233@2x.png in Resources */,
@@ -1244,6 +1570,8 @@
 				2DE94D711D123BED00E1508D /* backIconwhite@2x.png in Resources */,
 				2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */,
 				2DE2C82F1D0D273B00310C4C /* Info.plist in Resources */,
+				9CAF826A1D190F560025224F /* LICENSE in Resources */,
+				9CAF82371D190F560025224F /* AJMediaPlayer.xcassets in Resources */,
 				2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */,
 				2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */,
 				2DE94D7D1D12778E00E1508D /* haolindemopic@2x.png in Resources */,
@@ -1256,6 +1584,7 @@
 				2DAF7C441D104A8000B956CA /* loading_00004@2x.png in Resources */,
 				2DE94D7A1D12570200E1508D /* americaflag@2x.png in Resources */,
 				2DE94D7B1D12570200E1508D /* chinaflag@2x.png in Resources */,
+				9CAF82361D190F560025224F /* .gitkeep in Resources */,
 				2D84EA481D11259000113404 /* leftswitchcellpic@2x.png in Resources */,
 				2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */,
 				2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */,
@@ -1264,6 +1593,7 @@
 				2DE94D801D1291FA00E1508D /* ou1233aeer.png in Resources */,
 				2DAF7C451D104A8000B956CA /* loading_00005@2x.png in Resources */,
 				2DE94D701D123BED00E1508D /* backIcongray@2x.png in Resources */,
+				9CAF82381D190F560025224F /* feedback_email_template.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,71 +1667,103 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */,
+				9CAF82481D190F560025224F /* AJMediaRecordTimeHelper.m in Sources */,
 				2DE2C8AC1D0D4A8500310C4C /* NSString+WPAttributedMarkup.m in Sources */,
+				9CAF825F1D190F560025224F /* AJMediaQualityPickerView.m in Sources */,
 				2DA4B1EC1D0E456000136DA7 /* BaseDrawerVC.m in Sources */,
 				EC4D3C261D1387E200285243 /* PlayerVC.m in Sources */,
+				9CAF82661D190F560025224F /* VTBulletView.m in Sources */,
 				2DAF7C4C1D105DF800B956CA /* VideoLearningVC.m in Sources */,
 				2DE2C8461D0D2F5000310C4C /* TAOverlay.m in Sources */,
 				2DE2C8A11D0D4A8500310C4C /* UIImage+Additions.m in Sources */,
+				9CAF82551D190F560025224F /* AJMediaPlayerCaptionControlPanel.m in Sources */,
 				2DE2C8AB1D0D4A8500310C4C /* NSMutableString+TagReplace.m in Sources */,
 				2DE2C83A1D0D2BEE00310C4C /* CommonRequest.m in Sources */,
 				EC504A091D0E99E700095C63 /* MediaModel.m in Sources */,
 				2D62E8121D0FB2DB0006131B /* CenterCyclePicModel.m in Sources */,
+				9CAF82531D190F560025224F /* AJMediaPlayerBackGroundView.m in Sources */,
 				2DE2C84F1D0D2FF800310C4C /* SimCommonTool.m in Sources */,
+				9CAF82561D190F560025224F /* AJMediaPlayerFeedback.m in Sources */,
 				2DE2C8A01D0D4A8500310C4C /* UIColor+HelperAdditions.m in Sources */,
 				2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */,
+				9CAF82441D190F560025224F /* AJMediaPlayerOverlayView.m in Sources */,
+				9CAF82491D190F560025224F /* AJMediaSessionVolume.m in Sources */,
 				2D84EA581D115EAD00113404 /* VideoCenterVC.m in Sources */,
 				2DE2C8741D0D495A00310C4C /* UIButton+SimAdditions.m in Sources */,
 				2DA4B1F51D0E465C00136DA7 /* LeftViewController.m in Sources */,
 				2DE2C83F1D0D2EE200310C4C /* CommonLoading.m in Sources */,
 				EC51412F1D1136F50034B0E5 /* MediaCell.m in Sources */,
+				9CAF82601D190F560025224F /* AJMediaStreamSchedulingMetadata.m in Sources */,
+				9CAF82501D190F560025224F /* AJMediaPlayerAirPlayBackGroundView.m in Sources */,
 				2DE2C8531D0D309400310C4C /* SimImageCache.m in Sources */,
 				2D8D09B11D0DA032008771AA /* NSDate+Category.m in Sources */,
+				9CAF82421D190F560025224F /* AJMediaPlayerInfrastructureContext.m in Sources */,
 				EC4D3C3C1D1392A800285243 /* RefereeCell.m in Sources */,
 				2D84EA4B1D1137AC00113404 /* AppUserData.m in Sources */,
+				9CAF82411D190F560025224F /* AJMediaPlayerGesture.m in Sources */,
+				9CAF82521D190F560025224F /* AJMediaPlayerAnalyticsEventReporter.m in Sources */,
 				EC4D3C451D13933400285243 /* CoachCell.m in Sources */,
 				2D84EA421D11064200113404 /* LeftSwitchCell.m in Sources */,
 				2DA4B2151D0E80C700136DA7 /* SDCycleScrollView.m in Sources */,
 				EC4D3C221D1387E200285243 /* CategoryView.m in Sources */,
 				2DA4B1F41D0E465C00136DA7 /* CenterViewController.m in Sources */,
 				2D84EA5D1D11688100113404 /* VideoLearningCell.m in Sources */,
+				9CAF826B1D190F560025224F /* README.md in Sources */,
 				2D84EA551D11578B00113404 /* HomeBannnerDetVC.m in Sources */,
 				2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */,
+				9CAF823C1D190F560025224F /* AJMediaPlayer+Analytics.m in Sources */,
 				2DE2C82B1D0D26CF00310C4C /* ViewController.m in Sources */,
 				2DE2C8791D0D495A00310C4C /* UIWindowAddition.m in Sources */,
 				2DE2C8761D0D495A00310C4C /* UINavigationBarAdditions.m in Sources */,
 				2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */,
 				2DA4B20F1D0E80C700136DA7 /* NSData+SDDataCache.m in Sources */,
 				2DE2C8A51D0D4A8500310C4C /* UIColor+expanded.m in Sources */,
+				9CAF825D1D190F560025224F /* AJMediaPlayerVolumeControl.m in Sources */,
 				2DE2C8751D0D495A00310C4C /* UIImageAdditions.m in Sources */,
 				2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */,
+				9CAF82461D190F560025224F /* AJMediaPlayerSDKAnalyticsReporter.m in Sources */,
+				9CAF824F1D190F560025224F /* AJMediaMailComposeViewController.m in Sources */,
 				2D62E8181D101F400006131B /* LineView.m in Sources */,
+				9CAF82611D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m in Sources */,
 				2DA4B1FC1D0E598500136DA7 /* HomeCenterVC.m in Sources */,
+				9CAF82631D190F560025224F /* VTBulletItem.m in Sources */,
 				2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */,
+				9CAF825A1D190F560025224F /* AJMediaPlayerSlider.m in Sources */,
+				9CAF825E1D190F560025224F /* AJMediaPlayRequest.m in Sources */,
 				2DCB0EB21D0D689B00DB3234 /* HomeViewController.m in Sources */,
 				2DA4B2101D0E80C700136DA7 /* TAAbstractDotView.m in Sources */,
 				2DE2C8311D0D27E300310C4C /* main.m in Sources */,
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
+				9CAF82641D190F560025224F /* VTBulletLabel.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
+				9CAF82591D190F560025224F /* AJMediaPlayerProgressView.m in Sources */,
 				2DA4B2121D0E80C700136DA7 /* TADotView.m in Sources */,
 				EC4D3C481D13935200285243 /* CoachCenterVC.m in Sources */,
 				2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */,
 				2DE2C8A81D0D4A8500310C4C /* WPAttributedStyleAction.m in Sources */,
 				2DE2C8A21D0D4A8500310C4C /* UIImage+SimAdditions.m in Sources */,
 				EC504A0E1D0E99E700095C63 /* MediaVC.m in Sources */,
+				9CAF824E1D190F560025224F /* AJMediaIndicatorView.m in Sources */,
 				2DE2C8781D0D495A00310C4C /* UIViewController+SimAddition.m in Sources */,
 				2D8D09B41D0DA032008771AA /* UIImage+Color.m in Sources */,
 				EC504A0C1D0E99E700095C63 /* MediaDetailVC.m in Sources */,
 				2DA4B2141D0E80C700136DA7 /* SDCollectionViewCell.m in Sources */,
+				9CAF82431D190F560025224F /* AJMediaPlayerItem.m in Sources */,
+				9CAF825B1D190F560025224F /* AJMediaPlayerUtilities.m in Sources */,
 				EC4D3C251D1387E200285243 /* PlayerModel.m in Sources */,
 				2DE2C8451D0D2F5000310C4C /* HYCircleLoadingView.m in Sources */,
+				9CAF824B1D190F560025224F /* AVPlayer+AJMediaPlayerKit.m in Sources */,
 				2DA4B2161D0E80C700136DA7 /* UIView+SDExtension.m in Sources */,
 				2DA4B2131D0E80C700136DA7 /* TAPageControl.m in Sources */,
 				2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */,
+				9CAF82651D190F560025224F /* VTBulletModel.m in Sources */,
 				EC4D3C3F1D1392A800285243 /* RefereeVC.m in Sources */,
 				2DE2C8771D0D495A00310C4C /* UIView+SimAdditions.m in Sources */,
+				9CAF82451D190F560025224F /* AJMediaPlayerRemoteDisplay.m in Sources */,
 				2DA4B1F91D0E46C900136DA7 /* UIImage+ImageEffects.m in Sources */,
 				EC4D3C421D13931C00285243 /* CoachModel.m in Sources */,
+				9CAF823E1D190F560025224F /* AJMediaPlayer+Statistics.m in Sources */,
+				9CAF824D1D190F560025224F /* AJMediaEpisodePickerView.m in Sources */,
 				2DE2C89F1D0D4A8500310C4C /* InnerShadowDrawing.m in Sources */,
 				2DE2C8A91D0D4A8500310C4C /* WPHotspotLabel.m in Sources */,
 				2D84EA4F1D113A1B00113404 /* LaunchInfoManager.m in Sources */,
@@ -1410,31 +1772,44 @@
 				2D8D09B21D0DA032008771AA /* NSDateFormatter+Category.m in Sources */,
 				2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */,
 				EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */,
+				9CAF824A1D190F560025224F /* AJMediaStreamProvider.m in Sources */,
 				2DE2C87D1D0D498600310C4C /* SimButton.m in Sources */,
 				2DE2C8A41D0D4A8500310C4C /* UIAlertView+UserInfo.m in Sources */,
+				9CAF82581D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m in Sources */,
 				2DE2C8721D0D495A00310C4C /* NSStringAdditions.m in Sources */,
+				9CAF82621D190F560025224F /* AJMediaTipsView.m in Sources */,
 				2D84EA451D11065600113404 /* CenterSwitchCell.m in Sources */,
+				9CAF82471D190F560025224F /* AJMediaPlayerView.m in Sources */,
+				9CAF82401D190F560025224F /* AJMediaPlayerAnalyticsReporter.m in Sources */,
 				EC5141321D11373F0034B0E5 /* MediaCategoryCell.m in Sources */,
+				9CAF824C1D190F560025224F /* AJMediaBulletInputView.m in Sources */,
 				2DE2C8A61D0D4A8500310C4C /* UIImageView+UserInfo.m in Sources */,
 				2DE2C8A31D0D4A8500310C4C /* UIKit+DrawingHelpers.m in Sources */,
+				9CAF82571D190F560025224F /* AJMediaPlayerMessageLayerView.m in Sources */,
 				2D84EA521D113A3200113404 /* LaunchInfoModel.m in Sources */,
 				EC504A0D1D0E99E700095C63 /* MediaRightVC.m in Sources */,
 				2DE2C82A1D0D26CF00310C4C /* AppDelegate.m in Sources */,
 				2DE2C8AA1D0D4A8500310C4C /* WPTappableLabel.m in Sources */,
 				2DA4B2111D0E80C700136DA7 /* TAAnimatedDotView.m in Sources */,
 				EC504A0B1D0E99E700095C63 /* MediaCenterVC.m in Sources */,
+				9CAF82511D190F560025224F /* AJMediaPlayerAirPlayView.m in Sources */,
 				2DAF7C4F1D105E2300B956CA /* SimulationTestVC.m in Sources */,
+				9CAF825C1D190F560025224F /* AJMediaPlayerViewController.m in Sources */,
 				2DE2C85F1D0D3C1A00310C4C /* BaseVC.m in Sources */,
+				9CAF823D1D190F560025224F /* AJMediaPlayer+SDKAnalytics.m in Sources */,
 				2DE2C8A71D0D4A8500310C4C /* UIImage+launchImage.m in Sources */,
 				2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */,
 				9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */,
 				EC4D3C3D1D1392A800285243 /* RefereeCenterVC.m in Sources */,
+				9CAF823B1D190F560025224F /* AJFoundation.m in Sources */,
 				2DE2C8731D0D495A00310C4C /* UIBarButtonItem+SimAdditions.m in Sources */,
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,
 				EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */,
+				9CAF82541D190F560025224F /* AJMediaPlayerButton.m in Sources */,
 				2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */,
 				EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */,
 				2DE94D771D124A4500E1508D /* HomeHeroDetVC.m in Sources */,
+				9CAF823F1D190F560025224F /* AJMediaPlayer.m in Sources */,
 				EC4D3C3E1D1392A800285243 /* RefereeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1578,6 +1953,10 @@
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LiFangSport/Classes/AJMediaPlayerKit/AJMediaPlayerKit/Vendors",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyi.LiFangSport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1591,6 +1970,10 @@
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LiFangSport/Classes/AJMediaPlayerKit/AJMediaPlayerKit/Vendors",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyi.LiFangSport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

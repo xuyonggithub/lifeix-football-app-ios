@@ -6,13 +6,13 @@
 //
 //
 
-#import <AJMediaPlayerKit/AJMediaPlayerViewController.h>
-#import <AJMediaPlayerKit/AJMediaPlayerAirPlayView.h>
-#import <AJMediaPlayerKit/AJMediaPlayerCaptionControlPanel.h>
-#import <AJMediaPlayerKit/AJMediaPlayerMessageLayerView.h>
-#import <AJMediaPlayerKit/AJMediaPlayerPlaybackControlPanel.h>
-#import <AJMediaPlayerKit/AJMediaPlayerProgressView.h>
-#import <AJMediaPlayerKit/AJMediaPlayerVolumeControl.h>
-#import <AJMediaPlayerKit/AJMediaPlayRequest.h>
-#import <AJMediaPlayerKit/AJMediaPlayerButton.h>
-#import <AJMediaPlayerKit/VTBulletModel.h>
+#import "AJMediaPlayerViewController.h"
+#import "AJMediaPlayerAirPlayView.h"
+#import "AJMediaPlayerCaptionControlPanel.h"
+#import "AJMediaPlayerMessageLayerView.h"
+#import "AJMediaPlayerPlaybackControlPanel.h"
+#import "AJMediaPlayerProgressView.h"
+#import "AJMediaPlayerVolumeControl.h"
+#import "AJMediaPlayRequest.h"
+#import "AJMediaPlayerButton.h"
+#import "VTBulletModel.h"

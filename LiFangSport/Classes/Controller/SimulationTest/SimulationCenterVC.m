@@ -8,6 +8,7 @@
 
 #import "SimulationCenterVC.h"
 #import "LFSimulationCenterCell.h"
+#import "LFSimulationTestDetailController.h"
 
 #import "CommonRequest.h"
 
@@ -68,7 +69,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    LFSimulationTestDetailController *simulationTestDetailCtrl = [[LFSimulationTestDetailController alloc] init];
+    simulationTestDetailCtrl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:simulationTestDetailCtrl animated:YES];
 }
 
 #pragma mark - Getter and Setter

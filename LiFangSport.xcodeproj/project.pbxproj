@@ -176,12 +176,13 @@
 		9CAF82601D190F560025224F /* AJMediaStreamSchedulingMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF820D1D190F560025224F /* AJMediaStreamSchedulingMetadata.m */; };
 		9CAF82611D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF820F1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m */; };
 		9CAF82621D190F560025224F /* AJMediaTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82111D190F560025224F /* AJMediaTipsView.m */; };
-		9CAF82631D190F560025224F /* VTBulletItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82141D190F560025224F /* VTBulletItem.m */; };
-		9CAF82641D190F560025224F /* VTBulletLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82161D190F560025224F /* VTBulletLabel.m */; };
-		9CAF82651D190F560025224F /* VTBulletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82181D190F560025224F /* VTBulletModel.m */; };
-		9CAF82661D190F560025224F /* VTBulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF821A1D190F560025224F /* VTBulletView.m */; };
 		9CAF826A1D190F560025224F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF82341D190F560025224F /* LICENSE */; };
 		9CAF826B1D190F560025224F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82351D190F560025224F /* README.md */; };
+		9CAF827C1D1917EC0025224F /* LFSimulationTestDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF827B1D1917EC0025224F /* LFSimulationTestDetailController.m */; };
+		9CAF82861D19237F0025224F /* VTBulletItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF827F1D19237F0025224F /* VTBulletItem.m */; };
+		9CAF82871D19237F0025224F /* VTBulletLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82811D19237F0025224F /* VTBulletLabel.m */; };
+		9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82831D19237F0025224F /* VTBulletModel.m */; };
+		9CAF82891D19237F0025224F /* VTBulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82851D19237F0025224F /* VTBulletView.m */; };
 		EC4D3C221D1387E200285243 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C191D1387E200285243 /* CategoryView.m */; };
 		EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1B1D1387E200285243 /* PlayerCell.m */; };
 		EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */; };
@@ -526,14 +527,6 @@
 		9CAF820F1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaStreamSchedulingMetadataFetcher.m; sourceTree = "<group>"; };
 		9CAF82101D190F560025224F /* AJMediaTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJMediaTipsView.h; sourceTree = "<group>"; };
 		9CAF82111D190F560025224F /* AJMediaTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJMediaTipsView.m; sourceTree = "<group>"; };
-		9CAF82131D190F560025224F /* VTBulletItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletItem.h; sourceTree = "<group>"; };
-		9CAF82141D190F560025224F /* VTBulletItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletItem.m; sourceTree = "<group>"; };
-		9CAF82151D190F560025224F /* VTBulletLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletLabel.h; sourceTree = "<group>"; };
-		9CAF82161D190F560025224F /* VTBulletLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletLabel.m; sourceTree = "<group>"; };
-		9CAF82171D190F560025224F /* VTBulletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletModel.h; sourceTree = "<group>"; };
-		9CAF82181D190F560025224F /* VTBulletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletModel.m; sourceTree = "<group>"; };
-		9CAF82191D190F560025224F /* VTBulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletView.h; sourceTree = "<group>"; };
-		9CAF821A1D190F560025224F /* VTBulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletView.m; sourceTree = "<group>"; };
 		9CAF82341D190F560025224F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9CAF82351D190F560025224F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9CAF826C1D1912D70025224F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -543,6 +536,16 @@
 		9CAF82741D1914560025224F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CAF82761D1914610025224F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9CAF82781D1914680025224F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9CAF827A1D1917EC0025224F /* LFSimulationTestDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationTestDetailController.h; sourceTree = "<group>"; };
+		9CAF827B1D1917EC0025224F /* LFSimulationTestDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationTestDetailController.m; sourceTree = "<group>"; };
+		9CAF827E1D19237F0025224F /* VTBulletItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletItem.h; sourceTree = "<group>"; };
+		9CAF827F1D19237F0025224F /* VTBulletItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletItem.m; sourceTree = "<group>"; };
+		9CAF82801D19237F0025224F /* VTBulletLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletLabel.h; sourceTree = "<group>"; };
+		9CAF82811D19237F0025224F /* VTBulletLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletLabel.m; sourceTree = "<group>"; };
+		9CAF82821D19237F0025224F /* VTBulletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletModel.h; sourceTree = "<group>"; };
+		9CAF82831D19237F0025224F /* VTBulletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletModel.m; sourceTree = "<group>"; };
+		9CAF82841D19237F0025224F /* VTBulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletView.h; sourceTree = "<group>"; };
+		9CAF82851D19237F0025224F /* VTBulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletView.m; sourceTree = "<group>"; };
 		D0A7A1A5D17417213C535F06 /* Pods-LiFangSport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.release.xcconfig"; sourceTree = "<group>"; };
 		EC4D3C181D1387E200285243 /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
 		EC4D3C191D1387E200285243 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
@@ -807,6 +810,8 @@
 				2DAF7C4E1D105E2300B956CA /* SimulationTestVC.m */,
 				2D6EEB171D17864200954C63 /* SimulationCenterVC.h */,
 				2D6EEB181D17864200954C63 /* SimulationCenterVC.m */,
+				9CAF827A1D1917EC0025224F /* LFSimulationTestDetailController.h */,
+				9CAF827B1D1917EC0025224F /* LFSimulationTestDetailController.m */,
 			);
 			path = SimulationTest;
 			sourceTree = "<group>";
@@ -1372,6 +1377,7 @@
 		9CAF81E01D190F560025224F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9CAF827D1D19237F0025224F /* VTBullet */,
 				9CAF81E11D190F560025224F /* AJMediaBulletInputView.h */,
 				9CAF81E21D190F560025224F /* AJMediaBulletInputView.m */,
 				9CAF81E31D190F560025224F /* AJMediaEpisodePickerView.h */,
@@ -1421,22 +1427,21 @@
 				9CAF820F1D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m */,
 				9CAF82101D190F560025224F /* AJMediaTipsView.h */,
 				9CAF82111D190F560025224F /* AJMediaTipsView.m */,
-				9CAF82121D190F560025224F /* VTBullet */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		9CAF82121D190F560025224F /* VTBullet */ = {
+		9CAF827D1D19237F0025224F /* VTBullet */ = {
 			isa = PBXGroup;
 			children = (
-				9CAF82131D190F560025224F /* VTBulletItem.h */,
-				9CAF82141D190F560025224F /* VTBulletItem.m */,
-				9CAF82151D190F560025224F /* VTBulletLabel.h */,
-				9CAF82161D190F560025224F /* VTBulletLabel.m */,
-				9CAF82171D190F560025224F /* VTBulletModel.h */,
-				9CAF82181D190F560025224F /* VTBulletModel.m */,
-				9CAF82191D190F560025224F /* VTBulletView.h */,
-				9CAF821A1D190F560025224F /* VTBulletView.m */,
+				9CAF827E1D19237F0025224F /* VTBulletItem.h */,
+				9CAF827F1D19237F0025224F /* VTBulletItem.m */,
+				9CAF82801D19237F0025224F /* VTBulletLabel.h */,
+				9CAF82811D19237F0025224F /* VTBulletLabel.m */,
+				9CAF82821D19237F0025224F /* VTBulletModel.h */,
+				9CAF82831D19237F0025224F /* VTBulletModel.m */,
+				9CAF82841D19237F0025224F /* VTBulletView.h */,
+				9CAF82851D19237F0025224F /* VTBulletView.m */,
 			);
 			path = VTBullet;
 			sourceTree = "<group>";
@@ -1730,12 +1735,13 @@
 				2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */,
 				9CAF82481D190F560025224F /* AJMediaRecordTimeHelper.m in Sources */,
 				2DE2C8AC1D0D4A8500310C4C /* NSString+WPAttributedMarkup.m in Sources */,
+				9CAF827C1D1917EC0025224F /* LFSimulationTestDetailController.m in Sources */,
 				9CAF825F1D190F560025224F /* AJMediaQualityPickerView.m in Sources */,
 				2DA4B1EC1D0E456000136DA7 /* BaseDrawerVC.m in Sources */,
 				EC4D3C261D1387E200285243 /* PlayerVC.m in Sources */,
-				9CAF82661D190F560025224F /* VTBulletView.m in Sources */,
 				2DAF7C4C1D105DF800B956CA /* VideoLearningVC.m in Sources */,
 				2DE2C8461D0D2F5000310C4C /* TAOverlay.m in Sources */,
+				9CAF82871D19237F0025224F /* VTBulletLabel.m in Sources */,
 				2DE2C8A11D0D4A8500310C4C /* UIImage+Additions.m in Sources */,
 				9CAF82551D190F560025224F /* AJMediaPlayerCaptionControlPanel.m in Sources */,
 				2DE2C8AB1D0D4A8500310C4C /* NSMutableString+TagReplace.m in Sources */,
@@ -1787,7 +1793,6 @@
 				2D62E8181D101F400006131B /* LineView.m in Sources */,
 				9CAF82611D190F560025224F /* AJMediaStreamSchedulingMetadataFetcher.m in Sources */,
 				2DA4B1FC1D0E598500136DA7 /* HomeCenterVC.m in Sources */,
-				9CAF82631D190F560025224F /* VTBulletItem.m in Sources */,
 				2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */,
 				9CAF825A1D190F560025224F /* AJMediaPlayerSlider.m in Sources */,
 				9CAF825E1D190F560025224F /* AJMediaPlayRequest.m in Sources */,
@@ -1795,7 +1800,6 @@
 				2DA4B2101D0E80C700136DA7 /* TAAbstractDotView.m in Sources */,
 				2DE2C8311D0D27E300310C4C /* main.m in Sources */,
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
-				9CAF82641D190F560025224F /* VTBulletLabel.m in Sources */,
 				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
 				9CAF82591D190F560025224F /* AJMediaPlayerProgressView.m in Sources */,
@@ -1805,6 +1809,7 @@
 				2DE2C8A81D0D4A8500310C4C /* WPAttributedStyleAction.m in Sources */,
 				2DE2C8A21D0D4A8500310C4C /* UIImage+SimAdditions.m in Sources */,
 				EC504A0E1D0E99E700095C63 /* MediaVC.m in Sources */,
+				9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */,
 				9CAF824E1D190F560025224F /* AJMediaIndicatorView.m in Sources */,
 				2DE2C8781D0D495A00310C4C /* UIViewController+SimAddition.m in Sources */,
 				2D8D09B41D0DA032008771AA /* UIImage+Color.m in Sources */,
@@ -1818,7 +1823,6 @@
 				2DA4B2161D0E80C700136DA7 /* UIView+SDExtension.m in Sources */,
 				2DA4B2131D0E80C700136DA7 /* TAPageControl.m in Sources */,
 				2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */,
-				9CAF82651D190F560025224F /* VTBulletModel.m in Sources */,
 				EC4D3C3F1D1392A800285243 /* RefereeVC.m in Sources */,
 				2DE2C8771D0D495A00310C4C /* UIView+SimAdditions.m in Sources */,
 				9CAF82451D190F560025224F /* AJMediaPlayerRemoteDisplay.m in Sources */,
@@ -1836,6 +1840,7 @@
 				EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */,
 				9CAF824A1D190F560025224F /* AJMediaStreamProvider.m in Sources */,
 				2DE2C87D1D0D498600310C4C /* SimButton.m in Sources */,
+				9CAF82861D19237F0025224F /* VTBulletItem.m in Sources */,
 				2DE2C8A41D0D4A8500310C4C /* UIAlertView+UserInfo.m in Sources */,
 				9CAF82581D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m in Sources */,
 				2DE2C8721D0D495A00310C4C /* NSStringAdditions.m in Sources */,
@@ -1853,6 +1858,7 @@
 				2DE2C82A1D0D26CF00310C4C /* AppDelegate.m in Sources */,
 				2DE2C8AA1D0D4A8500310C4C /* WPTappableLabel.m in Sources */,
 				2DA4B2111D0E80C700136DA7 /* TAAnimatedDotView.m in Sources */,
+				9CAF82891D19237F0025224F /* VTBulletView.m in Sources */,
 				EC504A0B1D0E99E700095C63 /* MediaCenterVC.m in Sources */,
 				9CAF82511D190F560025224F /* AJMediaPlayerAirPlayView.m in Sources */,
 				2DAF7C4F1D105E2300B956CA /* SimulationTestVC.m in Sources */,

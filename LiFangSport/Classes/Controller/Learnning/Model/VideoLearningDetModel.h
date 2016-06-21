@@ -9,5 +9,9 @@
 #import <JSONModel/JSONModel.h>
 
 @interface VideoLearningDetModel : JSONModel
+@property(nonatomic,strong)NSString<Optional> *KID;
+@property(nonatomic,strong)NSString<Optional> *name;
+@property(nonatomic,assign)NSInteger type;
+@property(nonatomic,assign)NSInteger pageCount;
 
 @end

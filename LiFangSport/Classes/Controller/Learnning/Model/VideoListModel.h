@@ -13,6 +13,7 @@
 @property(nonatomic,strong)NSString<Optional> *KID;
 @property(nonatomic,strong)NSString<Optional> *name;
 @property(nonatomic,assign)NSInteger type;
+@property(nonatomic,strong)NSString<Optional> *image;
 
 
 @end

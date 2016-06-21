@@ -10,5 +10,6 @@
 
 @interface VideoLearningDetVC : BaseVC
 @property(nonatomic,strong)NSString *titleStr;
+@property(nonatomic,strong)NSArray *catsArr;
 
 @end

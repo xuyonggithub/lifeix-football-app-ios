@@ -38,7 +38,8 @@
 #define kTabBarSize       16
 #define kScreenWidth               [[UIScreen mainScreen] bounds].size.width
 #define kScreenHeight           [[UIScreen mainScreen] bounds].size.height
+#define kDefaultRefreshHeight 30
 
-
+#define kpicHeaderPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
 
 #endif

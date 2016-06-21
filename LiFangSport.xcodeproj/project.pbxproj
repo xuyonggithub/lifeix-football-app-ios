@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC707211D19082B000B2E13 /* allBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071B1D19082B000B2E13 /* allBg.jpg */; };
+		0AC707221D19082B000B2E13 /* coachBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071C1D19082B000B2E13 /* coachBg.jpg */; };
+		0AC707231D19082B000B2E13 /* placeholder_media.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */; };
+		0AC707241D19082B000B2E13 /* playerBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071E1D19082B000B2E13 /* playerBg.jpg */; };
+		0AC707251D19082B000B2E13 /* refereeBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071F1D19082B000B2E13 /* refereeBg.jpg */; };
+		0AC707261D19082B000B2E13 /* womanPlayerBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707201D19082B000B2E13 /* womanPlayerBg.jpg */; };
+		0AC707291D190840000B2E13 /* placeHold_player.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707271D190840000B2E13 /* placeHold_player.jpg */; };
+		0AC7072A1D190840000B2E13 /* placeHold_womanPlayer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707281D190840000B2E13 /* placeHold_womanPlayer.jpg */; };
 		2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */; };
 		2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */; };
 		2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80E1D0FAC670006131B /* LeftCategoryCell.m */; };
@@ -162,6 +170,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AC7071B1D19082B000B2E13 /* allBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = allBg.jpg; sourceTree = "<group>"; };
+		0AC7071C1D19082B000B2E13 /* coachBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coachBg.jpg; sourceTree = "<group>"; };
+		0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_media.jpg; sourceTree = "<group>"; };
+		0AC7071E1D19082B000B2E13 /* playerBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = playerBg.jpg; sourceTree = "<group>"; };
+		0AC7071F1D19082B000B2E13 /* refereeBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = refereeBg.jpg; sourceTree = "<group>"; };
+		0AC707201D19082B000B2E13 /* womanPlayerBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = womanPlayerBg.jpg; sourceTree = "<group>"; };
+		0AC707271D190840000B2E13 /* placeHold_player.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeHold_player.jpg; sourceTree = "<group>"; };
+		0AC707281D190840000B2E13 /* placeHold_womanPlayer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeHold_womanPlayer.jpg; sourceTree = "<group>"; };
 		0AD8A0ACAF2FCD0201410D20 /* Pods-LiFangSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.debug.xcconfig"; sourceTree = "<group>"; };
 		159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LiFangSport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D62E8061D0F9BB40006131B /* HomeLeftCategModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLeftCategModel.h; sourceTree = "<group>"; };
@@ -435,6 +451,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AC707191D1907F0000B2E13 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				0AC7071B1D19082B000B2E13 /* allBg.jpg */,
+				0AC7071C1D19082B000B2E13 /* coachBg.jpg */,
+				0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */,
+				0AC7071E1D19082B000B2E13 /* playerBg.jpg */,
+				0AC7071F1D19082B000B2E13 /* refereeBg.jpg */,
+				0AC707201D19082B000B2E13 /* womanPlayerBg.jpg */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		0AC7071A1D1907F0000B2E13 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				0AC707271D190840000B2E13 /* placeHold_player.jpg */,
+				0AC707281D190840000B2E13 /* placeHold_womanPlayer.jpg */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		2D62E8051D0F9B7A0006131B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +798,8 @@
 		2DE2C8341D0D29B800310C4C /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				0AC707191D1907F0000B2E13 /* Media */,
+				0AC7071A1D1907F0000B2E13 /* Player */,
 				2DE94D7E1D1291FA00E1508D /* VideoLearning */,
 				2DE94D681D123BED00E1508D /* Icons */,
 				2D84EA461D11259000113404 /* Home */,
@@ -1226,7 +1266,9 @@
 			files = (
 				2DE94D731D123BED00E1508D /* simBackIcon_press@2x.png in Resources */,
 				2DAF7C421D104A8000B956CA /* loading_00002@2x.png in Resources */,
+				0AC707251D19082B000B2E13 /* refereeBg.jpg in Resources */,
 				2DAF7C431D104A8000B956CA /* loading_00003@2x.png in Resources */,
+				0AC707291D190840000B2E13 /* placeHold_player.jpg in Resources */,
 				2DE94D721D123BED00E1508D /* icon_previous@2x.png in Resources */,
 				2DE94D741D123BED00E1508D /* simCloseIcon@2x.png in Resources */,
 				2DAF7C411D104A8000B956CA /* loading_00001@2x.png in Resources */,
@@ -1237,16 +1279,21 @@
 				2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */,
 				2DE2C82F1D0D273B00310C4C /* Info.plist in Resources */,
 				2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */,
+				0AC707241D19082B000B2E13 /* playerBg.jpg in Resources */,
 				2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */,
 				2DE94D7D1D12778E00E1508D /* haolindemopic@2x.png in Resources */,
 				2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */,
+				0AC707261D19082B000B2E13 /* womanPlayerBg.jpg in Resources */,
 				2DAF7C401D104A8000B956CA /* loading_00000@2x.png in Resources */,
 				2DBB72631D11B1D3009BD38F /* homebannerplaceholder@2x.jpg in Resources */,
 				2DE2C7FA1D0D133800310C4C /* LaunchScreen.storyboard in Resources */,
 				2DE2C7F71D0D133800310C4C /* Assets.xcassets in Resources */,
 				2DAF7C471D104A8000B956CA /* loading_00007@2x.png in Resources */,
+				0AC707231D19082B000B2E13 /* placeholder_media.jpg in Resources */,
+				0AC7072A1D190840000B2E13 /* placeHold_womanPlayer.jpg in Resources */,
 				2DAF7C441D104A8000B956CA /* loading_00004@2x.png in Resources */,
 				2DE94D7A1D12570200E1508D /* americaflag@2x.png in Resources */,
+				0AC707211D19082B000B2E13 /* allBg.jpg in Resources */,
 				2DE94D7B1D12570200E1508D /* chinaflag@2x.png in Resources */,
 				2D84EA481D11259000113404 /* leftswitchcellpic@2x.png in Resources */,
 				2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */,
@@ -1256,6 +1303,7 @@
 				2DE94D801D1291FA00E1508D /* ou1233aeer.png in Resources */,
 				2DAF7C451D104A8000B956CA /* loading_00005@2x.png in Resources */,
 				2DE94D701D123BED00E1508D /* backIcongray@2x.png in Resources */,
+				0AC707221D19082B000B2E13 /* coachBg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

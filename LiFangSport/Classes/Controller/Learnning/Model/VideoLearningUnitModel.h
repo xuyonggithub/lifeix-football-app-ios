@@ -10,7 +10,7 @@
 
 @interface VideoLearningUnitModel : JSONModel
 @property(nonatomic,strong)NSString<Optional> *KID;
-@property(nonatomic,strong)NSString<Optional> *name;
+@property(nonatomic,strong)NSString<Optional> *title;
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,strong)NSArray<Optional> *videos;
 

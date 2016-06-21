@@ -80,7 +80,7 @@
     if (self.hideCenterLeftNaviBtn==YES) {
         _centerV.navigationItem.leftBarButtonItem = nil;
     }
-    _centerV.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right"] target:self action:@selector(leftAction:)];
+    _centerV.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right"] target:self action:@selector(rightAction:)];
 
 //    _centerV.navigationItem.rightBarButtonItem = ({
 //        UIBarButtonItem *rightB = [[UIBarButtonItem alloc] initWithTitle:@"右边" style:(UIBarButtonItemStylePlain) target:self action:@selector(rightAction:)];

@@ -19,7 +19,7 @@
 
     self.centerV.hideRightNaviBtnGesture = YES;
     self.hideCenterRightNaviBtn = YES;
-
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -108,7 +108,7 @@
             [APP_DELEGATE.window makeKeyAndVisible];
         }else if([model.page isEqualToString:@"medialist_page"]){
             MediaCenterVC *centerVC = [[MediaCenterVC alloc] init];
-            centerVC.title = @"全部";
+//            centerVC.title = @"全部";
             MediaRightVC *rightVC = [[MediaRightVC alloc] init];
             // 传值
             MediaVC *mediaVC = [[MediaVC alloc] initWithCenterVC:centerVC rightVC:rightVC leftVC:self];

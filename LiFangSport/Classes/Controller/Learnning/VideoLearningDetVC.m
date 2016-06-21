@@ -11,12 +11,13 @@
 #import "UIBarButtonItem+SimAdditions.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import "VideoPlayerManager.h"
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
 
 @interface VideoLearningDetVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
-    MPMoviePlayerController *_player;//视频播放器
+//    MPMoviePlayerController *_player;//视频播放器
     UIView *playView;
 }
 @property(nonatomic,strong)UICollectionView *videoCollectionview;
@@ -85,38 +86,39 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //初始化播放器
-    _player=[[MPMoviePlayerController alloc]initWithContentURL:[NSURL URLWithString:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD"]];
-    playView = [[UIView alloc]initWithFrame:self.view.bounds];
-    playView.backgroundColor = [UIColor clearColor];
-    [APP_DELEGATE.window addSubview:playView];
-//
+    
+    [VideoPlayerManager shareKnowInstance].contentURL = [NSURL URLWithString:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD"];
+    if (playView == nil) {
+        playView = [[UIView alloc]initWithFrame:self.view.bounds];
+        playView.backgroundColor = [UIColor clearColor];
+        [APP_DELEGATE.window addSubview:playView];
+    }
     //设置播放器画面的尺寸frame
-    _player.view.frame=CGRectMake(0, 0, kScreenHeight, kScreenWidth);
-    [playView addSubview:_player.view];
+    
+    [VideoPlayerManager shareKnowInstance].view.frame =CGRectMake(0, 0, kScreenHeight, kScreenWidth);
+    [playView addSubview:[VideoPlayerManager shareKnowInstance].view];
 
     CGAffineTransform landscapeTransform = CGAffineTransformMakeRotation(M_PI / 2);
-    _player.view.transform = landscapeTransform;
-    _player.view.frame=CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    [VideoPlayerManager shareKnowInstance].view.transform = landscapeTransform;
+    [VideoPlayerManager shareKnowInstance].view.frame =CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    playView.hidden = NO;
+    [VideoPlayerManager shareKnowInstance].view.hidden = NO;
 
-    _player.scalingMode = MPMovieScalingModeAspectFill;
-
-    [_player prepareToPlay];
+    [[VideoPlayerManager shareKnowInstance] prepareToPlay];
     //监听播放状态
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieChagen:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    [_player play];
+    [[VideoPlayerManager shareKnowInstance] play];
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 -(void)movieFinish:(NSNotification *)noti{
     playView.hidden = YES;
-    _player.view.hidden = YES;
-    playView = nil;
-    _player = nil;
+    [VideoPlayerManager shareKnowInstance].view.hidden = YES;
 }
 
 -(void)movieChagen:(NSNotification *)noti{
-    NSLog(@"===%zd",_player.playbackState);
+    NSLog(@"===%zd",[VideoPlayerManager shareKnowInstance].playbackState);
     /*
      //播放状态
      MPMoviePlaybackStateStopped,
@@ -126,7 +128,7 @@
      MPMoviePlaybackStateSeekingForward,
      MPMoviePlaybackStateSeekingBackward
      */
-    if (_player.playbackState==MPMoviePlaybackStatePlaying) {
+    if ([VideoPlayerManager shareKnowInstance].playbackState==MPMoviePlaybackStatePlaying) {
 
     }
     

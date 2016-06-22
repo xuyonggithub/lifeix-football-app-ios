@@ -73,6 +73,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VideoListModel *model = _dataArray[indexPath.row];
     if (model.type == 1) {//视频列表
         VideoLearningDetVC *dVC = [[VideoLearningDetVC alloc]init];

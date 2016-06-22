@@ -48,7 +48,7 @@
 
 - (void)refreshContent:(LFSimulationCategoryModel *)model
 {
-    [_bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kpicHeaderPrifx,@"mobile/",model.image]] placeholderImage:nil];
+    [_bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",model.image]] placeholderImage:nil];
     _nameLabel.text = model.name;
 }
 

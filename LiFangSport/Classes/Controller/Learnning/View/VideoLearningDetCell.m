@@ -50,7 +50,7 @@
 }
 
 -(void)setModel:(VideoLearningUnitModel *)model{
-    NSString *picstr = [NSString stringWithFormat:@"%@%@",kpicHeaderPrifx,model.videos[0][@"imagePath"]];
+    NSString *picstr = [NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.videos[0][@"imagePath"]];
     [_picView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"videosingleplacehoder")];
     _nameLab.text = model.title;
 }

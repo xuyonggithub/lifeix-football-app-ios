@@ -46,11 +46,22 @@
         make.edges.equalTo(self.view);
     }];
     [self showFullScreen];
-    
-    
 }
 
-- (void)showFullScreen {
+- (void)dealloc
+{
+    [self resignFullScreen];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - FullScreen
+- (void)showFullScreen
+{
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
@@ -62,7 +73,8 @@
     }
 }
 
-- (void)resignFullScreen {
+- (void)resignFullScreen
+{
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
@@ -74,82 +86,69 @@
     }
 }
 
-
-
-- (void)addPortraitConstraints
+#pragma mark - initPlayer
+- (void)initPlayer
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
-
-        
-
-    [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_disPlayView]|"
-                                                                                             options:0
-                                                                                             metrics:nil
-                                                                                               views:NSDictionaryOfVariableBindings(_disPlayView)]];
-    
-    [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_disPlayView]"
-                                                                                     options:0
-                                                                                     metrics:nil
-                                                                                       views:NSDictionaryOfVariableBindings(_disPlayView)]];
-    
-        [self.constraintList addObject:[NSLayoutConstraint constraintWithItem:_disPlayView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_disPlayView attribute:NSLayoutAttributeWidth multiplier:9/16.0 constant:1]];
-
-    [self.view addConstraints:self.constraintList];
-}
-
-
-- (void)addLandscapeConstrains
-{
+    self.mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
+    self.mediaPlayerViewController.needsBackButtonInPortrait = YES;
+    self.disPlayView = self.mediaPlayerViewController.view;
+    self.disPlayView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.disPlayView];
+    [self.disPlayView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self addChildViewController:self.mediaPlayerViewController];
+    [self.mediaPlayerViewController showFullScreen];
     [[UIApplication sharedApplication] setStatusBarHidden:self.mediaPlayerViewController.mediaPlayerControlBar.hidden withAnimation:NO];
-    [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_disPlayView]|"
-                                                                                     options:0
-                                                                                     metrics:nil
-                                                                                       views:NSDictionaryOfVariableBindings(_disPlayView)]];
+}
+
+- (void)toPlayWithAJMediaPlayerItem
+{
+    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
+    [self.mediaPlayerViewController startToPlay:playRequest];
+}
+
+#pragma mark - AJMediaViewControllerDelegate
+- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem {
     
-    [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_disPlayView]|"
-                                                                                     options:0
-                                                                                     metrics:nil
-                                                                                       views:NSDictionaryOfVariableBindings(_disPlayView)]];
-    [self.view addConstraints:self.constraintList];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - Notification
-- (void)addNotification
+#pragma mark - LFSimulationCenterPromptViewDelegate
+- (void)startTest:(NSInteger)index
 {
-    [self removeNotification];
-
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-
+    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.model.subArray.count == 0 ? self.model.categoryId : [self.model.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        self.constraintList = [NSMutableArray arrayWithCapacity:0];
+        
+        [self initPlayer];
+        [self toPlayWithAJMediaPlayerItem];
+        
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"+++error: %@", error);
+    }];
 }
 
-- (void)removeNotification
+- (void)quitTest
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-#pragma mark - Notification
-- (void)statusBarOrientationChange:(NSNotification *)notification
+#pragma mark - LFSimulationCenterQuestionViewDelegate
+- (void)nextTest
 {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        _isFullScreen = YES;
-    } else if (UIInterfaceOrientationIsPortrait(orientation)) {
-        _isFullScreen = NO;
-    }
-    //[self interactivePopGestureEnabled:!_isFullScreen];
-    [self.mediaPlayerViewController transitionToFullScreenModel:YES];
-
+    //    self.constraintList = [NSMutableArray arrayWithCapacity:0];
+    //
+    //    [self initPlayer];
+    //    [self toPlayWithAJMediaPlayerItem];
 }
 
-- (void)mediaPlayerViewControllerAddtionView:(NSNotification *)notification
+- (void)quitQuestionTest
 {
-    self.mediaPlayerViewController.isAddtionView = [notification.object boolValue];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIViewControllerRotation
@@ -166,79 +165,6 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
     return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-}
-
-#pragma mark - initPlayer
-- (void)initPlayer
-{
-    self.mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
-    self.mediaPlayerViewController.needsBackButtonInPortrait = YES;
-    self.disPlayView = self.mediaPlayerViewController.view;
-    self.disPlayView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.disPlayView];
-    [self addChildViewController:self.mediaPlayerViewController];
-    [self.mediaPlayerViewController showFullScreen];
-}
-
-- (void)toPlayWithAJMediaPlayerItem
-{
-    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
-    [self.mediaPlayerViewController startToPlay:playRequest];
-}
-
-#pragma mark - LFSimulationCenterPromptViewDelegate
-- (void)startTest:(NSInteger)index
-{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.model.subArray.count == 0 ? self.model.categoryId : [self.model.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        self.constraintList = [NSMutableArray arrayWithCapacity:0];
-        
-        [self initPlayer];
-        //[self addNotification];
-        [self addLandscapeConstrains];
-        [self toPlayWithAJMediaPlayerItem];
-
-    } failure:^(CommonRequest *request, NSError *error) {
-        NSLog(@"+++error: %@", error);
-    }];
-
-    
-}
-
-- (void)quitTest
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - LFSimulationCenterQuestionViewDelegate
-- (void)nextTest
-{
-    //    self.constraintList = [NSMutableArray arrayWithCapacity:0];
-    //
-    //    [self initPlayer];
-    //    //[self addNotification];
-    //    [self addLandscapeConstrains];
-    //    [self toPlayWithAJMediaPlayerItem];
-}
-
-- (void)quitQuestionTest
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-#pragma mark - AJMediaViewControllerDelegate
-- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController didClickOnShareButton:(AJMediaPlayerItem *)playerItem
-{
-
-}
-
-- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem {
-    
-}
-
-- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

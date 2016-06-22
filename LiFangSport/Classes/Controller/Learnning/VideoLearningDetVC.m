@@ -158,7 +158,7 @@
     if (_videoCollectionview == nil) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 68, kScreenWidth, kScreenHeight-44) collectionViewLayout:flowLayout];
+        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 68, kScreenWidth, kScreenHeight-68) collectionViewLayout:flowLayout];
         _videoCollectionview.delegate = self;
         _videoCollectionview.dataSource = self;
         _videoCollectionview.scrollEnabled = YES;
@@ -167,6 +167,7 @@
         
         [self.view addSubview:_videoCollectionview];
     }
+    _videoCollectionview.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
 }
 #pragma mark -- UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

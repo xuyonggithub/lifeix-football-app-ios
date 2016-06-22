@@ -80,6 +80,7 @@
 		2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */; };
 		2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB281D17DE3800954C63 /* VSicon@2x.png */; };
 		2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */; };
+		2D76357D1D1A92FC0085BB03 /* LearningInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */; };
 		2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */; };
 		2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA381D10F99C00113404 /* CenterSwitchModel.m */; };
 		2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA3B1D10FAED00113404 /* RightSwitchModel.m */; };
@@ -469,6 +470,8 @@
 		2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2D6EEB281D17DE3800954C63 /* VSicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VSicon@2x.png"; sourceTree = "<group>"; };
 		2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videolistBannerLabpic@2x.png"; sourceTree = "<group>"; };
+		2D76357B1D1A92FC0085BB03 /* LearningInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoVC.h; sourceTree = "<group>"; };
+		2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoVC.m; sourceTree = "<group>"; };
 		2D84EA341D10F4EE00113404 /* LeftSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSwitchModel.h; sourceTree = "<group>"; };
 		2D84EA351D10F4EE00113404 /* LeftSwitchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSwitchModel.m; sourceTree = "<group>"; };
 		2D84EA371D10F99C00113404 /* CenterSwitchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterSwitchModel.h; sourceTree = "<group>"; };
@@ -1494,6 +1497,8 @@
 				2D84EA571D115EAD00113404 /* VideoCenterVC.m */,
 				2DBB72641D11B510009BD38F /* VideoLearningDetVC.h */,
 				2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */,
+				2D76357B1D1A92FC0085BB03 /* LearningInfoVC.h */,
+				2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */,
 				2DDAF8191D1854D0002E5D59 /* Manager */,
 				2D84EA591D11684C00113404 /* Model */,
 				2D84EA5A1D11684C00113404 /* View */,
@@ -2518,6 +2523,7 @@
 				9CAF824C1D190F560025224F /* AJMediaBulletInputView.m in Sources */,
 				2DE2C8A61D0D4A8500310C4C /* UIImageView+UserInfo.m in Sources */,
 				2DE2C8A31D0D4A8500310C4C /* UIKit+DrawingHelpers.m in Sources */,
+				2D76357D1D1A92FC0085BB03 /* LearningInfoVC.m in Sources */,
 				9CAF82571D190F560025224F /* AJMediaPlayerMessageLayerView.m in Sources */,
 				2D84EA521D113A3200113404 /* LaunchInfoModel.m in Sources */,
 				EC504A0D1D0E99E700095C63 /* MediaRightVC.m in Sources */,

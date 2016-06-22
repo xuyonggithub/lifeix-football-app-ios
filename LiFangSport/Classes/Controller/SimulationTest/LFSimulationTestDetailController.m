@@ -181,7 +181,7 @@
 
 - (void)toPlayWithAJMediaPlayerItem
 {
-    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m02-mex-cmr-03/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
+    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
     [self.mediaPlayerViewController startToPlay:playRequest];
 }
 
@@ -189,18 +189,18 @@
 - (void)startTest:(NSInteger)index
 {
     [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.model.subArray.count == 0 ? self.model.categoryId : [self.model.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        self.constraintList = [NSMutableArray arrayWithCapacity:0];
         
+        [self initPlayer];
+        //[self addNotification];
+        [self addLandscapeConstrains];
+        [self toPlayWithAJMediaPlayerItem];
+
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
     }];
 
     
-//    self.constraintList = [NSMutableArray arrayWithCapacity:0];
-//    
-//    [self initPlayer];
-//    //[self addNotification];
-//    [self addLandscapeConstrains];
-//    [self toPlayWithAJMediaPlayerItem];
 }
 
 - (void)quitTest

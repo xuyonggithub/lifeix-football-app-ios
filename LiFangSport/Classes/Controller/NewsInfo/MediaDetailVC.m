@@ -46,6 +46,7 @@ const CGFloat topViewH = 180;
     self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.shareBtn.frame = CGRectMake(0, self.view.height - 44, SCREEN_WIDTH, 44);
     [self.shareBtn setTitle:@"分享" forState: UIControlStateNormal];
+    [self.shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
     self.shareBtn.titleLabel.textColor = [UIColor whiteColor];
     self.shareBtn.titleLabel.font = kBasicBigTitleFont;
     self.shareBtn.backgroundColor = HEXRGBCOLOR(0xae1417);
@@ -53,11 +54,12 @@ const CGFloat topViewH = 180;
     [self.view addSubview:self.shareBtn];
     
     //webView
-    self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 64, SCREEN_WIDTH, self.view.height - 108)];
+    self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - 108)];
     self.contentWebView.delegate = self;
     //    UIScrollView *tempView = self.contentWebView.scrollView;
     //    tempView.scrollEnabled = false;
-    [self.view addSubview: self.contentWebView];
+    
+    //    [self.view addSubview: self.contentWebView];
     
     /*
      //标题
@@ -183,10 +185,41 @@ const CGFloat topViewH = 180;
 #pragma mark - webViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"+++webViewDidStartLoad");
+    
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    //    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     NSLog(@"+++webViewDidFinishLoad");
+    
+    CGRect foo = self.contentWebView.frame;
+    foo.size.height = [[self.contentWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    self.contentWebView.frame = foo;
+    
+    // contentView
+    UIScrollView *mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, self.view.height - 88)];
+    [self.view addSubview:mainView];
+    [mainView addSubview:self.contentWebView];
+    
+    // 顶踩
+    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.likeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2, _contentWebView.bottom + 10, 100, 50);
+    [self.likeBtn addTarget:self action:@selector(likeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.likeBtn setTitle:@"顶" forState: UIControlStateNormal];
+    [self.likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
+    self.likeBtn.titleLabel.textColor = [UIColor grayColor];
+    self.likeBtn.titleLabel.font = kBasicSmallTitleFont;
+    [mainView addSubview:self.likeBtn];
+    
+    self.unLikeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.unLikeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2 + 110, _contentWebView.bottom + 10, 100, 50);
+    [self.unLikeBtn addTarget:self action:@selector(unLikeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.unLikeBtn setTitle:@"踩" forState: UIControlStateNormal];
+    [self.unLikeBtn setImage:[UIImage imageNamed:@"bad.png"] forState:UIControlStateNormal];
+    //    self.unLikeBtn.backgroundColor = HEXRGBCOLOR(0xae1417);
+    self.unLikeBtn.titleLabel.textColor = [UIColor grayColor];
+    [mainView addSubview:self.unLikeBtn];
+    
+    mainView.contentSize = CGSizeMake(SCREEN_WIDTH, _unLikeBtn.bottom);
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
     NSLog(@"+++error:%@", error);

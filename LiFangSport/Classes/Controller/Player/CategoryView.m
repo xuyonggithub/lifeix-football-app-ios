@@ -45,8 +45,8 @@
         
         SimButton *button = [[SimButton alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, 0, btnWidth, btnHeight)];
         button.titleLabel.font = [UIFont systemFontOfSize:kbtnFont];
-        [button setTitleColor:kBasicColor forState:UIControlStateNormal];
-        [button setTitleColor:kDetailTitleColor forState:UIControlStateSelected];
+        [button setTitleColor:_btnNormalColor?_btnNormalColor:kBasicColor forState:UIControlStateNormal];
+        [button setTitleColor:_btnSelectColor?_btnSelectColor:kDetailTitleColor forState:UIControlStateSelected];
         [button setTitle:self.categoryArr[i] forState:UIControlStateNormal];
         button.selected = (i == 0)?YES:NO;
         button.tag = kbtnTag + i;
@@ -54,11 +54,11 @@
         [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         [_categaryScrollView addSubview:button];
         
-        LineView *lineView = [[LineView alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, button.bottom - 3, btnWidth, 2)];
-        lineView.lineColor = kDetailTitleColor;
-        lineView.hidden = (i == 0)?NO:YES;
-        lineView.tag = klineTag + i;
-        [_categaryScrollView addSubview:lineView];
+        LineView *slectlineView = [[LineView alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, button.bottom - 3, btnWidth, 2)];
+        slectlineView.lineColor = kDetailTitleColor;
+        slectlineView.hidden = (i == 0)?NO:YES;
+        slectlineView.tag = klineTag + i;
+        [_categaryScrollView addSubview:slectlineView];
         
         CGSize size = self.categaryScrollView.contentSize;
         size.width += contnentRect.size.width;
@@ -87,6 +87,27 @@
         LineView *lineView = (LineView *)[self viewWithTag:i + klineTag];
         button.selected = (button.tag == selectedIndex + kbtnTag)?YES:NO;
         lineView.hidden = (lineView.tag == selectedIndex + klineTag)?NO:YES;
+    }
+}
+
+-(void)setBtnNormalColor:(UIColor *)btnNormalColor{
+    
+    for(int i = 0; i< _categoryArr.count; i++){
+        SimButton *button = (SimButton *)[self viewWithTag:i + kbtnTag];
+        [button setTitleColor:btnNormalColor forState:UIControlStateNormal];
+    }
+}
+-(void)setBtnSelectColor:(UIColor *)btnSelectColor{
+    for(int i = 0; i< _categoryArr.count; i++){
+        SimButton *button = (SimButton *)[self viewWithTag:i + kbtnTag];
+        [button setTitleColor:btnSelectColor forState:UIControlStateSelected];
+    }
+}
+
+-(void)setSelectLineColor:(UIColor *)selectLineColor{
+    for(int i = 0; i< _categoryArr.count; i++){
+        LineView *lineView = (LineView *)[self viewWithTag:i + klineTag];
+        lineView.lineColor = selectLineColor;
     }
 }
 

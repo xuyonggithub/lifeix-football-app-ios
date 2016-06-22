@@ -14,6 +14,9 @@ typedef void(^ClickBtn)(CGFloat);
 
 @property(nonatomic, retain)NSArray *categoryArr;
 @property (nonatomic, strong) ClickBtn ClickBtn;
+@property(nonatomic,strong)UIColor *btnNormalColor;
+@property(nonatomic,strong)UIColor *btnSelectColor;
+@property(nonatomic,strong)UIColor *selectLineColor;
 
 -(instancetype)initWithFrame:(CGRect)frame category:(NSArray *)categoryArr;
 - (void)updateSelectStatus:(NSInteger)selectedIndex;

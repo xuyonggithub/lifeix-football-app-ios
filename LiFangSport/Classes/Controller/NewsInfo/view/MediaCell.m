@@ -20,7 +20,7 @@
         [self addSubview:self.bgImgView];
         
         // 标题
-        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 120, self.bgImgView.frame.size.width, 25)];
+        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 125, self.bgImgView.frame.size.width, 25)];
         titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH - 50, 25)];
         self.titleLabel.font = kBasicSmallTitleFont;
@@ -44,7 +44,7 @@
         self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];
     }
     self.titleLabel.text = media.title;
-//    self.categorylabel.text = media.categoryIds[0];
+    //    self.categorylabel.text = media.categoryIds[0];
 }
 
 @end

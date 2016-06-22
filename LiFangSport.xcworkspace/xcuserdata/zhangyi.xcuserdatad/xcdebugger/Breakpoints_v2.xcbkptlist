@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiFangSport/Classes/Controller/Learnning/VideoLearningDetVC.m"
-            timestampString = "488194786.113932"
+            timestampString = "488270254.894351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-headerRereshing"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-setupRefresh"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/VideoLearningDetVC.m"
-            timestampString = "488194787.449685"
+            filePath = "LiFangSport/Classes/Controller/Player/CategoryView.m"
+            timestampString = "488271239.428265"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-footerRereshing"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-setSelectLineColor:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,6 +21,8 @@
 #import "HomeBannnerDetVC.h"
 #import "HomeHeroDetVC.h"
 #import "NSString+WPAttributedMarkup.h"
+#import "MediaModel.h"
+#import "MediaDetailVC.h"
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -33,6 +35,7 @@
 @property(nonatomic,strong)NSMutableArray *leftDataArray;
 @property(nonatomic,strong)NSMutableArray *centerDataArray;
 @property(nonatomic,strong)NSMutableArray *rightDataArray;
+@property(nonatomic,strong)NSMutableArray *mediaArray;
 @property(nonatomic,strong)TopBannerSwitchView *topBannnerView;
 @property(nonatomic,strong)UITableView *leftTableview;
 @property(nonatomic,strong)UITableView *centerTableview;
@@ -50,10 +53,10 @@
     _leftDataArray = [NSMutableArray array];
     _centerDataArray = [NSMutableArray array];
     _rightDataArray = [NSMutableArray array];
+    _mediaArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor purpleColor];
     self.title = @"十二强专栏";
 
-//    [self requestDataWithCaID:@"80891107285759"];
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
 
     [self addTopBannnerView];
@@ -128,9 +131,11 @@
     [_dataArray removeAllObjects];
     [_picArray removeAllObjects];
     _dataArray = [CenterCyclePicModel arrayOfModelsFromDictionaries:dic];
+    _mediaArray = [MediaModel arrayOfModelsFromDictionaries:dic];
+
     for (CenterCyclePicModel *model in _dataArray) {
         if (model.images.count) {
-            [_picArray addObject:[NSURL URLWithString:model.images[0]]];//homebannerplaceholder
+            [_picArray addObject:[NSURL URLWithString:model.images[0]]];
         }
     }
     if (_picArray&&_picArray.count) {
@@ -371,9 +376,8 @@
 #pragma mark
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    CenterCyclePicModel *model = _dataArray[index];
-    HomeBannnerDetVC *DVC = [[HomeBannnerDetVC alloc]init];
-    DVC.postId = model.KID;
+    MediaDetailVC *DVC = [[MediaDetailVC alloc]init];
+    DVC.media = _mediaArray[index];
     [self.navigationController pushViewController:DVC animated:YES];
 }
 

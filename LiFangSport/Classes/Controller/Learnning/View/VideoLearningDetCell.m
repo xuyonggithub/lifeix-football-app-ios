@@ -21,7 +21,6 @@
     self=[super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor greenColor];
-
         //添加控件
         [self createUI];
     }
@@ -31,13 +30,15 @@
 -(void)createUI{
     _picView = [[UIImageView alloc]initWithFrame:self.bounds];
     _picView.height = _picView.height - 20;
+    _picView.layer.borderWidth = 1;
+    _picView.layer.borderColor = [[UIColor whiteColor] CGColor];
     _nameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, 20)];
     _nameLab.bottom = 80;
     _nameLab.textAlignment = NSTextAlignmentCenter;
-    _nameLab.textColor = [UIColor blackColor];
+    _nameLab.textColor = [UIColor whiteColor];
     _nameLab.font = [UIFont systemFontOfSize:12];
     
-    _picView.image = [UIImage imageNamed:@"haolindemopic"];
+    _picView.image = [UIImage imageNamed:@"videosingleplacehoder"];
     _nameLab.text = @"教学视频";
     [self addSubview:_picView];
     [_picView addSubview:_nameLab];
@@ -45,6 +46,7 @@
 
 -(void)setModel:(VideoLearningUnitModel *)model{
     NSString *picstr = [NSString stringWithFormat:@"%@%@",kpicHeaderPrifx,model.videos[0][@"imagePath"]];
+    [_picView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"videosingleplacehoder")];
     _nameLab.text = model.title;
 }
 

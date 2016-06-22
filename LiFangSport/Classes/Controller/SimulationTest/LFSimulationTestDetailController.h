@@ -8,7 +8,10 @@
 //  模拟测试详情页
 
 #import <UIKit/UIKit.h>
+#import "LFSimulationCategoryModel.h"
 
 @interface LFSimulationTestDetailController : BaseVC
+
+@property (nonatomic, strong) LFSimulationCategoryModel *model;
 
 @end

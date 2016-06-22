@@ -153,14 +153,15 @@
             APP_DELEGATE.window.rootViewController = coachVC;
             [APP_DELEGATE.window makeKeyAndVisible];
         }else if ([model.page isEqualToString:@"quiz_categroy_page"]){
-        SimulationCenterVC *centerVC = [[SimulationCenterVC alloc] init];
-        centerVC.categoryId = model.KID;
-        SimulationTestVC *coachVC = [[SimulationTestVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
-        [ self dismissViewControllerAnimated: NO completion: nil ];
-        APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-        APP_DELEGATE.window.rootViewController = coachVC;
-        [APP_DELEGATE.window makeKeyAndVisible];
+            SimulationCenterVC *centerVC = [[SimulationCenterVC alloc] init];
+            centerVC.title = model.name;
+            centerVC.categoryId = model.KID;
+            SimulationTestVC *coachVC = [[SimulationTestVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
+            [ self dismissViewControllerAnimated: NO completion: nil ];
+            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
+            APP_DELEGATE.window.rootViewController = coachVC;
+            [APP_DELEGATE.window makeKeyAndVisible];
         }
     
     

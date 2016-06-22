@@ -1,23 +1,22 @@
 //
-//  SimulationTestVC.m
+//  LFNavigationController.m
 //  LiFangSport
 //
-//  Created by 张毅 on 16/6/14.
+//  Created by Zhangqibin on 16/6/22.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "SimulationTestVC.h"
+#import "LFNavigationController.h"
 
-@interface SimulationTestVC ()
+@interface LFNavigationController ()
 
 @end
 
-@implementation SimulationTestVC
+@implementation LFNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.centerV.hideRightNaviBtnGesture = YES;
-    self.hideCenterRightNaviBtn = YES;
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,17 +37,17 @@
 #pragma mark - UIViewControllerRotation
 - (BOOL)shouldAutorotate
 {
-    return self.centerV.navigationController.shouldAutorotate;
+    return self.topViewController.shouldAutorotate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return self.centerV.navigationController.supportedInterfaceOrientations;
+    return self.topViewController.supportedInterfaceOrientations;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return [self.centerV.navigationController preferredInterfaceOrientationForPresentation];
+    return [self.topViewController preferredInterfaceOrientationForPresentation];
 }
 
 

@@ -271,6 +271,7 @@
 		9C0517531D194797007F03A8 /* player_landscape_stream_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0516EA1D194797007F03A8 /* player_landscape_stream_bg@2x.png */; };
 		9C0517541D194797007F03A8 /* player_landscape_stream_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0516EB1D194797007F03A8 /* player_landscape_stream_bg@3x.png */; };
 		9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */; };
+		9C658B6D1D1A7D9B0005215D /* LFSimulationCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C658B6C1D1A7D9B0005215D /* LFSimulationCategoryModel.m */; };
 		9CAF82381D190F560025224F /* feedback_email_template.html in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B71D190F560025224F /* feedback_email_template.html */; };
 		9CAF82391D190F560025224F /* feedback_recipients.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B81D190F560025224F /* feedback_recipients.plist */; };
 		9CAF823A1D190F560025224F /* mediaplayer_analytics_events.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAF81B91D190F560025224F /* mediaplayer_analytics_events.json */; };
@@ -320,6 +321,9 @@
 		9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82831D19237F0025224F /* VTBulletModel.m */; };
 		9CAF82891D19237F0025224F /* VTBulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82851D19237F0025224F /* VTBulletView.m */; };
 		9CE136851D1A22680007A22D /* LFSimulationCenterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */; };
+		9CE136881D1A4AF60007A22D /* LFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136871D1A4AF60007A22D /* LFNavigationController.m */; };
+		9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1368D1D1A66C90007A22D /* LFSimulationCenterQuestionView.m */; };
+		9CE136911D1A68180007A22D /* LFSimulationQuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */; };
 		EC4D3C221D1387E200285243 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C191D1387E200285243 /* CategoryView.m */; };
 		EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1B1D1387E200285243 /* PlayerCell.m */; };
 		EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */; };
@@ -719,6 +723,8 @@
 		9C0516EB1D194797007F03A8 /* player_landscape_stream_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player_landscape_stream_bg@3x.png"; sourceTree = "<group>"; };
 		9C4D6C811D17F4BA00417565 /* LFSimulationCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCenterCell.h; sourceTree = "<group>"; };
 		9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterCell.m; sourceTree = "<group>"; };
+		9C658B6B1D1A7D9B0005215D /* LFSimulationCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCategoryModel.h; sourceTree = "<group>"; };
+		9C658B6C1D1A7D9B0005215D /* LFSimulationCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCategoryModel.m; sourceTree = "<group>"; };
 		9CAF81B71D190F560025224F /* feedback_email_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = feedback_email_template.html; sourceTree = "<group>"; };
 		9CAF81B81D190F560025224F /* feedback_recipients.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = feedback_recipients.plist; sourceTree = "<group>"; };
 		9CAF81B91D190F560025224F /* mediaplayer_analytics_events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mediaplayer_analytics_events.json; sourceTree = "<group>"; };
@@ -826,6 +832,12 @@
 		9CAF82851D19237F0025224F /* VTBulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletView.m; sourceTree = "<group>"; };
 		9CE136831D1A22680007A22D /* LFSimulationCenterPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCenterPromptView.h; sourceTree = "<group>"; };
 		9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterPromptView.m; sourceTree = "<group>"; };
+		9CE136861D1A4AF60007A22D /* LFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFNavigationController.h; sourceTree = "<group>"; };
+		9CE136871D1A4AF60007A22D /* LFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFNavigationController.m; sourceTree = "<group>"; };
+		9CE1368C1D1A66C90007A22D /* LFSimulationCenterQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCenterQuestionView.h; sourceTree = "<group>"; };
+		9CE1368D1D1A66C90007A22D /* LFSimulationCenterQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterQuestionView.m; sourceTree = "<group>"; };
+		9CE1368F1D1A68180007A22D /* LFSimulationQuestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationQuestionModel.h; sourceTree = "<group>"; };
+		9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationQuestionModel.m; sourceTree = "<group>"; };
 		D0A7A1A5D17417213C535F06 /* Pods-LiFangSport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.release.xcconfig"; sourceTree = "<group>"; };
 		EC4D3C181D1387E200285243 /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
 		EC4D3C191D1387E200285243 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
@@ -1469,6 +1481,8 @@
 				2DE2C85E1D0D3C1A00310C4C /* BaseVC.m */,
 				2DA4B1EA1D0E456000136DA7 /* BaseDrawerVC.h */,
 				2DA4B1EB1D0E456000136DA7 /* BaseDrawerVC.m */,
+				9CE136861D1A4AF60007A22D /* LFNavigationController.h */,
+				9CE136871D1A4AF60007A22D /* LFNavigationController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1727,6 +1741,10 @@
 		9C4D6C7F1D17F48600417565 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9CE1368F1D1A68180007A22D /* LFSimulationQuestionModel.h */,
+				9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */,
+				9C658B6B1D1A7D9B0005215D /* LFSimulationCategoryModel.h */,
+				9C658B6C1D1A7D9B0005215D /* LFSimulationCategoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1738,6 +1756,8 @@
 				9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */,
 				9CE136831D1A22680007A22D /* LFSimulationCenterPromptView.h */,
 				9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */,
+				9CE1368C1D1A66C90007A22D /* LFSimulationCenterQuestionView.h */,
+				9CE1368D1D1A66C90007A22D /* LFSimulationCenterQuestionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2386,6 +2406,7 @@
 				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
 				9CAF82591D190F560025224F /* AJMediaPlayerProgressView.m in Sources */,
+				9CE136881D1A4AF60007A22D /* LFNavigationController.m in Sources */,
 				2D69960F1D19279500B5F52D /* VideoLearningUnitModel.m in Sources */,
 				2DA4B2121D0E80C700136DA7 /* TADotView.m in Sources */,
 				EC4D3C481D13935200285243 /* CoachCenterVC.m in Sources */,
@@ -2425,6 +2446,7 @@
 				EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */,
 				9CAF824A1D190F560025224F /* AJMediaStreamProvider.m in Sources */,
 				2DE2C87D1D0D498600310C4C /* SimButton.m in Sources */,
+				9C658B6D1D1A7D9B0005215D /* LFSimulationCategoryModel.m in Sources */,
 				9CAF82861D19237F0025224F /* VTBulletItem.m in Sources */,
 				2DE2C8A41D0D4A8500310C4C /* UIAlertView+UserInfo.m in Sources */,
 				9CAF82581D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m in Sources */,
@@ -2451,7 +2473,9 @@
 				2DE2C85F1D0D3C1A00310C4C /* BaseVC.m in Sources */,
 				9CAF823D1D190F560025224F /* AJMediaPlayer+SDKAnalytics.m in Sources */,
 				2DE2C8A71D0D4A8500310C4C /* UIImage+launchImage.m in Sources */,
+				9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */,
 				2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */,
+				9CE136911D1A68180007A22D /* LFSimulationQuestionModel.m in Sources */,
 				9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */,
 				EC4D3C3D1D1392A800285243 /* RefereeCenterVC.m in Sources */,
 				9CAF823B1D190F560025224F /* AJFoundation.m in Sources */,

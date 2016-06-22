@@ -7,8 +7,9 @@
 //
 
 #import "SimulationCenterVC.h"
-#import "LFSimulationCenterCell.h"
 #import "LFSimulationTestDetailController.h"
+
+#import "LFSimulationCenterCell.h"
 
 #import "CommonRequest.h"
 
@@ -16,7 +17,7 @@
     <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
@@ -32,15 +33,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"模拟测试";
+
     [self.view addSubview:self.tableView];
     __weak typeof(self) weakSelf = self;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view);
     }];
-    [CommonRequest requstPath:@"/elearning/quiz_categories" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-
+    [CommonRequest requstPath:@"elearning/quiz_categories" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        weakSelf.dataArray = [LFSimulationCategoryModel simulationTestModelArrayWithArray:jsonDict];
+        [weakSelf.tableView reloadData];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
     }];
@@ -55,8 +56,12 @@
 #pragma mark - UITableViewDelegate and UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
     return self.dataArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 35 + (SCREEN_WIDTH - 40) * (SCREEN_WIDTH - 40) / 243;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,8 +72,7 @@
     if (!cell) {
         cell = [[LFSimulationCenterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", @(indexPath.row)];
-    
+    [cell refreshContent:self.dataArray[indexPath.row]];
     return cell;
 }
 
@@ -76,8 +80,24 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     LFSimulationTestDetailController *simulationTestDetailCtrl = [[LFSimulationTestDetailController alloc] init];
-
+    simulationTestDetailCtrl.model = self.dataArray[indexPath.row];
     [self.navigationController pushViewController:simulationTestDetailCtrl animated:YES];
+}
+
+#pragma mark - UIViewControllerRotation
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 #pragma mark - Getter and Setter

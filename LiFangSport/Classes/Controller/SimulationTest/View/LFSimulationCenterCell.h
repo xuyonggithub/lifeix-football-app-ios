@@ -8,7 +8,10 @@
 //  模拟测试列表Cell
 
 #import <UIKit/UIKit.h>
+#import "LFSimulationCategoryModel.h"
 
 @interface LFSimulationCenterCell : UITableViewCell
+
+- (void)refreshContent:(LFSimulationCategoryModel *)model;
 
 @end

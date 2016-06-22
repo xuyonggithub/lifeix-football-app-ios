@@ -11,6 +11,7 @@
 #import "UIImage+ImageEffects.h"
 #import "BaseDrawerVC.h"
 #import "UIBarButtonItem+SimAdditions.h"
+#import "LFNavigationController.h"
 
 @interface BaseDrawerVC ()
 {
@@ -56,7 +57,7 @@
     [self addChildViewController:_rightV];
     }
     
-    UINavigationController *centerNC = [[UINavigationController alloc] initWithRootViewController:_centerV];
+    UINavigationController *centerNC = [[LFNavigationController alloc] initWithRootViewController:_centerV];
     [self addChildViewController:centerNC];
     
     _leftV.view.frame = CGRectMake(0, 0, 250, [UIScreen mainScreen].bounds.size.height);
@@ -156,5 +157,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIViewControllerRotation
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    if (![self shouldAutorotate]) {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    if (![self shouldAutorotate]) {
+        return UIInterfaceOrientationPortrait;
+    }
+    return UIInterfaceOrientationPortrait | UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+}
 
 @end

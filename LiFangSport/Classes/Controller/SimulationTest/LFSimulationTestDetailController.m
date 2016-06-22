@@ -8,9 +8,11 @@
 
 #import "LFSimulationTestDetailController.h"
 #import "AJMediaPlayerKit.h"
+#import "LFSimulationCenterPromptView.h"
+#import "CommonRequest.h"
 
 @interface LFSimulationTestDetailController ()
-    <AJMediaViewControllerDelegate>
+    <AJMediaViewControllerDelegate, LFSimulationCenterPromptViewDelegate>
 {
     BOOL _isFullScreen;
 }
@@ -25,19 +27,52 @@
 
 @implementation LFSimulationTestDetailController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.constraintList = [NSMutableArray arrayWithCapacity:0];
     
-    [self initPlayer];
-    //[self addNotification];
+    LFSimulationCenterPromptView *promptView = [[LFSimulationCenterPromptView alloc] initWithModel:self.model];
+    promptView.delegate = self;
+    promptView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:promptView];
+    [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self showFullScreen];
     
     
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self addLandscapeConstrains];
-    [self toPlayWithAJMediaPlayerItem];
 }
+
+- (void)showFullScreen {
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIInterfaceOrientationLandscapeRight;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
+
+- (void)resignFullScreen {
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIInterfaceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
+
 
 
 - (void)addPortraitConstraints
@@ -119,7 +154,7 @@
 #pragma mark - UIViewControllerRotation
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
@@ -146,9 +181,49 @@
 
 - (void)toPlayWithAJMediaPlayerItem
 {
-    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
+    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m02-mex-cmr-03/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
     [self.mediaPlayerViewController startToPlay:playRequest];
 }
+
+#pragma mark - LFSimulationCenterPromptViewDelegate
+- (void)startTest:(NSInteger)index
+{
+    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.model.subArray.count == 0 ? self.model.categoryId : [self.model.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"+++error: %@", error);
+    }];
+
+    
+//    self.constraintList = [NSMutableArray arrayWithCapacity:0];
+//    
+//    [self initPlayer];
+//    //[self addNotification];
+//    [self addLandscapeConstrains];
+//    [self toPlayWithAJMediaPlayerItem];
+}
+
+- (void)quitTest
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - LFSimulationCenterQuestionViewDelegate
+- (void)nextTest
+{
+    //    self.constraintList = [NSMutableArray arrayWithCapacity:0];
+    //
+    //    [self initPlayer];
+    //    //[self addNotification];
+    //    [self addLandscapeConstrains];
+    //    [self toPlayWithAJMediaPlayerItem];
+}
+
+- (void)quitQuestionTest
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController didClickOnShareButton:(AJMediaPlayerItem *)playerItem
@@ -157,7 +232,7 @@
 }
 
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem {
-
+    
 }
 
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {

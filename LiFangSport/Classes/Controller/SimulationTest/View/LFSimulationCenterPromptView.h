@@ -8,7 +8,19 @@
 //  模拟测试提示View
 
 #import <UIKit/UIKit.h>
+#import "LFSimulationCategoryModel.h"
+
+@protocol LFSimulationCenterPromptViewDelegate <NSObject>
+
+- (void)startTest:(NSInteger)index;
+- (void)quitTest;
+
+@end
 
 @interface LFSimulationCenterPromptView : UIView
+
+@property (nonatomic, assign) id <LFSimulationCenterPromptViewDelegate> delegate;
+
+- (instancetype)initWithModel:(LFSimulationCategoryModel *)model;
 
 @end

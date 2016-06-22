@@ -37,9 +37,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     LFSimulationCenterPromptView *promptView = [[LFSimulationCenterPromptView alloc] initWithModel:self.model];
     promptView.delegate = self;
-    promptView.backgroundColor = [UIColor redColor];
     [self.view addSubview:promptView];
     [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);

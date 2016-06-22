@@ -319,6 +319,7 @@
 		9CAF82871D19237F0025224F /* VTBulletLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82811D19237F0025224F /* VTBulletLabel.m */; };
 		9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82831D19237F0025224F /* VTBulletModel.m */; };
 		9CAF82891D19237F0025224F /* VTBulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82851D19237F0025224F /* VTBulletView.m */; };
+		9CE136851D1A22680007A22D /* LFSimulationCenterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */; };
 		EC4D3C221D1387E200285243 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C191D1387E200285243 /* CategoryView.m */; };
 		EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1B1D1387E200285243 /* PlayerCell.m */; };
 		EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */; };
@@ -823,6 +824,8 @@
 		9CAF82831D19237F0025224F /* VTBulletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletModel.m; sourceTree = "<group>"; };
 		9CAF82841D19237F0025224F /* VTBulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletView.h; sourceTree = "<group>"; };
 		9CAF82851D19237F0025224F /* VTBulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletView.m; sourceTree = "<group>"; };
+		9CE136831D1A22680007A22D /* LFSimulationCenterPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCenterPromptView.h; sourceTree = "<group>"; };
+		9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterPromptView.m; sourceTree = "<group>"; };
 		D0A7A1A5D17417213C535F06 /* Pods-LiFangSport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.release.xcconfig"; sourceTree = "<group>"; };
 		EC4D3C181D1387E200285243 /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
 		EC4D3C191D1387E200285243 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
@@ -1733,6 +1736,8 @@
 			children = (
 				9C4D6C811D17F4BA00417565 /* LFSimulationCenterCell.h */,
 				9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */,
+				9CE136831D1A22680007A22D /* LFSimulationCenterPromptView.h */,
+				9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2375,6 +2380,7 @@
 				9CAF825E1D190F560025224F /* AJMediaPlayRequest.m in Sources */,
 				2DCB0EB21D0D689B00DB3234 /* HomeViewController.m in Sources */,
 				2DA4B2101D0E80C700136DA7 /* TAAbstractDotView.m in Sources */,
+				9CE136851D1A22680007A22D /* LFSimulationCenterPromptView.m in Sources */,
 				2DE2C8311D0D27E300310C4C /* main.m in Sources */,
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
 				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
@@ -2597,8 +2603,10 @@
 			baseConfigurationReference = 0AD8A0ACAF2FCD0201410D20 /* Pods-LiFangSport.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2614,8 +2622,10 @@
 			baseConfigurationReference = D0A7A1A5D17417213C535F06 /* Pods-LiFangSport.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

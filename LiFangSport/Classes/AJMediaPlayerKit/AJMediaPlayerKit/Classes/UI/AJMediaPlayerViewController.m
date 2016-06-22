@@ -2266,6 +2266,11 @@
                 [self.delegate mediaPlayerViewControllerWillDismiss:self];
             }
         }
+        //  现在都是全屏
+        if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayerViewControllerWillDismiss:)]) {
+            [self invalidateTimer];
+            [self.delegate mediaPlayerViewControllerWillDismiss:self];
+        }
     } else if (_appearenceStyle == AJMediaPlayerStyleForiPad) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayerViewController:didSelectFullScreenMode:)]) {
             [self.delegate mediaPlayerViewController:self didSelectFullScreenMode:NO];
@@ -2341,6 +2346,7 @@
 }
 
 - (void)showFullScreen {
+    _mediaPlayerControlBar.isFullScreen = YES;
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
@@ -2353,6 +2359,7 @@
 }
 
 - (void)resignFullScreen {
+    _mediaPlayerControlBar.isFullScreen = NO;
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];

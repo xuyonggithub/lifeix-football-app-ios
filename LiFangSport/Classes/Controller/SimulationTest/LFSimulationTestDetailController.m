@@ -35,10 +35,10 @@
     
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self addPortraitConstraints];
+    [self addLandscapeConstrains];
     [self toPlayWithAJMediaPlayerItem];
-    
 }
+
 
 - (void)addPortraitConstraints
 {
@@ -46,7 +46,7 @@
 
         
 
-            [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_disPlayView]|"
+    [self.constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_disPlayView]|"
                                                                                              options:0
                                                                                              metrics:nil
                                                                                                views:NSDictionaryOfVariableBindings(_disPlayView)]];
@@ -107,7 +107,7 @@
         _isFullScreen = NO;
     }
     //[self interactivePopGestureEnabled:!_isFullScreen];
-    [self.mediaPlayerViewController transitionToFullScreenModel:_isFullScreen];
+    [self.mediaPlayerViewController transitionToFullScreenModel:YES];
 
 }
 
@@ -116,32 +116,32 @@
     self.mediaPlayerViewController.isAddtionView = [notification.object boolValue];
 }
 
-//#pragma mark - UIViewControllerRotation
-//- (BOOL)shouldAutorotate
-//{
-//    return NO;
-//}
-//
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskLandscapeLeft;
-//}
-//
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-//{
-//    return UIInterfaceOrientationLandscapeLeft;
-//}
+#pragma mark - UIViewControllerRotation
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
 
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+}
 
 #pragma mark - initPlayer
 - (void)initPlayer
 {
     self.mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
+    self.mediaPlayerViewController.needsBackButtonInPortrait = YES;
     self.disPlayView = self.mediaPlayerViewController.view;
     self.disPlayView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.disPlayView];
     [self addChildViewController:self.mediaPlayerViewController];
+    [self.mediaPlayerViewController showFullScreen];
 }
 
 - (void)toPlayWithAJMediaPlayerItem
@@ -150,14 +150,19 @@
     [self.mediaPlayerViewController startToPlay:playRequest];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - AJMediaViewControllerDelegate
+- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController didClickOnShareButton:(AJMediaPlayerItem *)playerItem
+{
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem {
+
+}
+
+- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

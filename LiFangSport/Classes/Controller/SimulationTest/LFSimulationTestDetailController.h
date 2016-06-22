@@ -9,6 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LFSimulationTestDetailController : UIViewController
+@interface LFSimulationTestDetailController : BaseVC
 
 @end

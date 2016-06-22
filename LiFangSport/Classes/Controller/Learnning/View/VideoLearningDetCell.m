@@ -20,7 +20,7 @@
 -(id)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor clearColor];
         //添加控件
         [self createUI];
     }
@@ -33,7 +33,7 @@
     _picView.layer.borderWidth = 1;
     _picView.layer.borderColor = [[UIColor whiteColor] CGColor];
     _nameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, 20)];
-    _nameLab.bottom = 80;
+    _nameLab.bottom = 100;
     _nameLab.textAlignment = NSTextAlignmentCenter;
     _nameLab.textColor = [UIColor whiteColor];
     _nameLab.font = [UIFont systemFontOfSize:12];
@@ -41,7 +41,12 @@
     _picView.image = [UIImage imageNamed:@"videosingleplacehoder"];
     _nameLab.text = @"教学视频";
     [self addSubview:_picView];
-    [_picView addSubview:_nameLab];
+    [self addSubview:_nameLab];
+    
+    UIImageView *playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    playView.image = UIImageNamed(@"videobofang");
+    playView.center = _picView.center;
+    [self addSubview:playView];
 }
 
 -(void)setModel:(VideoLearningUnitModel *)model{

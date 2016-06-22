@@ -12,6 +12,7 @@
 #import "CommonRequest.h"
 #import "VideoListModel.h"
 #import "VideoLearningDetModel.h"
+#import "LearningInfoVC.h"
 
 @interface VideoCenterVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *centerTableview;
@@ -26,7 +27,7 @@
     _dataArray = [NSMutableArray array];
     self.title = @"规则培训";
     self.view.backgroundColor = [UIColor grayColor];
-
+    
     [self createTableview];
     [self requestData];
 }
@@ -72,11 +73,17 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    VideoLearningDetVC *dVC = [[VideoLearningDetVC alloc]init];
     VideoListModel *model = _dataArray[indexPath.row];
-    dVC.catsArr = [VideoLearningDetModel arrayOfModelsFromDictionaries:model.cats];
-    dVC.title = model.name;
-    [self.navigationController pushViewController:dVC animated:YES];
+    if (model.type == 1) {//视频列表
+        VideoLearningDetVC *dVC = [[VideoLearningDetVC alloc]init];
+        dVC.catsArr = [VideoLearningDetModel arrayOfModelsFromDictionaries:model.cats];
+        dVC.title = model.name;
+        [self.navigationController pushViewController:dVC animated:YES];
+    }else if(model.type == 2){
+        LearningInfoVC *IVC = [[LearningInfoVC alloc]init];
+        [self.navigationController pushViewController:IVC animated:YES];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

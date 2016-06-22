@@ -97,7 +97,15 @@
         [Weak(self) clickBtn:(index)];
     };
     [self.view addSubview:_CategoryView];
-    _CategoryView.backgroundColor = kclearColor;
+    _CategoryView.backgroundColor = HEXRGBCOLOR(0x041337);
+    
+    UIView *bview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _CategoryView.width, 20)];
+    bview.top = _CategoryView.bottom;
+    bview.backgroundColor = HEXRGBCOLOR(0x041337);
+    [self.view addSubview:bview];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, bview.width, 1)];
+    line.backgroundColor = kwhiteColor;
+    [bview addSubview:line];
 }
 
 -(void)clickBtn:(CGFloat)index{
@@ -155,10 +163,9 @@
         _videoCollectionview.scrollEnabled = YES;
         _videoCollectionview.backgroundColor = [UIColor clearColor];
         [_videoCollectionview registerClass:[VideoLearningDetCell class] forCellWithReuseIdentifier:kvideoCollectionviewcellid];
-
+        
         [self.view addSubview:_videoCollectionview];
     }
-//    _videoCollectionview.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
 }
 #pragma mark -- UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -184,7 +191,7 @@
 #pragma mark --UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(100,80);//290 220
+    return CGSizeMake(100,100);//290 220
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -200,7 +207,7 @@
     }];
 }
 -(void)dealWithSingleVideoData:(id )dic{
-//kQiNiuHeaderPath ,VideoSingleInfoModel
+    //kQiNiuHeaderPath ,VideoSingleInfoModel
     
     
 }

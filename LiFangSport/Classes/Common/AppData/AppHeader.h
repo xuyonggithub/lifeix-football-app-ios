@@ -40,6 +40,6 @@
 #define kScreenHeight           [[UIScreen mainScreen] bounds].size.height
 #define kDefaultRefreshHeight 30
 
-#define kpicHeaderPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
+#define kQiNiuHeaderPathPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
 
 #endif

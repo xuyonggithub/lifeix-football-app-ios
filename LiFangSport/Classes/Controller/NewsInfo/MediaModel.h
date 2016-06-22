@@ -13,7 +13,7 @@
 
 @property(nonatomic, retain)NSArray<Optional> *images;
 @property(nonatomic, retain)NSArray<Optional> *categoryIds;
-@property(nonatomic, retain)NSString<Optional> *createTime;
+@property(nonatomic, assign)double createTime;
 @property(nonatomic, retain)NSString<Optional> *author;
 @property(nonatomic, retain)NSArray<Optional> *videos;
 @property(nonatomic, retain)NSString<Optional> *mediaId;

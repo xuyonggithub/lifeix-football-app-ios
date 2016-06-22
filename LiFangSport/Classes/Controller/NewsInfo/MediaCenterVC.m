@@ -12,13 +12,14 @@
 #import "MediaDetailVC.h"
 #import "CommonRequest.h"
 #import "UIScrollView+INSPullToRefresh.h"
-#import "INSDefaultPullToRefresh.h"
 
 @interface MediaCenterVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, retain)NSMutableArray *dataArr;
 @property(nonatomic, retain)UITableView *tableView;
 @property(nonatomic, retain)UIImageView *bgImgView;
+@property(nonatomic, retain)NSString *date;
+@property(nonatomic, assign)NSInteger limit;
 
 @end
 
@@ -46,22 +47,6 @@
     self.bgImgView.userInteractionEnabled = YES;
     self.tableView.backgroundView = self.bgImgView;
     
-    //刷新
-    [self.tableView ins_addPullToRefreshWithHeight:60.0 handler:^(UIScrollView *scrollView) {
-        int64_t delayInSeconds = 1;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [scrollView ins_endPullToRefresh];
-        });
-    }];
-    
-    CGRect defaultFrame = CGRectMake(0, 0, 50, 50);
-    
-    UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [[INSDefaultPullToRefresh alloc] initWithFrame:defaultFrame backImage:[UIImage imageNamed:@"loading_00000.png"] frontImage:[UIImage imageNamed:@"loading_00001.png"]];
-    
-    self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
-    [self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
-    
 }
 
 -(void)viewDidLoad{
@@ -69,36 +54,90 @@
     if(!self.title){
         self.title = @"资讯";
     }
-    //    self.title = @"资讯";
+    
+    _limit = 5;
     
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[MediaCell class] forCellReuseIdentifier:@"cell"];
-    [self requestData];
+    [self requestDataWithisHeaderRefresh: YES];
+    [self setupRefresh];
 }
 
 #pragma mark - 数据请求
 
--(void)requestData{
+-(void)requestDataWithisHeaderRefresh:(BOOL)isHeaderRefresh{
     NSMutableString *urlStr = [NSMutableString string];
     if(self.categoryIds == nil){
-        urlStr = [NSMutableString stringWithString:@"wemedia/posts/search"] ;
+        if(!_date){
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?limit=%zd", _limit];
+        }else{
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?date=%@&limit=%zd", _date, _limit];
+        }
     }else{
-        urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@", self.categoryIds];
+        if(!_date){
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@&limit=%zd", self.categoryIds, _limit];
+        }else{
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@&date=%@&limit=%zd", self.categoryIds, _date, _limit];
+        }
     }
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"data = %@", jsonDict);
-        for(NSDictionary *dic in jsonDict){
-            MediaModel *media = [[MediaModel alloc] initWithDictionary:dic error:nil];
-            [self.dataArr addObject:media];
+        NSArray *arr = [MediaModel arrayOfModelsFromDictionaries:jsonDict];
+        
+        if(isHeaderRefresh){
+            [_tableView ins_endPullToRefresh];
+            [_dataArr removeAllObjects];
+            [_dataArr addObjectsFromArray:arr];
+        }else{
+            [_tableView ins_endInfinityScroll];
+            [_tableView ins_endInfinityScrollWithStoppingContentOffset:arr.count > 0];
+            [_dataArr addObjectsFromArray:arr];
         }
-        NSLog(@"%d", [_dataArr count]);
+        
         [self.tableView reloadData];
         
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error = %@", error);
     }];
+}
+
+#pragma mark - Reresh
+- (void)setupRefresh
+{
+    DefineWeak(self);
+    [_tableView ins_addPullToRefreshWithHeight:kDefaultRefreshHeight handler:^(UIScrollView *scrollView) {
+        [Weak(self) headerRereshing];
+    }];
+    
+    [_tableView ins_addInfinityScrollWithHeight:kDefaultRefreshHeight handler:^(UIScrollView *scrollView) {
+        [Weak(self) footerRereshing];
+    }];
+    [_tableView ins_setPullToRefreshEnabled:YES];
+    [_tableView ins_setInfinityScrollEnabled:YES];
+    
+    UIView <INSAnimatable> *infinityIndicator = [self infinityIndicatorViewFromCurrentStyle];
+    [_tableView.ins_infiniteScrollBackgroundView addSubview:infinityIndicator];
+    [infinityIndicator startAnimating];
+    UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
+    _tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
+    [_tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
+    //    _tableView.top = _CategoryView.bottom-50;
+}
+
+// 刷新
+- (void)headerRereshing
+{
+    [self requestDataWithisHeaderRefresh:YES];
+}
+
+// 加载
+- (void)footerRereshing
+{
+    MediaModel *media = self.dataArr[self.dataArr.count - 1];
+    self.date = [self TimeStamp:media.createTime];
+    [self requestDataWithisHeaderRefresh:NO];
 }
 
 #pragma mark - tableViewDelegate
@@ -132,13 +171,17 @@
     [self.navigationController pushViewController:MDVC animated:YES];
 }
 
-#pragma mark - INSPullToRefreshBackgroundViewDelegate
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeState:(INSPullToRefreshBackgroundViewState)state{
-    NSLog(@"1111111");
-}
-
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeTriggerStateProgress:(CGFloat)progress{
-    NSLog(@"22222222");
+// 时间戳转时间
+-(NSString *)TimeStamp:(double)intTime{
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:intTime];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:detaildate];
+    NSDate *localeDate = [detaildate dateByAddingTimeInterval: interval];
+    
+    NSDateFormatter*dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"];
+    NSString *currentDateStr = [dateFormatter stringFromDate:localeDate];
+    return currentDateStr;
 }
 
 

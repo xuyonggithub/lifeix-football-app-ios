@@ -8,6 +8,8 @@
 #import "CenterViewController.h"
 #import "RightViewController.h"
 #import "LeftViewController.h"
+#import "INSLappsyPullToRefresh.h"
+#import "INSLappsyInfiniteIndicator.h"
 @interface CenterViewController ()
 {
     BOOL _isChange;
@@ -100,7 +102,17 @@
     }];
 }
 
+- (UIView <INSPullToRefreshBackgroundViewDelegate> *)pullToRefreshViewFromCurrentStyle {
+    
+    CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
+    return [[INSLappsyPullToRefresh alloc] initWithFrame:defaultFrame];
+}
 
+- (UIView <INSAnimatable> *)infinityIndicatorViewFromCurrentStyle {
+    
+    CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
+    return [[INSLappsyInfiniteIndicator alloc] initWithFrame:defaultFrame];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -41,6 +41,19 @@ PODS:
   - iRate (1.11.4)
   - JSONModel (0.10.0)
   - Masonry (0.6.4)
+  - MJRefresh (3.1.8)
+  - MMDrawerController (0.5.7):
+    - MMDrawerController/Core (= 0.5.7)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
+    - MMDrawerController/MMDrawerVisualStates (= 0.5.7)
+    - MMDrawerController/Subclass (= 0.5.7)
+  - MMDrawerController/Core (0.5.7)
+  - MMDrawerController/MMDrawerBarButtonItem (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.5.7):
+    - MMDrawerController/Core
   - MPNotificationView (1.1.1)
   - Reachability (3.2)
   - SDWebImage (3.7.6):
@@ -59,6 +72,8 @@ DEPENDENCIES:
   - iRate (~> 1.11.4)
   - JSONModel (~> 0.10.0)
   - Masonry (~> 0.6.4)
+  - MJRefresh (~> 3.1.0)
+  - MMDrawerController (= 0.5.7)
   - MPNotificationView (~> 1.1.1)
   - SDWebImage (~> 3.7.1)
   - SMPageControl (~> 1.2)
@@ -74,11 +89,13 @@ SPEC CHECKSUMS:
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
   JSONModel: bf734d6ef129c8ea13b6d349113f7929c8fd0a91
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MJRefresh: d226bbe0b1ec398f426ba1dc99319b4e51182e19
+  MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   MPNotificationView: 0f342a4a5211f75ba9b395552af6c121b4730249
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-PODFILE CHECKSUM: a095b77c61e83ef4793a6228e2216877ebeb49a8
+PODFILE CHECKSUM: ec1a29ab3d06ba0eb0b0c7e5032594eda2178774
 
 COCOAPODS: 1.0.1

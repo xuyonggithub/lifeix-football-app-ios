@@ -39,6 +39,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MMDrawerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MPNotificationView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,7 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3ABFD7320800C5672EE06AFF8922E994</key>
+		<key>3F6E0EE049108F4B7D942DD546A0A0D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +102,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4E7BB1BFDA9434798DDF0218DF64CA57</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62563AC0CD5551AB044ADEA648892C43</key>
+		<key>550F7EEAEEA17E3F92C873912E23B01C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70BC44266C6FFE30D2C57129458E070B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,17 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0922D130401EE6F5D0E8CA796184107</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B1303CE449756B6B86B95BA9CCE5939B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B43DB7A850541C1714FCC2576FA7211B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,17 +157,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F10A5E8068BFD021F0E34A6045C42C97</key>
+		<key>E2915BCE14DE277FE6A8A9D0C9E88456</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F2ECEC4C30AD7CA58B648D3F2B79B180</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE863CF794C2F69B54F82D0CC872C562</key>
 		<dict>
 			<key>primary</key>
 			<true/>

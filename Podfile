@@ -18,6 +18,10 @@ pod 'SMPageControl', '~> 1.2'
 pod 'AKSegmentedControl', '~> 1.0.4'
 pod 'Fabric'
 pod 'Masonry','~> 0.6.4'
+#侧边栏
+pod 'MMDrawerController', '0.5.7'
+pod 'MJRefresh', '~> 3.1.0'
+
 
 
 end

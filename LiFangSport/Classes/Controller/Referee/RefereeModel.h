@@ -10,8 +10,13 @@
 
 @interface RefereeModel : JSONModel
 
-@property(nonatomic, retain)NSString<Optional> *position;
-@property(nonatomic, retain)NSString<Optional> *awatar;
-@property(nonatomic, retain)NSString<Optional> *name;
+@property(nonatomic, copy)NSString<Optional> *position;
+@property(nonatomic, copy)NSString<Optional> *awatar;
+@property(nonatomic, copy)NSString<Optional> *name;
+@property(nonatomic, copy)NSString<Optional> *birthday;
+@property(nonatomic, copy)NSString<Optional> *association;
+@property(nonatomic, copy)NSString<Optional> *fifaTopANum;
+@property(nonatomic, copy)NSString<Optional> *sinceInternational;
+@property(nonatomic, copy)NSString<Optional> *topLeagueNum;
 
 @end

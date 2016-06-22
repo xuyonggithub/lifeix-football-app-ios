@@ -21,7 +21,7 @@
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:12];
         self.titleLabel.backgroundColor = [UIColor blackColor];
-        self.titleLabel.alpha = 0.4;
+        self.titleLabel.alpha = 0.8;
         [self addSubview:self.bgImgView];
         [self.bgImgView addSubview:self.titleLabel];
     }
@@ -29,13 +29,13 @@
 }
 
 -(void)setPlayerModel:(PlayerModel *)playerModel{
-//    if(playerModel.awatar != nil){
-//        [self.bgImgView sd_setImageWithURL:playerModel.awatar placeholderImage:UIImageNamed(@"112233.png")];
-//    }else{
-//        self.bgImgView.image = [UIImage imageNamed:@"112233.png"];
-//    }
+    //    if(playerModel.awatar != nil){
+    //        [self.bgImgView sd_setImageWithURL:playerModel.awatar placeholderImage:UIImageNamed(@"112233.png")];
+    //    }else{
+    //        self.bgImgView.image = [UIImage imageNamed:@"112233.png"];
+    //    }
     self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", playerModel.position, playerModel.name];
-
+    
 }
 
 @end

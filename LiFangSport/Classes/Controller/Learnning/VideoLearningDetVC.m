@@ -18,6 +18,7 @@
 #import "VideoLearningUnitModel.h"
 #import "CategoryView.h"
 #import "UIScrollView+INSPullToRefresh.h"
+#import "VideoSingleInfoModel.h"
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
 #define kvideodetPath @"elearning/training_categories/"
@@ -32,7 +33,8 @@
 @property(nonatomic,assign)NSInteger catsArrIndex;
 @property(nonatomic,strong)NSMutableArray *dataArr;
 @property(nonatomic, strong)CategoryView *CategoryView;
-@property(nonatomic, retain)NSMutableArray *topNameArr;
+@property(nonatomic, strong)NSMutableArray *topNameArr;
+@property(nonatomic, strong)UIImageView *backPicView;
 
 @end
 
@@ -44,6 +46,9 @@
     _topNameArr = [NSMutableArray array];
     limitNum = 20;
     _catsArrIndex = 0;
+    _backPicView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    _backPicView.image = UIImageNamed(@"videolearningbackground");
+    [self.view addSubview:_backPicView];
     for (VideoLearningDetModel *model in _catsArr) {
         [_topNameArr addObject:model.name];
     }
@@ -85,11 +90,14 @@
 -(void)addCoachCategoryView{
     DefineWeak(self);
     _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 44) category:self.topNameArr];
+    _CategoryView.btnNormalColor = kwhiteColor;
+    _CategoryView.btnSelectColor = kwhiteColor;
+    _CategoryView.selectLineColor = [UIColor redColor];
     _CategoryView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
     [self.view addSubview:_CategoryView];
-    _CategoryView.backgroundColor = kwhiteColor;
+    _CategoryView.backgroundColor = kclearColor;
 }
 
 -(void)clickBtn:(CGFloat)index{
@@ -141,11 +149,11 @@
     if (_videoCollectionview == nil) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight-44) collectionViewLayout:flowLayout];
+        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 68, kScreenWidth, kScreenHeight-44) collectionViewLayout:flowLayout];
         _videoCollectionview.delegate = self;
         _videoCollectionview.dataSource = self;
         _videoCollectionview.scrollEnabled = YES;
-        _videoCollectionview.backgroundColor = [UIColor yellowColor];
+        _videoCollectionview.backgroundColor = [UIColor clearColor];
         [_videoCollectionview registerClass:[VideoLearningDetCell class] forCellWithReuseIdentifier:kvideoCollectionviewcellid];
 
         [self.view addSubview:_videoCollectionview];
@@ -167,7 +175,7 @@
 {
     static NSString *identify = kvideoCollectionviewcellid;
     VideoLearningDetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
     if (_dataArr.count) {
         cell.model = _dataArr[indexPath.item];
     }
@@ -176,7 +184,7 @@
 #pragma mark --UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(100,80);
+    return CGSizeMake(100,80);//290 220
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -184,11 +192,26 @@
     return UIEdgeInsetsMake(4,4,4,4);
 }
 
+-(void)requestSingleVideoInfoWith:(NSString *)videoStr{
+    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@",kvideoSinglePath,videoStr] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [self dealWithSingleVideoData:jsonDict];
+    } failure:^(CommonRequest *request, NSError *error) {
+        
+    }];
+}
+-(void)dealWithSingleVideoData:(id )dic{
+//kQiNiuHeaderPath ,VideoSingleInfoModel
+    
+    
+}
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //初始化播放器
+    VideoLearningUnitModel *model = _dataArr[indexPath.row];
+    NSString *videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
     
+    [self requestSingleVideoInfoWith:videoId];
+    //初始化播放器
     [VideoPlayerManager shareKnowInstance].contentURL = [NSURL URLWithString:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD"];
     if (playView == nil) {
         playView = [[UIView alloc]initWithFrame:self.view.bounds];

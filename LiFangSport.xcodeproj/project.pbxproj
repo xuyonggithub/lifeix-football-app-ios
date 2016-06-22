@@ -66,6 +66,8 @@
 		2D69ACAC1D1942B700B5F52D /* hud_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D69AC8E1D1942B700B5F52D /* hud_8@2x.png */; };
 		2D69ACAD1D1942B700B5F52D /* hud_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D69AC8F1D1942B700B5F52D /* hud_9@2x.png */; };
 		2D69ACF11D1A44E500B5F52D /* videolearningbackground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D69ACF01D1A44E500B5F52D /* videolearningbackground@2x.jpg */; };
+		2D69ACF41D1A5E8E00B5F52D /* VideoSingleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D69ACF31D1A5E8E00B5F52D /* VideoSingleInfoModel.m */; };
+		2D69ACF61D1A5F1800B5F52D /* videosingleplacehoder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D69ACF51D1A5F1800B5F52D /* videosingleplacehoder@2x.png */; };
 		2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB181D17864200954C63 /* SimulationCenterVC.m */; };
 		2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */; };
 		2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */; };
@@ -287,6 +289,9 @@
 		2D69AC8E1D1942B700B5F52D /* hud_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_8@2x.png"; sourceTree = "<group>"; };
 		2D69AC8F1D1942B700B5F52D /* hud_9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_9@2x.png"; sourceTree = "<group>"; };
 		2D69ACF01D1A44E500B5F52D /* videolearningbackground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "videolearningbackground@2x.jpg"; sourceTree = "<group>"; };
+		2D69ACF21D1A5E8E00B5F52D /* VideoSingleInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSingleInfoModel.h; sourceTree = "<group>"; };
+		2D69ACF31D1A5E8E00B5F52D /* VideoSingleInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSingleInfoModel.m; sourceTree = "<group>"; };
+		2D69ACF51D1A5F1800B5F52D /* videosingleplacehoder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videosingleplacehoder@2x.png"; sourceTree = "<group>"; };
 		2D6EEB171D17864200954C63 /* SimulationCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationCenterVC.h; sourceTree = "<group>"; };
 		2D6EEB181D17864200954C63 /* SimulationCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationCenterVC.m; sourceTree = "<group>"; };
 		2D6EEB1A1D17C72D00954C63 /* VideoListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListModel.h; sourceTree = "<group>"; };
@@ -696,6 +701,8 @@
 				2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */,
 				2D69960D1D19279500B5F52D /* VideoLearningUnitModel.h */,
 				2D69960E1D19279500B5F52D /* VideoLearningUnitModel.m */,
+				2D69ACF21D1A5E8E00B5F52D /* VideoSingleInfoModel.h */,
+				2D69ACF31D1A5E8E00B5F52D /* VideoSingleInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1251,6 +1258,7 @@
 		2DE94D7E1D1291FA00E1508D /* VideoLearning */ = {
 			isa = PBXGroup;
 			children = (
+				2D69ACF51D1A5F1800B5F52D /* videosingleplacehoder@2x.png */,
 				2D69ACF01D1A44E500B5F52D /* videolearningbackground@2x.jpg */,
 				2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */,
 				2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */,
@@ -1480,6 +1488,7 @@
 				2DE94D7A1D12570200E1508D /* americaflag@2x.png in Resources */,
 				2D69AC9B1D1942B700B5F52D /* hud_20@2x.png in Resources */,
 				0AC7075B1D1A269C000B2E13 /* bad@x2.png in Resources */,
+				2D69ACF61D1A5F1800B5F52D /* videosingleplacehoder@2x.png in Resources */,
 				0AC7075C1D1A269C000B2E13 /* bad@x3.png in Resources */,
 				2D69AC931D1942B700B5F52D /* hud_13@2x.png in Resources */,
 				0AC707211D19082B000B2E13 /* allBg.jpg in Resources */,
@@ -1678,6 +1687,7 @@
 				2DE2C8731D0D495A00310C4C /* UIBarButtonItem+SimAdditions.m in Sources */,
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,
 				EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */,
+				2D69ACF41D1A5E8E00B5F52D /* VideoSingleInfoModel.m in Sources */,
 				2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */,
 				EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */,
 				2DE94D771D124A4500E1508D /* HomeHeroDetVC.m in Sources */,

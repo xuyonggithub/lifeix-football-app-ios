@@ -35,7 +35,6 @@
     _categaryScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     _categaryScrollView.backgroundColor = kclearColor;
     _categaryScrollView.showsHorizontalScrollIndicator = NO;
-//    CGFloat btnWidth = categoryView.width / numOfCategory;
     CGFloat btnHeight = _categaryScrollView.height;
     self.categaryScrollView.contentSize = CGSizeMake(0, 40);
     for(int i = 0; i < numOfCategory; i++){
@@ -45,8 +44,8 @@
         
         SimButton *button = [[SimButton alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, 0, btnWidth, btnHeight)];
         button.titleLabel.font = [UIFont systemFontOfSize:kbtnFont];
-        [button setTitleColor:_btnNormalColor?_btnNormalColor:kBasicColor forState:UIControlStateNormal];
-        [button setTitleColor:_btnSelectColor?_btnSelectColor:kDetailTitleColor forState:UIControlStateSelected];
+        [button setTitleColor:kBasicColor forState:UIControlStateNormal];
+        [button setTitleColor:kDetailTitleColor forState:UIControlStateSelected];
         [button setTitle:self.categoryArr[i] forState:UIControlStateNormal];
         button.selected = (i == 0)?YES:NO;
         button.tag = kbtnTag + i;
@@ -54,11 +53,11 @@
         [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         [_categaryScrollView addSubview:button];
         
-        LineView *slectlineView = [[LineView alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, button.bottom - 3, btnWidth, 2)];
-        slectlineView.lineColor = kDetailTitleColor;
-        slectlineView.hidden = (i == 0)?NO:YES;
-        slectlineView.tag = klineTag + i;
-        [_categaryScrollView addSubview:slectlineView];
+        LineView *lineView = [[LineView alloc] initWithFrame:CGRectMake(self.categaryScrollView.contentSize.width, button.bottom - 3, btnWidth, 2)];
+        lineView.lineColor = kDetailTitleColor;
+        lineView.hidden = (i == 0)?NO:YES;
+        lineView.tag = klineTag + i;
+        [_categaryScrollView addSubview:lineView];
         
         CGSize size = self.categaryScrollView.contentSize;
         size.width += contnentRect.size.width;

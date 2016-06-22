@@ -23,6 +23,6 @@
 //@property(nonatomic, retain)NSString<Optional> *goals; //进球数
 @property(nonatomic, retain)NSString<Optional> *name;
 //@property(nonatomic, retain)NSString<Optional> *club;
-//@property(nonatomic, retain)NSString<Optional> *playerId;
+@property(nonatomic, retain)NSString<Optional> *playerId;
 //@property(nonatomic, retain)NSString<Optional> *height;
 @end

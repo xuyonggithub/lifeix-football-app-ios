@@ -37,7 +37,7 @@
     _selectedTitleArr = [NSMutableArray array];
     _categoryNameArr = [NSMutableArray array];
     _coachArr = [NSMutableArray array];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"教练";
     [self requestData];
 }
@@ -86,10 +86,14 @@
         [Weak(self) clickBtn:(index)];
     };
     [self.view addSubview:_CategoryView];
-    _CategoryView.backgroundColor = kwhiteColor;
+    //    _CategoryView.backgroundColor = kwhiteColor;
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 118, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = HEXRGBCOLOR(0xe4e3e6);
+    [self.view addSubview:lineView];
+    
     if(_coachView == nil){
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        _coachView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114) collectionViewLayout:flowLayout];
+        _coachView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 119, SCREEN_WIDTH, SCREEN_HEIGHT - 119) collectionViewLayout:flowLayout];
         _coachView.delegate = self;
         _coachView.dataSource = self;
         _coachView.backgroundColor = kwhiteColor;
@@ -153,12 +157,12 @@
 #pragma mark --UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(90,120);
+    return CGSizeMake((SCREEN_WIDTH - 40) / 3,(SCREEN_WIDTH - 40) / 9 * 4);
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(4,4,4,4);
+    return UIEdgeInsetsMake(10,10,10,10);
 }
 
 // 区头高度

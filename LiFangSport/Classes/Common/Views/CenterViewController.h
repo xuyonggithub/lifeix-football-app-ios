@@ -12,4 +12,7 @@
 @property(nonatomic,assign)BOOL hideLeftNaviBtnGesture;
 @property(nonatomic,assign)BOOL hideRightNaviBtnGesture;
 
+- (UIView <INSPullToRefreshBackgroundViewDelegate> *)pullToRefreshViewFromCurrentStyle;
+- (UIView <INSAnimatable> *)infinityIndicatorViewFromCurrentStyle;
+
 @end

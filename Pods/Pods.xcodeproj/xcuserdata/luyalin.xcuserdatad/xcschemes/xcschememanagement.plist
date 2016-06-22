@@ -39,10 +39,25 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>MMDrawerController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>MPNotificationView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>9</integer>
+		</dict>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>Pods-LiFangSport.xcscheme</key>
 		<dict>
@@ -82,7 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3F6E0EE049108F4B7D942DD546A0A0D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4E7BB1BFDA9434798DDF0218DF64CA57</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>550F7EEAEEA17E3F92C873912E23B01C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70BC44266C6FFE30D2C57129458E070B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -123,6 +163,11 @@
 			<true/>
 		</dict>
 		<key>E0807A3AF0C94A8B9ECFAF0342F803E5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E2915BCE14DE277FE6A8A9D0C9E88456</key>
 		<dict>
 			<key>primary</key>
 			<true/>

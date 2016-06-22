@@ -10,4 +10,14 @@
 
 @implementation PlayerModel
 
++(JSONKeyMapper*)keyMapper{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"position": @"position",
+                                                       @"awatar": @"awatar",
+                                                       @"name": @"name",
+                                                       @"id": @"playerId"
+                                                       }];
+}
+
+
 @end

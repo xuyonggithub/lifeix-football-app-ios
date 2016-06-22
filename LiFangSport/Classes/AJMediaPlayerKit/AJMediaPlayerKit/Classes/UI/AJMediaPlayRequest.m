@@ -2,7 +2,7 @@
 //  AJMediaPlayRequest.m
 //  Pods
 //
-//  Created by Gang Li on 7/31/15.
+//  Created by Zhangqibin on 7/31/15.
 //
 //
 

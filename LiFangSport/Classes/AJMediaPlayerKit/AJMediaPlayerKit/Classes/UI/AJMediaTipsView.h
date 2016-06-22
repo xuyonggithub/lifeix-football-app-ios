@@ -2,7 +2,7 @@
 //  AJMediaTipsView.h
 //  Pods
 //
-//  Created by lixiang on 15/9/15.
+//  Created by Zhangqibin on 15/9/15.
 //
 //
 

@@ -2,8 +2,8 @@
 //  AJMediaPlayerKit.h
 //  AJMediaPlayerKit
 //
-//  Created by Gang Li on 5/22/15.
-//  Copyright (c) 2015 Gang Li. All rights reserved.
+//  Created by Zhangqibin on 5/22/15.
+//  Copyright (c) 2015 Zhangqibin. All rights reserved.
 //
 
 @import UIKit;

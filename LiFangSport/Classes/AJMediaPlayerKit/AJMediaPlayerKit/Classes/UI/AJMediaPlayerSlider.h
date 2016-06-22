@@ -2,7 +2,7 @@
 //  AJMediaPlayerSlider.h
 //  Pods
 //
-//  Created by 杨浩宇 on 16/1/19.
+//  Created by Zhangqibin on 16/1/19.
 //
 //
 

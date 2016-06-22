@@ -2,7 +2,7 @@
 //  AJMediaPlayer+Statistics.h
 //  Pods
 //
-//  Created by lixiang on 15/12/24.
+//  Created by Zhangqibin on 15/12/24.
 //
 //
 

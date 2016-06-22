@@ -2,7 +2,7 @@
 //  AJMediaPlayerCaptionControlPanel.m
 //  Pods
 //
-//  Created by le_cui on 15/7/16.
+//  Created by Zhangqibin on 15/7/16.
 //
 //
 

@@ -2,8 +2,8 @@
 //  AJMediaRecordTimeHelper.h
 //  AJMediaPlayerKit
 //
-//  Created by lixiang on 15/7/9.
-//  Copyright (c) 2015年 Lesports Inc. All rights reserved.
+//  Created by Zhangqibin on 15/7/9.
+//  Copyright (c) 2015年 zhangyi. All rights reserved.
 //
 
 @import Foundation;

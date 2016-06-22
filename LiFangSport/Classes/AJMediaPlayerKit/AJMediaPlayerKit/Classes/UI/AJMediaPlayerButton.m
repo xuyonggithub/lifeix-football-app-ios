@@ -2,7 +2,7 @@
 //  AJMediaPlayerButton.m
 //  Pods
 //
-//  Created by lixiang on 15/9/21.
+//  Created by Zhangqibin on 15/9/21.
 //
 //
 

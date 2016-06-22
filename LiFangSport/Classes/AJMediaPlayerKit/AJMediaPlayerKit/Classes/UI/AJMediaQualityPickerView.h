@@ -2,7 +2,7 @@
 //  AJMediaQualityPickerView.h
 //  Pods
 //
-//  Created by Gang Li on 8/24/15.
+//  Created by Zhangqibin on 8/24/15.
 //
 //
 

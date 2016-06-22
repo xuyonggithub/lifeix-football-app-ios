@@ -2,7 +2,7 @@
 //  AJMediaPlayer+Analytics.m
 //  Pods
 //
-//  Created by Gang Li on 7/30/15.
+//  Created by Zhangqibin on 7/30/15.
 //
 //
 

@@ -2,8 +2,8 @@
 //  VTBulletItem.h
 //  VTBulletDemo
 //
-//  Created by tianzhuo on 3/8/16.
-//  Copyright © 2016 tianzhuo. All rights reserved.
+//  Created by Zhangqibin on 3/8/16.
+//  Copyright © 2016 Zhangqibin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

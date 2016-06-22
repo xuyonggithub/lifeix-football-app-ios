@@ -2,7 +2,7 @@
 //  AJMediaPlayerGesture.h
 //  Pods
 //
-//  Created by lixiang on 15/7/14.
+//  Created by Zhangqibin on 15/7/14.
 //
 //
 

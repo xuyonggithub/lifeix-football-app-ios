@@ -2,8 +2,8 @@
 //  AJMediaPlayerUtilities.h
 //  AJMediaPlayerDemo
 //
-//  Created by le_cui on 15/6/11.
-//  Copyright (c) 2015年 Lesports Inc. All rights reserved.
+//  Created by Zhangqibin on 15/6/11.
+//  Copyright (c) 2015年 zhangyi. All rights reserved.
 //
 
 @import Foundation;

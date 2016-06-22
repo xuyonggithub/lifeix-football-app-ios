@@ -2,7 +2,7 @@
 //  AJMediaPlayerAirPlayView.h
 //  Pods
 //
-//  Created by lixiang on 15/7/23.
+//  Created by Zhangqibin on 15/7/23.
 //
 //
 

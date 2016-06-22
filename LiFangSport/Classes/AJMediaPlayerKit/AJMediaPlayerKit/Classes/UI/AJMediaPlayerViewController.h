@@ -2,8 +2,8 @@
 //  AJMediaPlayerViewController.h
 //  AJMediaPlayerKit
 //
-//  Created by lixiang on 15/7/7.
-//  Copyright (c) 2015年 Gang Li. All rights reserved.
+//  Created by Zhangqibin on 15/7/7.
+//  Copyright (c) 2015年 Zhangqibin. All rights reserved.
 //
 
 @import UIKit;

@@ -2,7 +2,7 @@
 //  AJMediaPlayerSDKAnalyticsReporter.m
 //  Pods
 //
-//  Created by lixiang on 16/1/13.
+//  Created by Zhangqibin on 16/1/13.
 //
 //
 

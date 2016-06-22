@@ -2,8 +2,8 @@
 //  AJMediaPlayerVolumeControl.h
 //  AJMediaPlayerKit
 //
-//  Created by le_cui on 15/7/10.
-//  Copyright (c) 2015年 Lesports Inc. All rights reserved.
+//  Created by Zhangqibin on 15/7/10.
+//  Copyright (c) 2015年 zhangyi. All rights reserved.
 //
 
 @import UIKit;

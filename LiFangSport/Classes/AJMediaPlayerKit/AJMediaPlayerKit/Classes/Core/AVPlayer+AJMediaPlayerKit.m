@@ -2,7 +2,7 @@
 //  AVPlayer+AJMediaPlayerKit.m
 //  Pods
 //
-//  Created by Gang Li on 5/22/15.
+//  Created by Zhangqibin on 5/22/15.
 //
 //
 

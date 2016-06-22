@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>蒋娟</key>
-	<string>jiangjuan@letv.com</string>
-	<key>耿成亮</key>
-	<string>gengchengliang@letv.com</string>
-	<key>王冉阳</key>
-	<string>wangranyang@letv.com</string>
-	<key>陈磊</key>
-	<string>chenlei7@letv.com</string>
-	<key>路飞</key>
-	<string>lufei1@letv.com</string>
-	<key>尚彬</key>
-	<string>shangbin@letv.com</string>
-	<key>李刚5</key>
-	<string>ligang5@letv.com</string>
-	<key>李翔6</key>
-	<string>lixiang6@letv.com</string>
-	<key>周增雨</key>
-	<string>zhouzengyu@letv.com</string>
-	<key>常窍明</key>
-	<string>changqiaoming@letv.com</string>
-	<key>杨浩宇</key>
-	<string>yanghaoyu@le.com</string>
-</dict>
+<dict/>
 </plist>

@@ -2,7 +2,7 @@
 //  AJMediaPlayerAnalyticsEventReporter.h
 //  Pods
 //
-//  Created by lixiang on 15/7/16.
+//  Created by Zhangqibin on 15/7/16.
 //
 //
 

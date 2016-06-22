@@ -2,7 +2,7 @@
 //  AJMediaMailComposeViewController.h
 //  Pods
 //
-//  Created by lixiang on 15/9/7.
+//  Created by Zhangqibin on 15/9/7.
 //
 //
 

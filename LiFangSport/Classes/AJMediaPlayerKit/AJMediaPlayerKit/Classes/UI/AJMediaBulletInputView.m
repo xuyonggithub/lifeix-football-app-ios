@@ -2,7 +2,7 @@
 //  AJMediaBulletInputView.m
 //  Pods
 //
-//  Created by tianzhuo on 2/24/16.
+//  Created by Zhangqibin on 2/24/16.
 //
 //
 

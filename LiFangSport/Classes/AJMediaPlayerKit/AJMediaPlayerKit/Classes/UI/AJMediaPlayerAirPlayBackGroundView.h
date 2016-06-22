@@ -2,7 +2,7 @@
 //  AJMediaPlayerAirPlayBackGroundView.h
 //  Pods
 //
-//  Created by lixiang on 15/9/8.
+//  Created by Zhangqibin on 15/9/8.
 //
 //
 

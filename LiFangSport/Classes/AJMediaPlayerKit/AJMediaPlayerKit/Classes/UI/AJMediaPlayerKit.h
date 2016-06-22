@@ -2,7 +2,7 @@
 //  AJMediaPlayerKit.h
 //  Pods
 //
-//  Created by Gang Li on 7/24/15.
+//  Created by Zhangqibin on 7/24/15.
 //
 //
 

@@ -2,8 +2,8 @@
 //  VTBulletView.m
 //  VTBulletDemo
 //
-//  Created by tianzhuo on 2/22/16.
-//  Copyright © 2016 tianzhuo. All rights reserved.
+//  Created by Zhangqibin on 2/22/16.
+//  Copyright © 2016 Zhangqibin. All rights reserved.
 //
 
 #import "VTBulletView.h"

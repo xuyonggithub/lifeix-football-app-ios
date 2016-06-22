@@ -25,6 +25,9 @@
 		0AC707601D1A269C000B2E13 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707571D1A269C000B2E13 /* share.png */; };
 		0AC707611D1A269C000B2E13 /* share@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707581D1A269C000B2E13 /* share@x2.png */; };
 		0AC707621D1A269C000B2E13 /* share@x3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707591D1A269C000B2E13 /* share@x3.png */; };
+		0AC707701D1A8DDB000B2E13 /* PlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */; };
+		0AC707711D1A8DDB000B2E13 /* WomanPlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */; };
+		0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */; };
 		2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */; };
 		2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */; };
 		2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80E1D0FAC670006131B /* LeftCategoryCell.m */; };
@@ -391,6 +394,12 @@
 		0AC707571D1A269C000B2E13 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		0AC707581D1A269C000B2E13 /* share@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@x2.png"; sourceTree = "<group>"; };
 		0AC707591D1A269C000B2E13 /* share@x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@x3.png"; sourceTree = "<group>"; };
+		0AC7076C1D1A8DDB000B2E13 /* PlayerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDetailVC.h; sourceTree = "<group>"; };
+		0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDetailVC.m; sourceTree = "<group>"; };
+		0AC7076E1D1A8DDB000B2E13 /* WomanPlayerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WomanPlayerDetailVC.h; sourceTree = "<group>"; };
+		0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WomanPlayerDetailVC.m; sourceTree = "<group>"; };
+		0AC707721D1A8DE9000B2E13 /* CoachDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDetailVC.h; sourceTree = "<group>"; };
+		0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailVC.m; sourceTree = "<group>"; };
 		0AD8A0ACAF2FCD0201410D20 /* Pods-LiFangSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.debug.xcconfig"; sourceTree = "<group>"; };
 		159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LiFangSport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D62E8061D0F9BB40006131B /* HomeLeftCategModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLeftCategModel.h; sourceTree = "<group>"; };
@@ -1443,6 +1452,8 @@
 		2DE2C8561D0D3BD200310C4C /* Coach */ = {
 			isa = PBXGroup;
 			children = (
+				0AC707721D1A8DE9000B2E13 /* CoachDetailVC.h */,
+				0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */,
 				EC4D3C401D13931C00285243 /* CoachModel.h */,
 				EC4D3C411D13931C00285243 /* CoachModel.m */,
 				EC4D3C431D13933400285243 /* CoachCell.h */,
@@ -1493,6 +1504,10 @@
 		2DE2C85B1D0D3BD200310C4C /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				0AC7076C1D1A8DDB000B2E13 /* PlayerDetailVC.h */,
+				0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */,
+				0AC7076E1D1A8DDB000B2E13 /* WomanPlayerDetailVC.h */,
+				0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */,
 				EC4D3C181D1387E200285243 /* CategoryView.h */,
 				EC4D3C191D1387E200285243 /* CategoryView.m */,
 				EC4D3C1A1D1387E200285243 /* PlayerCell.h */,
@@ -2445,6 +2460,7 @@
 				9CE136851D1A22680007A22D /* LFSimulationCenterPromptView.m in Sources */,
 				2DE2C8311D0D27E300310C4C /* main.m in Sources */,
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
+				0AC707701D1A8DDB000B2E13 /* PlayerDetailVC.m in Sources */,
 				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
 				9CAF82591D190F560025224F /* AJMediaPlayerProgressView.m in Sources */,
@@ -2477,6 +2493,7 @@
 				2DA4B1F91D0E46C900136DA7 /* UIImage+ImageEffects.m in Sources */,
 				EC4D3C421D13931C00285243 /* CoachModel.m in Sources */,
 				9CAF823E1D190F560025224F /* AJMediaPlayer+Statistics.m in Sources */,
+				0AC707711D1A8DDB000B2E13 /* WomanPlayerDetailVC.m in Sources */,
 				9CAF824D1D190F560025224F /* AJMediaEpisodePickerView.m in Sources */,
 				2DE2C89F1D0D4A8500310C4C /* InnerShadowDrawing.m in Sources */,
 				2DE2C8A91D0D4A8500310C4C /* WPHotspotLabel.m in Sources */,
@@ -2516,6 +2533,7 @@
 				9CAF823D1D190F560025224F /* AJMediaPlayer+SDKAnalytics.m in Sources */,
 				2DE2C8A71D0D4A8500310C4C /* UIImage+launchImage.m in Sources */,
 				9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */,
+				0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */,
 				2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */,
 				9CE136911D1A68180007A22D /* LFSimulationQuestionModel.m in Sources */,
 				9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */,

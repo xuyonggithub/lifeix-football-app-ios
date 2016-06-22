@@ -9,19 +9,22 @@
 #import "LFSimulationTestDetailController.h"
 #import "AJMediaPlayerKit.h"
 #import "LFSimulationCenterPromptView.h"
+#import "LFSimulationCenterQuestionView.h"
 #import "CommonRequest.h"
 
 @interface LFSimulationTestDetailController ()
-    <AJMediaViewControllerDelegate, LFSimulationCenterPromptViewDelegate>
+    <AJMediaViewControllerDelegate, LFSimulationCenterPromptViewDelegate, LFSimulationCenterQuestionViewDelegate>
 {
     BOOL _isFullScreen;
+    NSInteger _currentPlayVideoIndex;
 }
 
 //播放器
 @property (nonatomic, strong) AJMediaPlayerViewController *mediaPlayerViewController;
 @property (nonatomic, strong) UIView *disPlayView;
-@property (nonatomic, strong) NSMutableArray *constraintList;
 @property (nonatomic, strong) AJMediaPlayRequest *playRequest;
+@property (nonatomic, strong) NSArray *questionArray;
+@property (nonatomic, strong) LFSimulationQuestionModel *currentQuestionModel;
 
 @end
 
@@ -45,7 +48,9 @@
     [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    
     [self showFullScreen];
+    _currentPlayVideoIndex = 0;
 }
 
 - (void)dealloc
@@ -89,28 +94,36 @@
 #pragma mark - initPlayer
 - (void)initPlayer
 {
-    self.mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
-    self.mediaPlayerViewController.needsBackButtonInPortrait = YES;
-    self.disPlayView = self.mediaPlayerViewController.view;
-    self.disPlayView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.disPlayView];
-    [self.disPlayView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
-    [self addChildViewController:self.mediaPlayerViewController];
-    [self.mediaPlayerViewController showFullScreen];
-    [[UIApplication sharedApplication] setStatusBarHidden:self.mediaPlayerViewController.mediaPlayerControlBar.hidden withAnimation:NO];
+    if (!_mediaPlayerViewController) {
+        self.mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
+        self.mediaPlayerViewController.needsBackButtonInPortrait = YES;
+        self.disPlayView = self.mediaPlayerViewController.view;
+        self.disPlayView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.view addSubview:self.disPlayView];
+        [self.disPlayView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        [self addChildViewController:self.mediaPlayerViewController];
+        [[UIApplication sharedApplication] setStatusBarHidden:self.mediaPlayerViewController.mediaPlayerControlBar.hidden withAnimation:NO];
+    }
 }
 
 - (void)toPlayWithAJMediaPlayerItem
 {
-    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD" type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
+    self.currentQuestionModel = self.questionArray[_currentPlayVideoIndex];
+    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:[NSString stringWithFormat:@"%@%@/LD", kpicHeaderPrifx, self.currentQuestionModel.videoPath] type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
     [self.mediaPlayerViewController startToPlay:playRequest];
 }
 
 #pragma mark - AJMediaViewControllerDelegate
-- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem {
-    
+- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
+{
+    LFSimulationCenterQuestionView *questionView = [[LFSimulationCenterQuestionView alloc] initWithModel:self.currentQuestionModel];
+    questionView.delegate = self;
+    [self.view addSubview:questionView];
+    [questionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
@@ -121,9 +134,9 @@
 #pragma mark - LFSimulationCenterPromptViewDelegate
 - (void)startTest:(NSInteger)index
 {
+    __weak typeof(self) weakSelf = self;
     [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.model.subArray.count == 0 ? self.model.categoryId : [self.model.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        self.constraintList = [NSMutableArray arrayWithCapacity:0];
-        
+        weakSelf.questionArray = [LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict];
         [self initPlayer];
         [self toPlayWithAJMediaPlayerItem];
         
@@ -140,10 +153,12 @@
 #pragma mark - LFSimulationCenterQuestionViewDelegate
 - (void)nextTest
 {
-    //    self.constraintList = [NSMutableArray arrayWithCapacity:0];
-    //
-    //    [self initPlayer];
-    //    [self toPlayWithAJMediaPlayerItem];
+    _currentPlayVideoIndex++;
+    if (_currentPlayVideoIndex == self.questionArray.count) {
+        
+    }
+    [self toPlayWithAJMediaPlayerItem];
+    
 }
 
 - (void)quitQuestionTest

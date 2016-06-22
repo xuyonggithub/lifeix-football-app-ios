@@ -66,13 +66,10 @@
         }else{
             [_videoCollectionview ins_endInfinityScroll];
         }
-        
     }];
 }
 -(void)dealWithJason:(id )dic isHeaderRefresh:(BOOL)isHeaderRefresh{
     NSArray *dataList = [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
-    //    _dataArr = [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
-    
     if (isHeaderRefresh) {
         [_videoCollectionview ins_endPullToRefresh];
         [_dataArr removeAllObjects];
@@ -82,7 +79,6 @@
         [_videoCollectionview ins_endInfinityScrollWithStoppingContentOffset:dataList.count > 0];
         [_dataArr addObjectsFromArray:dataList];
     }
-    
     [_videoCollectionview reloadData];
 }
 
@@ -98,6 +94,8 @@
 
 -(void)clickBtn:(CGFloat)index{
     _catsArrIndex = index;
+    startNum = 0;
+    [_dataArr removeAllObjects];
     [self requestDataWithBtnTag:_catsArrIndex isHeaderRefresh:YES];
 }
 
@@ -121,7 +119,6 @@
     UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
     _videoCollectionview.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
     [_videoCollectionview.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
-    _videoCollectionview.top = _CategoryView.bottom-50;
 }
 
 - (void)headerRereshing
@@ -150,9 +147,10 @@
         _videoCollectionview.scrollEnabled = YES;
         _videoCollectionview.backgroundColor = [UIColor yellowColor];
         [_videoCollectionview registerClass:[VideoLearningDetCell class] forCellWithReuseIdentifier:kvideoCollectionviewcellid];
+
         [self.view addSubview:_videoCollectionview];
     }
-    [self.view bringSubviewToFront:_videoCollectionview];
+//    _videoCollectionview.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
 }
 #pragma mark -- UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -198,7 +196,6 @@
         [APP_DELEGATE.window addSubview:playView];
     }
     //设置播放器画面的尺寸frame
-    
     [VideoPlayerManager shareKnowInstance].view.frame =CGRectMake(0, 0, kScreenHeight, kScreenWidth);
     [playView addSubview:[VideoPlayerManager shareKnowInstance].view];
     
@@ -235,15 +232,11 @@
     if ([VideoPlayerManager shareKnowInstance].playbackState==MPMoviePlaybackStatePlaying) {
         
     }
-    
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

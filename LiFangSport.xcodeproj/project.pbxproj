@@ -65,6 +65,7 @@
 		2D69ACAB1D1942B700B5F52D /* hud_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D69AC8D1D1942B700B5F52D /* hud_7@2x.png */; };
 		2D69ACAC1D1942B700B5F52D /* hud_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D69AC8E1D1942B700B5F52D /* hud_8@2x.png */; };
 		2D69ACAD1D1942B700B5F52D /* hud_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D69AC8F1D1942B700B5F52D /* hud_9@2x.png */; };
+		2D69ACF11D1A44E500B5F52D /* videolearningbackground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D69ACF01D1A44E500B5F52D /* videolearningbackground@2x.jpg */; };
 		2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB181D17864200954C63 /* SimulationCenterVC.m */; };
 		2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1B1D17C72D00954C63 /* VideoListModel.m */; };
 		2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */; };
@@ -285,6 +286,7 @@
 		2D69AC8D1D1942B700B5F52D /* hud_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_7@2x.png"; sourceTree = "<group>"; };
 		2D69AC8E1D1942B700B5F52D /* hud_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_8@2x.png"; sourceTree = "<group>"; };
 		2D69AC8F1D1942B700B5F52D /* hud_9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_9@2x.png"; sourceTree = "<group>"; };
+		2D69ACF01D1A44E500B5F52D /* videolearningbackground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "videolearningbackground@2x.jpg"; sourceTree = "<group>"; };
 		2D6EEB171D17864200954C63 /* SimulationCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationCenterVC.h; sourceTree = "<group>"; };
 		2D6EEB181D17864200954C63 /* SimulationCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationCenterVC.m; sourceTree = "<group>"; };
 		2D6EEB1A1D17C72D00954C63 /* VideoListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListModel.h; sourceTree = "<group>"; };
@@ -1249,6 +1251,7 @@
 		2DE94D7E1D1291FA00E1508D /* VideoLearning */ = {
 			isa = PBXGroup;
 			children = (
+				2D69ACF01D1A44E500B5F52D /* videolearningbackground@2x.jpg */,
 				2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */,
 				2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */,
 			);
@@ -1473,6 +1476,7 @@
 				0AC707231D19082B000B2E13 /* placeholder_media.jpg in Resources */,
 				0AC7072A1D190840000B2E13 /* placeHold_womanPlayer.jpg in Resources */,
 				2DAF7C441D104A8000B956CA /* loading_00004@2x.png in Resources */,
+				2D69ACF11D1A44E500B5F52D /* videolearningbackground@2x.jpg in Resources */,
 				2DE94D7A1D12570200E1508D /* americaflag@2x.png in Resources */,
 				2D69AC9B1D1942B700B5F52D /* hud_20@2x.png in Resources */,
 				0AC7075B1D1A269C000B2E13 /* bad@x2.png in Resources */,

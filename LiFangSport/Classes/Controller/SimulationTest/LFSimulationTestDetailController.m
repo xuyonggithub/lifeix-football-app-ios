@@ -156,16 +156,16 @@
 {
     if (_currentQuestionIndex + 1 == self.questionArray.count) {
         //  重新挑战
-        _currentQuestionIndex = 0;
+        [self promptViewStartTesting:_questionMode];
     }else {
         _currentQuestionIndex++;
+        [self toPlayWithAJMediaPlayerItem];
     }
-    [self toPlayWithAJMediaPlayerItem];
 }
 
 - (void)questionViewQuitQuesiotn
 {
-    [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
+    [self.view bringSubviewToFront:self.promptView];
 }
 
 #pragma mark - UIViewControllerRotation

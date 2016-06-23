@@ -8,9 +8,12 @@
 
 #import "LFSimulationCenterQuestionView.h"
 #import "LFSimulationQuestionCell.h"
+#import "LFSimulationOffsideHardCell.h"
+
+#define CELL_ID @"LFSimulationOffsideHardCell"
 
 @interface LFSimulationCenterQuestionView ()
-    <UITableViewDelegate, UITableViewDataSource>
+    <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 {
     UIButton *_nextBtn;
     NSInteger _leftSelectedIndex;
@@ -24,6 +27,7 @@
 @property (nonatomic, strong) UITableView *leftTableView;
 @property (nonatomic, strong) UITableView *rightTableView;
 @property (nonatomic, strong) UIView *scoreView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UILabel *leftLabel;
 @property (nonatomic, strong) UILabel *rightLabel;
 @property (nonatomic, strong) LFSimulationQuestionModel *questionModel;
@@ -90,6 +94,9 @@
             make.height.equalTo(@50);
             make.bottom.equalTo(weakSelf.mas_bottom).offset(-30);
         }];
+        
+        [self addSubview:self.collectionView];
+        
     }
     return self;
 }
@@ -115,6 +122,7 @@
         
         if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
             self.leftTableView.hidden = YES;
+            self.collectionView.hidden = YES;
             [self.rightTableView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(weakSelf.scoreView.mas_bottom);
                 make.centerX.equalTo(weakSelf);
@@ -124,6 +132,13 @@
             }];
         }else {
             self.leftTableView.hidden = self.rightTableView.hidden = YES;
+            [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf.scoreView.mas_bottom);
+                make.left.equalTo(weakSelf.mas_left).offset(-10);
+                make.right.equalTo(weakSelf.mas_right).offset(-10);
+                make.height.equalTo(@120);
+            }];
+            [self.collectionView reloadData];
         }
     }
     
@@ -295,6 +310,24 @@
     }
 }
 
+#pragma mark - UICollectionViewDelegate and UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.questionModel.leftQuestionImageArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LFSimulationOffsideHardCell *cell = (LFSimulationOffsideHardCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath: indexPath];
+    [cell.userLogoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kQiNiuHeaderPathPrifx, self.questionModel.leftQuestionImageArray[indexPath.row]]] placeholderImage:nil];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+
 #pragma mark - Getter and Setter
 - (UITableView *)leftTableView
 {
@@ -361,6 +394,27 @@
     }
     return _scoreView;
 }
+
+- (UICollectionView *)collectionView
+{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        flowLayout.minimumLineSpacing = 2.5;
+        flowLayout.minimumInteritemSpacing = 0;
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 2.5, 0, 2.5);
+        //flowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 300 / 750.0 + 10 + 32);
+        flowLayout.itemSize = CGSizeMake((SCREEN_HEIGHT - 10) / 4, (SCREEN_HEIGHT - 10) / 4);
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, self.bounds.size.height) collectionViewLayout:flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        [_collectionView registerClass:[LFSimulationOffsideHardCell class] forCellWithReuseIdentifier:CELL_ID];
+        _collectionView.showsVerticalScrollIndicator = YES;
+    }
+    return _collectionView;
+}
+
 
 - (UILabel *)leftLabel
 {

@@ -171,6 +171,7 @@
     PlayerModel *player = [self.selectedDataArr objectAtIndex:indexPath.item];
     PlayerDetailVC *playerDetVC = [[PlayerDetailVC alloc] init];
     playerDetVC.playerId = player.playerId;
+    playerDetVC.playerName = player.name;
     [self.navigationController pushViewController:playerDetVC animated:YES];
 }
 

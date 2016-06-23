@@ -11,5 +11,5 @@
 @interface PlayerDetailVC : BaseVC
 
 @property(nonatomic, copy)NSString *playerId;
-
+@property(nonatomic, copy)NSString *playerName;
 @end

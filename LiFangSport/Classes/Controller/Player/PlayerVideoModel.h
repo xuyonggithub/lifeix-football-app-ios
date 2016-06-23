@@ -10,4 +10,10 @@
 
 @interface PlayerVideoModel : JSONModel
 
+@property(nonatomic, copy)NSString *videoId;
+@property(nonatomic, copy)NSString *playerId;
+@property(nonatomic, copy)NSString *playerName;
+@property(nonatomic, copy)NSString *title;
+@property(nonatomic, copy)NSString *url;
+
 @end

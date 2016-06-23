@@ -10,4 +10,14 @@
 
 @implementation PlayerVideoModel
 
++(JSONKeyMapper*)keyMapper{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"videoId",
+                                                       @"playerId": @"playerId",
+                                                       @"playerName": @"playerName",
+                                                       @"title": @"title",
+                                                       @"url": @"url"
+                                                       }];
+}
+
 @end

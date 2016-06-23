@@ -16,6 +16,7 @@
     <AJMediaViewControllerDelegate, LFSimulationCenterPromptViewDelegate, LFSimulationCenterQuestionViewDelegate>
 {
     NSInteger _currentQuestionIndex;
+    LFQuestionMode _questionMode;
 }
 
 //播放器
@@ -107,7 +108,9 @@
     if (_currentQuestionIndex < self.questionArray.count) {
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
         self.currentQuestionModel = self.questionArray[_currentQuestionIndex];
-        [self.questionView refreshWithModel:self.currentQuestionModel andIsEnd:_currentQuestionIndex + 1 == self.questionArray.count];
+        
+        [self.questionView refreshWithModel:self.currentQuestionModel questionMode:_questionMode];
+        
         AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:[self.categoryModel.name stringByAppendingString:self.modeString ? self.modeString : @""] uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
     }
@@ -117,12 +120,14 @@
 - (void)promptViewStartTesting:(NSInteger)modeIndex
 {
     _currentQuestionIndex = 0;
+    _questionMode = modeIndex;
     __weak typeof(self) weakSelf = self;
     if (self.categoryModel.subArray.count > 0) {
-        self.modeString = [NSString stringWithFormat:@"--%@", [self.categoryModel.subArray[modeIndex] name]];
+        self.modeString = [NSString stringWithFormat:@"--%@", [self.categoryModel.subArray[modeIndex - 1] name]];
     }
-    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.categoryModel.subArray.count == 0 ? self.categoryModel.categoryId : [self.categoryModel.subArray[modeIndex] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        weakSelf.questionArray = [LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict];
+    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", _questionMode == LFQuestionModeDefaultFoul ? self.categoryModel.categoryId : [self.categoryModel.subArray[modeIndex - 1] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        weakSelf.questionArray = [[LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict] subarrayWithRange:NSMakeRange(0, 2)];
+        weakSelf.questionView.questionCnt = weakSelf.questionArray.count;
         [weakSelf toPlayWithAJMediaPlayerItem];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
@@ -142,18 +147,20 @@
 
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController
 {
+    [self.mediaPlayerViewController stop];
     [self.view bringSubviewToFront:self.promptView];
 }
 
 #pragma mark - LFSimulationCenterQuestionViewDelegate
 - (void)questionViewNextQuestion
 {
-    _currentQuestionIndex++;
-    if (_currentQuestionIndex == self.questionArray.count) {
+    if (_currentQuestionIndex + 1 == self.questionArray.count) {
         //  重新挑战
+        _currentQuestionIndex = 0;
     }else {
-        [self toPlayWithAJMediaPlayerItem];
+        _currentQuestionIndex++;
     }
+    [self toPlayWithAJMediaPlayerItem];
 }
 
 - (void)questionViewQuitQuesiotn

@@ -38,13 +38,13 @@
         }];
         
         UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        startBtn.tag = 200;
         [startBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:startBtn];
         
         NSString *string = nil;
         
         if (model.subArray.count > 0) {
+            startBtn.tag = 201;
             string = [model.subArray[0] text];
             
             [startBtn setTitle:[model.subArray[0] name] forState:UIControlStateNormal];
@@ -57,7 +57,7 @@
             for (NSInteger i = 1; i < model.subArray.count; i++) {
                 LFSimulationCategoryModel *subModel = model.subArray[i];
                 UIButton *otherBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                otherBtn.tag = 200 + i;
+                otherBtn.tag = 201 + i;
                 [otherBtn setTitle:subModel.name forState:UIControlStateNormal];
                 [otherBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
                 [self addSubview:otherBtn];
@@ -68,6 +68,7 @@
                 }];
             }
         }else {
+            startBtn.tag = 200;
             string = model.text;
             [startBtn setTitle:@"开始测试" forState:UIControlStateNormal];
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -17,10 +17,13 @@
     NSInteger _rightSelectedIndex;
     NSInteger _falseCnt;
     NSInteger _trueCnt;
+    LFQuestionMode _questionMode;
+    BOOL _isLastQuestion;
 }
 
 @property (nonatomic, strong) UITableView *leftTableView;
 @property (nonatomic, strong) UITableView *rightTableView;
+@property (nonatomic, strong) UIView *scoreView;
 @property (nonatomic, strong) UILabel *leftLabel;
 @property (nonatomic, strong) UILabel *rightLabel;
 @property (nonatomic, strong) LFSimulationQuestionModel *questionModel;
@@ -49,51 +52,25 @@
             make.width.and.height.equalTo(@50);
         }];
         
-        [self addSubview:self.leftLabel];
-        [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(weakSelf.mas_centerY).offset(-10);
-            make.centerX.equalTo(weakSelf.mas_centerX).offset(-50);
-            make.width.and.height.equalTo(@80);
-        }];
-        
-        UILabel *promptLeftLabel = [UILabel new];
-        promptLeftLabel.font = [UIFont systemFontOfSize:25];
-        promptLeftLabel.textColor = HEXRGBCOLOR(0x9dee38);
-        promptLeftLabel.text = @"正确";
-        [self addSubview:promptLeftLabel];
-        [promptLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(_leftLabel);
-            make.top.equalTo(_leftLabel.mas_bottom).offset(10);
-        }];
-        
-        [self addSubview:self.rightLabel];
-        [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_leftLabel);
-            make.centerX.equalTo(weakSelf.mas_centerX).offset(50);
-            make.width.and.height.equalTo(@80);
-        }];
-        UILabel *promptRightLabel = [UILabel new];
-        promptRightLabel.font = [UIFont systemFontOfSize:25];
-        promptRightLabel.textColor = HEXRGBCOLOR(0xc2021e);
-        promptRightLabel.text = @"错误";
-        [self addSubview:promptRightLabel];
-        [promptRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(_rightLabel);
-            make.top.equalTo(_rightLabel.mas_bottom).offset(10);
+        [self addSubview:self.scoreView];
+        [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.and.centerY.equalTo(weakSelf);
+            make.width.equalTo(@180);
+            make.height.equalTo(@140);
         }];
         
         [self addSubview:self.leftTableView];
         [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(weakSelf);
             make.left.equalTo(weakSelf.mas_left).offset(10);
-            make.right.equalTo(weakSelf.leftLabel.mas_left).offset(-20);
+            make.right.equalTo(weakSelf.scoreView.mas_left).offset(-20);
             make.height.equalTo(@240);
         }];
         
         [self addSubview:self.rightTableView];
         [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(weakSelf);
-            make.left.equalTo(weakSelf.rightLabel.mas_right).offset(20);
+            make.left.equalTo(weakSelf.scoreView.mas_right).offset(20);
             make.right.equalTo(weakSelf.mas_right).offset(-10);
             make.height.equalTo(@180);
         }];
@@ -118,19 +95,48 @@
 }
 
 #pragma mark - Public Methods
-- (void)refreshWithModel:(LFSimulationQuestionModel *)model andIsEnd:(BOOL)isEnd
+- (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel questionMode:(LFQuestionMode)questionMode
 {
+    _nextBtn.enabled = NO;
     _leftSelectedIndex = _rightSelectedIndex = -1;
+    if (_questionMode != questionMode || _isLastQuestion) {
+        _falseCnt = _trueCnt = 0;
+        _leftLabel.text = _rightLabel.text = @"00";
+    }
+    _questionMode = questionMode;
+    if (_questionMode != LFQuestionModeDefaultFoul) {
+        __weak typeof(self) weakSelf = self;
+        [self.scoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(weakSelf);
+            make.width.equalTo(@180);
+            make.height.equalTo(@140);
+            make.top.equalTo(weakSelf).offset(30);
+        }];
+        
+        if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
+            self.leftTableView.hidden = YES;
+            [self.rightTableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf.scoreView.mas_bottom);
+                make.centerX.equalTo(weakSelf);
+                make.left.equalTo(weakSelf.scoreView.mas_left).offset(-10);
+                make.right.equalTo(weakSelf.mas_right).offset(-10);
+                make.height.equalTo(@120);
+            }];
+        }else {
+            self.leftTableView.hidden = self.rightTableView.hidden = YES;
+        }
+    }
+    
     self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = YES;
-    self.questionModel = model;
+    self.questionModel = questionModel;
     [self.leftTableView reloadData];
     [self.rightTableView reloadData];
-    
-    if (isEnd) {
-        [_nextBtn setTitle:@"继续挑战" forState:UIControlStateNormal];
-    }else {
-        _nextBtn.enabled = NO;
-    }
+}
+
+- (void)refreshTestingResult
+{
+    _isLastQuestion = YES;
+    [_nextBtn setTitle:@"继续挑战" forState:UIControlStateNormal];
 }
 
 #pragma mark - Responder Methods
@@ -138,6 +144,10 @@
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewNextQuestion)]) {
         [self.delegate questionViewNextQuestion];
+    }
+    if (_isLastQuestion) {
+        _isLastQuestion = NO;
+        [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
     }
 }
 
@@ -148,24 +158,52 @@
     }
 }
 
+#pragma mark - judgementAnswer
 - (void)judgementAnswer
 {
     self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = NO;
     _nextBtn.enabled = YES;
     if (_leftSelectedIndex == self.questionModel.leftAnswerIndex && _rightSelectedIndex == self.questionModel.rightAnswerIndex) {
         _trueCnt++;
-        if (_trueCnt > 10) {
+        if (_trueCnt > 9) {
             _leftLabel.text = [NSString stringWithFormat:@"%@", @(_trueCnt)];
         }else {
             _leftLabel.text = [NSString stringWithFormat:@"0%@", @(_trueCnt)];
         }
     }else {
         _falseCnt++;
-        if (_falseCnt > 10) {
+        if (_falseCnt > 9) {
             _rightLabel.text = [NSString stringWithFormat:@"%@", @(_falseCnt)];
         }else {
             _rightLabel.text = [NSString stringWithFormat:@"0%@", @(_falseCnt)];
         }
+    }
+    if (self.questionCnt == _falseCnt + _trueCnt) {
+        [self refreshTestingResult];
+    }
+}
+
+- (void)judgementOffsideAnswer
+{
+    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = NO;
+    _nextBtn.enabled = YES;
+    if (_rightSelectedIndex == self.questionModel.leftAnswerIndex) {
+        _trueCnt++;
+        if (_trueCnt > 9) {
+            _leftLabel.text = [NSString stringWithFormat:@"%@", @(_trueCnt)];
+        }else {
+            _leftLabel.text = [NSString stringWithFormat:@"0%@", @(_trueCnt)];
+        }
+    }else {
+        _falseCnt++;
+        if (_falseCnt > 9) {
+            _rightLabel.text = [NSString stringWithFormat:@"%@", @(_falseCnt)];
+        }else {
+            _rightLabel.text = [NSString stringWithFormat:@"0%@", @(_falseCnt)];
+        }
+    }
+    if (self.questionCnt == _falseCnt + _trueCnt) {
+        [self refreshTestingResult];
     }
 }
 
@@ -173,7 +211,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = 0;
-    if ([self.leftTableView isEqual:tableView]) {
+    if ([self.leftTableView isEqual:tableView] || _questionMode == LFQuestionModeDefaultOffsideEasy) {
         number = self.questionModel.leftQuestionArray.count;
     }else {
         number = self.questionModel.rightQuestionArray.count;
@@ -212,31 +250,48 @@
         
         return cell;
     }else {
-        static NSString *customCellID = @"LFSimulationQuestionCellIDRight";
-        LFSimulationQuestionCell * cell = [tableView dequeueReusableCellWithIdentifier:customCellID];
-        if (!cell) {
-            cell = [[LFSimulationQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
+        if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
+            static NSString *customCellID = @"LFSimulationQuestionCellIDRight";
+            LFSimulationQuestionCell * cell = [tableView dequeueReusableCellWithIdentifier:customCellID];
+            if (!cell) {
+                cell = [[LFSimulationQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
+            }
+            
+            cell.selectedBlock = ^(id object) {
+                _rightSelectedIndex = [object boolValue] ? indexPath.row : -1;
+                [weakSelf judgementOffsideAnswer];
+            };
+            
+            [cell refreshContent:self.questionModel.leftQuestionArray[indexPath.row] isSelected:_rightSelectedIndex == indexPath.row];
+            
+            return cell;
+        }else {
+            static NSString *customCellID = @"LFSimulationQuestionCellIDRight";
+            LFSimulationQuestionCell * cell = [tableView dequeueReusableCellWithIdentifier:customCellID];
+            if (!cell) {
+                cell = [[LFSimulationQuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
+            }
+            
+            __weak typeof(tableView) weakTableView = tableView;
+            
+            cell.selectedBlock = ^(id object) {
+                NSInteger lastSelectedIndex = _leftSelectedIndex;
+                _rightSelectedIndex = [object boolValue] ? indexPath.row : -1;
+                if (_rightSelectedIndex >= 0) {
+                    [weakTableView beginUpdates];
+                    [weakTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastSelectedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                    [weakTableView endUpdates];
+                }
+                if (_leftSelectedIndex != -1) {
+                    //  两道题都已选择
+                    [weakSelf judgementAnswer];
+                }
+            };
+            
+            [cell refreshContent:self.questionModel.rightQuestionArray[indexPath.row] isSelected:_rightSelectedIndex == indexPath.row];
+            
+            return cell;
         }
-        
-        __weak typeof(tableView) weakTableView = tableView;
-        
-        cell.selectedBlock = ^(id object) {
-            NSInteger lastSelectedIndex = _leftSelectedIndex;
-            _rightSelectedIndex = [object boolValue] ? indexPath.row : -1;
-            if (_rightSelectedIndex >= 0) {
-                [weakTableView beginUpdates];
-                [weakTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastSelectedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                [weakTableView endUpdates];
-            }
-            if (_leftSelectedIndex != -1) {
-                //  两道题都已选择
-                [weakSelf judgementAnswer];
-            }
-        };
-        
-        [cell refreshContent:self.questionModel.rightQuestionArray[indexPath.row] isSelected:_rightSelectedIndex == indexPath.row];
-        
-        return cell;
     }
 }
 
@@ -267,6 +322,44 @@
         _rightTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     return _rightTableView;
+}
+
+- (UIView *)scoreView
+{
+    if (!_scoreView) {
+        _scoreView = [UIView new];
+        [_scoreView addSubview:self.leftLabel];
+        [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.and.top.equalTo(_scoreView);
+            make.width.and.height.equalTo(@80);
+        }];
+        
+        UILabel *promptLeftLabel = [UILabel new];
+        promptLeftLabel.font = [UIFont systemFontOfSize:25];
+        promptLeftLabel.textColor = HEXRGBCOLOR(0x9dee38);
+        promptLeftLabel.text = @"正确";
+        [_scoreView addSubview:promptLeftLabel];
+        [promptLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_leftLabel);
+            make.top.equalTo(_leftLabel.mas_bottom).offset(10);
+        }];
+        
+        [_scoreView addSubview:self.rightLabel];
+        [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.and.top.equalTo(_scoreView);
+            make.width.and.height.equalTo(@80);
+        }];
+        UILabel *promptRightLabel = [UILabel new];
+        promptRightLabel.font = [UIFont systemFontOfSize:25];
+        promptRightLabel.textColor = HEXRGBCOLOR(0xc2021e);
+        promptRightLabel.text = @"错误";
+        [_scoreView addSubview:promptRightLabel];
+        [promptRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_rightLabel);
+            make.top.equalTo(_rightLabel.mas_bottom).offset(10);
+        }];
+    }
+    return _scoreView;
 }
 
 - (UILabel *)leftLabel
@@ -300,6 +393,5 @@
     }
     return _rightLabel;
 }
-
 
 @end

@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^LearningPlayControlViewBlock)(void);
 
 @interface LearningPlayControlView : UIView
+@property (nonatomic, copy) LearningPlayControlViewBlock replayBlock;
+@property (nonatomic, copy) LearningPlayControlViewBlock factorsBlock;
+@property (nonatomic, copy) LearningPlayControlViewBlock decisionBlock;
+@property (nonatomic, copy) LearningPlayControlViewBlock detailBlock;
+@property (nonatomic, copy) LearningPlayControlViewBlock ruleBlock;
 
 @end
+

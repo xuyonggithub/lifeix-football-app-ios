@@ -10,8 +10,11 @@
 #import "CategoryView.h"
 #import "BaseInfoView.h"
 #import "CommonRequest.h"
+#import "PlayerVideoModel.h"
+#import "PlayerVideoCell.h"
 
-@interface PlayerDetailVC ()
+#define kReuseId @"cell"
+@interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, retain)NSMutableArray *categoryArr;
 @property(nonatomic, retain)NSMutableArray *categoryUrlArr;
@@ -46,10 +49,14 @@
 -(void)dealWithDic:(id)dic{
     NSDictionary *dict = dic;
     NSMutableArray *cateArr = [NSMutableArray arrayWithArray:[dict objectForKey:@"urls"]];
-    self.playerVideosArr = [dict objectForKey:@"playerVideos"];
+    self.playerVideosArr = [PlayerVideoModel arrayOfModelsFromDictionaries:[dict objectForKey:@"playerVideos"]];
+    
     for(NSDictionary *dic in cateArr){
         [self.categoryArr addObject:dic.allKeys[0]];
         [self.categoryUrlArr addObject:dic.allValues[0]];
+    }
+    if(self.playerVideosArr.count != 0){
+        [self.categoryUrlArr addObject:@"高光时刻"];
     }
     //基本信息
     BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 190) andAvatar:[dic objectForKey:@"avator"] andName:[dic objectForKey:@"name"] andBirday:[dic objectForKey:@"birthday"] andHeight:[dic objectForKey:@"height"] andWeight:[dic objectForKey:@"weight"] andPosition:[dic objectForKey:@"position"] andBirthplace:[dic objectForKey:@"birthplace"] andClub:[dic objectForKey:@"club"]];
@@ -64,20 +71,54 @@
     cateView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
-    
+    [self.view addSubview:cateView];
 }
 
 -(void)clickBtn:(CGFloat)tag{
-//    self.selectedIndex = tag;
-//    [_selectedDataArr removeAllObjects];
-//    NSArray *arr;
-//    if([self.categoryName isEqualToString:@"中国男足"]){
-//        arr = [NSArray arrayWithArray:self.playerArr[0]];
-//    }else{
-//        arr = [NSArray arrayWithArray:self.playerArr[1]];
-//    }
-//    [_selectedDataArr addObjectsFromArray:[arr objectAtIndex:tag]];
-//    [self.playerView reloadData];
+    NSString *cate = [self.categoryArr objectAtIndex:tag];
+    if([cate isEqualToString:@"高光时刻"]){
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 235) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
+    }else{
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 235)];
+        webView.delegate = self;
+        NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
+    }
 }
 
+#pragma mark - UIWebViewDelegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSLog(@"succeed!");
+}
+                            
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    NSLog(@"error = %@", error);
+}
+                            
+#pragma mark - UITabView
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.playerVideosArr.count;
+}
+                            
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PlayerVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
+    if(!cell){
+        cell = [[PlayerVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kReuseId];
+    }
+    //  bu布局
+    return cell;
+}
+                            
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 155;
+}
+                            
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+                                
+}
+        
 @end

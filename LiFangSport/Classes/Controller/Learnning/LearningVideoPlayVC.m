@@ -11,6 +11,8 @@
 #import "CommonRequest.h"
 #import "VideoSingleInfoModel.h"
 #import "LearningPlayControlView.h"
+#import "PopViewKit.h"
+#import "LearningPlayPopView.h"
 
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
@@ -22,8 +24,9 @@
 @property (nonatomic, strong) UIView *disPlayView;
 @property (nonatomic, strong) NSMutableArray *constraintList;
 @property (nonatomic, strong) AJMediaPlayRequest *playRequest;
-@property (nonatomic, strong) NSMutableArray *videoInfoArr;
+@property (nonatomic, strong) NSArray *videoInfoArr;
 @property(nonatomic,strong)LearningPlayControlView *ctrView;
+@property(nonatomic,strong)UIButton *nextBtn;
 
 @end
 
@@ -45,7 +48,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _videoInfoArr = [NSMutableArray array];
+    _videoInfoArr = [NSArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     DefineWeak(self);
     //  播放器界面
@@ -60,6 +63,8 @@
     [self requestSingleVideoInfoWith:_videoId];
     //操控
     [self.view addSubview:self.ctrView];
+    //next
+    [self.view addSubview:self.nextBtn];
 }
 
 -(void)requestSingleVideoInfoWith:(NSString *)videoStr{
@@ -71,8 +76,7 @@
 }
 
 -(void)dealWithSingleVideoData:(id )dic{
-    [_videoInfoArr removeAllObjects];
-    _videoInfoArr = (NSMutableArray *)[VideoSingleInfoModel modelDealDataFromWithDic:dic];
+    _videoInfoArr = [VideoSingleInfoModel modelDealDataFromWithDic:dic];
     [self toPlayWithAJMediaPlayerItem];
 }
 
@@ -112,7 +116,7 @@
         [self.mediaPlayerViewController startToPlay:playRequest];
     }
     [self.view bringSubviewToFront:self.ctrView];
-
+    [self.view bringSubviewToFront:self.nextBtn];
 }
 
 #pragma mark - AJMediaViewControllerDelegate
@@ -121,10 +125,8 @@
 
 }
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 #pragma mark - UIViewControllerRotation
 - (BOOL)shouldAutorotate
@@ -155,10 +157,72 @@
 - (LearningPlayControlView *)ctrView
 {
     if (!_ctrView) {
-        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
-        _ctrView.backgroundColor = kwhiteColor;
+        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175)];
+        _ctrView.userInteractionEnabled = YES;
+        _ctrView.right = kScreenWidth;
+        _ctrView.centerY = kScreenHeight/2;
+        DefineWeak(self);
+        DefineWeak(_videoIdsArr);
+        DefineWeak(_currentPlayVideoIndex);
+        _ctrView.replayBlock = ^(void){
+            if (_currentPlayVideoIndex<_videoIdsArr.count) {
+                NSString *videoid = [NSString stringWithFormat:@"%@",Weak(_videoIdsArr)[Weak(_currentPlayVideoIndex)]];
+                [Weak(self) requestSingleVideoInfoWith:videoid];
+            }
+        };
+        _ctrView.factorsBlock = ^(void){
+            [Weak(self).mediaPlayerViewController pause];
+            PopViewKit *popKit = [[PopViewKit alloc] init];
+            popKit.bTapDismiss = YES;
+            popKit.bInnerTapDismiss = NO;
+            DefineWeak(popKit);
+            LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
+            rview.center = Weak(self).view.center;
+            rview.backgroundColor = kwhiteColor;
+            rview.closeBc = ^(void){
+                [Weak(popKit) dismiss:YES];
+            };
+            popKit.dismissBlock = ^(void){
+                [Weak(self).mediaPlayerViewController play];
+            };
+            
+            [popKit popView:rview animateType:PAT_Alpha];
+        };
+        _ctrView.decisionBlock = ^(void){
+            [Weak(self).mediaPlayerViewController pause];
+
+        };
+        _ctrView.detailBlock = ^(void){
+            [Weak(self).mediaPlayerViewController pause];
+
+        };
+        _ctrView.ruleBlock = ^(void){
+            [Weak(self).mediaPlayerViewController pause];
+
+        };
     }
     return _ctrView;
+}
+
+-(UIButton *)nextBtn{
+    if (!_nextBtn) {
+        _nextBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 70, 30)];
+        _nextBtn.right = kScreenWidth-10;
+        _nextBtn.backgroundColor = kclearColor;
+        [_nextBtn setTitle:@"下一个>>" forState:UIControlStateNormal];
+        [_nextBtn setTitleColor:kwhiteColor forState:UIControlStateNormal];
+        _nextBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        _nextBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_nextBtn addTarget:self action:@selector(nextPlay) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextBtn;
+}
+-(void)nextPlay{
+    _currentPlayVideoIndex ++;
+    if (_currentPlayVideoIndex<_videoIdsArr.count) {
+        NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
+        [self requestSingleVideoInfoWith:videoid];
+    }
 }
 
 -(void)dealloc{

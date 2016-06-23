@@ -10,10 +10,16 @@
 
 @class RefereeModel;
 
-@interface RefereeCell : UICollectionViewCell
+@interface RefereeCell : UITableViewCell
 
 @property(nonatomic, retain)UIImageView *bgImgView;
 @property(nonatomic, retain)UILabel *titleLabel;
+@property(nonatomic, retain)UILabel *nameLabel;
+@property(nonatomic, retain)UILabel *birthdayLabel;
+@property(nonatomic, retain)UILabel *associationLabel;
+@property(nonatomic, retain)UILabel *topALabel;
+@property(nonatomic, retain)UILabel *FIFAYearLabel;
+@property(nonatomic, retain)UILabel *yopLeagueLabel;
 
 -(void)displayCell:(RefereeModel *)refereeModel;
 

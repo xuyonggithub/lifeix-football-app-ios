@@ -113,17 +113,6 @@
     }
 }
 
-#pragma mark - AJMediaViewControllerDelegate
-- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
-{
-    [self.view bringSubviewToFront:self.questionView];
-}
-
-- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController
-{
-    [self.view bringSubviewToFront:self.promptView];
-}
-
 #pragma mark - LFSimulationCenterPromptViewDelegate
 - (void)promptViewStartTesting:(NSInteger)modeIndex
 {
@@ -143,6 +132,17 @@
 - (void)promptViewQuitTesting
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - AJMediaViewControllerDelegate
+- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
+{
+    [self.view bringSubviewToFront:self.questionView];
+}
+
+- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController
+{
+    [self.view bringSubviewToFront:self.promptView];
 }
 
 #pragma mark - LFSimulationCenterQuestionViewDelegate

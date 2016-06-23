@@ -24,20 +24,23 @@
         
         NSArray *leftArray = videoDict[@"r1"];
         NSMutableArray *leftMutableArray = [NSMutableArray arrayWithCapacity:0];
+        NSMutableArray *leftImageMutableArray = [NSMutableArray arrayWithCapacity:0];
         for (NSInteger i = 0; i < leftArray.count; i++) {
             NSDictionary *questionDict = leftArray[i];
-            [leftMutableArray addObject:questionDict[@"text"]];
+            [leftMutableArray addObject:questionDict[@"text"]?:@""];
+            [leftImageMutableArray addObject:questionDict[@"image"]?:@""];
             if ([questionDict[@"right"] boolValue]) {
                 model.leftAnswerIndex = i;
             }
         }
         model.leftQuestionArray = [NSArray arrayWithArray:leftMutableArray];
+        model.leftQuestionImageArray = [NSArray arrayWithArray:leftImageMutableArray];
         
         NSArray *rightArray = videoDict[@"r2"];
         NSMutableArray *rightMutableArray = [NSMutableArray arrayWithCapacity:0];
         for (NSInteger i = 0; i < rightArray.count; i++) {
             NSDictionary *questionDict = rightArray[i];
-            [rightMutableArray addObject:questionDict[@"text"]];
+            [rightMutableArray addObject:questionDict[@"text"]?:@""];
             if ([questionDict[@"right"] boolValue]) {
                 model.rightAnswerIndex = i;
             }

@@ -10,7 +10,7 @@
 typedef void(^LearningPlayPopViewBlock)(void);
 
 @interface LearningPlayPopView : UIView
-@property (nonatomic, copy) LearningPlayPopViewBlock replayBlock;
+@property (nonatomic, copy) LearningPlayPopViewBlock closeBc;
 
 
 @end

@@ -172,21 +172,21 @@
         };
         _ctrView.factorsBlock = ^(void){
             [Weak(self).mediaPlayerViewController pause];
-
             PopViewKit *popKit = [[PopViewKit alloc] init];
             popKit.bTapDismiss = YES;
             popKit.bInnerTapDismiss = NO;
             DefineWeak(popKit);
-
             LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
             rview.center = Weak(self).view.center;
             rview.backgroundColor = kwhiteColor;
+            rview.closeBc = ^(void){
+                [Weak(popKit) dismiss:YES];
+            };
             popKit.dismissBlock = ^(void){
                 [Weak(self).mediaPlayerViewController play];
             };
             
             [popKit popView:rview animateType:PAT_Alpha];
-
         };
         _ctrView.decisionBlock = ^(void){
             [Weak(self).mediaPlayerViewController pause];

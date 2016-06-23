@@ -28,6 +28,7 @@
 		0AC707701D1A8DDB000B2E13 /* PlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */; };
 		0AC707711D1A8DDB000B2E13 /* WomanPlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */; };
 		0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */; };
+		0AC707771D1B978A000B2E13 /* BaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707761D1B978A000B2E13 /* BaseInfoView.m */; };
 		2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */; };
 		2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */; };
 		2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80E1D0FAC670006131B /* LeftCategoryCell.m */; };
@@ -403,6 +404,8 @@
 		0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WomanPlayerDetailVC.m; sourceTree = "<group>"; };
 		0AC707721D1A8DE9000B2E13 /* CoachDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDetailVC.h; sourceTree = "<group>"; };
 		0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailVC.m; sourceTree = "<group>"; };
+		0AC707751D1B978A000B2E13 /* BaseInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInfoView.h; sourceTree = "<group>"; };
+		0AC707761D1B978A000B2E13 /* BaseInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInfoView.m; sourceTree = "<group>"; };
 		0AD8A0ACAF2FCD0201410D20 /* Pods-LiFangSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.debug.xcconfig"; sourceTree = "<group>"; };
 		159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LiFangSport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D62E8061D0F9BB40006131B /* HomeLeftCategModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLeftCategModel.h; sourceTree = "<group>"; };
@@ -1530,6 +1533,8 @@
 				EC4D3C1F1D1387E200285243 /* PlayerModel.m */,
 				EC4D3C201D1387E200285243 /* PlayerVC.h */,
 				EC4D3C211D1387E200285243 /* PlayerVC.m */,
+				0AC707751D1B978A000B2E13 /* BaseInfoView.h */,
+				0AC707761D1B978A000B2E13 /* BaseInfoView.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -2419,6 +2424,7 @@
 				2DE2C8AB1D0D4A8500310C4C /* NSMutableString+TagReplace.m in Sources */,
 				2DE2C83A1D0D2BEE00310C4C /* CommonRequest.m in Sources */,
 				EC504A091D0E99E700095C63 /* MediaModel.m in Sources */,
+				0AC707771D1B978A000B2E13 /* BaseInfoView.m in Sources */,
 				2D62E8121D0FB2DB0006131B /* CenterCyclePicModel.m in Sources */,
 				9CAF82531D190F560025224F /* AJMediaPlayerBackGroundView.m in Sources */,
 				2DE2C84F1D0D2FF800310C4C /* SimCommonTool.m in Sources */,

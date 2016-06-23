@@ -80,7 +80,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     LFSimulationTestDetailController *simulationTestDetailCtrl = [[LFSimulationTestDetailController alloc] init];
-    simulationTestDetailCtrl.model = self.dataArray[indexPath.row];
+    simulationTestDetailCtrl.categoryModel = self.dataArray[indexPath.row];
     [self.navigationController pushViewController:simulationTestDetailCtrl animated:YES];
 }
 

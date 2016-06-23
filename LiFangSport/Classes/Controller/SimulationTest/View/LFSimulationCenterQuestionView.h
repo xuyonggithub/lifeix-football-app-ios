@@ -12,8 +12,8 @@
 
 @protocol LFSimulationCenterQuestionViewDelegate <NSObject>
 
-- (void)nextTest;
-- (void)quitQuestionTest;
+- (void)questionViewNextQuestion;
+- (void)questionViewQuitQuesiotn;
 
 @end
 

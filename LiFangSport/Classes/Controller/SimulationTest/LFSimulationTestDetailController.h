@@ -12,6 +12,6 @@
 
 @interface LFSimulationTestDetailController : BaseVC
 
-@property (nonatomic, strong) LFSimulationCategoryModel *model;
+@property (nonatomic, strong) LFSimulationCategoryModel *categoryModel;
 
 @end

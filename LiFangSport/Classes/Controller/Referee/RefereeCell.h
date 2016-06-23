@@ -19,7 +19,7 @@
 @property(nonatomic, retain)UILabel *associationLabel;
 @property(nonatomic, retain)UILabel *topALabel;
 @property(nonatomic, retain)UILabel *FIFAYearLabel;
-@property(nonatomic, retain)UILabel *yopLeagueLabel;
+@property(nonatomic, retain)UILabel *topLeagueLabel;
 
 -(void)displayCell:(RefereeModel *)refereeModel;
 

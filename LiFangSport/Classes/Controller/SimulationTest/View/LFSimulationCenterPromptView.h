@@ -12,8 +12,8 @@
 
 @protocol LFSimulationCenterPromptViewDelegate <NSObject>
 
-- (void)startTest:(NSInteger)index;
-- (void)quitTest;
+- (void)promptViewStartTesting:(NSInteger)modeIndex;
+- (void)promptViewQuitTesting;
 
 @end
 

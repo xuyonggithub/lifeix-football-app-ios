@@ -274,5 +274,8 @@ IB_DESIGNABLE
  */
 - (void)sendBullet:(VTBulletModel *)bullet;
 
+//  初始化为全屏
+- (void)initialShowFullScreen;
+
 @end
 

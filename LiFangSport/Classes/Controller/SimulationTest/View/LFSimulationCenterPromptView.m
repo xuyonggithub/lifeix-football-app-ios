@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        self.backgroundColor = [UIColor redColor];
         UITextView *textView = [UITextView new];
         textView.backgroundColor = [UIColor clearColor];
         textView.editable = NO;

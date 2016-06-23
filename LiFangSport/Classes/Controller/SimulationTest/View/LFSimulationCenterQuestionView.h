@@ -21,6 +21,6 @@
 
 @property (nonatomic, assign) id <LFSimulationCenterQuestionViewDelegate> delegate;
 
-- (instancetype)initWithModel:(LFSimulationQuestionModel *)model;
+- (void)refreshWithModel:(LFSimulationQuestionModel *)model andIsEnd:(BOOL)isEnd;
 
 @end

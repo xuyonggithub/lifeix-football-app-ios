@@ -8,11 +8,21 @@
 
 #import "LFSimulationCenterQuestionView.h"
 
+@interface LFSimulationCenterQuestionView ()
+{
+    UIButton *_startBtn;
+}
+@end
+
 @implementation LFSimulationCenterQuestionView
-- (instancetype)initWithModel:(LFSimulationQuestionModel *)model
+- (instancetype)init
 {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor blueColor];
+        
+        __weak typeof(self) weakSelf = self;
+        
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
@@ -23,17 +33,24 @@
             make.width.and.height.equalTo(@50);
         }];
         
-        UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        startBtn.tag = 200;
-        [startBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:startBtn];
-        [startBtn setTitle:@"下一题" forState:UIControlStateNormal];
-        [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.bottom.equalTo(self.mas_bottom).offset(-50);
+        _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_startBtn setTitle:@"下一题" forState:UIControlStateNormal];
+        [_startBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_startBtn];
+        
+        [_startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(weakSelf);
+            make.bottom.equalTo(weakSelf.mas_bottom).offset(-50);
         }];
     }
     return self;
+}
+
+- (void)refreshWithModel:(LFSimulationQuestionModel *)model andIsEnd:(BOOL)isEnd
+{
+    if (isEnd) {
+        [_startBtn setTitle:@"继续挑战" forState:UIControlStateNormal];
+    }
 }
 
 - (void)startBtnTouched:(id)sender

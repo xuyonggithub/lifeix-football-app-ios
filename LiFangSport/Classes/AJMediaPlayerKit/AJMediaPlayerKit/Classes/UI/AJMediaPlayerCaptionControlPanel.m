@@ -121,6 +121,7 @@
     } else {
         _shareButton.hidden = NO;
     }
+    self.shareButton.hidden = YES;
     
     self.titleLabel = [[UILabel alloc] init];
     _titleLabel.font = [UIFont systemFontOfSize:15];

@@ -2343,8 +2343,15 @@
     isSoundSlideChangeValue = NO;
 }
 
-- (void)showFullScreen {
+//  初始化为全屏
+- (void)initialShowFullScreen
+{
     _mediaPlayerControlBar.isFullScreen = YES;
+    [self showFullScreen];
+    [self transitionToFullScreenModel:YES];
+}
+
+- (void)showFullScreen {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
@@ -2357,7 +2364,6 @@
 }
 
 - (void)resignFullScreen {
-    _mediaPlayerControlBar.isFullScreen = NO;
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];

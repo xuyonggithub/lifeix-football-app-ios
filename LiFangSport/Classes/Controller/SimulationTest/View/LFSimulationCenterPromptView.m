@@ -14,15 +14,16 @@
 {
     self = [super init];
     if (self) {
-        UITextView *promptLabel = [UITextView new];
-        promptLabel.font = [UIFont systemFontOfSize:25];
-        promptLabel.editable = NO;
-        promptLabel.selectable = NO;
-        [self addSubview:promptLabel];
-        [promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        UITextView *textView = [UITextView new];
+        textView.backgroundColor = [UIColor clearColor];
+        textView.editable = NO;
+        textView.selectable = NO;
+        [self addSubview:textView];
+        [textView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).offset(60);
-            make.left.equalTo(self.mas_left).offset(230);
-            make.right.equalTo(self.mas_right).offset(-230);
+            make.left.equalTo(self.mas_left).offset(100);
+            make.right.equalTo(self.mas_right).offset(-100);
             make.bottom.equalTo(self.mas_bottom).offset(-100);
         }];
         
@@ -41,12 +42,14 @@
         [startBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:startBtn];
         
+        NSString *string = nil;
+        
         if (model.subArray.count > 0) {
-            promptLabel.text = [model.subArray[0] text];
+            string = [model.subArray[0] text];
             
             [startBtn setTitle:[model.subArray[0] name] forState:UIControlStateNormal];
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(promptLabel.mas_centerX).offset(-90);
+                make.centerX.equalTo(textView.mas_centerX).offset(-90);
                 make.bottom.equalTo(self.mas_bottom).offset(-50);
             }];
             
@@ -60,29 +63,25 @@
                 [self addSubview:otherBtn];
 
                 [otherBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(promptLabel.mas_centerX).offset(90);
+                    make.centerX.equalTo(textView.mas_centerX).offset(90);
                     make.bottom.equalTo(self.mas_bottom).offset(-50);
                 }];
             }
         }else {
-            promptLabel.text = model.text;
+            string = model.text;
             [startBtn setTitle:@"开始测试" forState:UIControlStateNormal];
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(promptLabel);
+                make.centerX.equalTo(textView);
                 make.bottom.equalTo(self.mas_bottom).offset(-50);
             }];
         }
         
-//        NSMutableParagraphStyle *contentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-//        contentParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-//        contentParagraphStyle.lineSpacing = 6;
-//        contentParagraphStyle.alignment = NSTextAlignmentJustified;
-//        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:promptLabel.text];
-//        [attributedString addAttribute:NSParagraphStyleAttributeName value:contentParagraphStyle range:NSMakeRange(0, promptLabel.text.length)];
-//        [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, promptLabel.text.length)];
-//        [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, promptLabel.text.length)];
-//        [attributedString addAttribute:NSKernAttributeName value:@0.5 range:NSMakeRange(0, promptLabel.text.length)];
-//        promptLabel.attributedText = attributedString;
+        NSMutableParagraphStyle *contentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        contentParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        contentParagraphStyle.lineSpacing = 6;
+        contentParagraphStyle.alignment = NSTextAlignmentJustified;
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+        textView.attributedText = attributedString;
     }
     return self;
 }

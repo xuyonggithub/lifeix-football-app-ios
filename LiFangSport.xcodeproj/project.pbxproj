@@ -1804,10 +1804,10 @@
 		9C4D6C7F1D17F48600417565 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9CE1368F1D1A68180007A22D /* LFSimulationQuestionModel.h */,
-				9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */,
 				9C658B6B1D1A7D9B0005215D /* LFSimulationCategoryModel.h */,
 				9C658B6C1D1A7D9B0005215D /* LFSimulationCategoryModel.m */,
+				9CE1368F1D1A68180007A22D /* LFSimulationQuestionModel.h */,
+				9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

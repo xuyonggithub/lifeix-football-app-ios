@@ -10,7 +10,7 @@
 @class CenterViewController;
 @class RightViewController;
 @class  LeftViewController;
-@interface BaseDrawerVC : UIViewController
+@interface BaseDrawerVC : BaseVC
 
 @property (nonatomic, strong) CenterViewController *centerV;
 @property (nonatomic, strong) LeftViewController *leftV;

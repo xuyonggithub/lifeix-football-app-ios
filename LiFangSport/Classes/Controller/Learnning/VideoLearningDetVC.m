@@ -210,54 +210,10 @@
         NSString *str = [NSString stringWithFormat:@"%@",mod.videos[0][@"id"]];
         [videoIdsArr addObject:str];
     }
-    
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
     LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
     LearningPlayVC.videoIdsArr = [NSArray arrayWithArray:videoIdsArr];
     [self.navigationController pushViewController:LearningPlayVC animated:YES];
-    
-    //初始化播放器
-//    [VideoPlayerManager shareKnowInstance].contentURL = [NSURL URLWithString:@"http://7xumx6.com1.z0.glb.clouddn.com/elearning/fmc2014/part1/medias/flv/fwc14-m01-bra-cro-06/HD"];
-//    if (playView == nil) {
-//        playView = [[UIView alloc]initWithFrame:self.view.bounds];
-//        playView.backgroundColor = [UIColor clearColor];
-//        [APP_DELEGATE.window addSubview:playView];
-//    }
-//    //设置播放器画面的尺寸frame
-//    [VideoPlayerManager shareKnowInstance].view.frame =CGRectMake(0, 0, kScreenHeight, kScreenWidth);
-//    [playView addSubview:[VideoPlayerManager shareKnowInstance].view];
-//    
-//    CGAffineTransform landscapeTransform = CGAffineTransformMakeRotation(M_PI / 2);
-//    [VideoPlayerManager shareKnowInstance].view.transform = landscapeTransform;
-//    [VideoPlayerManager shareKnowInstance].view.frame =CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-//    playView.hidden = NO;
-//    [VideoPlayerManager shareKnowInstance].view.hidden = NO;
-//    
-//    [[VideoPlayerManager shareKnowInstance] prepareToPlay];
-//    //监听播放状态
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieChagen:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-//    [[VideoPlayerManager shareKnowInstance] play];
-//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-//    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-}
--(void)movieFinish:(NSNotification *)noti{
-    playView.hidden = YES;
-    [VideoPlayerManager shareKnowInstance].view.hidden = YES;
-}
--(void)movieChagen:(NSNotification *)noti{
-    NSLog(@"===%zd",[VideoPlayerManager shareKnowInstance].playbackState);
-    /*
-     //播放状态
-     MPMoviePlaybackStateStopped,
-     MPMoviePlaybackStatePlaying,
-     MPMoviePlaybackStatePaused,
-     MPMoviePlaybackStateInterrupted,
-     MPMoviePlaybackStateSeekingForward,
-     MPMoviePlaybackStateSeekingBackward
-     */
-    if ([VideoPlayerManager shareKnowInstance].playbackState==MPMoviePlaybackStatePlaying) {
-    }
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -270,6 +226,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIViewControllerRotation
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
 
 
 @end

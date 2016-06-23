@@ -158,7 +158,7 @@
     if (_videoCollectionview == nil) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 68, kScreenWidth, kScreenHeight-44) collectionViewLayout:flowLayout];
+        _videoCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 68, kScreenWidth, kScreenHeight-68) collectionViewLayout:flowLayout];
         _videoCollectionview.delegate = self;
         _videoCollectionview.dataSource = self;
         _videoCollectionview.scrollEnabled = YES;
@@ -167,6 +167,7 @@
         
         [self.view addSubview:_videoCollectionview];
     }
+    _videoCollectionview.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
 }
 #pragma mark -- UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -200,28 +201,19 @@
     return UIEdgeInsetsMake(4,4,4,4);
 }
 
--(void)requestSingleVideoInfoWith:(NSString *)videoStr{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@",kvideoSinglePath,videoStr] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        [self dealWithSingleVideoData:jsonDict];
-    } failure:^(CommonRequest *request, NSError *error) {
-        
-    }];
-}
--(void)dealWithSingleVideoData:(id )dic{
-    //kQiNiuHeaderPath ,VideoSingleInfoModel
-    
-    
-}
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     VideoLearningUnitModel *model = _dataArr[indexPath.row];
-    NSString *videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
-    
-    [self requestSingleVideoInfoWith:videoId];
+    NSMutableArray *videoIdsArr = [NSMutableArray array];
+    for (VideoLearningUnitModel *mod in _dataArr) {
+        NSString *str = [NSString stringWithFormat:@"%@",mod.videos[0][@"id"]];
+        [videoIdsArr addObject:str];
+    }
     
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
-//    LearningPlayVC.model = self.dataArray[indexPath.row];
+    LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
+    LearningPlayVC.videoIdsArr = [NSArray arrayWithArray:videoIdsArr];
     [self.navigationController pushViewController:LearningPlayVC animated:YES];
     
     //初始化播放器
@@ -253,7 +245,6 @@
     playView.hidden = YES;
     [VideoPlayerManager shareKnowInstance].view.hidden = YES;
 }
-
 -(void)movieChagen:(NSNotification *)noti{
     NSLog(@"===%zd",[VideoPlayerManager shareKnowInstance].playbackState);
     /*
@@ -266,9 +257,9 @@
      MPMoviePlaybackStateSeekingBackward
      */
     if ([VideoPlayerManager shareKnowInstance].playbackState==MPMoviePlaybackStatePlaying) {
-        
     }
 }
+
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

@@ -42,4 +42,7 @@
 
 #define kQiNiuHeaderPathPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
 
+//pad及iphone屏幕特殊处理(6p为基准)
+#define kScreenRatioBase6Plus           (DEVICE_IS_IPAD?1.0:([[UIScreen mainScreen] bounds].size.width / 540.0))
+
 #endif

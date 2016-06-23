@@ -27,6 +27,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate
+{
+    return self.centerV.navigationController.shouldAutorotate;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return self.centerV.navigationController.supportedInterfaceOrientations;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return [self.centerV.navigationController preferredInterfaceOrientationForPresentation];
+}
+
 /*
 #pragma mark - Navigation
 

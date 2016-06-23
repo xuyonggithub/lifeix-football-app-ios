@@ -103,6 +103,8 @@
         [self addChildViewController:self.mediaPlayerViewController];
         [[UIApplication sharedApplication] setStatusBarHidden:self.mediaPlayerViewController.mediaPlayerControlBar.hidden withAnimation:NO];
     }
+    [_mediaPlayerViewController initialShowFullScreen];
+
 }
 
 - (void)toPlayWithAJMediaPlayerItem

@@ -10,4 +10,6 @@
 
 @interface WomanPlayerDetailVC : BaseVC
 
+@property(nonatomic, copy)NSString *playerId;
+
 @end

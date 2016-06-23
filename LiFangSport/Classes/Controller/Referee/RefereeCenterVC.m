@@ -95,6 +95,7 @@
         _refereeView.backgroundColor = kwhiteColor;
         _refereeView.showsVerticalScrollIndicator = NO;
         [_refereeView registerClass:[RefereeCell class] forCellReuseIdentifier:kReuseId];
+        _refereeView.allowsSelection = NO;
         [self.view addSubview:_refereeView];
     }
 }
@@ -124,7 +125,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
+    return 190;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -155,5 +156,7 @@
     
     return headerView;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 @end

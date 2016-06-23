@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CenterViewController : UIViewController
+@interface CenterViewController : BaseVC
 @property(nonatomic,assign)BOOL hideLeftNaviBtnGesture;
 @property(nonatomic,assign)BOOL hideRightNaviBtnGesture;
 

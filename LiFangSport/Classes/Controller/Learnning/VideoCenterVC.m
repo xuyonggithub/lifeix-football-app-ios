@@ -13,6 +13,8 @@
 #import "VideoListModel.h"
 #import "VideoLearningDetModel.h"
 #import "LearningInfoVC.h"
+#import "LearningInfoCenterVC.h"
+#import "LearningInfoRightVC.h"
 
 @interface VideoCenterVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *centerTableview;
@@ -81,7 +83,11 @@
         dVC.title = model.name;
         [self.navigationController pushViewController:dVC animated:YES];
     }else if(model.type == 2){
-        LearningInfoVC *IVC = [[LearningInfoVC alloc]init];
+//        LearningInfoVC *IVC = [[LearningInfoVC alloc]init];
+        LearningInfoCenterVC *centerVC = [[LearningInfoCenterVC alloc]init];
+        LearningInfoRightVC *rightVC = [[LearningInfoRightVC alloc]init];
+
+        LearningInfoVC *IVC = [[LearningInfoVC alloc]initWithCenterVC:centerVC rightVC:rightVC leftVC:nil];
         [self.navigationController pushViewController:IVC animated:YES];
     }
     
@@ -90,6 +96,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIViewControllerRotation
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 @end

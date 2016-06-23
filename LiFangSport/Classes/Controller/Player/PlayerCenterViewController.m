@@ -11,6 +11,7 @@
 #import "CategoryView.h"
 #import "PlayerModel.h"
 #import "PlayerCell.h"
+#import "PlayerDetailVC.h"
 
 #define kReuseId  @"collectionCell"
 
@@ -167,8 +168,13 @@
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    PlayerModel *player = [self.selectedDataArr objectAtIndex:indexPath.item];
+    PlayerDetailVC *playerDetVC = [[PlayerDetailVC alloc] init];
+    playerDetVC.playerId = player.playerId;
+    playerDetVC.playerName = player.name;
+    [self.navigationController pushViewController:playerDetVC animated:YES];
 }
+
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

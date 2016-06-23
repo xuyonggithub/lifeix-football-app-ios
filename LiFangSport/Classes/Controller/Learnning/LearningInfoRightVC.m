@@ -1,27 +1,23 @@
+//
+//  LearningInfoRightVC.m
 //  LiFangSport
 //
-//  Created by 张毅 on 16/6/12.
+//  Created by 张毅 on 16/6/23.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "LeftViewController.h"
+#import "LearningInfoRightVC.h"
 
-@interface LeftViewController ()
-
-@property (nonatomic, strong) UIImageView *imageView;
+@interface LearningInfoRightVC ()
 
 @end
 
-@implementation LeftViewController
-
+@implementation LearningInfoRightVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
-    self.view.alpha = 1;
-    self.view.backgroundColor = [UIColor greenColor];    
+    // Do any additional setup after loading the view.
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

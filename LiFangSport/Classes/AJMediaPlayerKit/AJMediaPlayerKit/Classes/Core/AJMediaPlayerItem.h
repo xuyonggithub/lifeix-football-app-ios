@@ -14,7 +14,6 @@
 typedef NS_ENUM(NSUInteger, AJMediaPlayerItemType) {
     AJMediaPlayerVODStreamItem = 1001,  //点播
     AJMediaPlayerLiveStreamItem,        //直播
-    AJMediaPlayerStationStreamItem,     //轮播台
 };
 
 NS_ASSUME_NONNULL_BEGIN

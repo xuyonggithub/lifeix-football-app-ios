@@ -11,38 +11,30 @@
 
 @implementation AJMediaPlayRequest
 
-- (instancetype)initWithIdentifier:(NSString *)identifier type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid duration:(NSString *)duration episodeid:(NSString *)episodeid channelEname:(NSString *)channelEname {
+- (instancetype)initWithVideoPath:(NSString *)videoPath type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid duration:(NSString *)duration
+{
     self = [super init];
     if (self) {
         self.resourceName = name;
         self.type = type;
-        self.identifier = identifier;
+        self.videoPath = videoPath;
         self.uid = uid;
         self.duration = duration;
-        self.episodeid = episodeid;
-        self.channelEname = channelEname;
     }
     return self;
 }
 
-+ (instancetype)playRequestWithIdentifier:(NSString *)identifier type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid {
-    return [[[self class] alloc] initWithIdentifier:identifier type:type name:name uid:uid duration:@"" episodeid:@"" channelEname:@""];
++ (instancetype)playRequestWithVideoPath:(NSString *)videoPath type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid {
+    return [[[self class] alloc] initWithVideoPath:videoPath type:type name:name uid:uid duration:@""];
 }
 
-+ (instancetype)playRequestWithIdentifier:(NSString *)identifier type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid episodeid:(NSString *)episodeid {
-    return [[[self class] alloc] initWithIdentifier:identifier type:type name:name uid:uid duration:@"" episodeid:episodeid channelEname:@""];
-}
-
-+ (instancetype)playRequestWithIdentifier:(NSString *)identifier type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid duration:(NSString *)duration {
-    return [[[self class] alloc] initWithIdentifier:identifier type:type name:name uid:uid duration:duration episodeid:@"" channelEname:@""];
-}
-
-+ (instancetype)playRequestWithIdentifier:(NSString *)identifier type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid channelEname:(NSString *)channelEname {
-    return [[[self class] alloc] initWithIdentifier:identifier type:type name:name uid:uid duration:@"" episodeid:@"" channelEname:channelEname];
++ (instancetype)playRequestWithVideoPath:(NSString *)videoPath type:(AJMediaPlayerItemType)type name:(NSString *)name uid:(NSString *)uid duration:(NSString *)duration
+{
+    return [[[self class] alloc] initWithVideoPath:videoPath type:type name:name uid:uid duration:duration];
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"PlayRequest: \"%@\" <%@:%@>", self.resourceName, aj_stringValueForPlayerItemType(self.type),self.identifier];
+    return [NSString stringWithFormat:@"PlayRequest: \"%@\" <%@:%@>", self.resourceName, aj_stringValueForPlayerItemType(self.type),self.videoPath];
 }
 
 @end

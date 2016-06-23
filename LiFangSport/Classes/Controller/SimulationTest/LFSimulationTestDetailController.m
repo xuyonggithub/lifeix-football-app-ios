@@ -111,7 +111,9 @@
 - (void)toPlayWithAJMediaPlayerItem
 {
     self.currentQuestionModel = self.questionArray[_currentPlayVideoIndex];
-    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithIdentifier:[NSString stringWithFormat:@"%@%@/LD", kQiNiuHeaderPath, self.currentQuestionModel.videoPath] type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
+    //[NSString stringWithFormat:@"%@%@/LD", kQiNiuHeaderPath, self.currentQuestionModel.videoPath]
+    
+    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:@"test" uid:@"uid"];
     [self.mediaPlayerViewController startToPlay:playRequest];
 }
 

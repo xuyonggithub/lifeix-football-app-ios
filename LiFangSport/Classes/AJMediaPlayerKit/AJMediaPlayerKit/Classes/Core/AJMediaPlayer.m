@@ -361,8 +361,6 @@ static dispatch_queue_t mediaplayer_processing_queue() {
                 [basicUrl appendString:[NSString stringWithFormat:@"&vid=%@",schedulingMetadata.streamID]];
             } else if (schedulingMetadata.type == AJMediaPlayerLiveStreamItem) {
                 [basicUrl appendString:[NSString stringWithFormat:@"&liveid=%@",schedulingMetadata.streamID]];
-            } else if (schedulingMetadata.type == AJMediaPlayerStationStreamItem) {
-                [basicUrl appendString:[NSString stringWithFormat:@"&station=%@",schedulingMetadata.assignedStreamName]];
             }
             if (_currentUUID) {
                 [basicUrl appendString:[NSString stringWithFormat:@"&uuid=%@_%@",_currentUUID, @(_changeStreamCount)]];
@@ -376,9 +374,7 @@ static dispatch_queue_t mediaplayer_processing_queue() {
                 [basicUrl appendString:[NSString stringWithFormat:@"&vid=%@",schedulingMetadata.streamID]];
             } else if (schedulingMetadata.type == AJMediaPlayerLiveStreamItem) {
                 [basicUrl appendString:[NSString stringWithFormat:@"&liveid=%@",schedulingMetadata.streamID]];
-            } else if (schedulingMetadata.type == AJMediaPlayerStationStreamItem) {
-                [basicUrl appendString:[NSString stringWithFormat:@"&station=%@",schedulingMetadata.assignedStreamName]];
-            }
+            } 
             if ([[AJMediaPlayerSDKAnalyticsReporter sharedReporter] getPlayId]) {
                 NSString *uuid = [[AJMediaPlayerSDKAnalyticsReporter sharedReporter] getPlayId];
                 [basicUrl appendString:[NSString stringWithFormat:@"&uuid=%@",uuid]];

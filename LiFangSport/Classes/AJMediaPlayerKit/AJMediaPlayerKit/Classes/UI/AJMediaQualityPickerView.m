@@ -51,7 +51,7 @@
         self.aboveSeperator.hidden = !(indexPath.row == 0);
         self.qualityNameLabel.text = [AJMediaPlayerUtilities humanReadableTitleWithQualityName:item.qualityName];
         NSString *currentStreamType = nil;
-        if (item.type == AJMediaPlayerLiveStreamItem || item.type == AJMediaPlayerStationStreamItem ) {
+        if (item.type == AJMediaPlayerLiveStreamItem) {
             currentStreamType = aj_getCurrentUserStreamItem(YES);
         } else {
             currentStreamType = aj_getCurrentUserStreamItem(NO);
@@ -149,13 +149,13 @@
     if (indexPath.section == 1) {
         AJMediaPlayerItem *item = (AJMediaPlayerItem *)(self.qualifiedItems)[indexPath.row];
         NSString *currentStreamType = nil;
-        if (item.type == AJMediaPlayerLiveStreamItem || item.type == AJMediaPlayerStationStreamItem) {
+        if (item.type == AJMediaPlayerLiveStreamItem) {
             currentStreamType = aj_getCurrentUserStreamItem(YES);
         } else {
             currentStreamType = aj_getCurrentUserStreamItem(NO);
         }
         if (![currentStreamType isEqualToString:item.qualityName]) {
-            if (item.type == AJMediaPlayerLiveStreamItem || item.type == AJMediaPlayerStationStreamItem) {
+            if (item.type == AJMediaPlayerLiveStreamItem) {
                 aj_setCurrentUserStreamItem(item.qualityName,YES);
             } else {
                 aj_setCurrentUserStreamItem(item.qualityName, NO);

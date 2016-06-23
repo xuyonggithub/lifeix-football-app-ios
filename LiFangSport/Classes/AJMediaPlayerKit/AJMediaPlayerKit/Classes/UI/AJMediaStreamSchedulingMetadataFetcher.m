@@ -56,8 +56,6 @@ NSString * const AJMediaStreamSchedulingMetadataFetchErrorDomain = @"com.lesport
         case AJMediaPlayerVODStreamItem:
             return [AJMediaVODStreamMetadataParser parser];
             break;
-        case AJMediaPlayerStationStreamItem:
-            return [AJMediaStationStreamMetadataParser parser];
         default:
             return nil;
             break;
@@ -135,11 +133,6 @@ NSString * const AJMediaStreamSchedulingMetadataFetchErrorDomain = @"com.lesport
             queries[@"tss"] = [[AJMediaPlayerInfrastructureContext settings] streamFormat] == AJMediaStreamFormatM3u8 ? @"m3u8" : @"mp4";
             queries[@"vid"] = videoID;
             break;
-        case AJMediaPlayerStationStreamItem:
-            requestURL = [baseURL stringByAppendingString:kMetadataStationVideoRouter];;
-            queries[@"clientId"] = [[AJMediaPlayerInfrastructureContext settings] liveBackendSubplatID];
-            queries[@"channelId"] = videoID;
-            break;
         default:
             break;
     }
@@ -177,9 +170,6 @@ NSString * const AJMediaStreamSchedulingMetadataFetchErrorDomain = @"com.lesport
                 break;
             case AJMediaPlayerVODStreamItem:
                 identifier = @"视频点播接口";
-                break;
-            case AJMediaPlayerStationStreamItem:
-                identifier = @"轮播台接口";
                 break;
             default:
                 break;

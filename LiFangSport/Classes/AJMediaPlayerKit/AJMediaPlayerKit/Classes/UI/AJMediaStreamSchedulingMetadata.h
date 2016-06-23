@@ -37,8 +37,5 @@
 +(instancetype)parser;
 @end
 
-@interface AJMediaStationStreamMetadataParser : NSObject <AJMediaStreamSchedulingMetadataParser>
-+(instancetype)parser;
-@end
 
 

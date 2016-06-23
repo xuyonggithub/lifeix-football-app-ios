@@ -31,9 +31,6 @@ NSString *aj_stringValueForPlayerItemType(AJMediaPlayerItemType type) {
         case AJMediaPlayerLiveStreamItem:
             return @"LIVE";
             break;
-        case AJMediaPlayerStationStreamItem:
-            return @"STATION";
-            break;
         default:
             return @"N/A";
             break;

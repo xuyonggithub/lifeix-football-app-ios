@@ -1265,8 +1265,8 @@
     if (playRequest) {
         self.playRequest = playRequest;
         if (self.episodePickerView && !self.episodePickerView.hidden) {
-            if (_playRequest.identifier) {
-                self.episodePickerView.streamID = _playRequest.identifier;
+            if (_playRequest.videoPath) {
+                self.episodePickerView.streamID = _playRequest.videoPath;
             }
             [self.episodePickerView.tableView reloadData];
         }
@@ -1349,11 +1349,9 @@
                 [AJMediaPlayerAnalyticsEventReporter submitLoadToVodPlayEvent:_playRequest];
             } else if (_playRequest.type == AJMediaPlayerLiveStreamItem) {
                 [AJMediaPlayerAnalyticsEventReporter submitLoadToLivePlayEvent:_playRequest];
-            } else if (_playRequest.type == AJMediaPlayerStationStreamItem) {
-                [AJMediaPlayerAnalyticsEventReporter submitLoadToStationPlayEvent:_playRequest];
             }
             [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-            if (_playRequest.type == AJMediaPlayerLiveStreamItem || _playRequest.type == AJMediaPlayerStationStreamItem) {
+            if (_playRequest.type == AJMediaPlayerLiveStreamItem) {
                 _mediaPlayerControlBar.isLiveModel = YES;
                 [_mediaPlayerControlBar setNeedsUpdateConstraints];
                 [_mediaPlayerControlBar updateConstraintsIfNeeded];
@@ -1362,7 +1360,7 @@
                 [_mediaPlayerControlBar setNeedsUpdateConstraints];
                 [_mediaPlayerControlBar updateConstraintsIfNeeded];
             }
-            if (nil == _playRequest.identifier || _playRequest.identifier.length <= 0) {
+            if (nil == _playRequest.videoPath || _playRequest.videoPath.length <= 0) {
                 [self handleWithErrorState:AJMediaPlayerPlayableResourceIDNotProvidedError errorInfo:nil];
                 [AJMediaPlayerAnalyticsEventReporter submitRequestUrlErrorEvent:@"resourceIDNotProvider" withErrorCode:[NSString stringWithFormat:@"%@",@(AJMediaPlayerPlayableResourceIDNotProvidedError)]];
                 return;
@@ -1466,7 +1464,7 @@
     metadataItem.qualityName = @"高清";
     metadataItem.isPlayable = YES;
     metadataItem.type = AJMediaPlayerVODStreamItem;
-    metadataItem.preferredSchedulingStreamURL = playRequest.identifier;
+    metadataItem.preferredSchedulingStreamURL = [NSString stringWithFormat:@"http://o8rg11ywr.bkt.clouddn.com/%@/LD", playRequest.videoPath];
     //    if (metadataItem.schedulingStreamURLs.count > 0) {
     //        metadataItem.preferredSchedulingStreamURL = metadataItem.schedulingStreamURLs[0];
     //    }
@@ -1562,7 +1560,7 @@
     NSArray *itemArray = [metadata availableQualifiedStreamItems];
     if (itemArray && itemArray.count > 0) {
         NSString *streamType = nil;
-        if (metadata.type == AJMediaPlayerLiveStreamItem || metadata.type == AJMediaPlayerStationStreamItem) {
+        if (metadata.type == AJMediaPlayerLiveStreamItem) {
             streamType = aj_getCurrentUserStreamItem(YES);
         }
         if (metadata.type == AJMediaPlayerVODStreamItem) {
@@ -1577,7 +1575,7 @@
         }
         if (!currentPlayItem) {
             for (AJMediaPlayerItem *item  in itemArray) {
-                if (metadata.type == AJMediaPlayerLiveStreamItem || metadata.type == AJMediaPlayerStationStreamItem) {
+                if (metadata.type == AJMediaPlayerLiveStreamItem) {
                     if ([item.qualityName isEqualToString:kAJMediaStreamLiveQualityFLV1000]) {
                         currentPlayItem = item;
                         break;
@@ -1614,7 +1612,7 @@
             [_mediaPlayerControlBar updateConstraintsIfNeeded];
         }
         for (AJMediaPlayerItem  *item in streamArray) {
-            NSString *streamItem = aj_getCurrentUserStreamItem(currentItem.type == AJMediaPlayerLiveStreamItem || currentItem.type == AJMediaPlayerStationStreamItem);
+            NSString *streamItem = aj_getCurrentUserStreamItem(currentItem.type == AJMediaPlayerLiveStreamItem);
             if ([streamItem isEqualToString:item.qualityName]) {
                 NSString *streamName = nil;
                 streamName = [AJMediaPlayerUtilities humanReadableTitleWithQualityName:streamItem];
@@ -1944,8 +1942,8 @@
         [self.view addSubview:_episodePickerView];
     }
     self.episodePickerView.frame = CGRectMake(self.view.frame.size.width, 0, episodePickerViewWidth, self.view.frame.size.height);
-    if (_playRequest.identifier) {
-        self.episodePickerView.streamID = _playRequest.identifier;
+    if (_playRequest.videoPath) {
+        self.episodePickerView.streamID = _playRequest.videoPath;
     }
     [self.view bringSubviewToFront:_episodePickerView];
     [self.episodePickerView setEpisodeItems:_playRequestSet];
@@ -2626,8 +2624,6 @@
     if (!_wwanWarningView) {
         if (_currentStreamItem.type == AJMediaPlayerLiveStreamItem) {
             [self.mediaPlayerControlBar updateTimeShiftTime:IntervalTime];
-        } else if (_currentStreamItem.type == AJMediaPlayerStationStreamItem) {
-            self.mediaPlayerControlBar.playOrPauseButton.enabled = YES;
         }
     }
 }
@@ -2906,8 +2902,6 @@
         } else {
             [self startToPlay:playRequest];
         }
-    } else if (playRequest.type == AJMediaPlayerStationStreamItem) {
-        [self startToPlay:playRequest];
     } else if (playRequest.type == AJMediaPlayerVODStreamItem) {
         NSTimeInterval duration = [self currentPlaybackTime];
         [self startToPlay:playRequest fromDuration:duration];

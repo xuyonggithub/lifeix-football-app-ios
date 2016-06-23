@@ -37,10 +37,7 @@
         details.episodeid = metadata.episodeid;
     } else if (metadata.type == AJMediaPlayerVODStreamItem) {
         details.vid = metadata.streamID;
-    } else if (metadata.type == AJMediaPlayerStationStreamItem) {
-        details.st = metadata.channelEname;
     }
-    
     NSString *uuid  = [NSString stringWithFormat:@"%@_%@",self.currentUUID, @(self.changeStreamCount)];
     details.uuid = uuid;
 
@@ -51,8 +48,6 @@
     
     if (metadata.type == AJMediaPlayerLiveStreamItem) {
         details.ty = 1;
-    } else if (metadata.type == AJMediaPlayerStationStreamItem) {
-        details.ty = 2;
     } else {
         details.ty = 0;
     }
@@ -91,7 +86,7 @@
     
     details.ver = @"3.0";
     
-    if (metadata.type == AJMediaPlayerLiveStreamItem || metadata.type == AJMediaPlayerStationStreamItem) {
+    if (metadata.type == AJMediaPlayerLiveStreamItem) {
         details.vlen = 6000;
     } else{
         double duration = [self currentItemDuration];

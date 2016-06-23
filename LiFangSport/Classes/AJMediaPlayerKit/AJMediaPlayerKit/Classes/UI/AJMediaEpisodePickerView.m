@@ -100,7 +100,7 @@
     if (item && [item isKindOfClass:[AJMediaPlayRequest class]]) {
         AJMediaPlayRequest *playRequest = (AJMediaPlayRequest *)item;
         self.videoNameLabel.text = playRequest.resourceName;
-        if ([streamID isEqualToString:playRequest.identifier]) {
+        if ([streamID isEqualToString:playRequest.videoPath]) {
             self.videoNameLabel.textColor = [UIColor colorWithHTMLColorMark:@"29c4c6"];
         } else {
             self.videoNameLabel.textColor = [UIColor whiteColor];
@@ -176,7 +176,7 @@
         [self.episodeItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             if ([obj isKindOfClass:[AJMediaPlayRequest class]]) {
                 AJMediaPlayRequest *playRequest = obj;
-                if ([weakSelf.streamID isEqualToString:playRequest.identifier]) {
+                if ([weakSelf.streamID isEqualToString:playRequest.videoPath]) {
                     indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
                     *stop = YES;
                 }
@@ -193,7 +193,7 @@
                     [tmpArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                         if ([obj isKindOfClass:[AJMediaPlayRequest class]]) {
                             AJMediaPlayRequest *playRequest = obj;
-                            if ([weakSelf.streamID isEqualToString:playRequest.identifier]) {
+                            if ([weakSelf.streamID isEqualToString:playRequest.videoPath]) {
                                 indexPath = [NSIndexPath indexPathForRow:idx inSection:section];
                                 *stop = YES;
                             }
@@ -283,10 +283,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.episodeItems isKindOfClass:[NSArray class]]) {
         AJMediaPlayRequest *playRequest = (AJMediaPlayRequest *)(self.episodeItems)[indexPath.row];
-        if (self.streamID && [self.streamID isEqualToString:playRequest.identifier]) {
+        if (self.streamID && [self.streamID isEqualToString:playRequest.videoPath]) {
             return;
         }
-        self.streamID = playRequest.identifier;
+        self.streamID = playRequest.videoPath;
         [self.tableView reloadData];
         if (self.delegate && [self.delegate respondsToSelector:@selector(episodePickerView:didSelectWithPlayRequest:)]) {
             [self.delegate episodePickerView:self didSelectWithPlayRequest:playRequest];
@@ -296,10 +296,10 @@
         if ([[self.episodeItems valueForKey:key] isKindOfClass:[NSArray class]]) {
             NSArray *tmpArray = [self.episodeItems valueForKey:key];
             AJMediaPlayRequest *playRequest = (AJMediaPlayRequest *)(tmpArray)[indexPath.row];
-            if (self.streamID && [self.streamID isEqualToString:playRequest.identifier]) {
+            if (self.streamID && [self.streamID isEqualToString:playRequest.videoPath]) {
                 return;
             }
-            self.streamID = playRequest.identifier;
+            self.streamID = playRequest.videoPath;
             [self.tableView reloadData];
             if (self.delegate && [self.delegate respondsToSelector:@selector(episodePickerView:didSelectWithPlayRequest:)]) {
                 [self.delegate episodePickerView:self didSelectWithPlayRequest:playRequest];

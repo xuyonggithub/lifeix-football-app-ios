@@ -20,9 +20,6 @@
     } else if (metadata.type == AJMediaPlayerVODStreamItem) {
         details.video_id = metadata.streamID;
         details.type = @"video";
-    } else if (metadata.type == AJMediaPlayerStationStreamItem) {
-        details.station_id = metadata.channelEname;
-        details.type = @"station";
     }
     details.progress = [NSString stringWithFormat:@"%f",[self currentPlaybackTime]];
     details.stream = metadata.qualityName;

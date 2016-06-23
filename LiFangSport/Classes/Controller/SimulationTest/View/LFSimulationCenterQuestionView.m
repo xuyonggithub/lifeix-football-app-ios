@@ -121,6 +121,7 @@
 - (void)refreshWithModel:(LFSimulationQuestionModel *)model andIsEnd:(BOOL)isEnd
 {
     _leftSelectedIndex = _rightSelectedIndex = -1;
+    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = YES;
     self.questionModel = model;
     [self.leftTableView reloadData];
     [self.rightTableView reloadData];
@@ -149,6 +150,7 @@
 
 - (void)judgementAnswer
 {
+    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = NO;
     _nextBtn.enabled = YES;
     if (_leftSelectedIndex == self.questionModel.leftAnswerIndex && _rightSelectedIndex == self.questionModel.rightAnswerIndex) {
         _trueCnt++;

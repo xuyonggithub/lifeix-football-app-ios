@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSArray *questionArray;
 @property (nonatomic, strong) LFSimulationQuestionModel *currentQuestionModel;
 
+@property (nonatomic, copy) NSString *modeString;
+
 @end
 
 @implementation LFSimulationTestDetailController
@@ -106,7 +108,7 @@
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
         self.currentQuestionModel = self.questionArray[_currentQuestionIndex];
         [self.questionView refreshWithModel:self.currentQuestionModel andIsEnd:_currentQuestionIndex + 1 == self.questionArray.count];
-        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:self.categoryModel.name uid:@"uid"];
+        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:[self.categoryModel.name stringByAppendingString:self.modeString ? self.modeString : @""] uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
     }
 }
@@ -123,11 +125,14 @@
 }
 
 #pragma mark - LFSimulationCenterPromptViewDelegate
-- (void)promptViewStartTesting:(NSInteger)index
+- (void)promptViewStartTesting:(NSInteger)modeIndex
 {
     _currentQuestionIndex = 0;
     __weak typeof(self) weakSelf = self;
-    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.categoryModel.subArray.count == 0 ? self.categoryModel.categoryId : [self.categoryModel.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    if (self.categoryModel.subArray.count > 0) {
+        self.modeString = [NSString stringWithFormat:@"--%@", [self.categoryModel.subArray[modeIndex] name]];
+    }
+    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.categoryModel.subArray.count == 0 ? self.categoryModel.categoryId : [self.categoryModel.subArray[modeIndex] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         weakSelf.questionArray = [LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict];
         [weakSelf toPlayWithAJMediaPlayerItem];
     } failure:^(CommonRequest *request, NSError *error) {

@@ -10,6 +10,7 @@
 #import "AJMediaPlayerKit.h"
 #import "CommonRequest.h"
 #import "VideoSingleInfoModel.h"
+#import "LearningPlayControlView.h"
 
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *constraintList;
 @property (nonatomic, strong) AJMediaPlayRequest *playRequest;
 @property (nonatomic, strong) NSMutableArray *videoInfoArr;
+@property(nonatomic,strong)LearningPlayControlView *ctrView;
 
 @end
 
@@ -31,20 +33,33 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
--(void)viewWillDisappear:(BOOL)animated{
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
--(void)viewDidDisappear:(BOOL)animated{
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     _videoInfoArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self showFullScreen];
-    
+    DefineWeak(self);
+    //  播放器界面
+    [self.view addSubview:self.mediaPlayerViewController.view];
+    [self.mediaPlayerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(Weak(self).view);
+    }];
+    [self addChildViewController:self.mediaPlayerViewController];
+    [_mediaPlayerViewController initialShowFullScreen];//全屏
+
     _currentPlayVideoIndex = [_videoIdsArr indexOfObject:_videoId];;
     [self requestSingleVideoInfoWith:_videoId];
+    //操控
+    [self.view addSubview:self.ctrView];
 }
 
 -(void)requestSingleVideoInfoWith:(NSString *)videoStr{
@@ -58,7 +73,6 @@
 -(void)dealWithSingleVideoData:(id )dic{
     [_videoInfoArr removeAllObjects];
     _videoInfoArr = (NSMutableArray *)[VideoSingleInfoModel modelDealDataFromWithDic:dic];
-    [self initPlayer];
     [self toPlayWithAJMediaPlayerItem];
 }
 
@@ -88,31 +102,17 @@
         [invocation invoke];
     }
 }
-#pragma mark - initPlayer
-- (void)initPlayer
-{
-    if (!_mediaPlayerViewController) {
-        self.mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
-        self.mediaPlayerViewController.needsBackButtonInPortrait = YES;
-        self.disPlayView = self.mediaPlayerViewController.view;
-        self.disPlayView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.view addSubview:self.disPlayView];
-        [self.disPlayView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        [self addChildViewController:self.mediaPlayerViewController];
-        [[UIApplication sharedApplication] setStatusBarHidden:self.mediaPlayerViewController.mediaPlayerControlBar.hidden withAnimation:NO];
-    }
-    [_mediaPlayerViewController initialShowFullScreen];
-
-}
 
 - (void)toPlayWithAJMediaPlayerItem
 {
     VideoSingleInfoModel *currentModel = _videoInfoArr[0];
-    AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:currentModel.videoPath type:AJMediaPlayerVODStreamItem name:@"培训视频" uid:@"uid"];
+    if (_currentPlayVideoIndex < _videoIdsArr.count) {
+        [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
+        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:currentModel.videoPath type:AJMediaPlayerVODStreamItem name:@"培训视频" uid:@"uid"];
+        [self.mediaPlayerViewController startToPlay:playRequest];
+    }
+    [self.view bringSubviewToFront:self.ctrView];
 
-    [self.mediaPlayerViewController startToPlay:playRequest];
 }
 
 #pragma mark - AJMediaViewControllerDelegate
@@ -140,6 +140,25 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
     return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+}
+
+#pragma mark - Setter and Getter
+- (AJMediaPlayerViewController *)mediaPlayerViewController
+{
+    if (!_mediaPlayerViewController) {
+        _mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
+        _mediaPlayerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _mediaPlayerViewController;
+}
+
+- (LearningPlayControlView *)ctrView
+{
+    if (!_ctrView) {
+        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+        _ctrView.backgroundColor = kwhiteColor;
+    }
+    return _ctrView;
 }
 
 -(void)dealloc{

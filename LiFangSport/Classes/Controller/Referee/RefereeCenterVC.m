@@ -12,17 +12,17 @@
 #import "RefereeModel.h"
 #import "RefereeCell.h"
 
-#define kReuseId  @"collectionCell"
+#define kReuseId  @"tableViewCell"
 #define kHeaderReuseId  @"Header"
 #define kRefereePath  @"games/referees?level=s"
-@interface RefereeCenterVC()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface RefereeCenterVC()<UITableViewDelegate, UITableViewDataSource>
 //@property(nonatomic, retain)NSMutableDictionary *dataDic;
 @property(nonatomic, retain)NSMutableArray *topNameArr; // 裁判员 五人制 沙滩足球
 @property(nonatomic, retain)NSMutableArray *categoryNameArr; // [[男足裁判，男足助理],[array2], ...]
 @property(nonatomic, retain)NSMutableArray *refereeArr; //三个分类下的球员数组
 @property(nonatomic, retain)NSMutableArray *selectedDataArr;
 @property(nonatomic, retain)NSMutableArray *selectedTitleArr;
-@property(nonatomic, retain)UICollectionView *refereeView;
+@property(nonatomic, retain)UITableView *refereeView;
 @property(nonatomic, retain)CategoryView *CategoryView;
 @property(nonatomic, assign)NSInteger selectedIndex;
 
@@ -89,14 +89,12 @@
     [self.view addSubview:_CategoryView];
     _CategoryView.backgroundColor = kwhiteColor;
     if(_refereeView == nil){
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        _refereeView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114) collectionViewLayout:flowLayout];
+        _refereeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114) style:UITableViewStylePlain];
         _refereeView.delegate = self;
         _refereeView.dataSource = self;
         _refereeView.backgroundColor = kwhiteColor;
         _refereeView.showsVerticalScrollIndicator = NO;
-        [_refereeView registerClass:[RefereeCell class] forCellWithReuseIdentifier:kReuseId];
-        [_refereeView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderReuseId];
+        [_refereeView registerClass:[RefereeCell class] forCellReuseIdentifier:kReuseId];
         [self.view addSubview:_refereeView];
     }
 }
@@ -110,80 +108,52 @@
     [self.selectedTitleArr addObjectsFromArray:[self.categoryNameArr objectAtIndex:tag]];
     //获取对应分区下列表
     [_selectedDataArr addObjectsFromArray:ceteArr];
-//    for(NSArray *secRefereeArr in [refereeDic objectForKey:[self.sectionArr[i]]]){
-//        NSMutableArray *sectionRefereeArr = [NSMutableArray array];
-//        for(NSDictionary *dic in secRefereeArr){
-//            RefereeModel *referee = [[RefereeModel alloc] initWithDictionary:dic error:nil];
-//            [sectionRefereeArr addObject:referee];
-//        }
-//        [_dataArr addObject:sectionRefereeArr];
-//    }
+
     [self.refereeView reloadData];
 }
 
-#pragma mark -- UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
-{
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return _selectedDataArr.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *arr = [_selectedDataArr objectAtIndex:section];
     return arr.count;
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return _selectedDataArr.count;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 200;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr = [_selectedDataArr objectAtIndex:indexPath.section];
-    RefereeModel *referee = [arr objectAtIndex:indexPath.item];
-    RefereeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseId forIndexPath:indexPath];
-    //    [cell displayCell:player];
-    cell.backgroundColor = kBlackColor;
+    RefereeModel *referee = [arr objectAtIndex:indexPath.row];
+    
+    RefereeCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
+    if(!cell){
+        cell = [[RefereeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kReuseId];
+    }
+    [cell displayCell:referee];
     return cell;
 }
-
 // 区头标题
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderReuseId forIndexPath:indexPath];
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 44;
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     headerView.backgroundColor = HEXRGBCOLOR(0xf0f0f0);
     UILabel *sectionLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
     sectionLabel.backgroundColor = HEXRGBCOLOR(0xf0f0f0);
     sectionLabel.tintColor = HEXRGBCOLOR(0x666666);
     sectionLabel.font = kBasicSmallTitleFont;
     sectionLabel.textAlignment = NSTextAlignmentCenter;
-    sectionLabel.text = self.selectedTitleArr[indexPath.section];
+    sectionLabel.text = self.selectedTitleArr[section];
     [headerView addSubview:sectionLabel];
     
     return headerView;
 }
-
-#pragma mark --UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(90,120);
-}
-
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(4,4,4,4);
-}
-
-// 区头高度
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(SCREEN_WIDTH, 44);
-}
-
-#pragma mark --UICollectionViewDelegate
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
--(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
 
 @end

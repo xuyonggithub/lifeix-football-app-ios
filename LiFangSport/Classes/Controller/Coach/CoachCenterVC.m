@@ -133,7 +133,12 @@
     NSArray *arr = [_selectedDataArr objectAtIndex:indexPath.section];
     CoachModel *coach = [arr objectAtIndex:indexPath.item];
     CoachCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseId forIndexPath:indexPath];
-    //    [cell displayCell:player];
+    if(coach.awatar != nil){
+        [cell.bgImgView sd_setImageWithURL:coach.awatar placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
+    }else{
+        cell.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];;
+    }
+    cell.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", coach.position, coach.name];
     cell.backgroundColor = kBlackColor;
     return cell;
 }

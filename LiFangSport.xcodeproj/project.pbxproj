@@ -35,6 +35,7 @@
 		2D07D9FB1D1B9D0C007F73F1 /* LearningInfoRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */; };
 		2D07D9FE1D1BB75E007F73F1 /* LearningPlayControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9FD1D1BB75E007F73F1 /* LearningPlayControlView.m */; };
 		2D07DA021D1BD581007F73F1 /* PopViewKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07DA011D1BD581007F73F1 /* PopViewKit.m */; };
+		2D07DA051D1BDC17007F73F1 /* LearningPlayPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07DA041D1BDC17007F73F1 /* LearningPlayPopView.m */; };
 		2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */; };
 		2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */; };
 		2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80E1D0FAC670006131B /* LeftCategoryCell.m */; };
@@ -426,6 +427,8 @@
 		2D07D9FD1D1BB75E007F73F1 /* LearningPlayControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningPlayControlView.m; sourceTree = "<group>"; };
 		2D07DA001D1BD581007F73F1 /* PopViewKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewKit.h; sourceTree = "<group>"; };
 		2D07DA011D1BD581007F73F1 /* PopViewKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewKit.m; sourceTree = "<group>"; };
+		2D07DA031D1BDC17007F73F1 /* LearningPlayPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningPlayPopView.h; sourceTree = "<group>"; };
+		2D07DA041D1BDC17007F73F1 /* LearningPlayPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningPlayPopView.m; sourceTree = "<group>"; };
 		2D62E8061D0F9BB40006131B /* HomeLeftCategModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLeftCategModel.h; sourceTree = "<group>"; };
 		2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLeftCategModel.m; sourceTree = "<group>"; };
 		2D62E8091D0FA7EA0006131B /* LeftCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCategoryVC.h; sourceTree = "<group>"; };
@@ -1143,6 +1146,8 @@
 				2D69960B1D19190C00B5F52D /* MulSwitchBannerView.m */,
 				2D07D9FC1D1BB75E007F73F1 /* LearningPlayControlView.h */,
 				2D07D9FD1D1BB75E007F73F1 /* LearningPlayControlView.m */,
+				2D07DA031D1BDC17007F73F1 /* LearningPlayPopView.h */,
+				2D07DA041D1BDC17007F73F1 /* LearningPlayPopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2605,6 +2610,7 @@
 				0AC7077D1D1BD524000B2E13 /* PlayerVideoCell.m in Sources */,
 				9CAF823B1D190F560025224F /* AJFoundation.m in Sources */,
 				2DE2C8731D0D495A00310C4C /* UIBarButtonItem+SimAdditions.m in Sources */,
+				2D07DA051D1BDC17007F73F1 /* LearningPlayPopView.m in Sources */,
 				0AC7077A1D1BCA9B000B2E13 /* PlayerVideoModel.m in Sources */,
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,
 				EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */,

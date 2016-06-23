@@ -12,6 +12,7 @@
 #import "VideoSingleInfoModel.h"
 #import "LearningPlayControlView.h"
 #import "PopViewKit.h"
+#import "LearningPlayPopView.h"
 
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
@@ -174,11 +175,15 @@
 
             PopViewKit *popKit = [[PopViewKit alloc] init];
             popKit.bTapDismiss = YES;
-            popKit.bInnerTapDismiss = YES;
+            popKit.bInnerTapDismiss = NO;
             DefineWeak(popKit);
 
-            UIView *rview = [[UIView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+            LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
+            rview.center = Weak(self).view.center;
             rview.backgroundColor = kwhiteColor;
+            popKit.dismissBlock = ^(void){
+                [Weak(self).mediaPlayerViewController play];
+            };
             
             [popKit popView:rview animateType:PAT_Alpha];
 

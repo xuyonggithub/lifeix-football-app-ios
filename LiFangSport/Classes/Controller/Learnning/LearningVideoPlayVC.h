@@ -10,6 +10,7 @@
 
 @interface LearningVideoPlayVC : BaseVC
 @property(nonatomic,strong)NSString *videoId;
+@property(nonatomic,strong)NSArray *videoIdsArr;
 
 
 @end

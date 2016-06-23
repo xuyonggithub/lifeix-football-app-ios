@@ -42,7 +42,8 @@
     _videoInfoArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     [self showFullScreen];
-    _currentPlayVideoIndex = 0;
+    
+    _currentPlayVideoIndex = [_videoIdsArr indexOfObject:_videoId];;
     [self requestSingleVideoInfoWith:_videoId];
 }
 

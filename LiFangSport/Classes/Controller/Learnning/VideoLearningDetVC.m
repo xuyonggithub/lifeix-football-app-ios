@@ -205,8 +205,15 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     VideoLearningUnitModel *model = _dataArr[indexPath.row];
+    NSMutableArray *videoIdsArr = [NSMutableArray array];
+    for (VideoLearningUnitModel *mod in _dataArr) {
+        NSString *str = [NSString stringWithFormat:@"%@",mod.videos[0][@"id"]];
+        [videoIdsArr addObject:str];
+    }
+    
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
     LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
+    LearningPlayVC.videoIdsArr = [NSArray arrayWithArray:videoIdsArr];
     [self.navigationController pushViewController:LearningPlayVC animated:YES];
     
     //初始化播放器

@@ -7,16 +7,29 @@
 //
 
 #import "PlayerDetailVC.h"
+#import "CategoryView.h"
 
 @interface PlayerDetailVC ()
+
+@property(nonatomic, retain)UIImageView *bgImgView;
+@property(nonatomic, retain)UILabel *nameLabel;
+@property(nonatomic, retain)UILabel *birthdayLabel;
+@property(nonatomic, retain)UILabel *bodyLabel;
+@property(nonatomic, retain)UILabel *positionLabel;
+@property(nonatomic, retain)UILabel *birthplaceLabel;
+@property(nonatomic, retain)UILabel *clubLabel;
 
 @end
 
 @implementation PlayerDetailVC
-
+-(void)loadView{
+    [super loadView];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {

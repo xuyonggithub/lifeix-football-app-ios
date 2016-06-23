@@ -15,7 +15,7 @@
 @interface LFSimulationTestDetailController ()
     <AJMediaViewControllerDelegate, LFSimulationCenterPromptViewDelegate, LFSimulationCenterQuestionViewDelegate>
 {
-    NSInteger _currentPlayVideoIndex;
+    NSInteger _currentQuestionIndex;
 }
 
 //播放器
@@ -37,10 +37,11 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _currentPlayVideoIndex = 0;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     __weak typeof(self) weakSelf = self;
     
+    //  播放器界面
     [self.view addSubview:self.mediaPlayerViewController.view];
     [self.mediaPlayerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view);
@@ -48,13 +49,13 @@
     [self addChildViewController:self.mediaPlayerViewController];
     [_mediaPlayerViewController initialShowFullScreen];
     
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
+    //  答题界面
     [self.view addSubview:self.questionView];
     [self.questionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view);
     }];
 
+    //  提示界面
     [self.view addSubview:self.promptView];
     [self.promptView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view);
@@ -101,12 +102,11 @@
 
 - (void)toPlayWithAJMediaPlayerItem
 {
-    if (_currentPlayVideoIndex < self.questionArray.count) {
+    if (_currentQuestionIndex < self.questionArray.count) {
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
-        self.currentQuestionModel = self.questionArray[_currentPlayVideoIndex];
-        //[NSString stringWithFormat:@"%@%@/LD", kQiNiuHeaderPath, self.currentQuestionModel.videoPath]
-        [self.questionView refreshWithModel:self.currentQuestionModel andIsEnd:_currentPlayVideoIndex + 1 == self.questionArray.count];
-        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:self.model.name uid:@"uid"];
+        self.currentQuestionModel = self.questionArray[_currentQuestionIndex];
+        [self.questionView refreshWithModel:self.currentQuestionModel andIsEnd:_currentQuestionIndex + 1 == self.questionArray.count];
+        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:self.categoryModel.name uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
     }
 }
@@ -123,11 +123,11 @@
 }
 
 #pragma mark - LFSimulationCenterPromptViewDelegate
-- (void)startTest:(NSInteger)index
+- (void)promptViewStartTesting:(NSInteger)index
 {
-    _currentPlayVideoIndex = 0;
+    _currentQuestionIndex = 0;
     __weak typeof(self) weakSelf = self;
-    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.model.subArray.count == 0 ? self.model.categoryId : [self.model.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", self.categoryModel.subArray.count == 0 ? self.categoryModel.categoryId : [self.categoryModel.subArray[index] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         weakSelf.questionArray = [LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict];
         [weakSelf toPlayWithAJMediaPlayerItem];
     } failure:^(CommonRequest *request, NSError *error) {
@@ -135,23 +135,23 @@
     }];
 }
 
-- (void)quitTest
+- (void)promptViewQuitTesting
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - LFSimulationCenterQuestionViewDelegate
-- (void)nextTest
+- (void)questionViewNextQuestion
 {
-    if (_currentPlayVideoIndex == self.questionArray.count) {
-        
+    _currentQuestionIndex++;
+    if (_currentQuestionIndex == self.questionArray.count) {
+        //  重新挑战
     }else {
-        _currentPlayVideoIndex++;
         [self toPlayWithAJMediaPlayerItem];
     }
 }
 
-- (void)quitQuestionTest
+- (void)questionViewQuitQuesiotn
 {
     [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
 }
@@ -185,7 +185,7 @@
 - (LFSimulationCenterPromptView *)promptView
 {
     if (!_promptView) {
-        _promptView = [[LFSimulationCenterPromptView alloc] initWithModel:self.model];
+        _promptView = [[LFSimulationCenterPromptView alloc] initWithModel:self.categoryModel];
         _promptView.delegate = self;
     }
     return _promptView;

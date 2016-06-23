@@ -55,15 +55,15 @@
 
 - (void)startBtnTouched:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(nextTest)]) {
-        [self.delegate nextTest];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewNextQuestion)]) {
+        [self.delegate questionViewNextQuestion];
     }
 }
 
 - (void)closeBtnTouched:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(quitQuestionTest)]) {
-        [self.delegate quitQuestionTest];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewQuitQuesiotn)]) {
+        [self.delegate questionViewQuitQuesiotn];
     }
 }
 

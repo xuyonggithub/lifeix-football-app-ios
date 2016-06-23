@@ -89,15 +89,15 @@
 - (void)startBtnTouched:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(startTest:)]) {
-        [self.delegate startTest:btn.tag - 200];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(promptViewStartTesting:)]) {
+        [self.delegate promptViewStartTesting:btn.tag - 200];
     }
 }
 
 - (void)closeBtnTouched:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(quitTest)]) {
-        [self.delegate quitTest];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(promptViewQuitTesting)]) {
+        [self.delegate promptViewQuitTesting];
     }
 }
 

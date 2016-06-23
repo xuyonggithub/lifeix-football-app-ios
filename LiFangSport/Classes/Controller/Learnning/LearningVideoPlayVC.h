@@ -9,5 +9,7 @@
 #import "BaseVC.h"
 
 @interface LearningVideoPlayVC : BaseVC
+@property(nonatomic,strong)NSString *videoId;
+
 
 @end

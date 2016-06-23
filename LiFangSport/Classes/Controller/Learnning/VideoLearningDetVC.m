@@ -201,28 +201,12 @@
     return UIEdgeInsetsMake(4,4,4,4);
 }
 
--(void)requestSingleVideoInfoWith:(NSString *)videoStr{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@",kvideoSinglePath,videoStr] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        [self dealWithSingleVideoData:jsonDict];
-    } failure:^(CommonRequest *request, NSError *error) {
-        
-    }];
-}
--(void)dealWithSingleVideoData:(id )dic{
-    //kQiNiuHeaderPath ,VideoSingleInfoModel
-    
-    
-}
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     VideoLearningUnitModel *model = _dataArr[indexPath.row];
-    NSString *videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
-    
-    [self requestSingleVideoInfoWith:videoId];
-    
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
-//    LearningPlayVC.model = self.dataArray[indexPath.row];
+    LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
     [self.navigationController pushViewController:LearningPlayVC animated:YES];
     
     //初始化播放器
@@ -254,7 +238,6 @@
     playView.hidden = YES;
     [VideoPlayerManager shareKnowInstance].view.hidden = YES;
 }
-
 -(void)movieChagen:(NSNotification *)noti{
     NSLog(@"===%zd",[VideoPlayerManager shareKnowInstance].playbackState);
     /*
@@ -267,9 +250,9 @@
      MPMoviePlaybackStateSeekingBackward
      */
     if ([VideoPlayerManager shareKnowInstance].playbackState==MPMoviePlaybackStatePlaying) {
-        
     }
 }
+
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Player/CategoryView.m"
-            timestampString = "488271239.428265"
+            filePath = "LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
+            timestampString = "488341261.574058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-setSelectLineColor:"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "-dealWithSingleVideoData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

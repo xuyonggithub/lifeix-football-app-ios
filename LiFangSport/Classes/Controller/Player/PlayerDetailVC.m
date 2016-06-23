@@ -11,6 +11,7 @@
 #import "BaseInfoView.h"
 #import "CommonRequest.h"
 #import "PlayerVideoModel.h"
+#import "PlayerVideoCell.h"
 
 #define kReuseId @"cell"
 @interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -48,7 +49,7 @@
 -(void)dealWithDic:(id)dic{
     NSDictionary *dict = dic;
     NSMutableArray *cateArr = [NSMutableArray arrayWithArray:[dict objectForKey:@"urls"]];
-    self.playerVideosArr = [PlayerVideoModel arrayOfModelsFromDictionaries:[dict objectForKey:@"playerVideos"];
+    self.playerVideosArr = [PlayerVideoModel arrayOfModelsFromDictionaries:[dict objectForKey:@"playerVideos"]];
     
     for(NSDictionary *dic in cateArr){
         [self.categoryArr addObject:dic.allKeys[0]];
@@ -74,16 +75,16 @@
 }
 
 -(void)clickBtn:(CGFloat)tag{
-    NSString *cate = self.categoryArr[tag];
+    NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 235) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
-        [tableView registerClass:[] forCellReuseIdentifier:kReuseId];
+        [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
     }else{
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 235)];
         webView.delegate = self;
-        NSURL *url = [NSURL URLWithString:self.categoryUrlArr[tag]];
+        NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
     }
@@ -104,7 +105,12 @@
 }
                             
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-                                
+    PlayerVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
+    if(!cell){
+        cell = [[PlayerVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kReuseId];
+    }
+    //  bu布局
+    return cell;
 }
                             
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

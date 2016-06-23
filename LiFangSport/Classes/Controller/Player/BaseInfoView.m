@@ -21,7 +21,11 @@
 -(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andHeight:(NSString *)height andWeight:(NSString *)weight andPosition:(NSString *)position andBirthplace:(NSString *)birthplace andClub:(NSString *)club{
     if(self = [super initWithFrame:frame]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 120, 170)];
-        [self.bgImgView sd_setImageWithURL:avatar placeholderImage:@"placeHold_player.jpg"];
+        if(!avatar){
+            self.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];
+        }else{
+            [self.bgImgView sd_setImageWithURL:avatar placeholderImage:@"placeHold_player.jpg"];
+        }
         [self addSubview:_bgImgView];
         
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, 15, SCREEN_WIDTH - 145 - 120, 20)];

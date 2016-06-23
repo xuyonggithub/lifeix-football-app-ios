@@ -29,6 +29,8 @@
 		0AC707711D1A8DDB000B2E13 /* WomanPlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */; };
 		0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */; };
 		0AC707771D1B978A000B2E13 /* BaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707761D1B978A000B2E13 /* BaseInfoView.m */; };
+		2D07D9F81D1B9CDC007F73F1 /* LearningInfoCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9F71D1B9CDC007F73F1 /* LearningInfoCenterVC.m */; };
+		2D07D9FB1D1B9D0C007F73F1 /* LearningInfoRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */; };
 		2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */; };
 		2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */; };
 		2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80E1D0FAC670006131B /* LeftCategoryCell.m */; };
@@ -408,6 +410,10 @@
 		0AC707761D1B978A000B2E13 /* BaseInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInfoView.m; sourceTree = "<group>"; };
 		0AD8A0ACAF2FCD0201410D20 /* Pods-LiFangSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.debug.xcconfig"; sourceTree = "<group>"; };
 		159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LiFangSport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D07D9F61D1B9CDC007F73F1 /* LearningInfoCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoCenterVC.h; sourceTree = "<group>"; };
+		2D07D9F71D1B9CDC007F73F1 /* LearningInfoCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoCenterVC.m; sourceTree = "<group>"; };
+		2D07D9F91D1B9D0C007F73F1 /* LearningInfoRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoRightVC.h; sourceTree = "<group>"; };
+		2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoRightVC.m; sourceTree = "<group>"; };
 		2D62E8061D0F9BB40006131B /* HomeLeftCategModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLeftCategModel.h; sourceTree = "<group>"; };
 		2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLeftCategModel.m; sourceTree = "<group>"; };
 		2D62E8091D0FA7EA0006131B /* LeftCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCategoryVC.h; sourceTree = "<group>"; };
@@ -1507,6 +1513,10 @@
 				2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */,
 				2D76357B1D1A92FC0085BB03 /* LearningInfoVC.h */,
 				2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */,
+				2D07D9F61D1B9CDC007F73F1 /* LearningInfoCenterVC.h */,
+				2D07D9F71D1B9CDC007F73F1 /* LearningInfoCenterVC.m */,
+				2D07D9F91D1B9D0C007F73F1 /* LearningInfoRightVC.h */,
+				2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */,
 				2D7635801D1A967B0085BB03 /* LearningVideoPlayVC.h */,
 				2D7635811D1A967B0085BB03 /* LearningVideoPlayVC.m */,
 				2DDAF8191D1854D0002E5D59 /* Manager */,
@@ -2429,8 +2439,10 @@
 				9CAF82531D190F560025224F /* AJMediaPlayerBackGroundView.m in Sources */,
 				2DE2C84F1D0D2FF800310C4C /* SimCommonTool.m in Sources */,
 				9CAF82561D190F560025224F /* AJMediaPlayerFeedback.m in Sources */,
+				2D07D9F81D1B9CDC007F73F1 /* LearningInfoCenterVC.m in Sources */,
 				2DE2C8A01D0D4A8500310C4C /* UIColor+HelperAdditions.m in Sources */,
 				2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */,
+				2D07D9FB1D1B9D0C007F73F1 /* LearningInfoRightVC.m in Sources */,
 				9CAF82441D190F560025224F /* AJMediaPlayerOverlayView.m in Sources */,
 				9CAF82491D190F560025224F /* AJMediaSessionVolume.m in Sources */,
 				2D84EA581D115EAD00113404 /* VideoCenterVC.m in Sources */,

@@ -7,7 +7,8 @@
 //
 
 #import "BaseVC.h"
+#import "BaseDrawerVC.h"
 
-@interface LearningInfoVC : BaseVC
+@interface LearningInfoVC : BaseDrawerVC
 
 @end

@@ -18,7 +18,6 @@
     BOOL _isChange;
     BOOL _isH;
 }
-@property (nonatomic, strong) UIImageView *backimage;
 @end
 
 @implementation BaseDrawerVC
@@ -52,23 +51,29 @@
 }
 
 -(void)createDrawer{
+    if (_leftV) {
     [self addChildViewController:_leftV];
+    }
     if (_rightV) {
     [self addChildViewController:_rightV];
     }
     
     UINavigationController *centerNC = [[LFNavigationController alloc] initWithRootViewController:_centerV];
     [self addChildViewController:centerNC];
-    
-    _leftV.view.frame = CGRectMake(0, 0, 250, [UIScreen mainScreen].bounds.size.height);
+    if (_leftV) {
+        _leftV.view.frame = CGRectMake(0, 0, 250, [UIScreen mainScreen].bounds.size.height);
+    }
     if (_rightV) {
         _rightV.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 250, 0, 250, [UIScreen mainScreen].bounds.size.height);
     }
     
     centerNC.view.frame = [UIScreen mainScreen].bounds;
-    
-    [self.view addSubview:_leftV.view];
-    [self.view addSubview:_rightV.view];
+    if (_leftV) {
+        [self.view addSubview:_leftV.view];
+    }
+    if (_rightV) {
+        [self.view addSubview:_rightV.view];
+    }
     [self.view addSubview:centerNC.view];
     
     _centerV.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_left"] target:self action:@selector(leftAction:)];
@@ -78,7 +83,7 @@
 //        UIBarButtonItem *leftB = [[UIBarButtonItem alloc] initWithTitle:@"左边" style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction:)];
 //        leftB;
 //    });
-    if (self.hideCenterLeftNaviBtn==YES) {
+    if (self.hideCenterLeftNaviBtn==YES || _leftV == nil) {
         _centerV.navigationItem.leftBarButtonItem = nil;
     }
     _centerV.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right"] target:self action:@selector(rightAction:)];
@@ -90,20 +95,6 @@
     if (self.hideCenterRightNaviBtn==YES || _rightV == nil) {
         _centerV.navigationItem.rightBarButtonItem = nil;
     }
-}
-/**
- * 设置背景图片
- */
-- (UIImageView *)backimage {
-    
-    if (!_backimage) {
-        self.backimage = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        UIImage *sourceImage = [UIImage imageNamed:@"123"];
-        UIImage *lastImage = [sourceImage applyDarkEffect];
-        self.backimage.image = lastImage;
-//        self.backimage.backgroundColor = [UIColor redColor];
-    }
-    return _backimage;
 }
 
 /**

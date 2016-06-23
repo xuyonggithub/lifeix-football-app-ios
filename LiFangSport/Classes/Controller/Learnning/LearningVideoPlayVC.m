@@ -11,6 +11,7 @@
 #import "CommonRequest.h"
 #import "VideoSingleInfoModel.h"
 #import "LearningPlayControlView.h"
+#import "PopViewKit.h"
 
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
@@ -170,6 +171,16 @@
         };
         _ctrView.factorsBlock = ^(void){
             [Weak(self).mediaPlayerViewController pause];
+
+            PopViewKit *popKit = [[PopViewKit alloc] init];
+            popKit.bTapDismiss = YES;
+            popKit.bInnerTapDismiss = YES;
+            DefineWeak(popKit);
+
+            UIView *rview = [[UIView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+            rview.backgroundColor = kwhiteColor;
+            
+            [popKit popView:rview animateType:PAT_Alpha];
 
         };
         _ctrView.decisionBlock = ^(void){

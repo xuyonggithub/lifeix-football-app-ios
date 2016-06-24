@@ -86,6 +86,84 @@
     leftFourLab.text= @"点球";
     [_baseDecisionView addSubview:leftFourLab];
     
+    UIImageView *leftOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftOnePic.backgroundColor = kclearColor;
+    leftOnePic.centerY = leftOneLab.centerY;
+    leftOnePic.left = leftOneLab.right +20;
+    leftOnePic.image = UIImageNamed(@"lppopunselect");//lppopselect
+    [_baseDecisionView addSubview:leftOnePic];
+    
+    UIImageView *leftTwoPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftTwoPic.backgroundColor = kclearColor;
+    leftTwoPic.centerY = leftTwoLab.centerY;
+    leftTwoPic.left = leftTwoLab.right +20;
+    leftTwoPic.image = UIImageNamed(@"lppopunselect");
+    [_baseDecisionView addSubview:leftTwoPic];
+    
+    UIImageView *leftThreePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftThreePic.backgroundColor = kclearColor;
+    leftThreePic.centerY = leftThreeLab.centerY;
+    leftThreePic.left = leftThreeLab.right +20;
+    leftThreePic.image = UIImageNamed(@"lppopunselect");
+    [_baseDecisionView addSubview:leftThreePic];
+    
+    UIImageView *leftFourPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftFourPic.backgroundColor = kclearColor;
+    leftFourPic.centerY = leftFourLab.centerY;
+    leftFourPic.left = leftFourLab.right +20;
+    leftFourPic.image = UIImageNamed(@"lppopunselect");
+    [_baseDecisionView addSubview:leftFourPic];
+    //右
+    UIImageView *rightOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    rightOnePic.backgroundColor = kclearColor;
+    rightOnePic.left = leftOnePic.right +30;
+    rightOnePic.top = (kScreenHeight -(3*30+2*20))/2;
+    rightOnePic.image = UIImageNamed(@"lppopselect");//lppopselect
+    [_baseDecisionView addSubview:rightOnePic];
+    
+    UIImageView *rightTwoPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    rightTwoPic.backgroundColor = kclearColor;
+    rightTwoPic.top = rightOnePic.bottom+20;
+    rightTwoPic.left = leftOnePic.right +30;
+    rightTwoPic.image = UIImageNamed(@"lppopselect");
+    [_baseDecisionView addSubview:rightTwoPic];
+    
+    UIImageView *rightThreePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    rightThreePic.backgroundColor = kclearColor;
+    rightThreePic.top = rightTwoPic.bottom+20;
+    rightThreePic.left = leftOnePic.right +30;
+    rightThreePic.image = UIImageNamed(@"lppopselect");
+    [_baseDecisionView addSubview:rightThreePic];
+    
+    UILabel *rightOneLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    rightOneLab.backgroundColor = kclearColor;
+    rightOneLab.centerY = rightOnePic.centerY;
+    rightOneLab.left = rightOnePic.right +20;
+    rightOneLab.font = kpoplabfont;
+    rightOneLab.textAlignment = NSTextAlignmentLeft;
+    rightOneLab.textColor = kwhiteColor;
+    rightOneLab.text= @"不给牌";
+    [_baseDecisionView addSubview:rightOneLab];
+
+    UILabel *rightTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    rightTwoLab.backgroundColor = kclearColor;
+    rightTwoLab.centerY = rightTwoPic.centerY;
+    rightTwoLab.left = rightOnePic.right +20;
+    rightTwoLab.font = kpoplabfont;
+    rightTwoLab.textAlignment = NSTextAlignmentLeft;
+    rightTwoLab.textColor = kwhiteColor;
+    rightTwoLab.text= @"黄牌";
+    [_baseDecisionView addSubview:rightTwoLab];
+    
+    UILabel *rightThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    rightThreeLab.backgroundColor = kclearColor;
+    rightThreeLab.centerY = rightThreePic.centerY;
+    rightThreeLab.left = rightOnePic.right +20;
+    rightThreeLab.font = kpoplabfont;
+    rightThreeLab.textAlignment = NSTextAlignmentLeft;
+    rightThreeLab.textColor = kwhiteColor;
+    rightThreeLab.text= @"红牌";
+    [_baseDecisionView addSubview:rightThreeLab];
 }
 
 -(void)addSubviewOfOtherType{

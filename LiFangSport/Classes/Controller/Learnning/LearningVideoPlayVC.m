@@ -13,6 +13,7 @@
 #import "LearningPlayControlView.h"
 #import "PopViewKit.h"
 #import "LearningPlayPopView.h"
+#import "CommonLoading.h"
 
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
@@ -262,6 +263,8 @@
     if (_currentPlayVideoIndex<_videoIdsArr.count) {
         NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
         [self requestSingleVideoInfoWith:videoid];
+    }else{
+        [CommonLoading showTips:@"没有更多视频了"];
     }
 }
 

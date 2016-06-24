@@ -12,6 +12,7 @@
 #import "CommonRequest.h"
 #import "PlayerVideoModel.h"
 #import "PlayerVideoCell.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
 #define kReuseId @"cell"
 @interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -29,14 +30,16 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
     self.title = self.playerName;
     self.categoryArr = [NSMutableArray array];
     self.categoryUrlArr = [NSMutableArray array];
     self.playerVideosArr = [NSMutableArray array];
     [self requestData];
 }
-
+-(void)rollBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)requestData{
     NSString *urlStr = [NSString stringWithFormat:@"games/players/%@/basic", self.playerId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {

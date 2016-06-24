@@ -9,5 +9,6 @@
 #import "CenterViewController.h"
 
 @interface LearningInfoCenterVC : CenterViewController
+@property(nonatomic,strong)NSString *titleStr;
 
 @end

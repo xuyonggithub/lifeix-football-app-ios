@@ -8,6 +8,7 @@
 
 #import "BaseVC.h"
 #import "BaseDrawerVC.h"
+#import "CenterViewController.h"
 
 @interface LearningInfoVC : BaseDrawerVC
 

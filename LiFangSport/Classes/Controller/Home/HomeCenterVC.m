@@ -19,10 +19,10 @@
 #import "LeftSwitchCell.h"
 #import "CenterSwitchCell.h"
 #import "HomeBannnerDetVC.h"
-#import "HomeHeroDetVC.h"
 #import "NSString+WPAttributedMarkup.h"
 #import "MediaModel.h"
 #import "MediaDetailVC.h"
+#import "PlayerDetailVC.h"
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -345,10 +345,12 @@
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-        HomeHeroDetVC *HDVC = [[HomeHeroDetVC alloc]init];
+        PlayerDetailVC *pVC = [[PlayerDetailVC alloc]init];
         RightSwitchModel *model = _rightDataArray[indexPath.row];
-        HDVC.title = model.name;
-        [self.navigationController pushViewController:HDVC animated:YES];
+        pVC.playerId = [NSString stringWithFormat:@"%zd",model.KID];
+        pVC.playerName = model.name;
+        pVC.title = model.name;
+        [self.navigationController pushViewController:pVC animated:YES];
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

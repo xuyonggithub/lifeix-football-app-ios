@@ -13,11 +13,10 @@
 @property (nonatomic, strong) NSString<Optional> *birthday;
 @property (nonatomic, strong) NSString<Optional> *birthplace;
 @property (nonatomic, strong) NSString<Optional> *country;
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, strong) NSString<Optional>* KID;
 @property (nonatomic, strong) NSString<Optional> *level;
 @property (nonatomic, strong) NSString<Optional> *name;
 @property (nonatomic, strong) NSString<Optional> *position;
-
 @property (nonatomic, assign) NSInteger jeserysNum;
 @property (nonatomic, strong) NSDictionary<Optional> *record;
 @property (nonatomic, assign) NSInteger weight;

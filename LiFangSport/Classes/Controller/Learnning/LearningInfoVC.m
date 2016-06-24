@@ -7,8 +7,9 @@
 //
 
 #import "LearningInfoVC.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
-@interface LearningInfoVC ()
+@interface LearningInfoVC ()<UINavigationBarDelegate,UINavigationControllerDelegate>
 
 @end
 
@@ -16,22 +17,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationController.delegate = self;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.centerV.hideLeftNaviBtnGesture = YES;
+
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+}
+
+-(void)rollBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    //如果是当前控制器，则隐藏背景；如果不是当前控制器，则显示背景
+    if (viewController == self) {
+        for (UIView *view in [self.navigationController.navigationBar subviews]) {
+            if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+                view.hidden = YES;
+            }
+        }
+    } else {
+        for (UIView *view in [self.navigationController.navigationBar subviews]) {
+            if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+                view.hidden = NO;
+            }
+        }
+    }
 }
-*/
 
 @end

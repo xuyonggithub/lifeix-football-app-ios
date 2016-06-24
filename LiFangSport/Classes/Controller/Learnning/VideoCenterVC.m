@@ -83,12 +83,19 @@
         dVC.title = model.name;
         [self.navigationController pushViewController:dVC animated:YES];
     }else if(model.type == 2){
-//        LearningInfoVC *IVC = [[LearningInfoVC alloc]init];
         LearningInfoCenterVC *centerVC = [[LearningInfoCenterVC alloc]init];
         LearningInfoRightVC *rightVC = [[LearningInfoRightVC alloc]init];
 
         LearningInfoVC *IVC = [[LearningInfoVC alloc]initWithCenterVC:centerVC rightVC:rightVC leftVC:nil];
+        centerVC.titleStr = model.name;
         [self.navigationController pushViewController:IVC animated:YES];
+//        SimulationTestVC *coachVC = [[SimulationTestVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
+
+//        [ self dismissViewControllerAnimated: NO completion: nil ];
+//        APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
+//        APP_DELEGATE.window.rootViewController = IVC;
+//        [APP_DELEGATE.window makeKeyAndVisible];
     }
     
 }

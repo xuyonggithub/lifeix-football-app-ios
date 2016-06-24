@@ -187,7 +187,6 @@
 		2DE94D721D123BED00E1508D /* icon_previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D6C1D123BED00E1508D /* icon_previous@2x.png */; };
 		2DE94D731D123BED00E1508D /* simBackIcon_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D6D1D123BED00E1508D /* simBackIcon_press@2x.png */; };
 		2DE94D741D123BED00E1508D /* simCloseIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D6E1D123BED00E1508D /* simCloseIcon@2x.png */; };
-		2DE94D771D124A4500E1508D /* HomeHeroDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE94D761D124A4500E1508D /* HomeHeroDetVC.m */; };
 		2DE94D7D1D12778E00E1508D /* haolindemopic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */; };
 		2DE94D801D1291FA00E1508D /* ou1233aeer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */; };
 		99D0CDED8D5BD7F1BE62BCBA /* libPods-LiFangSport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */; };
@@ -684,8 +683,6 @@
 		2DE94D6C1D123BED00E1508D /* icon_previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_previous@2x.png"; sourceTree = "<group>"; };
 		2DE94D6D1D123BED00E1508D /* simBackIcon_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simBackIcon_press@2x.png"; sourceTree = "<group>"; };
 		2DE94D6E1D123BED00E1508D /* simCloseIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simCloseIcon@2x.png"; sourceTree = "<group>"; };
-		2DE94D751D124A4500E1508D /* HomeHeroDetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeroDetVC.h; sourceTree = "<group>"; };
-		2DE94D761D124A4500E1508D /* HomeHeroDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeroDetVC.m; sourceTree = "<group>"; };
 		2DE94D781D12570200E1508D /* americaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "americaflag@2x.png"; sourceTree = "<group>"; };
 		2DE94D791D12570200E1508D /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haolindemopic@2x.png"; sourceTree = "<group>"; };
@@ -1541,8 +1538,6 @@
 				2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */,
 				2D84EA531D11578B00113404 /* HomeBannnerDetVC.h */,
 				2D84EA541D11578B00113404 /* HomeBannnerDetVC.m */,
-				2DE94D751D124A4500E1508D /* HomeHeroDetVC.h */,
-				2DE94D761D124A4500E1508D /* HomeHeroDetVC.m */,
 				2D62E8051D0F9B7A0006131B /* Model */,
 			);
 			path = Home;
@@ -2648,7 +2643,6 @@
 				2D69ACF41D1A5E8E00B5F52D /* VideoSingleInfoModel.m in Sources */,
 				2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */,
 				EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */,
-				2DE94D771D124A4500E1508D /* HomeHeroDetVC.m in Sources */,
 				9CAF823F1D190F560025224F /* AJMediaPlayer.m in Sources */,
 				EC4D3C3E1D1392A800285243 /* RefereeModel.m in Sources */,
 			);

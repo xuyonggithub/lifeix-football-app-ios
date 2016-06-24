@@ -40,6 +40,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"教练";
     [self requestData];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 -(void)requestData{

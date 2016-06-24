@@ -40,6 +40,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = self.categoryName;
     [self requestData];
+    self.automaticallyAdjustsScrollViewInsets = NO; 
 }
 
 -(void)requestData{

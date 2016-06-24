@@ -77,7 +77,7 @@
 
 // 时间戳转时间
 -(NSString *)TimeStamp:(NSString *)time{
-    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:[time doubleValue]];
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:[time doubleValue]/1000];
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
     NSInteger interval = [zone secondsFromGMTForDate:detaildate];
     NSDate *localeDate = [detaildate dateByAddingTimeInterval: interval];

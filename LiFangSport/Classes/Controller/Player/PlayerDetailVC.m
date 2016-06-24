@@ -59,7 +59,21 @@
         [self.categoryUrlArr addObject:@"高光时刻"];
     }
     //基本信息
-    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 190) andAvatar:[dic objectForKey:@"avator"] andName:[dic objectForKey:@"name"] andBirday:[dic objectForKey:@"birthday"] andHeight:[dic objectForKey:@"height"] andWeight:[dic objectForKey:@"weight"] andPosition:[dic objectForKey:@"position"] andBirthplace:[dic objectForKey:@"birthplace"] andClub:[dic objectForKey:@"club"]];
+    NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    NSString *position;
+    if([[dict objectForKey:@"nationTeam"] isKindOfClass:[NSDictionary class]]){
+        position = [[dict objectForKey:@"nationTeam"] objectForKey:@"position"] != nil?[[dict objectForKey:@"nationTeam"] objectForKey:@"position"]:@"-";
+    }else{
+        position = @"-";
+    }
+    NSString *club;
+    if([[dict objectForKey:@"club"] isKindOfClass:[NSDictionary class]]){
+        club = [[dict objectForKey:@"club"] objectForKey:@"name"] != nil?[[dict objectForKey:@"club"] objectForKey:@"name"]:@"-";
+    }else{
+        club = @"-";
+    }
+    
+    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avator"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
     [self.view addSubview:baseView];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, baseView.bottom, SCREEN_WIDTH, 1)];
@@ -120,5 +134,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                                 
 }
-        
+
+/**
+ *  时间戳转时间
+ *
+ *  @param timeStamp 时间戳 （eg:@"1296035591"）
+ *  @param timeStyle 时间格式（eg: @"YYYY-MM-dd HH:mm:ss" ）
+ *
+ *  @return 返回转化好格式的时间字符串
+ */
+-(NSString *)timeStampChangeTimeWithTimeStamp:(NSString *)timeStamp timeStyle:(NSString *)timeStyle{
+    NSTimeInterval interval = [timeStamp doubleValue]/1000.0;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:timeStyle];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSString *strDate = [formatter stringFromDate:date];
+    NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
+    return formatterStr;
+}
+
 @end

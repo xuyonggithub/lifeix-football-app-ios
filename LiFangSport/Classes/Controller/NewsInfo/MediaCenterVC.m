@@ -19,7 +19,6 @@
 @property(nonatomic, retain)UITableView *tableView;
 @property(nonatomic, retain)UIImageView *bgImgView;
 @property(nonatomic, retain)NSString *date;
-@property(nonatomic, assign)NSInteger limit;
 
 @end
 
@@ -55,8 +54,6 @@
         self.title = @"资讯";
     }
     
-    _limit = 5;
-    
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -71,15 +68,15 @@
     NSMutableString *urlStr = [NSMutableString string];
     if(self.categoryIds == nil){
         if(!_date){
-            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?limit=%zd", _limit];
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search"];
         }else{
-            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?date=%@&limit=%zd", _date, _limit];
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?date=%@", _date];
         }
     }else{
         if(!_date){
-            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@&limit=%zd", self.categoryIds, _limit];
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@", self.categoryIds];
         }else{
-            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@&date=%@&limit=%zd", self.categoryIds, _date, _limit];
+            urlStr = [NSMutableString stringWithFormat:@"wemedia/posts/search?categoryId=%@&date=%@", self.categoryIds, _date];
         }
     }
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
@@ -135,8 +132,8 @@
 // 加载
 - (void)footerRereshing
 {
-    MediaModel *media = self.dataArr[self.dataArr.count - 1];
-    self.date = [self TimeStamp:media.createTime];
+    MediaModel *media = self.dataArr[_dataArr.count - 1];
+    self.date = [self timeStampChangeTimeWithTimeStamp:[NSString stringWithFormat:@"%f", media.createTime] timeStyle:@"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"];
     [self requestDataWithisHeaderRefresh:NO];
 }
 
@@ -171,18 +168,29 @@
     [self.navigationController pushViewController:MDVC animated:YES];
 }
 
-// 时间戳转时间
--(NSString *)TimeStamp:(double)intTime{
-    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:intTime];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate:detaildate];
-    NSDate *localeDate = [detaildate dateByAddingTimeInterval: interval];
-    
-    NSDateFormatter*dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"];
-    NSString *currentDateStr = [dateFormatter stringFromDate:localeDate];
-    return currentDateStr;
-}
 
+/**
+ *  时间戳转时间
+ *
+ *  @param timeStamp 时间戳 （eg:@"1296035591"）
+ *  @param timeStyle 时间格式（eg: @"YYYY-MM-dd HH:mm:ss" ）
+ *
+ *  @return 返回转化好格式的时间字符串
+ */
+-(NSString *)timeStampChangeTimeWithTimeStamp:(NSString *)timeStamp timeStyle:(NSString *)timeStyle{
+    NSTimeInterval interval = [timeStamp doubleValue]/1000.0;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:timeStyle];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSTimeZone *zoneOne = [NSTimeZone systemTimeZone];
+    NSInteger intervalOne = [zoneOne secondsFromGMTForDate:date];
+    //得到我国时区的时间
+    NSDate *locateDateOne = [date dateByAddingTimeInterval:-intervalOne];
+    NSString *strDate = [formatter stringFromDate:locateDateOne];
+    NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
+    return formatterStr;
+}
 
 @end

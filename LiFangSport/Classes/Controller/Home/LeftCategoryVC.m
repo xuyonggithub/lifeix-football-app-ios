@@ -54,6 +54,14 @@
     _dataArray = [HomeLeftCategModel arrayOfModelsFromDictionaries:dic];
     _kTableView.height = 55*_dataArray.count;
     [_kTableView reloadData];
+    NSString *notistr;
+    for (HomeLeftCategModel *model in _dataArray) {
+        if ([model.page isEqualToString:@"competition_page"]) {
+            notistr = [[NSString alloc]initWithFormat:@"%@",model.KID];
+        }
+    }
+    NSDictionary *notidic = [[NSDictionary alloc]initWithObjectsAndKeys:@{@"khomeKidNotiFicationStr":notistr}, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:khomeKidNotiFicationStr object:nil userInfo:notidic];
 }
 -(void)createTableview{
     _kTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 550) style:UITableViewStylePlain];
@@ -98,6 +106,7 @@
         if ([model.page isEqualToString:@"competition_page"]) {
             HomeCenterVC *centerV=[[HomeCenterVC alloc]init];
             centerV.kidStr = model.KID;
+            centerV.titleName = model.name;
             RightViewController *rightV=[[RightViewController alloc]init];
             HomeViewController *homeVC = [[HomeViewController alloc] initWithCenterVC:centerV rightVC:rightV leftVC:self];
 //            [ self presentViewController:homeVC animated:NO completion:nil];

@@ -55,12 +55,21 @@
     _rightDataArray = [NSMutableArray array];
     _mediaArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor purpleColor];
-    self.title = @"十二强专栏";
+    self.title = _titleName?_titleName:@"十二强专栏";
 
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
 
     [self addTopBannnerView];
     [self requestTopBannerSwitchData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRequest:) name:khomeKidNotiFicationStr object:nil];
+
+}
+- (void)updateRequest:(NSNotification *)noti {
+    
+    NSDictionary *dic = [NSDictionary dictionary];
+    dic = noti.userInfo;
+    _kidStr = dic[@"khomeKidNotiFicationStr"];
+    [self requestDataWithCaID:_kidStr];
 }
 -(void)requestDataWithCaID:(NSString *)string{
     [CommonRequest requstPath:[NSString stringWithFormat:@"wemedia/tops/?categoryIds=%@",string] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {

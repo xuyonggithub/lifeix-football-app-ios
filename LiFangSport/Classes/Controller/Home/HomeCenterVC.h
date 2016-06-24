@@ -11,5 +11,6 @@
 @interface HomeCenterVC : CenterViewController
 
 @property(nonatomic,strong)NSString *kidStr;
+@property(nonatomic,strong)NSString *titleName;
 
 @end

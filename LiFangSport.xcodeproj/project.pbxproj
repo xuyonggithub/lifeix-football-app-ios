@@ -141,6 +141,7 @@
 		2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */; };
 		2DE0BF4E1D1CDB2000FFA297 /* lppopselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */; };
 		2DE0BF4F1D1CDB2000FFA297 /* lppopunselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */; };
+		2DE0BF521D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0BF511D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m */; };
 		2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F31D0D133800310C4C /* Main.storyboard */; };
 		2DE2C7F71D0D133800310C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F61D0D133800310C4C /* Assets.xcassets */; };
 		2DE2C7FA1D0D133800310C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F81D0D133800310C4C /* LaunchScreen.storyboard */; };
@@ -594,6 +595,8 @@
 		2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
 		2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lppopselect@2x.png"; sourceTree = "<group>"; };
 		2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lppopunselect@2x.png"; sourceTree = "<group>"; };
+		2DE0BF501D1D2EBC00FFA297 /* LearningPlayPopDeciModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningPlayPopDeciModel.h; sourceTree = "<group>"; };
+		2DE0BF511D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningPlayPopDeciModel.m; sourceTree = "<group>"; };
 		2DE2C7E71D0D133800310C4C /* LiFangSport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiFangSport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE2C7F41D0D133800310C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DE2C7F61D0D133800310C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -1143,6 +1146,8 @@
 				2D69960E1D19279500B5F52D /* VideoLearningUnitModel.m */,
 				2D69ACF21D1A5E8E00B5F52D /* VideoSingleInfoModel.h */,
 				2D69ACF31D1A5E8E00B5F52D /* VideoSingleInfoModel.m */,
+				2DE0BF501D1D2EBC00FFA297 /* LearningPlayPopDeciModel.h */,
+				2DE0BF511D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2590,6 +2595,7 @@
 				2DE2C8A91D0D4A8500310C4C /* WPHotspotLabel.m in Sources */,
 				2D84EA4F1D113A1B00113404 /* LaunchInfoManager.m in Sources */,
 				2DA4B1F61D0E465C00136DA7 /* RightViewController.m in Sources */,
+				2DE0BF521D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m in Sources */,
 				2DE2C84E1D0D2FF800310C4C /* SimCommonData.m in Sources */,
 				2D8D09B21D0DA032008771AA /* NSDateFormatter+Category.m in Sources */,
 				2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */,

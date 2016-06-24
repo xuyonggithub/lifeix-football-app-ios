@@ -8,6 +8,7 @@
 
 #import "LearningPlayPopView.h"
 #import "NSString+WPAttributedMarkup.h"
+#import "LearningPlayPopDeciModel.h"
 
 @interface LearningPlayPopView ()
 @property(nonatomic,strong)UIButton *closeBtn;
@@ -118,21 +119,21 @@
     rightOnePic.backgroundColor = kclearColor;
     rightOnePic.left = leftOnePic.right +30;
     rightOnePic.top = (kScreenHeight -(3*30+2*20))/2;
-    rightOnePic.image = UIImageNamed(@"lppopselect");//lppopselect
+    rightOnePic.image = UIImageNamed(@"lppopunselect");//lppopselect
     [_baseDecisionView addSubview:rightOnePic];
     
     UIImageView *rightTwoPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     rightTwoPic.backgroundColor = kclearColor;
     rightTwoPic.top = rightOnePic.bottom+20;
     rightTwoPic.left = leftOnePic.right +30;
-    rightTwoPic.image = UIImageNamed(@"lppopselect");
+    rightTwoPic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:rightTwoPic];
     
     UIImageView *rightThreePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     rightThreePic.backgroundColor = kclearColor;
     rightThreePic.top = rightTwoPic.bottom+20;
     rightThreePic.left = leftOnePic.right +30;
-    rightThreePic.image = UIImageNamed(@"lppopselect");
+    rightThreePic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:rightThreePic];
     
     UILabel *rightOneLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
@@ -164,6 +165,45 @@
     rightThreeLab.textColor = kwhiteColor;
     rightThreeLab.text= @"红牌";
     [_baseDecisionView addSubview:rightThreeLab];
+    
+//    for (LearningPlayPopDeciModel *popModel in model.r1) {
+//        if (popModel.right == 1) {
+//            switch (popModel.index) {
+//                case 1:
+//                    leftOnePic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                case 2:
+//                    leftTwoPic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                case 3:
+//                    leftThreePic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                case 4:
+//                    leftFourPic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//    
+//    for (LearningPlayPopDeciModel *popRightModel in model.r2) {
+//        if (popRightModel.right == 1) {
+//            switch (popRightModel.index) {
+//                case 1:
+//                    rightOnePic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                case 2:
+//                    rightTwoPic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                case 3:
+//                    rightThreePic.image = UIImageNamed(@"lppopselect");
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 }
 
 -(void)addSubviewOfOtherType{
@@ -174,14 +214,7 @@
         _textView.editable = NO;
         _textView.selectable = NO;
         [self addSubview:_textView];
-//        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.mas_top).offset(60);
-//            make.left.equalTo(self.mas_left).offset(100);
-//            make.right.equalTo(self.mas_right).offset(-100);
-//            make.bottom.equalTo(self.mas_bottom).offset(-100);
-//        }];
     }
-    
 }
 
 -(void)setModel:(VideoSingleInfoModel *)model WithType:(LearningPlayPopViewType)type{

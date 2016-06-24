@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A56967D1D1CDD840030F615 /* CoachInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A56967C1D1CDD840030F615 /* CoachInfoView.m */; };
 		0AC707211D19082B000B2E13 /* allBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071B1D19082B000B2E13 /* allBg.jpg */; };
 		0AC707221D19082B000B2E13 /* coachBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071C1D19082B000B2E13 /* coachBg.jpg */; };
 		0AC707231D19082B000B2E13 /* placeholder_media.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */; };
@@ -390,6 +391,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A56967B1D1CDD840030F615 /* CoachInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachInfoView.h; sourceTree = "<group>"; };
+		0A56967C1D1CDD840030F615 /* CoachInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachInfoView.m; sourceTree = "<group>"; };
 		0AC7071B1D19082B000B2E13 /* allBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = allBg.jpg; sourceTree = "<group>"; };
 		0AC7071C1D19082B000B2E13 /* coachBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coachBg.jpg; sourceTree = "<group>"; };
 		0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_media.jpg; sourceTree = "<group>"; };
@@ -1516,6 +1519,8 @@
 				EC4D3C471D13935200285243 /* CoachCenterVC.m */,
 				EC4D3C491D13936400285243 /* CoachVC.h */,
 				EC4D3C4A1D13936400285243 /* CoachVC.m */,
+				0A56967B1D1CDD840030F615 /* CoachInfoView.h */,
+				0A56967C1D1CDD840030F615 /* CoachInfoView.m */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -2601,6 +2606,7 @@
 				9CAF824C1D190F560025224F /* AJMediaBulletInputView.m in Sources */,
 				2DE2C8A61D0D4A8500310C4C /* UIImageView+UserInfo.m in Sources */,
 				2DE2C8A31D0D4A8500310C4C /* UIKit+DrawingHelpers.m in Sources */,
+				0A56967D1D1CDD840030F615 /* CoachInfoView.m in Sources */,
 				2D76357D1D1A92FC0085BB03 /* LearningInfoVC.m in Sources */,
 				9CAF82571D190F560025224F /* AJMediaPlayerMessageLayerView.m in Sources */,
 				2D84EA521D113A3200113404 /* LaunchInfoModel.m in Sources */,

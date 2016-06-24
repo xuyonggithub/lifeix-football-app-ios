@@ -45,7 +45,7 @@
     [super viewDidLoad];
     _dataArr = [NSMutableArray array];
     _topNameArr = [NSMutableArray array];
-    limitNum = 20;
+    limitNum = 30;
     _catsArrIndex = 0;
     _backPicView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     _backPicView.image = UIImageNamed(@"videolearningbackground");
@@ -193,7 +193,11 @@
 #pragma mark --UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(100,100);//290 220
+    if (IPHONE_5||IPHONE_4) {
+        return CGSizeMake(80,84);
+    }else{
+        return CGSizeMake(100,100);//290 220
+    }
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

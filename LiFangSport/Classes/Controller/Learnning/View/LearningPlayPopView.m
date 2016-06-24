@@ -11,8 +11,8 @@
 
 @interface LearningPlayPopView ()
 @property(nonatomic,strong)UIButton *closeBtn;
-@property(nonatomic,strong)UILabel *baseLab;
 @property(nonatomic,strong)UIView *baseDecisionView;
+@property(nonatomic,strong)UITextView *textView;//UITextView *textView = [UITextView new];
 
 @end
 
@@ -167,16 +167,21 @@
 }
 
 -(void)addSubviewOfOtherType{
-    if (!_baseLab) {
-        _baseLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth-140, kScreenHeight-60)];
-        _baseLab.centerY = self.centerY;
-        _baseLab.backgroundColor = kclearColor;
-        _baseLab.font = [UIFont systemFontOfSize:20*kScreenRatioBase6Plus];
-        _baseLab.textAlignment = NSTextAlignmentLeft;
-        _baseLab.textColor = kwhiteColor;
-        _baseLab.numberOfLines = 0;
-        [self addSubview:_baseLab];
+    if (!_textView) {
+        _textView = [[UITextView alloc]init];
+        _textView.frame = CGRectMake(10, 0, kScreenWidth-140, kScreenHeight-60);
+        _textView.backgroundColor = [UIColor clearColor];
+        _textView.editable = NO;
+        _textView.selectable = NO;
+        [self addSubview:_textView];
+//        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.mas_top).offset(60);
+//            make.left.equalTo(self.mas_left).offset(100);
+//            make.right.equalTo(self.mas_right).offset(-100);
+//            make.bottom.equalTo(self.mas_bottom).offset(-100);
+//        }];
     }
+    
 }
 
 -(void)setModel:(VideoSingleInfoModel *)model WithType:(LearningPlayPopViewType)type{
@@ -184,20 +189,36 @@
         if (type==LPPOP_DECISION) {//判罚
             [self addSubviewOfDECISIONType:model];
             _baseDecisionView.hidden = NO;
-            _baseLab.hidden = YES;
+            _textView.hidden = YES;
         }else{//其他
             [self addSubviewOfOtherType];
-            _baseLab.hidden = NO;
+            _textView.hidden = NO;
             _baseDecisionView.hidden = YES;
             NSDictionary *detstyleDic = @{@"bigFont":[UIFont systemFontOfSize:12],@"color":HEXRGBCOLOR(0x787878)};
+            
+            NSMutableParagraphStyle *contentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+            contentParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            contentParagraphStyle.lineSpacing = 6;
+            contentParagraphStyle.alignment = NSTextAlignmentJustified;
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.considerations attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+            
+            _textView.attributedText = attributedString;
             if (type == LPPOP_FACTORS){
-                [_baseLab setAttributedText:[model.considerations attributedStringWithStyleBook:detstyleDic]];
+//                [_baseLab setAttributedText:[model.considerations attributedStringWithStyleBook:detstyleDic]];
+//                _textView.attributedText = [model.considerations attributedStringWithStyleBook:detstyleDic];
+                
+                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.considerations attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                
+                _textView.attributedText = attributedString;
             }else if (type==LPPOP_DETAIL){
-                [_baseLab setAttributedText:[model.explanation attributedStringWithStyleBook:detstyleDic]];
+                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.explanation attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                
+                _textView.attributedText = attributedString;
             }else if (type==LPPOP_RULE){
-                [_baseLab setAttributedText:[model.rule attributedStringWithStyleBook:detstyleDic]];
+                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.rule attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                
+                _textView.attributedText = attributedString;
             }
-            [_baseLab sizeToFit];
         }
     }
 }

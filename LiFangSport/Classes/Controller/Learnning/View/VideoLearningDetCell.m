@@ -9,7 +9,9 @@
 #import "VideoLearningDetCell.h"
 #import "UIImageView+WebCache.h"
 
-@interface VideoLearningDetCell ()
+@interface VideoLearningDetCell (){
+    UIImageView *playView;
+}
 @property(nonatomic,strong)UILabel *nameLab;
 @property(nonatomic,strong)UIImageView *picView;
 
@@ -33,7 +35,7 @@
     _picView.layer.borderWidth = 1;
     _picView.layer.borderColor = [[UIColor whiteColor] CGColor];
     _nameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, 20)];
-    _nameLab.bottom = 100;
+    _nameLab.bottom = self.height;
     _nameLab.textAlignment = NSTextAlignmentCenter;
     _nameLab.textColor = [UIColor whiteColor];
     _nameLab.font = [UIFont systemFontOfSize:12];
@@ -43,16 +45,18 @@
     [self addSubview:_picView];
     [self addSubview:_nameLab];
     
-    UIImageView *playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+     playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     playView.image = UIImageNamed(@"videobofang");
     playView.center = _picView.center;
     [self addSubview:playView];
+    playView.hidden = YES;
 }
 
 -(void)setModel:(VideoLearningUnitModel *)model{
     NSString *picstr = [NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.videos[0][@"imagePath"]];
     [_picView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"videosingleplacehoder")];
     _nameLab.text = model.title;
+    playView.hidden = NO;
 }
 
 @end

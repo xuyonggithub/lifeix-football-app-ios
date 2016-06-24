@@ -139,6 +139,8 @@
 		2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */; };
 		2DCB0EB21D0D689B00DB3234 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCB0EB11D0D689B00DB3234 /* HomeViewController.m */; };
 		2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */; };
+		2DE0BF4E1D1CDB2000FFA297 /* lppopselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */; };
+		2DE0BF4F1D1CDB2000FFA297 /* lppopunselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */; };
 		2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F31D0D133800310C4C /* Main.storyboard */; };
 		2DE2C7F71D0D133800310C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F61D0D133800310C4C /* Assets.xcassets */; };
 		2DE2C7FA1D0D133800310C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C7F81D0D133800310C4C /* LaunchScreen.storyboard */; };
@@ -591,6 +593,8 @@
 		2DCB0EB11D0D689B00DB3234 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
 		2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
+		2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lppopselect@2x.png"; sourceTree = "<group>"; };
+		2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lppopunselect@2x.png"; sourceTree = "<group>"; };
 		2DE2C7E71D0D133800310C4C /* LiFangSport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiFangSport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE2C7F41D0D133800310C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DE2C7F61D0D133800310C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -1732,6 +1736,8 @@
 		2DE94D7E1D1291FA00E1508D /* VideoLearning */ = {
 			isa = PBXGroup;
 			children = (
+				2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */,
+				2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */,
 				2D07DA061D1BDF99007F73F1 /* popclose@2x.png */,
 				2D76357E1D1A93720085BB03 /* videobofang@2x.png */,
 				2D69ACF51D1A5F1800B5F52D /* videosingleplacehoder@2x.png */,
@@ -2275,6 +2281,7 @@
 				9C0517351D194797007F03A8 /* player_bt_play@2x.png in Resources */,
 				9C05173C1D194797007F03A8 /* player_bt_sound2@3x.png in Resources */,
 				9C05171E1D194797007F03A8 /* playback_image_bg@2x.png in Resources */,
+				2DE0BF4F1D1CDB2000FFA297 /* lppopunselect@2x.png in Resources */,
 				9C05174E1D194797007F03A8 /* player_ic_forward.png in Resources */,
 				9C0517261D194797007F03A8 /* player_bt_airplay_press@2x.png in Resources */,
 				2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */,
@@ -2284,6 +2291,7 @@
 				0AC707241D19082B000B2E13 /* playerBg.jpg in Resources */,
 				9C0517381D194797007F03A8 /* player_bt_play_press@2x.png in Resources */,
 				9C0516F61D194797007F03A8 /* bullet_cancel_ic_@2x.png in Resources */,
+				2DE0BF4E1D1CDB2000FFA297 /* lppopselect@2x.png in Resources */,
 				2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */,
 				9C05171A1D194797007F03A8 /* miniplayer_bt_back_nor@2x.png in Resources */,
 				9C0517431D194797007F03A8 /* player_bt_sound3_ipad.png in Resources */,

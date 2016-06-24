@@ -18,6 +18,8 @@
 {
     BOOL _isFullScreen;
     NSInteger _currentPlayVideoIndex;
+    PopViewKit *popKit;
+    LearningPlayPopView *rview;
 }
 //播放器
 @property (nonatomic, strong) AJMediaPlayerViewController *mediaPlayerViewController;
@@ -64,14 +66,14 @@
 
     _currentPlayVideoIndex = [_videoIdsArr indexOfObject:_videoId];;
     [self requestSingleVideoInfoWith:_videoId];
-    //操控
-    [self.view addSubview:self.ctrView];
-    //next
-    [self.view addSubview:self.nextBtn];
+//    //操控
+//    [self.view addSubview:self.ctrView];
+//    //next
+//    [self.view addSubview:self.nextBtn];
 }
 
 -(void)requestSingleVideoInfoWith:(NSString *)videoStr{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@",kvideoSinglePath,videoStr] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@",kvideoSinglePath,videoStr] loadingDic:@{kLoadingType : @(RLT_None), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithSingleVideoData:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         
@@ -81,6 +83,10 @@
 -(void)dealWithSingleVideoData:(id )dic{
     _videoInfoArr = [VideoSingleInfoModel modelDealDataFromWithDic:dic];
     [self toPlayWithAJMediaPlayerItem];
+    //操控
+    [self.view addSubview:self.ctrView];
+    //next
+    [self.view addSubview:self.nextBtn];
 }
 
 #pragma mark - FullScreen
@@ -164,74 +170,77 @@
         _ctrView.userInteractionEnabled = YES;
         _ctrView.right = kScreenWidth;
         _ctrView.centerY = kScreenHeight/2;
-        DefineWeak(self);
-        DefineWeak(_videoIdsArr);
-        DefineWeak(_currentPlayVideoIndex);
-        _ctrView.replayBlock = ^(void){
-            if (_currentPlayVideoIndex<_videoIdsArr.count) {
-                NSString *videoid = [NSString stringWithFormat:@"%@",Weak(_videoIdsArr)[Weak(_currentPlayVideoIndex)]];
-                [Weak(self) requestSingleVideoInfoWith:videoid];
-            }
-        };
-        PopViewKit *popKit = [[PopViewKit alloc] init];
+    }
+    VideoSingleInfoModel *model = [[VideoSingleInfoModel alloc]init];
+    if (_videoInfoArr) {
+        model = _videoInfoArr[0];
+    }
+    DefineWeak(self);
+    DefineWeak(_videoIdsArr);
+    DefineWeak(_currentPlayVideoIndex);
+    _ctrView.replayBlock = ^(void){
+        if (_currentPlayVideoIndex<_videoIdsArr.count) {
+            NSString *videoid = [NSString stringWithFormat:@"%@",Weak(_videoIdsArr)[Weak(_currentPlayVideoIndex)]];
+            [Weak(self) requestSingleVideoInfoWith:videoid];
+        }
+    };
+    if (!popKit) {
+        popKit = [[PopViewKit alloc] init];
         popKit.bTapDismiss = YES;
         popKit.bInnerTapDismiss = NO;
-        DefineWeak(popKit);
-        _ctrView.factorsBlock = ^(void){
-            [Weak(self).mediaPlayerViewController pause];
-            LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
-            rview.center = Weak(self).view.center;
-            rview.backgroundColor = kwhiteColor;
-            rview.closeBc = ^(void){
-                [Weak(popKit) dismiss:YES];
-            };
-            popKit.dismissBlock = ^(void){
-                [Weak(self).mediaPlayerViewController play];
-            };
-            [popKit popView:rview animateType:PAT_Alpha];
-        };
-        _ctrView.decisionBlock = ^(void){
-            [Weak(self).mediaPlayerViewController pause];
-            LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
-            rview.center = Weak(self).view.center;
-            rview.backgroundColor = kwhiteColor;
-            rview.closeBc = ^(void){
-                [Weak(popKit) dismiss:YES];
-            };
-            popKit.dismissBlock = ^(void){
-                [Weak(self).mediaPlayerViewController play];
-            };
-            [popKit popView:rview animateType:PAT_Alpha];
-
-        };
-        _ctrView.detailBlock = ^(void){
-            [Weak(self).mediaPlayerViewController pause];
-            LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
-            rview.center = Weak(self).view.center;
-            rview.backgroundColor = kwhiteColor;
-            rview.closeBc = ^(void){
-                [Weak(popKit) dismiss:YES];
-            };
-            popKit.dismissBlock = ^(void){
-                [Weak(self).mediaPlayerViewController play];
-            };
-            [popKit popView:rview animateType:PAT_Alpha];
-
-        };
-        _ctrView.ruleBlock = ^(void){
-            [Weak(self).mediaPlayerViewController pause];
-            LearningPlayPopView *rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(100, 100, 400, 200)];
-            rview.center = Weak(self).view.center;
-            rview.backgroundColor = kwhiteColor;
-            rview.closeBc = ^(void){
-                [Weak(popKit) dismiss:YES];
-            };
-            popKit.dismissBlock = ^(void){
-                [Weak(self).mediaPlayerViewController play];
-            };
-            [popKit popView:rview animateType:PAT_Alpha];
-        };
     }
+    if (!rview) {
+        rview = [[LearningPlayPopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        rview.center = Weak(self).view.center;
+        rview.backgroundColor = kclearColor;
+    }
+    DefineWeak(popKit);
+    DefineWeak(rview);
+    _ctrView.factorsBlock = ^(void){
+        [Weak(self).mediaPlayerViewController pause];
+        [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
+        Weak(rview).closeBc = ^(void){
+            [Weak(popKit) dismiss:YES];
+        };
+        Weak(popKit).dismissBlock = ^(void){
+            [Weak(self).mediaPlayerViewController play];
+        };
+        [Weak(rview) setModel:model WithType:LPPOP_FACTORS];
+    };
+    _ctrView.decisionBlock = ^(void){
+        [Weak(self).mediaPlayerViewController pause];
+        [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
+        Weak(rview).closeBc = ^(void){
+            [Weak(popKit) dismiss:YES];
+        };
+        Weak(popKit).dismissBlock = ^(void){
+            [Weak(self).mediaPlayerViewController play];
+        };
+        [Weak(rview) setModel:model WithType:LPPOP_DECISION];
+    };
+    _ctrView.detailBlock = ^(void){
+        [Weak(self).mediaPlayerViewController pause];
+        [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
+        Weak(rview).closeBc = ^(void){
+            [Weak(popKit) dismiss:YES];
+        };
+        Weak(popKit).dismissBlock = ^(void){
+            [Weak(self).mediaPlayerViewController play];
+        };
+        [Weak(rview) setModel:model WithType:LPPOP_DETAIL];
+    };
+    _ctrView.ruleBlock = ^(void){
+        [Weak(self).mediaPlayerViewController pause];
+        [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
+        Weak(rview).closeBc = ^(void){
+            [Weak(popKit) dismiss:YES];
+        };
+        Weak(popKit).dismissBlock = ^(void){
+            [Weak(self).mediaPlayerViewController play];
+        };
+        [Weak(rview) setModel:model WithType:LPPOP_RULE];
+    };
+
     return _ctrView;
 }
 

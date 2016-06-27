@@ -93,7 +93,6 @@
                 [self addSubview:self.rightTableView];
                 [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(weakSelf.scoreView.mas_bottom);
-                    make.centerX.equalTo(weakSelf);
                     make.left.equalTo(weakSelf.scoreView.mas_left).offset(-10);
                     make.right.equalTo(weakSelf.mas_right).offset(-10);
                     make.height.equalTo(@120);
@@ -367,7 +366,6 @@
 {
     if (!_scoreView) {
         _scoreView = [UIView new];
-        _scoreView.backgroundColor = [UIColor grayColor];
         [_scoreView addSubview:self.leftLabel];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.top.equalTo(_scoreView);

@@ -54,13 +54,11 @@
     [_mediaPlayerViewController initialShowFullScreen];
     
     UIImageView *bgImageView = [UIImageView new];
+    [bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",self.categoryModel.image]]];
     [self.view addSubview:bgImageView];
     [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view);
     }];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.categoryModel.image];
-    bgImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
     
     //  提示界面
     [self.view addSubview:self.promptView];

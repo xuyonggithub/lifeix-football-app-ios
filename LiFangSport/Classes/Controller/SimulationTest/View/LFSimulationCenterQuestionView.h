@@ -26,8 +26,9 @@ typedef NS_ENUM(NSInteger, LFQuestionMode){
 @interface LFSimulationCenterQuestionView : UIView
 
 @property (nonatomic, assign) id <LFSimulationCenterQuestionViewDelegate> delegate;
-@property (nonatomic, assign) NSInteger questionCnt;
 
-- (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel questionMode:(LFQuestionMode)questionMode;
+- (instancetype)initWithQuestionMode:(LFQuestionMode)questionMode questionCnt:(NSInteger)questionCnt;
+
+- (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel;
 
 @end

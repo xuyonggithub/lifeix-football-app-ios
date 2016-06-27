@@ -17,6 +17,7 @@
 {
     NSInteger _currentQuestionIndex;
     LFQuestionMode _questionMode;
+    BOOL _isNeedNewQuestionView;
 }
 
 //播放器
@@ -52,12 +53,6 @@
     [self addChildViewController:self.mediaPlayerViewController];
     [_mediaPlayerViewController initialShowFullScreen];
     
-    //  答题界面
-    [self.view addSubview:self.questionView];
-    [self.questionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.view);
-    }];
-
     //  提示界面
     [self.view addSubview:self.promptView];
     [self.promptView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -109,7 +104,18 @@
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
         self.currentQuestionModel = self.questionArray[_currentQuestionIndex];
         
-        [self.questionView refreshWithModel:self.currentQuestionModel questionMode:_questionMode];
+        if (_isNeedNewQuestionView) {
+            __weak typeof(self) weakSelf = self;
+            _isNeedNewQuestionView = NO;
+            [self.questionView removeFromSuperview];
+            self.questionView = [[LFSimulationCenterQuestionView alloc] initWithQuestionMode:_questionMode questionCnt:self.questionArray.count];
+            self.questionView.delegate = self;
+            [self.view insertSubview:self.questionView belowSubview:self.mediaPlayerViewController.view];
+            [self.questionView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(weakSelf.view);
+            }];
+        }
+        [self.questionView refreshWithModel:self.currentQuestionModel];
         
         AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:[self.categoryModel.name stringByAppendingString:self.modeString ? self.modeString : @""] uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
@@ -119,6 +125,7 @@
 #pragma mark - LFSimulationCenterPromptViewDelegate
 - (void)promptViewStartTesting:(NSInteger)modeIndex
 {
+    _isNeedNewQuestionView = YES;
     _currentQuestionIndex = 0;
     _questionMode = modeIndex;
     __weak typeof(self) weakSelf = self;
@@ -127,7 +134,6 @@
     }
     [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", _questionMode == LFQuestionModeDefaultFoul ? self.categoryModel.categoryId : [self.categoryModel.subArray[modeIndex - 1] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         weakSelf.questionArray = [LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict];
-        weakSelf.questionView.questionCnt = weakSelf.questionArray.count;
         [weakSelf toPlayWithAJMediaPlayerItem];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
@@ -206,8 +212,7 @@
 - (LFSimulationCenterQuestionView *)questionView
 {
     if (!_questionView) {
-        _questionView = [[LFSimulationCenterQuestionView alloc] init];
-        _questionView.delegate = self;
+        
     }
     return _questionView;
 }

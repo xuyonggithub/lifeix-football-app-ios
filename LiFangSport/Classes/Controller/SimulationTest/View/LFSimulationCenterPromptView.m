@@ -28,7 +28,7 @@
         }];
         
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+        [closeBtn setImage:[UIImage imageNamed:@"popclose"] forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

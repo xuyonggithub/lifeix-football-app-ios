@@ -15,13 +15,14 @@
 @interface LFSimulationCenterQuestionView ()
     <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 {
-    UIButton *_nextBtn;
+    LFQuestionMode _questionMode;
+    NSInteger _questionCnt;
     NSInteger _leftSelectedIndex;
     NSInteger _rightSelectedIndex;
     NSInteger _falseCnt;
     NSInteger _trueCnt;
-    LFQuestionMode _questionMode;
     BOOL _isLastQuestion;
+    UIButton *_nextBtn;
 }
 
 @property (nonatomic, strong) UITableView *leftTableView;
@@ -35,19 +36,20 @@
 @end
 
 @implementation LFSimulationCenterQuestionView
-- (instancetype)init
+- (instancetype)initWithQuestionMode:(LFQuestionMode)questionMode questionCnt:(NSInteger)questionCnt
 {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor blueColor];
-        
+        _questionMode = questionMode;
+        _questionCnt = questionCnt;
         _leftSelectedIndex = _rightSelectedIndex = -1;
         _falseCnt = _trueCnt = 0;
         
         __weak typeof(self) weakSelf = self;
         
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+        [closeBtn setImage:[UIImage imageNamed:@"popclose"] forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,28 +59,56 @@
         }];
         
         [self addSubview:self.scoreView];
-        [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.and.centerY.equalTo(weakSelf);
-            make.width.equalTo(@180);
-            make.height.equalTo(@140);
-        }];
         
-        [self addSubview:self.leftTableView];
-        [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(weakSelf);
-            make.left.equalTo(weakSelf.mas_left).offset(10);
-            make.right.equalTo(weakSelf.scoreView.mas_left).offset(-20);
-            make.height.equalTo(@240);
-        }];
-        
-        [self addSubview:self.rightTableView];
-        [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(weakSelf);
-            make.left.equalTo(weakSelf.scoreView.mas_right).offset(20);
-            make.right.equalTo(weakSelf.mas_right).offset(-10);
-            make.height.equalTo(@180);
-        }];
-        
+        if (_questionMode == LFQuestionModeDefaultFoul) {
+            [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.and.centerY.equalTo(weakSelf);
+                make.width.equalTo(@180);
+                make.height.equalTo(@140);
+            }];
+            
+            [self addSubview:self.leftTableView];
+            [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(weakSelf);
+                make.left.equalTo(weakSelf.mas_left).offset(10);
+                make.right.equalTo(weakSelf.scoreView.mas_left).offset(-20);
+                make.height.equalTo(@240);
+            }];
+            
+            [self addSubview:self.rightTableView];
+            [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(weakSelf);
+                make.left.equalTo(weakSelf.scoreView.mas_right).offset(20);
+                make.right.equalTo(weakSelf.mas_right).offset(-10);
+                make.height.equalTo(@180);
+            }];
+        }else {
+            [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(weakSelf);
+                make.width.equalTo(@180);
+                make.height.equalTo(@140);
+                make.top.equalTo(weakSelf).offset(30);
+            }];
+            if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
+                [self addSubview:self.rightTableView];
+                [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(weakSelf.scoreView.mas_bottom);
+                    make.centerX.equalTo(weakSelf);
+                    make.left.equalTo(weakSelf.scoreView.mas_left).offset(-10);
+                    make.right.equalTo(weakSelf.mas_right).offset(-10);
+                    make.height.equalTo(@120);
+                }];
+            }else if (_questionMode == LFQuestionModeDefaultOffsideHard) {
+                [self addSubview:self.collectionView];
+                [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(weakSelf.scoreView.mas_bottom);
+                    make.left.equalTo(weakSelf.mas_left).offset(-10);
+                    make.right.equalTo(weakSelf.mas_right).offset(-10);
+                    make.height.equalTo(@120);
+                }];
+            }
+        }
+    
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.enabled = NO;
         _nextBtn.layer.cornerRadius = 5;
@@ -94,58 +124,34 @@
             make.height.equalTo(@50);
             make.bottom.equalTo(weakSelf.mas_bottom).offset(-30);
         }];
-        
-        [self addSubview:self.collectionView];
-        
     }
     return self;
 }
 
 #pragma mark - Public Methods
-- (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel questionMode:(LFQuestionMode)questionMode
+- (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel
 {
+    self.questionModel = questionModel;
+    
     _nextBtn.enabled = NO;
     _leftSelectedIndex = _rightSelectedIndex = -1;
-    if (_questionMode != questionMode || _isLastQuestion) {
-        _falseCnt = _trueCnt = 0;
-        _leftLabel.text = _rightLabel.text = @"00";
-    }
-    _questionMode = questionMode;
-    if (_questionMode != LFQuestionModeDefaultFoul) {
-        __weak typeof(self) weakSelf = self;
-        [self.scoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(weakSelf);
-            make.width.equalTo(@180);
-            make.height.equalTo(@140);
-            make.top.equalTo(weakSelf).offset(30);
-        }];
-        
-        if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
-            self.leftTableView.hidden = YES;
-            self.collectionView.hidden = YES;
-            [self.rightTableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(weakSelf.scoreView.mas_bottom);
-                make.centerX.equalTo(weakSelf);
-                make.left.equalTo(weakSelf.scoreView.mas_left).offset(-10);
-                make.right.equalTo(weakSelf.mas_right).offset(-10);
-                make.height.equalTo(@120);
-            }];
-        }else {
-            self.leftTableView.hidden = self.rightTableView.hidden = YES;
-            [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(weakSelf.scoreView.mas_bottom);
-                make.left.equalTo(weakSelf.mas_left).offset(-10);
-                make.right.equalTo(weakSelf.mas_right).offset(-10);
-                make.height.equalTo(@120);
-            }];
-            [self.collectionView reloadData];
-        }
-    }
     
-    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = YES;
-    self.questionModel = questionModel;
-    [self.leftTableView reloadData];
-    [self.rightTableView reloadData];
+    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = self.collectionView.userInteractionEnabled = YES;
+    
+    switch (_questionMode) {
+        case LFQuestionModeDefaultFoul:
+            [self.leftTableView reloadData];
+            [self.rightTableView reloadData];
+            break;
+        case LFQuestionModeDefaultOffsideEasy:
+            [self.rightTableView reloadData];
+            break;
+        case LFQuestionModeDefaultOffsideHard:
+            [self.collectionView reloadData];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)refreshTestingResult
@@ -193,7 +199,7 @@
             _rightLabel.text = [NSString stringWithFormat:@"0%@", @(_falseCnt)];
         }
     }
-    if (self.questionCnt == _falseCnt + _trueCnt) {
+    if (_questionCnt == _falseCnt + _trueCnt) {
         [self refreshTestingResult];
     }
 }
@@ -217,7 +223,7 @@
             _rightLabel.text = [NSString stringWithFormat:@"0%@", @(_falseCnt)];
         }
     }
-    if (self.questionCnt == _falseCnt + _trueCnt) {
+    if (_questionCnt == _falseCnt + _trueCnt) {
         [self refreshTestingResult];
     }
 }
@@ -361,6 +367,7 @@
 {
     if (!_scoreView) {
         _scoreView = [UIView new];
+        _scoreView.backgroundColor = [UIColor grayColor];
         [_scoreView addSubview:self.leftLabel];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.top.equalTo(_scoreView);

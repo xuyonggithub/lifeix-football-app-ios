@@ -26,8 +26,8 @@
         __weak typeof(self) weakSelf = self;
         
         _checkBtn = [UIButton new];
-        [_checkBtn setTitle:@"0" forState:UIControlStateNormal];
-        [_checkBtn setTitle:@"1" forState:UIControlStateSelected];
+        [_checkBtn setImage:[UIImage imageNamed:@"lppopunselect"] forState:UIControlStateNormal];
+        [_checkBtn setImage:[UIImage imageNamed:@"lppopselect"] forState:UIControlStateSelected];
         [_checkBtn addTarget:self action:@selector(checkBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_checkBtn];
         

@@ -350,6 +350,8 @@
 		9CAF82871D19237F0025224F /* VTBulletLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82811D19237F0025224F /* VTBulletLabel.m */; };
 		9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82831D19237F0025224F /* VTBulletModel.m */; };
 		9CAF82891D19237F0025224F /* VTBulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF82851D19237F0025224F /* VTBulletView.m */; };
+		9CD1E8311D211DD7007323C0 /* offside_false@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD1E82F1D211DD7007323C0 /* offside_false@2x.png */; };
+		9CD1E8321D211DD7007323C0 /* offside_true@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD1E8301D211DD7007323C0 /* offside_true@2x.png */; };
 		9CE136851D1A22680007A22D /* LFSimulationCenterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */; };
 		9CE136881D1A4AF60007A22D /* LFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136871D1A4AF60007A22D /* LFNavigationController.m */; };
 		9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1368D1D1A66C90007A22D /* LFSimulationCenterQuestionView.m */; };
@@ -911,6 +913,8 @@
 		9CAF82831D19237F0025224F /* VTBulletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletModel.m; sourceTree = "<group>"; };
 		9CAF82841D19237F0025224F /* VTBulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBulletView.h; sourceTree = "<group>"; };
 		9CAF82851D19237F0025224F /* VTBulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBulletView.m; sourceTree = "<group>"; };
+		9CD1E82F1D211DD7007323C0 /* offside_false@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offside_false@2x.png"; sourceTree = "<group>"; };
+		9CD1E8301D211DD7007323C0 /* offside_true@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offside_true@2x.png"; sourceTree = "<group>"; };
 		9CE136831D1A22680007A22D /* LFSimulationCenterPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCenterPromptView.h; sourceTree = "<group>"; };
 		9CE136841D1A22680007A22D /* LFSimulationCenterPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterPromptView.m; sourceTree = "<group>"; };
 		9CE136861D1A4AF60007A22D /* LFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFNavigationController.h; sourceTree = "<group>"; };
@@ -1781,6 +1785,8 @@
 				9C0516881D194796007F03A8 /* bt_share@3x.png */,
 				9C0516891D194796007F03A8 /* bt_share_press@2x.png */,
 				9C05168A1D194796007F03A8 /* bt_share_press@3x.png */,
+				9CD1E82F1D211DD7007323C0 /* offside_false@2x.png */,
+				9CD1E8301D211DD7007323C0 /* offside_true@2x.png */,
 				9C05168B1D194796007F03A8 /* bullet_administrator_@2x.png */,
 				9C05168C1D194796007F03A8 /* bullet_administrator_@3x.png */,
 				9C05168D1D194796007F03A8 /* bullet_cancel_ic_@2x.png */,
@@ -2289,6 +2295,7 @@
 				0AC707601D1A269C000B2E13 /* share.png in Resources */,
 				2D6EEB221D17D9D700954C63 /* list_left@2x.png in Resources */,
 				9C0516F41D194797007F03A8 /* bullet_administrator_@2x.png in Resources */,
+				9CD1E8311D211DD7007323C0 /* offside_false@2x.png in Resources */,
 				9C0516EC1D194797007F03A8 /* bt_back@2x.png in Resources */,
 				2DE94D711D123BED00E1508D /* backIconwhite@2x.png in Resources */,
 				9C0516F91D194797007F03A8 /* bullet_cancel_ic_click@3x.png in Resources */,
@@ -2375,6 +2382,7 @@
 				9C0517511D194797007F03A8 /* player_image_shadow1.png in Resources */,
 				9C05173E1D194797007F03A8 /* player_bt_sound2_press@2x.png in Resources */,
 				2DE2C7F51D0D133800310C4C /* Main.storyboard in Resources */,
+				9CD1E8321D211DD7007323C0 /* offside_true@2x.png in Resources */,
 				9C0517101D194797007F03A8 /* close_video@2x.png in Resources */,
 				9C0517241D194797007F03A8 /* player_bt_airplay@2x.png in Resources */,
 				2D69AC911D1942B700B5F52D /* hud_11@2x.png in Resources */,

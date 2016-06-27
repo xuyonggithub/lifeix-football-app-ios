@@ -56,13 +56,13 @@
         if (row == selectedIndex) {
             _coverImageView.hidden = NO;
             if (selectedIndex == rightIndex) {
-                _coverImageView.image = [UIImage imageNamed:@"lppopselect"];
+                _coverImageView.image = [UIImage imageNamed:@"offside_true"];
             }else {
-                _coverImageView.image = [UIImage imageNamed:@"lppopunselect"];
+                _coverImageView.image = [UIImage imageNamed:@"offside_false"];
             }
         }else if (row == rightIndex) {
             _coverImageView.hidden = NO;
-            _coverImageView.image = [UIImage imageNamed:@"lppopselect"];
+            _coverImageView.image = [UIImage imageNamed:@"offside_true"];
         }else {
             _coverImageView.hidden = YES;
         }

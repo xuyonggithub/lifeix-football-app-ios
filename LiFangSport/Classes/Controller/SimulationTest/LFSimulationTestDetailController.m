@@ -53,6 +53,15 @@
     [self addChildViewController:self.mediaPlayerViewController];
     [_mediaPlayerViewController initialShowFullScreen];
     
+    UIImageView *bgImageView = [UIImageView new];
+    [self.view addSubview:bgImageView];
+    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakSelf.view);
+    }];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.categoryModel.image];
+    bgImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+    
     //  提示界面
     [self.view addSubview:self.promptView];
     [self.promptView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +116,6 @@
         if (_isNeedNewQuestionView) {
             __weak typeof(self) weakSelf = self;
             _isNeedNewQuestionView = NO;
-            [self.questionView removeFromSuperview];
             self.questionView = [[LFSimulationCenterQuestionView alloc] initWithQuestionMode:_questionMode questionCnt:self.questionArray.count];
             self.questionView.delegate = self;
             [self.view insertSubview:self.questionView belowSubview:self.mediaPlayerViewController.view];
@@ -171,6 +179,7 @@
 
 - (void)questionViewQuitQuesiotn
 {
+    [self.questionView removeFromSuperview];
     [self.view bringSubviewToFront:self.promptView];
 }
 

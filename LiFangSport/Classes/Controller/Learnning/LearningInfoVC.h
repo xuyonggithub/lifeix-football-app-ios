@@ -6,10 +6,10 @@
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "BaseVC.h"
 #import "BaseDrawerVC.h"
 #import "CenterViewController.h"
+#import "BaseRightDrawerVC.h"
 
-@interface LearningInfoVC : BaseDrawerVC
+@interface LearningInfoVC : BaseRightDrawerVC
 
 @end

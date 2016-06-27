@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Player/PlayerDetailVC.m"
-            timestampString = "488683468.267591"
+            filePath = "LiFangSport/Classes/Controller/Learnning/LearningInfoVC.m"
+            timestampString = "488685008.097497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-requestData"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-rightDrawerAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Home/HomeCenterVC.m"
-            timestampString = "488683537.060823"
+            filePath = "LiFangSport/Classes/Controller/Learnning/BaseRightDrawerVC.m"
+            timestampString = "488685031.020655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Player/PlayerDetailVC.m"
-            timestampString = "488683589.497958"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-requestData"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-rightDrawerAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

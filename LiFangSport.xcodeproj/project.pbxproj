@@ -32,8 +32,6 @@
 		0AC707771D1B978A000B2E13 /* BaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707761D1B978A000B2E13 /* BaseInfoView.m */; };
 		0AC7077A1D1BCA9B000B2E13 /* PlayerVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707791D1BCA9B000B2E13 /* PlayerVideoModel.m */; };
 		0AC7077D1D1BD524000B2E13 /* PlayerVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7077C1D1BD524000B2E13 /* PlayerVideoCell.m */; };
-		2D07D9F81D1B9CDC007F73F1 /* LearningInfoCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9F71D1B9CDC007F73F1 /* LearningInfoCenterVC.m */; };
-		2D07D9FB1D1B9D0C007F73F1 /* LearningInfoRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */; };
 		2D07D9FE1D1BB75E007F73F1 /* LearningPlayControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07D9FD1D1BB75E007F73F1 /* LearningPlayControlView.m */; };
 		2D07DA021D1BD581007F73F1 /* PopViewKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07DA011D1BD581007F73F1 /* PopViewKit.m */; };
 		2D07DA051D1BDC17007F73F1 /* LearningPlayPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D07DA041D1BDC17007F73F1 /* LearningPlayPopView.m */; };
@@ -190,6 +188,7 @@
 		2DE94D741D123BED00E1508D /* simCloseIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D6E1D123BED00E1508D /* simCloseIcon@2x.png */; };
 		2DE94D7D1D12778E00E1508D /* haolindemopic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */; };
 		2DE94D801D1291FA00E1508D /* ou1233aeer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */; };
+		2DF227E01D20BD2F005E49A0 /* BaseRightDrawerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF227DF1D20BD2F005E49A0 /* BaseRightDrawerVC.m */; };
 		99D0CDED8D5BD7F1BE62BCBA /* libPods-LiFangSport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */; };
 		9C0516EC1D194797007F03A8 /* bt_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0516831D194796007F03A8 /* bt_back@2x.png */; };
 		9C0516ED1D194797007F03A8 /* bt_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0516841D194796007F03A8 /* bt_back@3x.png */; };
@@ -427,10 +426,6 @@
 		0AC7077C1D1BD524000B2E13 /* PlayerVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerVideoCell.m; sourceTree = "<group>"; };
 		0AD8A0ACAF2FCD0201410D20 /* Pods-LiFangSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.debug.xcconfig"; sourceTree = "<group>"; };
 		159E949D078F75A3AFEBD465 /* libPods-LiFangSport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LiFangSport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D07D9F61D1B9CDC007F73F1 /* LearningInfoCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoCenterVC.h; sourceTree = "<group>"; };
-		2D07D9F71D1B9CDC007F73F1 /* LearningInfoCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoCenterVC.m; sourceTree = "<group>"; };
-		2D07D9F91D1B9D0C007F73F1 /* LearningInfoRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoRightVC.h; sourceTree = "<group>"; };
-		2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoRightVC.m; sourceTree = "<group>"; };
 		2D07D9FC1D1BB75E007F73F1 /* LearningPlayControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningPlayControlView.h; sourceTree = "<group>"; };
 		2D07D9FD1D1BB75E007F73F1 /* LearningPlayControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningPlayControlView.m; sourceTree = "<group>"; };
 		2D07DA001D1BD581007F73F1 /* PopViewKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewKit.h; sourceTree = "<group>"; };
@@ -690,6 +685,8 @@
 		2DE94D791D12570200E1508D /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haolindemopic@2x.png"; sourceTree = "<group>"; };
 		2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ou1233aeer.png; sourceTree = "<group>"; };
+		2DF227DE1D20BD2F005E49A0 /* BaseRightDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRightDrawerVC.h; sourceTree = "<group>"; };
+		2DF227DF1D20BD2F005E49A0 /* BaseRightDrawerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRightDrawerVC.m; sourceTree = "<group>"; };
 		9C0516831D194796007F03A8 /* bt_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_back@2x.png"; sourceTree = "<group>"; };
 		9C0516841D194796007F03A8 /* bt_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_back@3x.png"; sourceTree = "<group>"; };
 		9C0516851D194796007F03A8 /* bt_back_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_back_press@2x.png"; sourceTree = "<group>"; };
@@ -1559,12 +1556,10 @@
 				2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */,
 				2D76357B1D1A92FC0085BB03 /* LearningInfoVC.h */,
 				2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */,
-				2D07D9F61D1B9CDC007F73F1 /* LearningInfoCenterVC.h */,
-				2D07D9F71D1B9CDC007F73F1 /* LearningInfoCenterVC.m */,
-				2D07D9F91D1B9D0C007F73F1 /* LearningInfoRightVC.h */,
-				2D07D9FA1D1B9D0C007F73F1 /* LearningInfoRightVC.m */,
 				2D7635801D1A967B0085BB03 /* LearningVideoPlayVC.h */,
 				2D7635811D1A967B0085BB03 /* LearningVideoPlayVC.m */,
+				2DF227DE1D20BD2F005E49A0 /* BaseRightDrawerVC.h */,
+				2DF227DF1D20BD2F005E49A0 /* BaseRightDrawerVC.m */,
 				2DDAF8191D1854D0002E5D59 /* Manager */,
 				2D84EA591D11684C00113404 /* Model */,
 				2D84EA5A1D11684C00113404 /* View */,
@@ -2500,10 +2495,8 @@
 				9CAF82531D190F560025224F /* AJMediaPlayerBackGroundView.m in Sources */,
 				2DE2C84F1D0D2FF800310C4C /* SimCommonTool.m in Sources */,
 				9CAF82561D190F560025224F /* AJMediaPlayerFeedback.m in Sources */,
-				2D07D9F81D1B9CDC007F73F1 /* LearningInfoCenterVC.m in Sources */,
 				2DE2C8A01D0D4A8500310C4C /* UIColor+HelperAdditions.m in Sources */,
 				2D6EEB191D17864200954C63 /* SimulationCenterVC.m in Sources */,
-				2D07D9FB1D1B9D0C007F73F1 /* LearningInfoRightVC.m in Sources */,
 				9CAF82441D190F560025224F /* AJMediaPlayerOverlayView.m in Sources */,
 				9CAF82491D190F560025224F /* AJMediaSessionVolume.m in Sources */,
 				2D84EA581D115EAD00113404 /* VideoCenterVC.m in Sources */,
@@ -2647,6 +2640,7 @@
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,
 				EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */,
 				9CAF82541D190F560025224F /* AJMediaPlayerButton.m in Sources */,
+				2DF227E01D20BD2F005E49A0 /* BaseRightDrawerVC.m in Sources */,
 				2D69ACF41D1A5E8E00B5F52D /* VideoSingleInfoModel.m in Sources */,
 				2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */,
 				EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */,

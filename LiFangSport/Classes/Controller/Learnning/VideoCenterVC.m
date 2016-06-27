@@ -13,8 +13,6 @@
 #import "VideoListModel.h"
 #import "VideoLearningDetModel.h"
 #import "LearningInfoVC.h"
-#import "LearningInfoCenterVC.h"
-#import "LearningInfoRightVC.h"
 
 @interface VideoCenterVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *centerTableview;
@@ -83,16 +81,11 @@
         dVC.title = model.name;
         [self.navigationController pushViewController:dVC animated:YES];
     }else if(model.type == 2){
-        LearningInfoCenterVC *centerVC = [[LearningInfoCenterVC alloc]init];
-        LearningInfoRightVC *rightVC = [[LearningInfoRightVC alloc]init];
 
-        LearningInfoVC *IVC = [[LearningInfoVC alloc]initWithCenterVC:centerVC rightVC:rightVC leftVC:nil];
-        centerVC.titleStr = model.name;
+        LearningInfoVC *IVC = [[LearningInfoVC alloc]init];
+        IVC.title = model.name;
         [self.navigationController pushViewController:IVC animated:YES];
-//        SimulationTestVC *coachVC = [[SimulationTestVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
-
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {

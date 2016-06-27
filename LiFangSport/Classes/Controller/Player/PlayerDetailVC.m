@@ -146,7 +146,7 @@
     NSURL *url = [NSURL URLWithString:urlStr];
     MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:url];
     //弹出播放器
-//    [self presentMoviePlayerViewControllerAnimated:movieVc];
+    [self presentMoviePlayerViewControllerAnimated:movieVc];
 }
 
 

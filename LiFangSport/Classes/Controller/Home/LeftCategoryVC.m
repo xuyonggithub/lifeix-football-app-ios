@@ -11,14 +11,12 @@
 #import "LeftCategoryCell.h"
 #import "HomeLeftCategModel.h"
 #import "HomeCenterVC.h"
-#import "HomeViewController.h"
 #import "RightViewController.h"
 #import "MediaVC.h"
 #import "MediaCenterVC.h"
 #import "MediaRightVC.h"
 #import "PlayerCenterViewController.h"
 #import "PlayerVC.h"
-#import "VideoLearningVC.h"
 #import "VideoCenterVC.h"
 #import "CoachVC.h"
 #import "CoachCenterVC.h"
@@ -128,17 +126,13 @@
             [self pushToController:[[SimulationCenterVC alloc]init]];
         }
     
-    
     }
 }
-
 
 -(void)pushToController:(UIViewController *)controller{
     LFNavigationController *Nav = [[LFNavigationController alloc]initWithRootViewController:controller];
     [self.sideMenuViewController setContentViewController:Nav animated:YES];
     [self.sideMenuViewController hideMenuViewController];
-    
-    
 }
 
 
@@ -146,15 +140,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

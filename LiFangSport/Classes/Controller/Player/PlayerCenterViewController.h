@@ -11,6 +11,4 @@
 
 @interface PlayerCenterViewController : BaseMenuCenterVC
 
-@property(nonatomic, copy)NSString *categoryName;
-
 @end

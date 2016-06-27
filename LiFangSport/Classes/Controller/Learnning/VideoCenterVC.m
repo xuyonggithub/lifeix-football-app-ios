@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
-    self.title = @"规则培训";
     self.view.backgroundColor = [UIColor grayColor];
     
     [self createTableview];

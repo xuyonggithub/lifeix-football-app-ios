@@ -55,9 +55,6 @@
     _rightDataArray = [NSMutableArray array];
     _mediaArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor purpleColor];
-    
-    
-    self.title = _titleName?_titleName:@"十二强专栏";
 
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
 
@@ -71,6 +68,7 @@
     NSDictionary *dic = [NSDictionary dictionary];
     dic = noti.userInfo;
     _kidStr = dic[@"khomeKidNotiFicationStr"];
+    self.title = dic[@"title"];
     [self requestDataWithCaID:_kidStr];
 }
 -(void)requestDataWithCaID:(NSString *)string{

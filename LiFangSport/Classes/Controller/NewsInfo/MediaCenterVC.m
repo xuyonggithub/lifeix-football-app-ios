@@ -50,9 +50,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    if(!self.title){
-        self.title = @"资讯";
-    }
     
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
     self.tableView.delegate = self;

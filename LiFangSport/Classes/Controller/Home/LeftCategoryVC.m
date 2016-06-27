@@ -54,14 +54,12 @@
     _dataArray = [HomeLeftCategModel arrayOfModelsFromDictionaries:dic];
     _kTableView.height = 55*_dataArray.count;
     [_kTableView reloadData];
-    NSString *notistr;
-    for (HomeLeftCategModel *model in _dataArray) {
-        if ([model.page isEqualToString:@"competition_page"]) {
-            notistr = [[NSString alloc]initWithFormat:@"%@",model.KID];
-        }
+
+    if (_dataArray.count > 0) {
+        HomeLeftCategModel *model = _dataArray[0];
+        NSDictionary *notidic = [NSDictionary dictionaryWithObjectsAndKeys:model.KID, @"khomeKidNotiFicationStr", model.name, @"title", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:khomeKidNotiFicationStr object:nil userInfo:notidic];
     }
-    NSDictionary *notidic = [[NSDictionary alloc]initWithObjectsAndKeys:notistr, @"khomeKidNotiFicationStr", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:khomeKidNotiFicationStr object:nil userInfo:notidic];
 }
 -(void)createTableview{
     _kTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 550) style:UITableViewStylePlain];
@@ -103,33 +101,34 @@
     if (_dataArray.count) {
         HomeLeftCategModel *model = _dataArray[indexPath.section];
             if ([model.page isEqualToString:@"competition_page"]) {
-            [self pushToController:[[HomeCenterVC alloc]init]];
+            [self pushToController:[[HomeCenterVC alloc]init] andWithTitle:model.name];
     }
         else if([model.page isEqualToString:@"medialist_page"]){
-            [self pushToController:[[MediaCenterVC alloc]init]];
+            [self pushToController:[[MediaCenterVC alloc]init]  andWithTitle:model.name];
         }else if ([model.page isEqualToString:@"training_category_page"]){
             
-            [self pushToController:[[VideoCenterVC alloc]init]];
+            [self pushToController:[[VideoCenterVC alloc]init]  andWithTitle:model.name];
 
         }else if ([model.page isEqualToString:@"playerlist_page"]){
-            [self pushToController:[[PlayerCenterViewController alloc]init]];
+            [self pushToController:[[PlayerCenterViewController alloc]init]  andWithTitle:model.name];
 
         }else if ([model.page isEqualToString:@"refeerlist_page"]){
-            [self pushToController:[[RefereeCenterVC alloc]init]];
+            [self pushToController:[[RefereeCenterVC alloc]init]  andWithTitle:model.name];
 
         }else if ([model.page isEqualToString:@"coachlist_page"]){
             
-            [self pushToController:[[CoachCenterVC alloc]init]];
+            [self pushToController:[[CoachCenterVC alloc]init]  andWithTitle:model.name];
 
         }else if ([model.page isEqualToString:@"quiz_categroy_page"]){
             
-            [self pushToController:[[SimulationCenterVC alloc]init]];
+            [self pushToController:[[SimulationCenterVC alloc]init]  andWithTitle:model.name];
         }
     
     }
 }
 
--(void)pushToController:(UIViewController *)controller{
+-(void)pushToController:(UIViewController *)controller andWithTitle:(NSString *)title{
+    controller.title = title;
     LFNavigationController *Nav = [[LFNavigationController alloc]initWithRootViewController:controller];
     [self.sideMenuViewController setContentViewController:Nav animated:YES];
     [self.sideMenuViewController hideMenuViewController];

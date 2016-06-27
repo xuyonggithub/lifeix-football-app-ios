@@ -39,7 +39,6 @@
     _categoryNameArr = [NSMutableArray array];
     _coachArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"教练";
     [self requestData];
     self.automaticallyAdjustsScrollViewInsets = NO;
 }

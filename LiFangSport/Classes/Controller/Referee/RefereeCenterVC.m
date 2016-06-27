@@ -41,7 +41,6 @@
     _categoryNameArr = [NSMutableArray array];
     _refereeArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"裁判";
     [self requestData];
 }
 

@@ -38,7 +38,6 @@
     _categoryNameArr = [NSMutableArray array];
     _playerArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = self.categoryName;
     [self requestData];
     self.automaticallyAdjustsScrollViewInsets = NO; 
 }
@@ -73,7 +72,7 @@
         [_playerArr addObject:playerArr];
     }
     
-    [self addPlayerCategoryViewWithCategory: _categoryName];
+    [self addPlayerCategoryViewWithCategory:self.title];
     [self clickBtn:0];
 }
 
@@ -112,7 +111,7 @@
     self.selectedIndex = tag;
     [_selectedDataArr removeAllObjects];
     NSArray *arr;
-    if([self.categoryName isEqualToString:@"中国男足"]){
+    if([self.title isEqualToString:@"中国男足"]){
         arr = [NSArray arrayWithArray:self.playerArr[0]];
     }else{
         arr = [NSArray arrayWithArray:self.playerArr[1]];

@@ -43,6 +43,7 @@
 		2D62E8121D0FB2DB0006131B /* CenterCyclePicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8111D0FB2DB0006131B /* CenterCyclePicModel.m */; };
 		2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8141D101E820006131B /* TopBannerSwitchView.m */; };
 		2D62E8181D101F400006131B /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8171D101F400006131B /* LineView.m */; };
+		2D63930E1D20F620006E5CA6 /* SelectRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D63930D1D20F620006E5CA6 /* SelectRootViewController.m */; };
 		2D69960C1D19190C00B5F52D /* MulSwitchBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D69960B1D19190C00B5F52D /* MulSwitchBannerView.m */; };
 		2D69960F1D19279500B5F52D /* VideoLearningUnitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D69960E1D19279500B5F52D /* VideoLearningUnitModel.m */; };
 		2D6996161D193F2900B5F52D /* INSLappsyInfiniteIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6996131D193F2900B5F52D /* INSLappsyInfiniteIndicator.m */; };
@@ -109,6 +110,7 @@
 		2D8D09B21D0DA032008771AA /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D09AB1D0DA032008771AA /* NSDateFormatter+Category.m */; };
 		2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D09AE1D0DA032008771AA /* UIFont+Level.m */; };
 		2D8D09B41D0DA032008771AA /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D09B01D0DA032008771AA /* UIImage+Color.m */; };
+		2D9D12E91D21005A00A31A16 /* BaseMenuCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D12E81D21005A00A31A16 /* BaseMenuCenterVC.m */; };
 		2DA4B1EC1D0E456000136DA7 /* BaseDrawerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4B1EB1D0E456000136DA7 /* BaseDrawerVC.m */; };
 		2DA4B1F41D0E465C00136DA7 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4B1EF1D0E465C00136DA7 /* CenterViewController.m */; };
 		2DA4B1F51D0E465C00136DA7 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4B1F11D0E465C00136DA7 /* LeftViewController.m */; };
@@ -449,6 +451,8 @@
 		2D62E8141D101E820006131B /* TopBannerSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannerSwitchView.m; sourceTree = "<group>"; };
 		2D62E8161D101F400006131B /* LineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineView.h; sourceTree = "<group>"; };
 		2D62E8171D101F400006131B /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
+		2D63930C1D20F620006E5CA6 /* SelectRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRootViewController.h; sourceTree = "<group>"; };
+		2D63930D1D20F620006E5CA6 /* SelectRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRootViewController.m; sourceTree = "<group>"; };
 		2D69960A1D19190C00B5F52D /* MulSwitchBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MulSwitchBannerView.h; sourceTree = "<group>"; };
 		2D69960B1D19190C00B5F52D /* MulSwitchBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MulSwitchBannerView.m; sourceTree = "<group>"; };
 		2D69960D1D19279500B5F52D /* VideoLearningUnitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningUnitModel.h; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 		2D8D09AE1D0DA032008771AA /* UIFont+Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Level.m"; sourceTree = "<group>"; };
 		2D8D09AF1D0DA032008771AA /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		2D8D09B01D0DA032008771AA /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		2D9D12E71D21005A00A31A16 /* BaseMenuCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuCenterVC.h; sourceTree = "<group>"; };
+		2D9D12E81D21005A00A31A16 /* BaseMenuCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMenuCenterVC.m; sourceTree = "<group>"; };
 		2DA4B1EA1D0E456000136DA7 /* BaseDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDrawerVC.h; sourceTree = "<group>"; };
 		2DA4B1EB1D0E456000136DA7 /* BaseDrawerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDrawerVC.m; sourceTree = "<group>"; };
 		2DA4B1EE1D0E465C00136DA7 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
@@ -1061,6 +1067,15 @@
 				2D62E8141D101E820006131B /* TopBannerSwitchView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2D63930B1D20F60B006E5CA6 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2D63930C1D20F620006E5CA6 /* SelectRootViewController.h */,
+				2D63930D1D20F620006E5CA6 /* SelectRootViewController.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		2D6996101D193F2900B5F52D /* PullRefresh */ = {
@@ -1613,6 +1628,9 @@
 				2DA4B1EB1D0E456000136DA7 /* BaseDrawerVC.m */,
 				9CE136861D1A4AF60007A22D /* LFNavigationController.h */,
 				9CE136871D1A4AF60007A22D /* LFNavigationController.m */,
+				2D9D12E71D21005A00A31A16 /* BaseMenuCenterVC.h */,
+				2D9D12E81D21005A00A31A16 /* BaseMenuCenterVC.m */,
+				2D63930B1D20F60B006E5CA6 /* Tool */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2611,6 +2629,7 @@
 				9C658B6D1D1A7D9B0005215D /* LFSimulationCategoryModel.m in Sources */,
 				9CAF82861D19237F0025224F /* VTBulletItem.m in Sources */,
 				2DE2C8A41D0D4A8500310C4C /* UIAlertView+UserInfo.m in Sources */,
+				2D9D12E91D21005A00A31A16 /* BaseMenuCenterVC.m in Sources */,
 				9CAF82581D190F560025224F /* AJMediaPlayerPlaybackControlPanel.m in Sources */,
 				2DE2C8721D0D495A00310C4C /* NSStringAdditions.m in Sources */,
 				9CAF82621D190F560025224F /* AJMediaTipsView.m in Sources */,
@@ -2640,6 +2659,7 @@
 				9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */,
 				0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */,
 				2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */,
+				2D63930E1D20F620006E5CA6 /* SelectRootViewController.m in Sources */,
 				9CE136911D1A68180007A22D /* LFSimulationQuestionModel.m in Sources */,
 				9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */,
 				EC4D3C3D1D1392A800285243 /* RefereeCenterVC.m in Sources */,

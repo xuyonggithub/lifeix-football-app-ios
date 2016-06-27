@@ -13,6 +13,7 @@
 #import "HomeViewController.h"
 #import "HomeCenterVC.h"
 #import "LaunchInfoManager.h"
+#import "SelectRootViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
 
     [self setupUIInterface];
     //SDImageCache设置缓存时间为30天
@@ -85,10 +87,12 @@
     LeftCategoryVC *leftV=[[LeftCategoryVC alloc]init];
 //    RightViewController *rightV=[[RightViewController alloc]init];
     
-    HomeViewController *_rootVC = [[HomeViewController alloc] initWithCenterVC:centerV rightVC:nil leftVC:leftV];
-    self.window.rootViewController = _rootVC;
+//    HomeViewController *_rootVC = [[HomeViewController alloc] initWithCenterVC:centerV rightVC:nil leftVC:leftV];
+//    self.window.rootViewController = _rootVC;
+    self.window.rootViewController = [SelectRootViewController rootViewController];
+
     [self.window makeKeyAndVisible];
-    
+
 }
 
 

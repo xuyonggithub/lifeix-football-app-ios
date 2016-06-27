@@ -7,6 +7,7 @@
 //
 
 #import "LFNavigationController.h"
+#define kFONT16                  [UIFont systemFontOfSize:16.0f]
 
 @interface LFNavigationController ()
 
@@ -16,7 +17,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //设置导航控制器的view的背景图片
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    //是否透明
+//    self.navigationBar.translucent = NO;
+//    
+//    //设置导航栏的颜色，字体大小，字体颜色
+//    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, kFONT16, NSFontAttributeName, nil]];
+//    
+//    self.navigationBar.barTintColor = [UIColor whiteColor];
+//    
+//    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0))
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;//视图控制器，四条边不指定
+//        self.extendedLayoutIncludesOpaqueBars = NO;//不透明的操作栏
+//        self.modalPresentationCapturesStatusBarAppearance = NO;
+//        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@""]
+//                                          forBarPosition:UIBarPositionTop
+//                                              barMetrics:UIBarMetricsDefault];
+//    }
+//    else
+//    {
+//        [self.navigationBar setBackgroundImage:[UIImage imageNamed:@""]
+//                                 forBarMetrics:UIBarMetricsDefault];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

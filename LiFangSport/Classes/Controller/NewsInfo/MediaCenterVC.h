@@ -7,8 +7,9 @@
 //
 
 #import "CenterViewController.h"
+#import "BaseMenuCenterVC.h"
 
-@interface MediaCenterVC : CenterViewController
+@interface MediaCenterVC : BaseMenuCenterVC
 
 @property(nonatomic, retain)NSString *categoryIds;
 @property(nonatomic, retain)NSString *cate;

@@ -7,8 +7,9 @@
 //
 
 #import "CenterViewController.h"
+#import "BaseMenuCenterVC.h"
 
-@interface HomeCenterVC : CenterViewController
+@interface HomeCenterVC : BaseMenuCenterVC
 
 @property(nonatomic,strong)NSString *kidStr;
 @property(nonatomic,strong)NSString *titleName;

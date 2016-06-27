@@ -47,15 +47,15 @@
     if (!popKit) {
         popKit = [[PopViewKit alloc] init];
         popKit.bTapDismiss = YES;
-        popKit.bInnerTapDismiss = NO;
+        popKit.bInnerTapDismiss = YES;
     }
-
     if (!rightView) {
         rightView = [[LearningInfoPopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-80, kScreenHeight)];
     }
+    rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
     popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-rightView.width, 0);
 
-    [popKit popView:rightView animateType:PAT_HeightDownToUp];
+    [popKit popView:rightView animateType:PAT_WidthRightToLeft];
 
 }
 

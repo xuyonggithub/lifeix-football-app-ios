@@ -51,7 +51,7 @@
         make.edges.equalTo(weakSelf.view);
     }];
     [self addChildViewController:self.mediaPlayerViewController];
-    [_mediaPlayerViewController initialShowFullScreen];
+    [self.mediaPlayerViewController initialShowFullScreen];
     
     //  提示界面
     [self.view addSubview:self.promptView];
@@ -148,11 +148,13 @@
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
     [self.view bringSubviewToFront:self.questionView];
 }
 
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
     [self.mediaPlayerViewController stop];
     [self.view bringSubviewToFront:self.promptView];
 }
@@ -166,11 +168,13 @@
     }else {
         _currentQuestionIndex++;
         [self toPlayWithAJMediaPlayerItem];
+        [self.mediaPlayerViewController showPlaybackControls];
     }
 }
 
 - (void)questionViewQuitQuesiotn
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
     [self.questionView removeFromSuperview];
     [self.view bringSubviewToFront:self.promptView];
 }

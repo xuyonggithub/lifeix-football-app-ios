@@ -2496,13 +2496,14 @@
         if (currentState == AJMediaPlayerStateContentBuffering) {
             if (previousState == AJMediaPlayerStateContentPlaying) {
                 _bufferingNumbers++;
-                if (_bufferingNumbers > _maxBufferingNumbers && !_isAlreadySubmitBuffering) {
-                    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-                        _mediaPlayerNavigationBar.bufferButton.hidden = NO;
-                        [_mediaPlayerNavigationBar setNeedsUpdateConstraints];
-                        [_mediaPlayerNavigationBar updateConstraintsIfNeeded];
-                    }
-                }
+                //  卡顿投诉
+//                if (_bufferingNumbers > _maxBufferingNumbers && !_isAlreadySubmitBuffering) {
+//                    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//                        _mediaPlayerNavigationBar.bufferButton.hidden = NO;
+//                        [_mediaPlayerNavigationBar setNeedsUpdateConstraints];
+//                        [_mediaPlayerNavigationBar updateConstraintsIfNeeded];
+//                    }
+//                }
             }
             if (weakSelf.networkStatus == NotReachable) {
                 if (_playFirstFrame) {

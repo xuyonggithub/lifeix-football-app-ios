@@ -277,5 +277,10 @@ IB_DESIGNABLE
 //  初始化为全屏
 - (void)initialShowFullScreen;
 
+//  全屏
+- (void)refreshFullScreenModel;
+
+- (void)showPlaybackControls;
+
 @end
 

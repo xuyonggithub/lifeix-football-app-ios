@@ -137,7 +137,16 @@
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+//播放器控制栏即将出现
+- (void)mediaPlayerViewControllerPlaybackControlsWillAppear:(AJMediaPlayerViewController *)mediaPlayerViewController{
+    _ctrView.hidden = NO;
+    _nextBtn.hidden = NO;
+}
+//播放器控制栏已经消失
+- (void)mediaPlayerViewControllerPlaybackControlsDidDisappear:(AJMediaPlayerViewController *)mediaPlayerViewController{
+    _ctrView.hidden = YES;
+    _nextBtn.hidden = YES;
+}
 #pragma mark - UIViewControllerRotation
 - (BOOL)shouldAutorotate
 {

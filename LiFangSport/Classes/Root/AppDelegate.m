@@ -23,7 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-
     [self setupUIInterface];
     //SDImageCache设置缓存时间为30天
     [SDImageCache sharedImageCache].maxCacheAge = 60 * 60 * 24 * 30;
@@ -80,11 +79,7 @@
     //显示界面
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-//    HomeCenterVC *centerV=[[HomeCenterVC alloc]init];
-//    LeftCategoryVC *leftV=[[LeftCategoryVC alloc]init];
-    
     self.window.rootViewController = [SelectRootViewController rootViewController];
-
     [self.window makeKeyAndVisible];
 
 }

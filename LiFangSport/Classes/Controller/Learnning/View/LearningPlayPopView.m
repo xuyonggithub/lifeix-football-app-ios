@@ -46,7 +46,8 @@
 
 -(void)addSubviewOfDECISIONType:(VideoSingleInfoModel *)model {
     if (!_baseDecisionView) {
-        _baseDecisionView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth-140, kScreenHeight-60)];
+        _baseDecisionView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth-140, kScreenHeight)];
+        _baseDecisionView.center = self.center;
         _baseDecisionView.backgroundColor = kclearColor;
         [self addSubview:_baseDecisionView];
     }
@@ -212,7 +213,7 @@
     if (!_textView) {
         _textView = [[UITextView alloc]init];
         _textView.frame = CGRectMake(30, 0, kScreenWidth-180, kScreenHeight-100);
-        _textView.centerY = self.centerY;
+        _textView.center = self.center;
         _textView.backgroundColor = [UIColor clearColor];
         _textView.editable = NO;
         _textView.selectable = NO;

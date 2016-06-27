@@ -12,9 +12,14 @@
 #import "MediaDetailVC.h"
 #import "CommonRequest.h"
 #import "UIScrollView+INSPullToRefresh.h"
+#import "PopViewKit.h"
+#import "MediaCatePopView.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
-@interface MediaCenterVC ()<UITableViewDelegate, UITableViewDataSource>
-
+@interface MediaCenterVC ()<UITableViewDelegate, UITableViewDataSource, MediaCatePopViewDelegate>{
+    PopViewKit *popKit;
+    MediaCatePopView *rightView;
+}
 @property(nonatomic, retain)NSMutableArray *dataArr;
 @property(nonatomic, retain)UITableView *tableView;
 @property(nonatomic, retain)UIImageView *bgImgView;
@@ -51,12 +56,37 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right.png"] target:self action:@selector(rightDrawerAction:)];
+    
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[MediaCell class] forCellReuseIdentifier:@"cell"];
     [self requestDataWithisHeaderRefresh: YES];
     [self setupRefresh];
+}
+
+- (void)rightDrawerAction:(UIBarButtonItem *)sender {
+    if (!popKit) {
+        popKit = [[PopViewKit alloc] init];
+        popKit.bTapDismiss = YES;
+        popKit.bInnerTapDismiss = NO;
+    }
+    if (!rightView) {
+        rightView = [[MediaCatePopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-80, kScreenHeight)];
+        rightView.delegate = self;
+    }
+    rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
+    popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-rightView.width, 0);
+    [popKit popView:rightView animateType:PAT_WidthRightToLeft];
+}
+
+#pragma mark - popViewDelegate
+-(void)popViewDidSelectCategory:(NSString *)cateId andName:(NSString *)name{
+    self.categoryIds = cateId;
+    self.title = name;
+    [self requestDataWithisHeaderRefresh:YES];
+    [popKit dismiss:YES];
 }
 
 #pragma mark - 数据请求

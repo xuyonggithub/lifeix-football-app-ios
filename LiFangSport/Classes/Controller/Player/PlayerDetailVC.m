@@ -13,7 +13,7 @@
 #import "PlayerVideoModel.h"
 #import "PlayerVideoCell.h"
 #import "UIBarButtonItem+SimAdditions.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "PlayerVideoVC.h"
 
 #define kReuseId @"cell"
 @interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -95,13 +95,13 @@
 -(void)clickBtn:(CGFloat)tag{
     NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 235) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 300) style:UITableViewStylePlain];
         [self.view addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
         [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
     }else{
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 235)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 300)];
         [self.view addSubview:webView];
         webView.delegate = self;
         NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
@@ -114,16 +114,16 @@
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     NSLog(@"succeed!");
 }
-                            
+
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     NSLog(@"error = %@", error);
 }
-                            
+
 #pragma mark - UITabView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.playerVideosArr.count;
 }
-                            
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PlayerVideoModel *video = self.playerVideosArr[indexPath.row];
     PlayerVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
@@ -134,19 +134,19 @@
     [cell displayCell:video];
     return cell;
 }
-                            
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return SCREEN_WIDTH / 2;
 }
-                            
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     PlayerVideoModel *video = self.playerVideosArr[indexPath.row];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", kQiNiuHeaderPathPrifx, video.url];
     NSURL *url = [NSURL URLWithString:urlStr];
-    MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:url];
-    //弹出播放器
-    [self presentMoviePlayerViewControllerAnimated:movieVc];
+    PlayerVideoVC *playerVideoVC = [[PlayerVideoVC alloc] initWithUrl:url];
+    
+    [self.navigationController pushViewController:playerVideoVC animated:YES];
 }
 
 

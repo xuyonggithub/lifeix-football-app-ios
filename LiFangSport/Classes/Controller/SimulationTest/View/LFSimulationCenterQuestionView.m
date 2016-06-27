@@ -101,8 +101,8 @@
                 [self addSubview:self.collectionView];
                 [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(weakSelf.scoreView.mas_bottom);
-                    make.left.equalTo(weakSelf.mas_left).offset(-10);
-                    make.right.equalTo(weakSelf.mas_right).offset(-10);
+                    make.left.equalTo(weakSelf.mas_left).offset(30);
+                    make.right.equalTo(weakSelf.mas_right).offset(-30);
                     make.height.equalTo(@120);
                 }];
             }
@@ -205,7 +205,11 @@
 
 - (void)judgementOffsideAnswer
 {
-    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = NO;
+    if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
+        self.rightTableView.userInteractionEnabled = NO;
+    }else {
+        self.collectionView.userInteractionEnabled = NO;
+    }
     _nextBtn.enabled = YES;
     if (_rightSelectedIndex == self.questionModel.leftAnswerIndex) {
         _trueCnt++;
@@ -324,13 +328,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LFSimulationOffsideHardCell *cell = (LFSimulationOffsideHardCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath: indexPath];
-    [cell.userLogoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kQiNiuHeaderPathPrifx, self.questionModel.leftQuestionImageArray[indexPath.row]]] placeholderImage:nil];
+    [cell refreshOffsideHardCellContent:self.questionModel.leftQuestionImageArray[indexPath.row] content:self.questionModel.leftQuestionArray[indexPath.row] selectedIndex:_rightSelectedIndex rightIndex:self.questionModel.leftAnswerIndex row:indexPath.row];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    _rightSelectedIndex = indexPath.row;
+    [self judgementOffsideAnswer];
+    [collectionView reloadData];
 }
 
 #pragma mark - Getter and Setter
@@ -404,14 +410,14 @@
 {
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        flowLayout.minimumLineSpacing = 2.5;
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal | UICollectionViewScrollDirectionVertical];
+        flowLayout.minimumLineSpacing = 10;
         flowLayout.minimumInteritemSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 2.5, 0, 2.5);
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
         //flowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 300 / 750.0 + 10 + 32);
-        flowLayout.itemSize = CGSizeMake((SCREEN_HEIGHT - 10) / 4, (SCREEN_HEIGHT - 10) / 4);
+        flowLayout.itemSize = CGSizeMake((SCREEN_WIDTH - 60 - 50) / 4.0, (SCREEN_WIDTH - 60 - 50) / 4.0);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, self.bounds.size.height) collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         [_collectionView registerClass:[LFSimulationOffsideHardCell class] forCellWithReuseIdentifier:CELL_ID];

@@ -11,6 +11,6 @@
 
 @interface LFSimulationOffsideHardCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImageView *userLogoImageView;
+- (void)refreshOffsideHardCellContent:(NSString *)imageUrl content:(NSString *)content selectedIndex:(NSInteger)selectedIndex rightIndex:(NSInteger)rightIndex row:(NSInteger)row;
 
 @end

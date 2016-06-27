@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A56967D1D1CDD840030F615 /* CoachInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A56967C1D1CDD840030F615 /* CoachInfoView.m */; };
 		0AA9A6AB1D20FBCC0015786F /* PlayerVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9A6AA1D20FBCC0015786F /* PlayerVideoVC.m */; };
+		0AA9A6B11D211AE40015786F /* MediaCatePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9A6B01D211AE40015786F /* MediaCatePopView.m */; };
 		0AC707211D19082B000B2E13 /* allBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071B1D19082B000B2E13 /* allBg.jpg */; };
 		0AC707221D19082B000B2E13 /* coachBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071C1D19082B000B2E13 /* coachBg.jpg */; };
 		0AC707231D19082B000B2E13 /* placeholder_media.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */; };
@@ -398,6 +399,8 @@
 		0A56967C1D1CDD840030F615 /* CoachInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachInfoView.m; sourceTree = "<group>"; };
 		0AA9A6A91D20FBCC0015786F /* PlayerVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerVideoVC.h; sourceTree = "<group>"; };
 		0AA9A6AA1D20FBCC0015786F /* PlayerVideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerVideoVC.m; sourceTree = "<group>"; };
+		0AA9A6AF1D211AE40015786F /* MediaCatePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCatePopView.h; sourceTree = "<group>"; };
+		0AA9A6B01D211AE40015786F /* MediaCatePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaCatePopView.m; sourceTree = "<group>"; };
 		0AC7071B1D19082B000B2E13 /* allBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = allBg.jpg; sourceTree = "<group>"; };
 		0AC7071C1D19082B000B2E13 /* coachBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coachBg.jpg; sourceTree = "<group>"; };
 		0AC7071D1D19082B000B2E13 /* placeholder_media.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_media.jpg; sourceTree = "<group>"; };
@@ -2097,6 +2100,8 @@
 		EC51412C1D1136F50034B0E5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0AA9A6AF1D211AE40015786F /* MediaCatePopView.h */,
+				0AA9A6B01D211AE40015786F /* MediaCatePopView.m */,
 				EC51412D1D1136F50034B0E5 /* MediaCell.h */,
 				EC51412E1D1136F50034B0E5 /* MediaCell.m */,
 				EC5141301D11373F0034B0E5 /* MediaCategoryCell.h */,
@@ -2543,6 +2548,7 @@
 				2D84EA5D1D11688100113404 /* VideoLearningCell.m in Sources */,
 				2D84EA551D11578B00113404 /* HomeBannnerDetVC.m in Sources */,
 				2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */,
+				0AA9A6B11D211AE40015786F /* MediaCatePopView.m in Sources */,
 				9CAF823C1D190F560025224F /* AJMediaPlayer+Analytics.m in Sources */,
 				2DE2C82B1D0D26CF00310C4C /* ViewController.m in Sources */,
 				2DE2C8791D0D495A00310C4C /* UIWindowAddition.m in Sources */,

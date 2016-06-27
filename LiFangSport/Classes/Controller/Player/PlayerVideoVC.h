@@ -10,4 +10,6 @@
 
 @interface PlayerVideoVC : UIViewController
 
+- (id)initWithUrl:(NSURL *)url;
+
 @end

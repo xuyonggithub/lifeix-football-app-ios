@@ -2572,6 +2572,7 @@
 }
 
 - (void)mediaPlayer:(AJMediaPlayer *)mediaPlayer didVideoPlayToEnd:(AJMediaPlayerItem *)mediaPlayerItem {
+    [self invalidateTimer];
     if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayerViewController:videoDidPlayToEnd:)]) {
         if ([self isAirPlayActive]) {
             if (!isAirPlayReceviedPlayToEnd) {

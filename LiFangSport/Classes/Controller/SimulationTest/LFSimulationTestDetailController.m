@@ -153,7 +153,7 @@
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    [self.mediaPlayerViewController showPlaybackControls];
     [self.view bringSubviewToFront:self.questionView];
 }
 
@@ -174,7 +174,6 @@
     }else {
         _currentQuestionIndex++;
         [self toPlayWithAJMediaPlayerItem];
-        [self.mediaPlayerViewController showPlaybackControls];
     }
 }
 

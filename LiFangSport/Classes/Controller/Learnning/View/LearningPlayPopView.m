@@ -166,44 +166,46 @@
     rightThreeLab.text= @"红牌";
     [_baseDecisionView addSubview:rightThreeLab];
     
-//    for (LearningPlayPopDeciModel *popModel in model.r1) {
-//        if (popModel.right == 1) {
-//            switch (popModel.index) {
-//                case 1:
-//                    leftOnePic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                case 2:
-//                    leftTwoPic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                case 3:
-//                    leftThreePic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                case 4:
-//                    leftFourPic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    }
-//    
-//    for (LearningPlayPopDeciModel *popRightModel in model.r2) {
-//        if (popRightModel.right == 1) {
-//            switch (popRightModel.index) {
-//                case 1:
-//                    rightOnePic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                case 2:
-//                    rightTwoPic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                case 3:
-//                    rightThreePic.image = UIImageNamed(@"lppopselect");
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    }
+    for (NSDictionary *dic in model.r1) {
+        LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
+        if (popModel.right == 1) {
+            switch (popModel.index) {
+                case 1:
+                    leftOnePic.image = UIImageNamed(@"lppopselect");
+                    break;
+                case 2:
+                    leftTwoPic.image = UIImageNamed(@"lppopselect");
+                    break;
+                case 3:
+                    leftThreePic.image = UIImageNamed(@"lppopselect");
+                    break;
+                case 4:
+                    leftFourPic.image = UIImageNamed(@"lppopselect");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    for (NSDictionary *dic in model.r2) {
+        LearningPlayPopDeciModel *popRightModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
+        if (popRightModel.right == 1) {
+            switch (popRightModel.index) {
+                case 1:
+                    rightOnePic.image = UIImageNamed(@"lppopselect");
+                    break;
+                case 2:
+                    rightTwoPic.image = UIImageNamed(@"lppopselect");
+                    break;
+                case 3:
+                    rightThreePic.image = UIImageNamed(@"lppopselect");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
 
 -(void)addSubviewOfOtherType{

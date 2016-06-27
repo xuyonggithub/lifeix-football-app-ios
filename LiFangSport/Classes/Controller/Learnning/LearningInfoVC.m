@@ -54,7 +54,7 @@
     }
     rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
     popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-rightView.width, 0);
-
+    
     [popKit popView:rightView animateType:PAT_WidthRightToLeft];
 
 }

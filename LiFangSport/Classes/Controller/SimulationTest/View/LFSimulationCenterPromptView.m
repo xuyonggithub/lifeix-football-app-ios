@@ -38,6 +38,10 @@
         }];
         
         UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        startBtn.layer.cornerRadius = 5;
+        startBtn.layer.masksToBounds = YES;
+        startBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+        startBtn.layer.borderWidth = 1;
         [startBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:startBtn];
         
@@ -51,13 +55,18 @@
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(textView.mas_centerX).offset(-90);
                 make.bottom.equalTo(self.mas_bottom).offset(-50);
+                make.width.equalTo(@100);
+                make.height.equalTo(@50);
             }];
-            
             
             for (NSInteger i = 1; i < model.subArray.count; i++) {
                 LFSimulationCategoryModel *subModel = model.subArray[i];
                 UIButton *otherBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 otherBtn.tag = 201 + i;
+                otherBtn.layer.cornerRadius = 5;
+                otherBtn.layer.masksToBounds = YES;
+                otherBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+                otherBtn.layer.borderWidth = 1;
                 [otherBtn setTitle:subModel.name forState:UIControlStateNormal];
                 [otherBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
                 [self addSubview:otherBtn];
@@ -65,6 +74,8 @@
                 [otherBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(textView.mas_centerX).offset(90);
                     make.bottom.equalTo(self.mas_bottom).offset(-50);
+                    make.width.equalTo(@100);
+                    make.height.equalTo(@50);
                 }];
             }
         }else {
@@ -74,6 +85,8 @@
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(textView);
                 make.bottom.equalTo(self.mas_bottom).offset(-50);
+                make.width.equalTo(@100);
+                make.height.equalTo(@50);
             }];
         }
         

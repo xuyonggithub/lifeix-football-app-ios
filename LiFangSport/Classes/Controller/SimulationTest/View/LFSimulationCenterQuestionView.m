@@ -40,7 +40,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         _questionMode = questionMode;
         _questionCnt = questionCnt;
         _leftSelectedIndex = _rightSelectedIndex = -1;

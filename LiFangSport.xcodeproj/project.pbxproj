@@ -134,7 +134,6 @@
 		2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3D1D104A8000B956CA /* loading_00006@2x.png */; };
 		2DAF7C471D104A8000B956CA /* loading_00007@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3E1D104A8000B956CA /* loading_00007@2x.png */; };
 		2DAF7C481D104A8000B956CA /* loading_00008@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3F1D104A8000B956CA /* loading_00008@2x.png */; };
-		2DAF7C4F1D105E2300B956CA /* SimulationTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAF7C4E1D105E2300B956CA /* SimulationTestVC.m */; };
 		2DBB72631D11B1D3009BD38F /* homebannerplaceholder@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */; };
 		2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */; };
 		2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */; };
@@ -588,8 +587,6 @@
 		2DAF7C3D1D104A8000B956CA /* loading_00006@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_00006@2x.png"; sourceTree = "<group>"; };
 		2DAF7C3E1D104A8000B956CA /* loading_00007@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_00007@2x.png"; sourceTree = "<group>"; };
 		2DAF7C3F1D104A8000B956CA /* loading_00008@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_00008@2x.png"; sourceTree = "<group>"; };
-		2DAF7C4D1D105E2300B956CA /* SimulationTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationTestVC.h; sourceTree = "<group>"; };
-		2DAF7C4E1D105E2300B956CA /* SimulationTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationTestVC.m; sourceTree = "<group>"; };
 		2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "homebannerplaceholder@2x.jpg"; sourceTree = "<group>"; };
 		2DBB72641D11B510009BD38F /* VideoLearningDetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetVC.h; sourceTree = "<group>"; };
 		2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetVC.m; sourceTree = "<group>"; };
@@ -1277,8 +1274,6 @@
 			children = (
 				9C4D6C7F1D17F48600417565 /* Model */,
 				9C4D6C801D17F48600417565 /* View */,
-				2DAF7C4D1D105E2300B956CA /* SimulationTestVC.h */,
-				2DAF7C4E1D105E2300B956CA /* SimulationTestVC.m */,
 				2D6EEB171D17864200954C63 /* SimulationCenterVC.h */,
 				2D6EEB181D17864200954C63 /* SimulationCenterVC.m */,
 				9CAF827A1D1917EC0025224F /* LFSimulationTestDetailController.h */,
@@ -2653,7 +2648,6 @@
 				9CAF82891D19237F0025224F /* VTBulletView.m in Sources */,
 				EC504A0B1D0E99E700095C63 /* MediaCenterVC.m in Sources */,
 				9CAF82511D190F560025224F /* AJMediaPlayerAirPlayView.m in Sources */,
-				2DAF7C4F1D105E2300B956CA /* SimulationTestVC.m in Sources */,
 				9CAF825C1D190F560025224F /* AJMediaPlayerViewController.m in Sources */,
 				2DE2C85F1D0D3C1A00310C4C /* BaseVC.m in Sources */,
 				9CAF823D1D190F560025224F /* AJMediaPlayer+SDKAnalytics.m in Sources */,

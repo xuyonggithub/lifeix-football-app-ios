@@ -22,7 +22,6 @@
 #import "CoachCenterVC.h"
 #import "RefereeVC.h"
 #import "RefereeCenterVC.h"
-#import "SimulationTestVC.h"
 #import "SimulationCenterVC.h"
 #import <RESideMenu.h>
 #import "LFNavigationController.h"

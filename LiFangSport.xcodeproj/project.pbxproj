@@ -2177,6 +2177,7 @@
 				TargetAttributes = {
 					2DE2C7E61D0D133800310C4C = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = F9M67666KU;
 					};
 					2DE2C7FF1D0D133800310C4C = {
 						CreatedOnToolsVersion = 7.2;
@@ -2791,6 +2792,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2810,6 +2812,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -356,7 +356,7 @@
 {
         PlayerDetailVC *pVC = [[PlayerDetailVC alloc]init];
         RightSwitchModel *model = _rightDataArray[indexPath.row];
-        pVC.playerId = [NSString stringWithFormat:@"%zd",model.KID];
+        pVC.playerId = [NSString stringWithFormat:@"%@",model.KID];
         pVC.playerName = model.name;
         pVC.title = model.name;
         [self.navigationController pushViewController:pVC animated:YES];

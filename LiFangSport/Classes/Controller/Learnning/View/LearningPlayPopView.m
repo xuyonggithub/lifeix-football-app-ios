@@ -211,7 +211,8 @@
 -(void)addSubviewOfOtherType{
     if (!_textView) {
         _textView = [[UITextView alloc]init];
-        _textView.frame = CGRectMake(10, 0, kScreenWidth-140, kScreenHeight-60);
+        _textView.frame = CGRectMake(30, 0, kScreenWidth-180, kScreenHeight-100);
+        _textView.centerY = self.centerY;
         _textView.backgroundColor = [UIColor clearColor];
         _textView.editable = NO;
         _textView.selectable = NO;
@@ -229,33 +230,33 @@
             [self addSubviewOfOtherType];
             _textView.hidden = NO;
             _baseDecisionView.hidden = YES;
-            NSDictionary *detstyleDic = @{@"bigFont":[UIFont systemFontOfSize:12],@"color":HEXRGBCOLOR(0x787878)};
-            
             NSMutableParagraphStyle *contentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
             contentParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
             contentParagraphStyle.lineSpacing = 6;
             contentParagraphStyle.alignment = NSTextAlignmentJustified;
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.considerations attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
-            
-            _textView.attributedText = attributedString;
+
             if (type == LPPOP_FACTORS){
-//                [_baseLab setAttributedText:[model.considerations attributedStringWithStyleBook:detstyleDic]];
-//                _textView.attributedText = [model.considerations attributedStringWithStyleBook:detstyleDic];
-                
-                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.considerations attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.considerations] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
                 
                 _textView.attributedText = attributedString;
             }else if (type==LPPOP_DETAIL){
-                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.explanation attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.explanation] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
                 
                 _textView.attributedText = attributedString;
             }else if (type==LPPOP_RULE){
-                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.rule attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.rule] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
                 
                 _textView.attributedText = attributedString;
             }
         }
     }
+}
+
+-(NSString *)replaceXFrom:(NSString *)string{
+    NSMutableString *ms = [[NSMutableString alloc]initWithString:string];
+    [ms replaceOccurrencesOfString:@"<p>" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ms.length)];
+    [ms replaceOccurrencesOfString:@"</p>" withString:@"\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ms.length)];
+    return ms;
 }
 
 @end

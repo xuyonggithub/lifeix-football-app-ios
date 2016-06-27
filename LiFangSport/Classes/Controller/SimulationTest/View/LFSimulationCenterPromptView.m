@@ -23,7 +23,7 @@
         }];
         
         UIView *bgView= [UIImageView new];
-        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
         [self addSubview:bgView];
         [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);

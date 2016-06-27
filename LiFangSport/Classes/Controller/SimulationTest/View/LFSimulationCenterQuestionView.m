@@ -23,6 +23,7 @@
     NSInteger _trueCnt;
     BOOL _isLastQuestion;
     UIButton *_nextBtn;
+    UILabel *_resultLabel;
 }
 
 @property (nonatomic, strong) UITableView *leftTableView;
@@ -40,7 +41,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
         _questionMode = questionMode;
         _questionCnt = questionCnt;
         _leftSelectedIndex = _rightSelectedIndex = -1;
@@ -123,6 +124,21 @@
             make.height.equalTo(@50);
             make.bottom.equalTo(weakSelf.mas_bottom).offset(-30);
         }];
+
+        _resultLabel = [UILabel new];
+        _resultLabel.numberOfLines = 0;
+        _resultLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _resultLabel.font = [UIFont systemFontOfSize:25];
+        _resultLabel.textColor = kwhiteColor;
+        _resultLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_resultLabel];
+        _resultLabel.text = @"3333";
+        [_resultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf).offset(50);
+            make.left.equalTo(weakSelf).offset(40);
+            make.right.equalTo(weakSelf).offset(-40);
+        }];
+        _resultLabel.hidden = YES;
     }
     return self;
 }
@@ -131,6 +147,8 @@
 - (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel
 {
     self.questionModel = questionModel;
+    
+    _resultLabel.hidden = YES;
     
     _nextBtn.enabled = NO;
     _leftSelectedIndex = _rightSelectedIndex = -1;
@@ -153,21 +171,59 @@
     }
 }
 
+#pragma mark - TestingResult
 - (void)refreshTestingResult
 {
     _isLastQuestion = YES;
-    [_nextBtn setTitle:@"继续挑战" forState:UIControlStateNormal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _resultLabel.text = [NSString stringWithFormat:@"恭喜您，成功通过本次测试，敢不敢继续挑战？\n共%@题，正确%@题，错误%@题", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
+        _resultLabel.hidden = NO;
+        [self refreshLastContentView];
+    });
+}
+
+- (void)refreshLastContentView
+{
+    __weak typeof(self) weakSelf = self;
+    switch (_questionMode) {
+        case LFQuestionModeDefaultFoul:
+        {
+            self.leftTableView.hidden = self.rightTableView.hidden = _isLastQuestion;
+            [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(weakSelf).offset(_isLastQuestion ? 10 : 0);
+            }];
+        }
+            break;
+        case LFQuestionModeDefaultOffsideEasy:
+        {
+            self.rightTableView.hidden = _isLastQuestion;
+            [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf).offset(_isLastQuestion ? 150 : 30);
+            }];
+        }
+            break;
+        case LFQuestionModeDefaultOffsideHard:
+        {
+            self.collectionView.hidden = _isLastQuestion;
+            [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf).offset(_isLastQuestion ? 150 : 30);
+            }];
+        }
+            break;
+        default:
+            break;
+    }
+    [_nextBtn setTitle:_isLastQuestion ? @"继续挑战" : @"下一题" forState:UIControlStateNormal];
 }
 
 #pragma mark - Responder Methods
 - (void)nextBtnTouched:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewNextQuestion)]) {
-        [self.delegate questionViewNextQuestion];
-    }
     if (_isLastQuestion) {
         _isLastQuestion = NO;
-        [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewNextQuestion)]) {
+        [self.delegate questionViewNextQuestion];
     }
 }
 

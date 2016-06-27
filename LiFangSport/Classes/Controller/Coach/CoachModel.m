@@ -10,4 +10,17 @@
 
 @implementation CoachModel
 
++(JSONKeyMapper*)keyMapper{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"position": @"position",
+                                                       @"awatar": @"awatar",
+                                                       @"name": @"name",
+                                                       @"id": @"coachaId",
+                                                       @"country": @"country",
+                                                       @"birthday": @"birthday",
+                                                       @"level": @"level",
+                                                       @"birthplace": @"birthplace",
+                                                       }];
+}
+
 @end

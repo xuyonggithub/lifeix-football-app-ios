@@ -16,7 +16,7 @@
 //@property(nonatomic, retain)NSString<Optional> *country;
 @property(nonatomic, retain)NSString<Optional> *position;
 //@property(nonatomic, retain)NSString<Optional> *weight;
-@property(nonatomic, retain)NSString<Optional> *awatar;
+@property(nonatomic, retain)NSString<Optional> *avatar;
 //@property(nonatomic, retain)NSString<Optional> *selectedNum; // 入选国家队次数
 //@property(nonatomic, retain)NSString<Optional> *birthplace;
 //@property(nonatomic, retain)NSString<Optional> *teamId;

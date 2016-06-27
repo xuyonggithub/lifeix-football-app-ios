@@ -59,7 +59,7 @@
         [self.categoryUrlArr addObject:dic.allValues[0]];
     }
     if(self.playerVideosArr.count != 0){
-        [self.categoryUrlArr addObject:@"高光时刻"];
+        [self.categoryArr addObject:@"高光时刻"];
     }
     //基本信息
     NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
@@ -94,12 +94,14 @@
 -(void)clickBtn:(CGFloat)tag{
     NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 235) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 235) style:UITableViewStylePlain];
+        [self.view addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
         [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
     }else{
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 235)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 235)];
+        [self.view addSubview:webView];
         webView.delegate = self;
         NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -122,20 +124,22 @@
 }
                             
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PlayerVideoModel *video = self.playerVideosArr[indexPath.row];
     PlayerVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
     if(!cell){
         cell = [[PlayerVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kReuseId];
     }
     //  bu布局
+    [cell displayCell:video];
     return cell;
 }
                             
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 155;
+    return SCREEN_WIDTH / 2;
 }
                             
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-                                
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /**

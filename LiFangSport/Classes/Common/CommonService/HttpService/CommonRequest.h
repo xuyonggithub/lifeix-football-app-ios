@@ -73,12 +73,12 @@ typedef void(^CompleteBlock)(BOOL success);
                                success:(void (^)(CommonRequest *request,  id jsonDict))success
                                failure:(void (^)(CommonRequest *request, NSError *error))failure;
 
-//+ (AFHTTPRequestOperation *)requstPath:(NSString *)path
-//                            loadingDic:(NSDictionary *)loadingDic
-//                             postParam:(NSDictionary *)param
-//                               success:(void (^)(CommonRequest *request,  id jsonDict))success
-//                               failure:(void (^)(CommonRequest *request, NSError *error))failure;
-//
++ (AFHTTPRequestOperation *)requstPath:(NSString *)path
+                            loadingDic:(NSDictionary *)loadingDic
+                             postParam:(NSDictionary *)param
+                               success:(void (^)(CommonRequest *request,  id jsonDict))success
+                               failure:(void (^)(CommonRequest *request, NSError *error))failure;
+
 //+ (AFHTTPRequestOperation *)requstPath:(NSString *)path
 //                            loadingDic:(NSDictionary *)loadingDic
 //                            queryParam:(NSDictionary *)param

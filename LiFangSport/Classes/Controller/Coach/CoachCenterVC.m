@@ -11,6 +11,7 @@
 #import "CategoryView.h"
 #import "CoachModel.h"
 #import "CoachCell.h"
+#import "CoachDetailVC.h"
 
 #define kReuseId  @"collectionCell"
 #define kHeaderReuseId  @"Header"
@@ -179,7 +180,13 @@
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSArray *arr = [_selectedDataArr objectAtIndex:indexPath.section];
+    CoachModel *coach = [arr objectAtIndex:indexPath.item];
+    CoachDetailVC *coachDetailVC = [[CoachDetailVC alloc] init];
+    coachDetailVC.coachId = coach.coachaId;
+    coachDetailVC.coachName = coach.name;
+    [self.navigationController pushViewController:coachDetailVC animated:YES];
+
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

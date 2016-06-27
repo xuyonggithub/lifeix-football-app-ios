@@ -10,4 +10,7 @@
 
 @interface CoachDetailVC : BaseVC
 
+@property(nonatomic, copy)NSString *coachId;
+@property(nonatomic, copy)NSString *coachName;
+
 @end

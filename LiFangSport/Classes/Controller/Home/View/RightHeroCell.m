@@ -41,7 +41,7 @@
 
 -(void)setModel:(RightSwitchModel *)model{
 //    [_picView sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
-    _picView.image = UIImageNamed(@"haolindemopic");//[UIImage imageNamed:@"haolindemopic"];
+    _picView.image = UIImageNamed(@"placeHold_player");//[UIImage imageNamed:@"haolindemopic"];
     _nameLab.text = model.name;
 }
 

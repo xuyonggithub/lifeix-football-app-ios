@@ -15,12 +15,12 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         // 背景图
-        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, SCREEN_WIDTH - 10, 150)];
+        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, SCREEN_WIDTH - 10, SCREEN_WIDTH/2 - 5)];
         self.bgImgView.userInteractionEnabled = YES;
         [self addSubview:self.bgImgView];
         
         // 标题
-        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 125, self.bgImgView.frame.size.width, 25)];
+        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH/2 - 30, self.bgImgView.frame.size.width, 25)];
         titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH - 50, 25)];
         self.titleLabel.font = kBasicSmallTitleFont;

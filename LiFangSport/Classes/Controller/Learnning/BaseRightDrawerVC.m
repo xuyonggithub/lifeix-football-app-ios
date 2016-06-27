@@ -1,26 +1,29 @@
 //
-//  LearningInfoCenterVC.m
+//  BaseRightDrawerVC.m
 //  LiFangSport
 //
-//  Created by 张毅 on 16/6/23.
+//  Created by 张毅 on 16/6/27.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "LearningInfoCenterVC.h"
+#import "BaseRightDrawerVC.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
-@interface LearningInfoCenterVC ()
+@interface BaseRightDrawerVC ()
 
 @end
 
-@implementation LearningInfoCenterVC
+@implementation BaseRightDrawerVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _titleStr;
-    self.view.backgroundColor = [UIColor redColor];
-
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right"] target:self action:@selector(rightDrawerAction:)];
 }
 
+
+- (void)rightDrawerAction:(UIBarButtonItem *)sender {
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

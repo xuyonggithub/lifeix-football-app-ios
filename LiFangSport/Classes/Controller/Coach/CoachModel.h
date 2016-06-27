@@ -13,5 +13,11 @@
 @property(nonatomic, retain)NSString<Optional> *position;
 @property(nonatomic, retain)NSString<Optional> *awatar;
 @property(nonatomic, retain)NSString<Optional> *name;
+@property(nonatomic, retain)NSString<Optional> *coachaId;
+@property(nonatomic, retain)NSString<Optional> *country;
+@property(nonatomic, retain)NSString<Optional> *birthday;
+@property(nonatomic, retain)NSString<Optional> *level;
+@property(nonatomic, retain)NSString<Optional> *birthplace;
+
 
 @end

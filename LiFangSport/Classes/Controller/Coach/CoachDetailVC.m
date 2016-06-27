@@ -7,6 +7,8 @@
 //
 
 #import "CoachDetailVC.h"
+#import "CoachInfoView.h"
+#import "CommonRequest.h"
 
 @interface CoachDetailVC ()
 
@@ -17,21 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = self.coachName;
+    [self requestData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)requestData{
+    NSString *urlStr = [NSString stringWithFormat:@"games/coaches/%@", self.coachId];
+    [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [self dealWithDic: jsonDict];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error = %@", error);
+    }];
 }
 
-/*
-#pragma mark - Navigation
+-(void)dealWithDic:(id)dic{
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

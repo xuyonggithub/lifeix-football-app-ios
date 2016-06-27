@@ -60,7 +60,7 @@
             notistr = [[NSString alloc]initWithFormat:@"%@",model.KID];
         }
     }
-    NSDictionary *notidic = [[NSDictionary alloc]initWithObjectsAndKeys:@{@"khomeKidNotiFicationStr":notistr}, nil];
+    NSDictionary *notidic = [[NSDictionary alloc]initWithObjectsAndKeys:notistr, @"khomeKidNotiFicationStr", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:khomeKidNotiFicationStr object:nil userInfo:notidic];
 }
 -(void)createTableview{

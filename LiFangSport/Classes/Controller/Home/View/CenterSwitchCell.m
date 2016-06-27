@@ -72,9 +72,9 @@
     NSTimeInterval timeIN=(NSTimeInterval)[model.competitionInfo[@"startDate"] integerValue];
     NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
     NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDateToTime:timeData]];
-    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.hostTeam[@"teamInfo"][@"flag"]]];
+    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.hostTeam[@"teamInfo"][@"flag"]]]];//kQiNiuHeaderPathPrifx
     
-    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.awayTeam[@"teamInfo"][@"flag"]]];
+    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.awayTeam[@"teamInfo"][@"flag"]]]];
     _timeLab.text = dataStr;
     [_timeLab sizeToFit];
     _hostTeamLab.text = model.hostTeam[@"teamInfo"][@"name"];

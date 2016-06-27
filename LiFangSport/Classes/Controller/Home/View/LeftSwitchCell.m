@@ -92,9 +92,9 @@
     NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[self extractDateToTime:timeData],ss];
     _titleLab.text = dataStr;
     _subTitleLab.text = timeStr;
-    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.hostTeam[@"teamInfo"][@"flag"]]];
+    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.hostTeam[@"teamInfo"][@"flag"]]]];
 
-    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:model.awayTeam[@"teamInfo"][@"flag"]]];
+    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.awayTeam[@"teamInfo"][@"flag"]]]];
 
     _hostTeamNameLab.text = model.hostTeam[@"teamInfo"][@"name"];
     [_hostTeamNameLab sizeToFit];
@@ -104,7 +104,6 @@
     [_awayTeamNameLab sizeToFit];
     _awayTeamNameLab.centerX = _awayTeamFlagView.centerX;
 
-//    _vsLab.text = @"vs";
 }
 
 - (NSString *)extractDate:(NSDate *)date {

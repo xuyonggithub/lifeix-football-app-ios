@@ -111,6 +111,7 @@
 		2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D09AE1D0DA032008771AA /* UIFont+Level.m */; };
 		2D8D09B41D0DA032008771AA /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D09B01D0DA032008771AA /* UIImage+Color.m */; };
 		2D9D12E91D21005A00A31A16 /* BaseMenuCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D12E81D21005A00A31A16 /* BaseMenuCenterVC.m */; };
+		2D9D12ED1D21301A00A31A16 /* CurrentlyScoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D12EC1D21301A00A31A16 /* CurrentlyScoreVC.m */; };
 		2DA4B1EC1D0E456000136DA7 /* BaseDrawerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4B1EB1D0E456000136DA7 /* BaseDrawerVC.m */; };
 		2DA4B1F41D0E465C00136DA7 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4B1EF1D0E465C00136DA7 /* CenterViewController.m */; };
 		2DA4B1F51D0E465C00136DA7 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4B1F11D0E465C00136DA7 /* LeftViewController.m */; };
@@ -547,6 +548,8 @@
 		2D8D09B01D0DA032008771AA /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		2D9D12E71D21005A00A31A16 /* BaseMenuCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuCenterVC.h; sourceTree = "<group>"; };
 		2D9D12E81D21005A00A31A16 /* BaseMenuCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMenuCenterVC.m; sourceTree = "<group>"; };
+		2D9D12EB1D21301A00A31A16 /* CurrentlyScoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentlyScoreVC.h; sourceTree = "<group>"; };
+		2D9D12EC1D21301A00A31A16 /* CurrentlyScoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentlyScoreVC.m; sourceTree = "<group>"; };
 		2DA4B1EA1D0E456000136DA7 /* BaseDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDrawerVC.h; sourceTree = "<group>"; };
 		2DA4B1EB1D0E456000136DA7 /* BaseDrawerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDrawerVC.m; sourceTree = "<group>"; };
 		2DA4B1EE1D0E465C00136DA7 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
@@ -1204,6 +1207,31 @@
 			path = UIfont;
 			sourceTree = "<group>";
 		};
+		2D9D12EA1D212FCD00A31A16 /* CurrentlyScore */ = {
+			isa = PBXGroup;
+			children = (
+				2D9D12EB1D21301A00A31A16 /* CurrentlyScoreVC.h */,
+				2D9D12EC1D21301A00A31A16 /* CurrentlyScoreVC.m */,
+				2D9D12EE1D21304400A31A16 /* Model */,
+				2D9D12EF1D21304400A31A16 /* View */,
+			);
+			path = CurrentlyScore;
+			sourceTree = "<group>";
+		};
+		2D9D12EE1D21304400A31A16 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D9D12EF1D21304400A31A16 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2DA4B1ED1D0E460600136DA7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1384,6 +1412,7 @@
 				2DE2C8591D0D3BD200310C4C /* Learnning */,
 				2DAF7C491D105DB300B956CA /* SimulationTest */,
 				2DE2C85B1D0D3BD200310C4C /* Player */,
+				2D9D12EA1D212FCD00A31A16 /* CurrentlyScore */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2587,6 +2616,7 @@
 				2DE2C8781D0D495A00310C4C /* UIViewController+SimAddition.m in Sources */,
 				2D8D09B41D0DA032008771AA /* UIImage+Color.m in Sources */,
 				EC504A0C1D0E99E700095C63 /* MediaDetailVC.m in Sources */,
+				2D9D12ED1D21301A00A31A16 /* CurrentlyScoreVC.m in Sources */,
 				2DA4B2141D0E80C700136DA7 /* SDCollectionViewCell.m in Sources */,
 				9CAF82431D190F560025224F /* AJMediaPlayerItem.m in Sources */,
 				9CAF825B1D190F560025224F /* AJMediaPlayerUtilities.m in Sources */,

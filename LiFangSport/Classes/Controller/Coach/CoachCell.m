@@ -28,13 +28,13 @@
     return self;
 }
 
--(void)displayCell:(CoachModel *)coachModel{
-    if(coachModel.awatar != nil){
-        [self.bgImgView sd_setImageWithURL:coachModel.awatar placeholderImage:UIImageNamed(@"112233.png")];
-    }else{
-        self.bgImgView.image = [UIImage imageNamed:@"112233.png"];
-    }
-    self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", coachModel.position, coachModel.name];
-}
+//-(void)displayCell:(CoachModel *)coachModel{
+//    if(coachModel.avatar != nil){
+//        [self.bgImgView sd_setImageWithURL:coachModel.awatar placeholderImage:UIImageNamed(@"112233.png")];
+//    }else{
+//        self.bgImgView.image = [UIImage imageNamed:@"112233.png"];
+//    }
+//    self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", coachModel.position, coachModel.name];
+//}
 
 @end

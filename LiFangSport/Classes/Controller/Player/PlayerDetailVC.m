@@ -13,6 +13,7 @@
 #import "PlayerVideoModel.h"
 #import "PlayerVideoCell.h"
 #import "UIBarButtonItem+SimAdditions.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define kReuseId @"cell"
 @interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -76,7 +77,7 @@
         club = @"-";
     }
     
-    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avator"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
+    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
     [self.view addSubview:baseView];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, baseView.bottom, SCREEN_WIDTH, 1)];
@@ -140,7 +141,14 @@
                             
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PlayerVideoModel *video = self.playerVideosArr[indexPath.row];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", kQiNiuHeaderPathPrifx, video.url];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:url];
+    //弹出播放器
+//    [self presentMoviePlayerViewControllerAnimated:movieVc];
 }
+
 
 /**
  *  时间戳转时间

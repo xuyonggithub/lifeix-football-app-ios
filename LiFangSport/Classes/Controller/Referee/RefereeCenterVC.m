@@ -14,7 +14,7 @@
 
 #define kReuseId  @"tableViewCell"
 #define kHeaderReuseId  @"Header"
-#define kRefereePath  @"games/referees?level=s"
+#define kRefereePath  @"games/referees?level=fifa"
 @interface RefereeCenterVC()<UITableViewDelegate, UITableViewDataSource>
 //@property(nonatomic, retain)NSMutableDictionary *dataDic;
 @property(nonatomic, retain)NSMutableArray *topNameArr; // 裁判员 五人制 沙滩足球
@@ -33,6 +33,8 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     //    _dataDic = [NSMutableDictionary dictionary];
+    self.automaticallyAdjustsScrollViewInsets = false;
+    
     _topNameArr = [NSMutableArray array];
     _selectedDataArr = [NSMutableArray array];
     _selectedTitleArr = [NSMutableArray array];

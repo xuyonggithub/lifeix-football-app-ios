@@ -39,12 +39,12 @@
 
 -(void)displayCell:(MediaModel *)media{
     if(media.images.count > 0){
-        [self.bgImgView sd_setImageWithURL:media.images[0] placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
+        NSString *str = [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", media.images[0], (int)SCREEN_WIDTH - 10, (int)SCREEN_WIDTH/2 - 5];
+        [self.bgImgView sd_setImageWithURL:str placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
     }else{
         self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];
     }
     self.titleLabel.text = media.title;
-    //    self.categorylabel.text = media.categoryIds[0];
 }
 
 @end

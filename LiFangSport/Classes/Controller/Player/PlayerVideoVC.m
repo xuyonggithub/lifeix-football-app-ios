@@ -16,12 +16,9 @@
 
 @implementation PlayerVideoVC{
     AVPlayerViewController      *_playerController;
-    
-    
-    
     AVPlayer                    *_player;
     AVAudioSession              *_session;
-    NSURL                    *_url;
+    NSURL                       *_url;
 }
 
 - (id)initWithUrl:(NSURL *)url {
@@ -57,7 +54,6 @@
     
     [_playerController.player play];
 }
-
 
 #pragma mark - AVPlayerViewControllerDelegate
 - (void)playerViewControllerWillStartPictureInPicture:(AVPlayerViewController *)playerViewController {

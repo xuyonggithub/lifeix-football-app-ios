@@ -134,14 +134,7 @@
     NSArray *arr = [_selectedDataArr objectAtIndex:indexPath.section];
     CoachModel *coach = [arr objectAtIndex:indexPath.item];
     CoachCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseId forIndexPath:indexPath];
-    if(coach.avatar != nil){
-        NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, coach.avatar, (int)cell.bgImgView.width, (int)cell.bgImgView.height];
-        [cell.bgImgView sd_setImageWithURL:bgImageUrl placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
-    }else{
-        cell.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];;
-    }
-    cell.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", coach.position, coach.name];
-    cell.backgroundColor = kBlackColor;
+    [cell displayCell:coach];
     return cell;
 }
 

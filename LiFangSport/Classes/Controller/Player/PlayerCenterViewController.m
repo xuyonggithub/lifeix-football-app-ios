@@ -150,8 +150,6 @@
         cell.bgImgView.image = placehold;
     }
     cell.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", player.position, player.name];
-    
-    cell.backgroundColor = kBlackColor;
     return cell;
 }
 

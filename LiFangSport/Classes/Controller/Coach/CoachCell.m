@@ -28,13 +28,15 @@
     return self;
 }
 
-//-(void)displayCell:(CoachModel *)coachModel{
-//    if(coachModel.avatar != nil){
-//        [self.bgImgView sd_setImageWithURL:coachModel.awatar placeholderImage:UIImageNamed(@"112233.png")];
-//    }else{
-//        self.bgImgView.image = [UIImage imageNamed:@"112233.png"];
-//    }
-//    self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", coachModel.position, coachModel.name];
-//}
+-(void)displayCell:(CoachModel *)coachModel{
+    if(coachModel.avatar != nil){
+        NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, coachModel.avatar, (int)self.bgImgView.width, (int)self.bgImgView.height];
+        [self.bgImgView sd_setImageWithURL:bgImageUrl placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
+    }else{
+        self.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];;
+    }
+    self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", coachModel.position, coachModel.name];
+
+}
 
 @end

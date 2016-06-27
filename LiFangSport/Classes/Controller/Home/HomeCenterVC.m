@@ -226,16 +226,19 @@
         _centerTableview.dataSource = self;
         [self.view addSubview:_centerTableview];
         UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 150)];
-        ruleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-        ruleLab.font = [UIFont systemFontOfSize:11];
-        ruleLab.numberOfLines = 0;
-        ruleLab.text = _ruleStr;
+//        ruleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+//        ruleLab.font = [UIFont systemFontOfSize:11];
+//        ruleLab.numberOfLines = 0;
+//        ruleLab.text = _ruleStr;
+//        NSDictionary *detstyleDic = @{@"bigFont":[UIFont systemFontOfSize:12],@"color":HEXRGBCOLOR(0x787878)};
+//        [ruleLab setAttributedText:[_ruleStr attributedStringWithStyleBook:detstyleDic]];
+//        
+//        [ruleLab sizeToFit];
+//        [hview addSubview:ruleLab];
         
-        NSDictionary *detstyleDic = @{@"bigFont":[UIFont systemFontOfSize:12],@"color":HEXRGBCOLOR(0x787878)};
-        [ruleLab setAttributedText:[_ruleStr attributedStringWithStyleBook:detstyleDic]];
-        
-        [ruleLab sizeToFit];
-        [hview addSubview:ruleLab];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 150)];
+        [webView loadHTMLString:_ruleStr baseURL:nil];
+        [hview addSubview:webView];
         hview.backgroundColor = [UIColor whiteColor];
         _centerTableview.tableHeaderView = hview;
     }

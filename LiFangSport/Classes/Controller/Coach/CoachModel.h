@@ -11,7 +11,7 @@
 @interface CoachModel : JSONModel
 
 @property(nonatomic, retain)NSString<Optional> *position;
-@property(nonatomic, retain)NSString<Optional> *awatar;
+@property(nonatomic, retain)NSString<Optional> *avatar;
 @property(nonatomic, retain)NSString<Optional> *name;
 @property(nonatomic, retain)NSString<Optional> *coachaId;
 @property(nonatomic, retain)NSString<Optional> *country;

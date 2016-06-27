@@ -120,7 +120,7 @@ const CGFloat topViewH = 180;
     self.contentWebView.frame = foo;
     
     // contentView
-    UIScrollView *mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, self.view.height - 88)];
+    UIScrollView *mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, self.view.height - 108)];
     [self.view addSubview:mainView];
     [mainView addSubview:self.contentWebView];
     

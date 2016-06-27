@@ -39,9 +39,8 @@
     }
 }
 
--(void)setModel:(RightSwitchModel *)model{
-//    [_picView sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
-    _picView.image = UIImageNamed(@"placeHold_player");//[UIImage imageNamed:@"haolindemopic"];
+-(void)setModel:(RightSwitchModel *)model{    
+    [_picView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.avatar]] placeholderImage:UIImageNamed(@"placeHold_player")];
     _nameLab.text = model.name;
 }
 

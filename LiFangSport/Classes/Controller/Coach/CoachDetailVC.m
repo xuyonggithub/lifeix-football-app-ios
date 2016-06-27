@@ -33,8 +33,42 @@
 }
 
 -(void)dealWithDic:(id)dic{
-
+    NSDictionary *dict = dic;
+    NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    
+    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:@"待定" andWeight:@"待定" andPosition:@"待定" andBirthplace:[dict objectForKey:@"birthplace"] andClub:@"待定"];
+    [self.view addSubview:coachView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom + 5, 200, 44)];
+    label.text = @"执教生涯";
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = kBlackColor;
+    [self.view addSubview:label];
+                       
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 5, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = HEXRGBCOLOR(0x989898);
+    [self.view addSubview:lineView];
+    
+    
 }
 
-
+/**
+ *  时间戳转时间
+ *
+ *  @param timeStamp 时间戳 （eg:@"1296035591"）
+ *  @param timeStyle 时间格式（eg: @"YYYY-MM-dd HH:mm:ss" ）
+ *
+ *  @return 返回转化好格式的时间字符串
+ */
+-(NSString *)timeStampChangeTimeWithTimeStamp:(NSString *)timeStamp timeStyle:(NSString *)timeStyle{
+    NSTimeInterval interval = [timeStamp doubleValue]/1000.0;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:timeStyle];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSString *strDate = [formatter stringFromDate:date];
+    NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
+    return formatterStr;
+}
 @end

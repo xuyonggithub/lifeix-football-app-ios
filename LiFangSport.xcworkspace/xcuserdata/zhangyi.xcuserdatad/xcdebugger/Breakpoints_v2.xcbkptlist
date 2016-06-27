@@ -9,12 +9,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/LearningInfoVC.m"
-            timestampString = "488685008.097497"
+            filePath = "LiFangSport/Classes/Controller/Learnning/BaseRightDrawerVC.m"
+            timestampString = "488685031.020655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "-rightDrawerAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/BaseRightDrawerVC.m"
-            timestampString = "488685031.020655"
+            filePath = "LiFangSport/Classes/Controller/Learnning/VideoCenterVC.m"
+            timestampString = "488685316.20454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-rightDrawerAction:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-dealWithJason:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

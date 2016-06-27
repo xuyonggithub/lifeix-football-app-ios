@@ -11,7 +11,7 @@
 @interface RefereeModel : JSONModel
 
 @property(nonatomic, copy)NSString<Optional> *position;
-@property(nonatomic, copy)NSString<Optional> *awatar;
+@property(nonatomic, copy)NSString<Optional> *avatar;
 @property(nonatomic, copy)NSString<Optional> *name;
 @property(nonatomic, copy)NSString<Optional> *birthday;
 @property(nonatomic, copy)NSString<Optional> *association;

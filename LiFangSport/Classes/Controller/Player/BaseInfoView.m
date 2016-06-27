@@ -24,7 +24,8 @@
         if(!avatar){
             self.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];
         }else{
-            [self.bgImgView sd_setImageWithURL:avatar placeholderImage:@"placeHold_player.jpg"];
+            NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/120/h/170", kQiNiuHeaderPathPrifx, avatar];
+            [self.bgImgView sd_setImageWithURL:bgImageUrl placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
         }
         [self addSubview:_bgImgView];
         

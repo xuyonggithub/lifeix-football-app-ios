@@ -53,13 +53,6 @@
     [self addChildViewController:self.mediaPlayerViewController];
     [_mediaPlayerViewController initialShowFullScreen];
     
-    UIImageView *bgImageView = [UIImageView new];
-    [bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",self.categoryModel.image]]];
-    [self.view addSubview:bgImageView];
-    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.view);
-    }];
-    
     //  提示界面
     [self.view addSubview:self.promptView];
     [self.promptView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,6 +62,7 @@
 
 - (void)dealloc
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
     [self resignFullScreen];
 }
 

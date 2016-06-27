@@ -15,7 +15,19 @@
     self = [super init];
     if (self) {
 
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        UIImageView *bgImageView = [UIImageView new];
+        [bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",model.image]]];
+        [self addSubview:bgImageView];
+        [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+        
+        UIView *bgView= [UIImageView new];
+        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        [self addSubview:bgView];
+        [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
         
         UITextView *textView = [UITextView new];
         textView.backgroundColor = [UIColor clearColor];

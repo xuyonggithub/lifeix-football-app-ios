@@ -44,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MMDrawerController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MPNotificationView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -60,6 +55,11 @@
 			<false/>
 		</dict>
 		<key>Pods-LiFangSport.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RESideMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -92,22 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3ABFD7320800C5672EE06AFF8922E994</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3F6E0EE049108F4B7D942DD546A0A0D8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4E7BB1BFDA9434798DDF0218DF64CA57</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>550F7EEAEEA17E3F92C873912E23B01C</key>
+		<key>6139B3CE4FB10A6201400C611C0D921A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>78C63C0EA534C05B0ADB63085823CA48</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8B090755233C44E8E118A8DA48015C08</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>999FB35E154D37ED70A9CDFF68A6E862</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,7 +147,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B43DB7A850541C1714FCC2576FA7211B</key>
+		<key>BFE82F5215FC40E0283CD23159F0C6E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,17 +162,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E2915BCE14DE277FE6A8A9D0C9E88456</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>F2ECEC4C30AD7CA58B648D3F2B79B180</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE863CF794C2F69B54F82D0CC872C562</key>
 		<dict>
 			<key>primary</key>
 			<true/>

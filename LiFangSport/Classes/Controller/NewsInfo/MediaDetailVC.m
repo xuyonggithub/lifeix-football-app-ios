@@ -9,6 +9,7 @@
 #import "MediaDetailVC.h"
 #import "UIImageView+WebCache.h"
 #import "CommonRequest.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
 const CGFloat topViewH = 180;
 @interface MediaDetailVC ()<UIWebViewDelegate>
@@ -56,11 +57,17 @@ const CGFloat topViewH = 180;
 }
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
+
     self.title = @"正文";
     self.bgScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.likeBtn.frame.origin.y + 55);
     //    [self requestLikes];
     [self requestData];
     //    [self.contentWebView loadRequest:];
+}
+-(void)rollBack{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)requestData{

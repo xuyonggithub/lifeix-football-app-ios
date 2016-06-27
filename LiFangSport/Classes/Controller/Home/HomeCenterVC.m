@@ -18,7 +18,6 @@
 #import "RightHeroCell.h"
 #import "LeftSwitchCell.h"
 #import "CenterSwitchCell.h"
-#import "HomeBannnerDetVC.h"
 #import "NSString+WPAttributedMarkup.h"
 #import "MediaModel.h"
 #import "MediaDetailVC.h"

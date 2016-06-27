@@ -104,7 +104,6 @@
 		2D84EA4B1D1137AC00113404 /* AppUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA4A1D1137AC00113404 /* AppUserData.m */; };
 		2D84EA4F1D113A1B00113404 /* LaunchInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA4E1D113A1B00113404 /* LaunchInfoManager.m */; };
 		2D84EA521D113A3200113404 /* LaunchInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA511D113A3200113404 /* LaunchInfoModel.m */; };
-		2D84EA551D11578B00113404 /* HomeBannnerDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA541D11578B00113404 /* HomeBannnerDetVC.m */; };
 		2D84EA581D115EAD00113404 /* VideoCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA571D115EAD00113404 /* VideoCenterVC.m */; };
 		2D84EA5D1D11688100113404 /* VideoLearningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D84EA5C1D11688100113404 /* VideoLearningCell.m */; };
 		2D8D09B11D0DA032008771AA /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D09A91D0DA032008771AA /* NSDate+Category.m */; };
@@ -534,8 +533,6 @@
 		2D84EA4E1D113A1B00113404 /* LaunchInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchInfoManager.m; sourceTree = "<group>"; };
 		2D84EA501D113A3200113404 /* LaunchInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchInfoModel.h; sourceTree = "<group>"; };
 		2D84EA511D113A3200113404 /* LaunchInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchInfoModel.m; sourceTree = "<group>"; };
-		2D84EA531D11578B00113404 /* HomeBannnerDetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannnerDetVC.h; sourceTree = "<group>"; };
-		2D84EA541D11578B00113404 /* HomeBannnerDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannnerDetVC.m; sourceTree = "<group>"; };
 		2D84EA561D115EAD00113404 /* VideoCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCenterVC.h; sourceTree = "<group>"; };
 		2D84EA571D115EAD00113404 /* VideoCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCenterVC.m; sourceTree = "<group>"; };
 		2D84EA5B1D11688100113404 /* VideoLearningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningCell.h; sourceTree = "<group>"; };
@@ -1555,8 +1552,6 @@
 				2DA4B1FB1D0E598500136DA7 /* HomeCenterVC.m */,
 				2D62E8091D0FA7EA0006131B /* LeftCategoryVC.h */,
 				2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */,
-				2D84EA531D11578B00113404 /* HomeBannnerDetVC.h */,
-				2D84EA541D11578B00113404 /* HomeBannnerDetVC.m */,
 				2D62E8051D0F9B7A0006131B /* Model */,
 			);
 			path = Home;
@@ -2549,7 +2544,6 @@
 				2DA4B1F41D0E465C00136DA7 /* CenterViewController.m in Sources */,
 				2D69960C1D19190C00B5F52D /* MulSwitchBannerView.m in Sources */,
 				2D84EA5D1D11688100113404 /* VideoLearningCell.m in Sources */,
-				2D84EA551D11578B00113404 /* HomeBannnerDetVC.m in Sources */,
 				2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */,
 				0AA9A6B11D211AE40015786F /* MediaCatePopView.m in Sources */,
 				9CAF823C1D190F560025224F /* AJMediaPlayer+Analytics.m in Sources */,

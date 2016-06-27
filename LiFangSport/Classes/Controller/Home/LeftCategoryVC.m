@@ -11,14 +11,12 @@
 #import "LeftCategoryCell.h"
 #import "HomeLeftCategModel.h"
 #import "HomeCenterVC.h"
-#import "HomeViewController.h"
 #import "RightViewController.h"
 #import "MediaVC.h"
 #import "MediaCenterVC.h"
 #import "MediaRightVC.h"
 #import "PlayerCenterViewController.h"
 #import "PlayerVC.h"
-#import "VideoLearningVC.h"
 #import "VideoCenterVC.h"
 #import "CoachVC.h"
 #import "CoachCenterVC.h"
@@ -26,6 +24,8 @@
 #import "RefereeCenterVC.h"
 #import "SimulationTestVC.h"
 #import "SimulationCenterVC.h"
+#import <RESideMenu.h>
+#import "LFNavigationController.h"
 
 @interface LeftCategoryVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableView;
@@ -102,79 +102,37 @@
 {
     if (_dataArray.count) {
         HomeLeftCategModel *model = _dataArray[indexPath.section];
-        
-        if ([model.page isEqualToString:@"competition_page"]) {
-            HomeCenterVC *centerV=[[HomeCenterVC alloc]init];
-            centerV.kidStr = model.KID;
-            centerV.titleName = model.name;
-            RightViewController *rightV=[[RightViewController alloc]init];
-            HomeViewController *homeVC = [[HomeViewController alloc] initWithCenterVC:centerV rightVC:rightV leftVC:self];
-//            [ self presentViewController:homeVC animated:NO completion:nil];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = homeVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
-        }else if([model.page isEqualToString:@"medialist_page"]){
-            MediaCenterVC *centerVC = [[MediaCenterVC alloc] init];
-//            centerVC.title = @"全部";
-            MediaRightVC *rightVC = [[MediaRightVC alloc] init];
-            // 传值
-            MediaVC *mediaVC = [[MediaVC alloc] initWithCenterVC:centerVC rightVC:rightVC leftVC:self];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = mediaVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
+            if ([model.page isEqualToString:@"competition_page"]) {
+            [self pushToController:[[HomeCenterVC alloc]init]];
+    }
+        else if([model.page isEqualToString:@"medialist_page"]){
+            [self pushToController:[[MediaCenterVC alloc]init]];
         }else if ([model.page isEqualToString:@"training_category_page"]){
-            VideoCenterVC *centerV=[[VideoCenterVC alloc]init];
-//            RightViewController *rightV=[[RightViewController alloc]init];
-            VideoLearningVC *VideoVC = [[VideoLearningVC alloc] initWithCenterVC:centerV rightVC:nil leftVC:self];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = VideoVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
+            
+            [self pushToController:[[VideoCenterVC alloc]init]];
+
         }else if ([model.page isEqualToString:@"playerlist_page"]){
-            PlayerCenterViewController *centerVC = [[PlayerCenterViewController alloc] init];
-            centerVC.categoryName = model.name;
-            PlayerVC *playerVC = [[PlayerVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = playerVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
+            [self pushToController:[[PlayerCenterViewController alloc]init]];
+
         }else if ([model.page isEqualToString:@"refeerlist_page"]){
-            RefereeCenterVC *centerVC = [[RefereeCenterVC alloc] init];
-            RefereeVC *refereeVC = [[RefereeVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = refereeVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
+            [self pushToController:[[RefereeCenterVC alloc]init]];
+
         }else if ([model.page isEqualToString:@"coachlist_page"]){
-            CoachCenterVC *centerVC = [[CoachCenterVC alloc] init];
-            centerVC.categoryId = model.KID;
-            CoachVC *coachVC = [[CoachVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = coachVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
+            
+            [self pushToController:[[CoachCenterVC alloc]init]];
+
         }else if ([model.page isEqualToString:@"quiz_categroy_page"]){
-            SimulationCenterVC *centerVC = [[SimulationCenterVC alloc] init];
-            centerVC.title = model.name;
-            centerVC.categoryId = model.KID;
-            SimulationTestVC *coachVC = [[SimulationTestVC alloc] initWithCenterVC:centerVC rightVC:nil leftVC:self];
-            [ self dismissViewControllerAnimated: NO completion: nil ];
-            APP_DELEGATE.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            APP_DELEGATE.window.backgroundColor = [UIColor whiteColor];
-            APP_DELEGATE.window.rootViewController = coachVC;
-            [APP_DELEGATE.window makeKeyAndVisible];
+            
+            [self pushToController:[[SimulationCenterVC alloc]init]];
         }
     
-    
     }
+}
+
+-(void)pushToController:(UIViewController *)controller{
+    LFNavigationController *Nav = [[LFNavigationController alloc]initWithRootViewController:controller];
+    [self.sideMenuViewController setContentViewController:Nav animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 
@@ -182,15 +140,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

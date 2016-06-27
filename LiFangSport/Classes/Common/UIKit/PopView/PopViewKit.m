@@ -122,6 +122,22 @@
                              }
              ];
         }
+        else if (_aniType == PAT_WidthRightToLeft){
+            CGFloat preWidth = _contentView.width;
+            CGFloat preLeft = _contentView.left;
+            _contentView.left = kScreenWidth;
+            _contentView.width = 0;
+            _contentView.clipsToBounds = YES;
+            NSUInteger options = UIViewAnimationOptionTransitionNone;
+            [UIView animateWithDuration:0.3 delay:0 options:options
+                             animations:^{
+                                 _contentView.left = preLeft;
+                                 _contentView.width = preWidth;
+                             }
+                             completion:^(BOOL finished) {
+                             }
+             ];
+        }
         else if (_aniType == PAT_Alpha){
             _contentView.alpha = 0.0f;
             NSUInteger options = UIViewAnimationOptionTransitionNone;
@@ -181,6 +197,18 @@
                                  _backgroudView.alpha = 0.0f;
                                  _contentView.top = _contentView.bottom;
                                  _contentView.height = 0;
+                             }
+                             completion:^(BOOL finished) {
+                                 [self finishPop];
+                             }
+             ];
+        }
+        else if(_aniType == PAT_WidthRightToLeft){
+            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 _backgroudView.alpha = 0.0f;
+                                 _contentView.left = kScreenWidth;
+                                 _contentView.width = 0;
                              }
                              completion:^(BOOL finished) {
                                  [self finishPop];

@@ -7,6 +7,7 @@
 //
 
 #import "LFNavigationController.h"
+#define kFONT16                  [UIFont systemFontOfSize:16.0f]
 
 @interface LFNavigationController ()
 
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning {

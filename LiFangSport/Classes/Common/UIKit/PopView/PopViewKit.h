@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, PopAniType){
     PAT_HeightUpToDown,
     PAT_HeightDownToUp,
     PAT_Alpha,
+    PAT_WidthRightToLeft,
 };
 
 

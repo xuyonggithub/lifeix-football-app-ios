@@ -7,7 +7,8 @@
 //
 
 #import "CenterViewController.h"
+#import "BaseMenuCenterVC.h"
 
-@interface VideoCenterVC : CenterViewController
+@interface VideoCenterVC : BaseMenuCenterVC
 
 @end

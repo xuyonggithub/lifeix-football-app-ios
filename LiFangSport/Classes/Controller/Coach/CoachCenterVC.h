@@ -7,8 +7,9 @@
 //
 
 #import "CenterViewController.h"
+#import "BaseMenuCenterVC.h"
 
-@interface CoachCenterVC : CenterViewController
+@interface CoachCenterVC : BaseMenuCenterVC
 
 @property(nonatomic, copy)NSString *categoryId;
 

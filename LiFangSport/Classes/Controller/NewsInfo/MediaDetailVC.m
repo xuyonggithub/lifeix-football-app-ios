@@ -24,6 +24,9 @@ const CGFloat topViewH = 180;
 @property(nonatomic, retain)UIButton *shareBtn;
 @property(nonatomic, copy)NSString *htmlStr;
 
+@property(nonatomic, assign)int likeNum;
+@property(nonatomic, assign)int unLikeNum;
+
 @end
 
 @implementation MediaDetailVC
@@ -79,6 +82,8 @@ const CGFloat topViewH = 180;
         NSDictionary *dic = jsonDict;
         int like = [[dic objectForKey:@"likeNum"] integerValue];
         int unLike = [[dic objectForKey:@"unlikeNum"] integerValue];
+        self.likeNum = like;
+        self.unLikeNum = unLike;
         [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
         [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", unLike] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
@@ -94,16 +99,18 @@ const CGFloat topViewH = 180;
 
 -(void)likeBtnClicked{
     NSLog(@"like");
-    [self isLike:YES];
+    [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", self.likeNum + 1] forState:UIControlStateNormal];
+//    NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@"YES"};
+//    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
+//        NSLog(@"succeed!%@", jsonDict);
+//    } failure:^(CommonRequest *request, NSError *error) {
+//        NSLog(@"error: %@", error);
+//    }];
 }
 
 -(void)unLikeBtnClicked{
     NSLog(@"unLike");
-    [self isLike:NO];
-}
-
--(void)isLike:(BOOL)islike{
-    
+    [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", self.unLikeNum + 1] forState:UIControlStateNormal];
 }
 
 #pragma mark - webViewDelegate

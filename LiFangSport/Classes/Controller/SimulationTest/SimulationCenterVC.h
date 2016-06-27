@@ -8,8 +8,9 @@
 //  规则测试
 
 #import "CenterViewController.h"
+#import "BaseMenuCenterVC.h"
 
-@interface SimulationCenterVC : CenterViewController
+@interface SimulationCenterVC : BaseMenuCenterVC
 
 @property (nonatomic, copy) NSString *categoryId;
 

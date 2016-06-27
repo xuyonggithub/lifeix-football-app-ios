@@ -10,9 +10,9 @@
 #import "LeftViewController.h"
 #import "LeftCategoryVC.h"
 #import "AppDelegate.h"
-#import "HomeViewController.h"
 #import "HomeCenterVC.h"
 #import "LaunchInfoManager.h"
+#import "SelectRootViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +22,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
 
     [self setupUIInterface];
     //SDImageCache设置缓存时间为30天
@@ -75,20 +76,17 @@
 //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];//状态栏不透明
 //    }
     
-//    [SimNavController setFont:[UIFont boldSystemFontOfSize:18] textColor:[UIColor whiteColor]];
-//    [SimNavController setNavBgImage:[UIImage imageWithColor:kBasicColor]];
     
     //显示界面
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    HomeCenterVC *centerV=[[HomeCenterVC alloc]init];
-    LeftCategoryVC *leftV=[[LeftCategoryVC alloc]init];
-//    RightViewController *rightV=[[RightViewController alloc]init];
+//    HomeCenterVC *centerV=[[HomeCenterVC alloc]init];
+//    LeftCategoryVC *leftV=[[LeftCategoryVC alloc]init];
     
-    HomeViewController *_rootVC = [[HomeViewController alloc] initWithCenterVC:centerV rightVC:nil leftVC:leftV];
-    self.window.rootViewController = _rootVC;
+    self.window.rootViewController = [SelectRootViewController rootViewController];
+
     [self.window makeKeyAndVisible];
-    
+
 }
 
 

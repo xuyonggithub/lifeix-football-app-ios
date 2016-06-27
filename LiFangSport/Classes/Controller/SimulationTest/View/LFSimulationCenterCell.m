@@ -11,36 +11,40 @@
 @interface LFSimulationCenterCell ()
 {
     UIImageView *_bgImageView;
-    UILabel *_nameLabel;
+    UILabel *_titleLabel;
 }
 @end
 
 @implementation LFSimulationCenterCell
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         _bgImageView = [UIImageView new];
         [self.contentView addSubview:_bgImageView];
         [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(10, 10, 0, 10));
         }];
-        _nameLabel = [UILabel new];
-        [self.contentView addSubview:_nameLabel];
-        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.and.right.and.bottom.equalTo(self.contentView);
+        
+        UIImageView *bannerView = [UIImageView new];
+        bannerView.image = [UIImage imageNamed:@"videolistBannerLabpic"];
+        [self.contentView addSubview:bannerView];
+        [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.and.right.and.bottom.equalTo(_bgImageView);
+            make.height.equalTo(@30);
+        }];
+        
+        _titleLabel = [UILabel new];
+        _titleLabel.textColor = kwhiteColor;
+        _titleLabel.font = [UIFont systemFontOfSize:19];
+        [self.contentView addSubview:_titleLabel];
+        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(bannerView);
+            make.left.equalTo(bannerView.mas_left).offset(10);
+            make.right.equalTo(bannerView.mas_right).offset(-10);
         }];
     }
     return self;
@@ -54,7 +58,7 @@
 //        BOOL result = [UIImagePNGRepresentation(image)writeToFile:filePath atomically:YES]; // 保存成功会返回YES
 //        NSLog(@"%@", @(result));
     }];
-    _nameLabel.text = model.name;
+    _titleLabel.text = model.name;
 }
 
 @end

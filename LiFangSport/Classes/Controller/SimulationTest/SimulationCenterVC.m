@@ -61,7 +61,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 35 + (SCREEN_WIDTH - 40) * 243 / (SCREEN_WIDTH - 40);
+    return 10 + (SCREEN_WIDTH - 20) / 2.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,8 +107,9 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
+        _tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"videolearningbackground"]];
     }
     return _tableView;
 }

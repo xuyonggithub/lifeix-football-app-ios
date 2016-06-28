@@ -84,22 +84,6 @@
     [self.navigationController pushViewController:simulationTestDetailCtrl animated:YES];
 }
 
-#pragma mark - UIViewControllerRotation
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
-}
-
 #pragma mark - Getter and Setter
 - (UITableView *)tableView
 {

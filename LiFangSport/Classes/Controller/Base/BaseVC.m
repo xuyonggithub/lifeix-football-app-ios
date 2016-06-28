@@ -51,5 +51,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIViewControllerRotation
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    if (![self shouldAutorotate]) {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    if (![self shouldAutorotate]) {
+        return UIInterfaceOrientationPortrait;
+    }
+    return UIInterfaceOrientationPortrait | UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+}
 
 @end

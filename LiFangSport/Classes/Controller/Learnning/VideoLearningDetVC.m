@@ -226,21 +226,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UIViewControllerRotation
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
-}
-
-
 @end

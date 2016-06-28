@@ -26,10 +26,7 @@
     [self setupUIInterface];
     //SDImageCache设置缓存时间为30天
     [SDImageCache sharedImageCache].maxCacheAge = 60 * 60 * 24 * 30;
-//    UIImage *backIndicatorImage = [UIImage imageNamed:@"backIconwhite"];
-//    [UINavigationBar appearance].backIndicatorImage = backIndicatorImage;
-//    [UINavigationBar appearance].backIndicatorTransitionMaskImage = backIndicatorImage;
-//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -300) forBarMetrics:UIBarMetricsDefault];
+    [SDImageCache sharedImageCache].maxCacheSize = 1024 * 1024 * 100; // 100M
     
     return YES;
 }
@@ -75,6 +72,11 @@
 //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];//状态栏不透明
 //    }
     
+    UIImage *backIndicatorImage = [UIImage imageNamed:@"backIconwhite"];
+    [UINavigationBar appearance].backIndicatorImage = backIndicatorImage;
+    [UINavigationBar appearance].backIndicatorTransitionMaskImage = backIndicatorImage;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -300) forBarMetrics:UIBarMetricsDefault];
+    [UINavigationBar appearance].tintColor = kwhiteColor;
     
     //显示界面
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

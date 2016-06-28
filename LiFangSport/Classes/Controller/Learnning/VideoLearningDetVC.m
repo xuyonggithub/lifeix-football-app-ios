@@ -53,7 +53,7 @@
     for (VideoLearningDetModel *model in _catsArr) {
         [_topNameArr addObject:model.name];
     }
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
+
     [self createCollectionView];
     [self addCoachCategoryView];
     
@@ -148,10 +148,6 @@
 {
     startNum += limitNum;
     [self requestDataWithBtnTag:_catsArrIndex isHeaderRefresh:NO];
-}
-
--(void)rollBack{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)createCollectionView{

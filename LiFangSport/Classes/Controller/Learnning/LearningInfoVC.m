@@ -26,7 +26,6 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
 //    [self requestData];
 }
 
@@ -63,9 +62,6 @@
     [super viewWillAppear:animated];
 }
 
--(void)rollBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

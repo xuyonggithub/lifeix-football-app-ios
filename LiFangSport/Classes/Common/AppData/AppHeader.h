@@ -39,7 +39,7 @@
 #define kScreenWidth               [[UIScreen mainScreen] bounds].size.width
 #define kScreenHeight           [[UIScreen mainScreen] bounds].size.height
 #define kDefaultRefreshHeight 30
-
+//qiniu
 #define kQiNiuHeaderPathPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
 
 //pad及iphone屏幕特殊处理(6p为基准)

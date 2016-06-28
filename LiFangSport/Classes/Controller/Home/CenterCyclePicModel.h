@@ -14,6 +14,7 @@
 @property(nonatomic,strong)NSArray<Optional> *categoryIds;
 @property(nonatomic,strong)NSString<Optional> *createTime;
 @property (nonatomic, strong) NSString<Optional> *KID;
+@property(nonatomic,strong)NSString<Optional> *image;
 @property(nonatomic,strong)NSArray<Optional> *images;
 @property(nonatomic,assign)NSInteger status;
 @property (nonatomic, strong) NSString<Optional> *title;

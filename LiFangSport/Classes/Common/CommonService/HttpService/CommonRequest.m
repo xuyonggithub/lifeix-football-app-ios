@@ -68,7 +68,7 @@ static NSMutableSet *requestURLKeys;
     NSDictionary *uploadFiliParams = nil;
     
     NSMutableDictionary *queryParams = nil;
-    NSMutableDictionary *postParams = nil;
+    NSMutableDictionary *postParams = [NSMutableDictionary dictionaryWithDictionary:postParam];
     NSString *cacheKeyStr = urlPath;
     if (serverType == RST_Default) {
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -108,7 +108,7 @@ static NSMutableSet *requestURLKeys;
     
     
     AFHTTPRequestOperation *operation = nil;
-    if (postParams) {
+    if ([postParams count]) {
         if (!uploadFiliParams) {
             operation = [manager POST:urlPath
                            parameters:postParams

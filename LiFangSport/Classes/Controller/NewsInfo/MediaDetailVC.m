@@ -103,12 +103,12 @@ const CGFloat topViewH = 180;
 -(void)likeBtnClicked{
     NSLog(@"like");
     [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", self.likeNum + 1] forState:UIControlStateNormal];
-//    NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@"YES"};
-//    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
-//        NSLog(@"succeed!%@", jsonDict);
-//    } failure:^(CommonRequest *request, NSError *error) {
-//        NSLog(@"error: %@", error);
-//    }];
+    NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@1};
+    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
+        NSLog(@"succeed!%@", jsonDict);
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
 }
 
 -(void)unLikeBtnClicked{

@@ -20,5 +20,6 @@
 @property(nonatomic, retain)NSString<Optional> *title;
 @property(nonatomic, retain)NSString<Optional> *content;
 @property(nonatomic, assign)NSInteger status;
-
+@property(nonatomic, retain)NSString<Optional> *image;
+@property(nonatomic, retain)NSString<Optional> *url;
 @end

@@ -12,16 +12,18 @@
 
 +(JSONKeyMapper*)keyMapper{
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                   @"images": @"images",
-                                                   @"categoryIds": @"categoryIds",
-                                                   @"createTime": @"createTime",
-                                                   @"author.name": @"author",
-                                                   @"videos": @"videos",
-                                                   @"id": @"mediaId",
-                                                   @"title": @"title",
-                                                   @"content": @"content",
-                                                   @"status": @"status"
-                                                   }];
+                                                       @"images": @"images",
+                                                       @"categoryIds": @"categoryIds",
+                                                       @"createTime": @"createTime",
+                                                       @"author.name": @"author",
+                                                       @"videos": @"videos",
+                                                       @"id": @"mediaId",
+                                                       @"title": @"title",
+                                                       @"content": @"content",
+                                                       @"status": @"status",
+                                                       @"image": @"image",
+                                                       @"url": @"url"
+                                                       }];
 }
 
 @end

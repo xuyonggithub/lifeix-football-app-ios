@@ -73,7 +73,7 @@
     self.topALabel.text = refereeModel.fifaTopANum?[NSString stringWithFormat:@"国际A级赛事场次:%@", refereeModel.fifaTopANum]:@"国际A级赛事场次:-";
     self.FIFAYearLabel.text = refereeModel.sinceInternational?[NSString stringWithFormat:@"FIFA起始年份:%@", refereeModel.sinceInternational]:@"FIFA起始年份:-";
     self.topLeagueLabel.text = refereeModel.topLeagueNum?[NSString stringWithFormat:@"国际顶级联赛场次:%@", refereeModel.topLeagueNum]:@"国际顶级联赛场次:-";
-    self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", refereeModel.position?refereeModel.position:@"-", refereeModel.name?refereeModel.name:@"-"];
+    self.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", refereeModel.function?refereeModel.function:@"-", refereeModel.name?refereeModel.name:@"-"];
 }
 
 // 时间戳转时间

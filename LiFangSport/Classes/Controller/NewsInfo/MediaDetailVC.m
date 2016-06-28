@@ -58,26 +58,35 @@ const CGFloat topViewH = 180;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
+    
     self.title = @"正文";
     self.bgScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.likeBtn.frame.origin.y + 55);
+    NSString *urlStr = self.media.url;
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLRequest *requset = [NSURLRequest requestWithURL:url];
+    [self.contentWebView loadRequest:requset];
     //    [self requestLikes];
-    [self requestData];
+    //    [self requestData];
     //    [self.contentWebView loadRequest:];
 }
-
--(void)requestData{
-    NSString *urlStr = [NSString stringWithFormat:@"wemedia/posts/%@", self.media.mediaId];
-    [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        NSDictionary *dic = jsonDict;
-        self.htmlStr = [dic objectForKey:@"content"];
-        [self.contentWebView loadHTMLString:self.htmlStr baseURL:nil];
-    } failure:^(CommonRequest *request, NSError *error) {
-        NSLog(@"error = %@", error);
-    }];
-    
+-(void)rollBack{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+/*
+ -(void)requestData{
+ NSString *urlStr = [NSString stringWithFormat:@"wemedia/posts/%@", self.media.mediaId];
+ [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+ NSDictionary *dic = jsonDict;
+ self.htmlStr = [dic objectForKey:@"content"];
+ [self.contentWebView loadHTMLString:self.htmlStr baseURL:nil];
+ } failure:^(CommonRequest *request, NSError *error) {
+ NSLog(@"error = %@", error);
+ }];
+ 
+ }
+ */
 -(void)requestLikes{
     NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=post", self.media.mediaId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {

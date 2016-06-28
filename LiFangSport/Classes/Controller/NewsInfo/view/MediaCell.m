@@ -38,8 +38,8 @@
 }
 
 -(void)displayCell:(MediaModel *)media{
-    if(media.images.count > 0){
-        NSString *str = [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", media.images[0], (int)SCREEN_WIDTH - 10, (int)SCREEN_WIDTH/2 - 5];
+    if(media.image != nil){
+        NSString *str = [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", media.image, (int)SCREEN_WIDTH - 10, (int)SCREEN_WIDTH/2 - 5];
         [self.bgImgView sd_setImageWithURL:str placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
     }else{
         self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];

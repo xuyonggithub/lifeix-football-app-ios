@@ -143,7 +143,7 @@
 
     for (CenterCyclePicModel *model in _dataArray) {
         if (model.images.count) {
-            [_picArray addObject:[NSURL URLWithString:model.images[0]]];
+            [_picArray addObject:[NSURL URLWithString:model.image]];
         }
     }
     if (_picArray&&_picArray.count) {

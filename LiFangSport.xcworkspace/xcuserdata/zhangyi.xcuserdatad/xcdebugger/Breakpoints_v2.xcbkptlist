@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/NewsInfo/MediaDetailVC.m"
-            timestampString = "488713711.107687"
+            filePath = "LiFangSport/Classes/Controller/Home/HomeCenterVC.m"
+            timestampString = "488769556.571498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-requestData"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-createCenterView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LiFangSport/Classes/Controller/Home/HomeCenterVC.m"
+            timestampString = "488769891.16754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-dealWithJason:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -166,44 +166,47 @@
     rightThreeLab.textColor = kwhiteColor;
     rightThreeLab.text= @"红牌";
     [_baseDecisionView addSubview:rightThreeLab];
-    
-    for (NSDictionary *dic in model.r1) {
-        LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
-        if (popModel.right == 1) {
-            switch (popModel.index) {
-                case 1:
-                    leftOnePic.image = UIImageNamed(@"lppopselect");
-                    break;
-                case 2:
-                    leftTwoPic.image = UIImageNamed(@"lppopselect");
-                    break;
-                case 3:
-                    leftThreePic.image = UIImageNamed(@"lppopselect");
-                    break;
-                case 4:
-                    leftFourPic.image = UIImageNamed(@"lppopselect");
-                    break;
-                default:
-                    break;
+    if (model.r1) {
+        for (NSDictionary *dic in model.r1) {
+            LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
+            if (popModel.right == 1) {
+                switch (popModel.index) {
+                        case 1:
+                        leftOnePic.image = UIImageNamed(@"lppopselect");
+                        break;
+                        case 2:
+                        leftTwoPic.image = UIImageNamed(@"lppopselect");
+                        break;
+                        case 3:
+                        leftThreePic.image = UIImageNamed(@"lppopselect");
+                        break;
+                        case 4:
+                        leftFourPic.image = UIImageNamed(@"lppopselect");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
     
-    for (NSDictionary *dic in model.r2) {
-        LearningPlayPopDeciModel *popRightModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
-        if (popRightModel.right == 1) {
-            switch (popRightModel.index) {
-                case 1:
-                    rightOnePic.image = UIImageNamed(@"lppopselect");
-                    break;
-                case 2:
-                    rightTwoPic.image = UIImageNamed(@"lppopselect");
-                    break;
-                case 3:
-                    rightThreePic.image = UIImageNamed(@"lppopselect");
-                    break;
-                default:
-                    break;
+    if (model.r2) {
+        for (NSDictionary *dic in model.r2) {
+            LearningPlayPopDeciModel *popRightModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
+            if (popRightModel.right == 1) {
+                switch (popRightModel.index) {
+                        case 1:
+                        rightOnePic.image = UIImageNamed(@"lppopselect");
+                        break;
+                        case 2:
+                        rightTwoPic.image = UIImageNamed(@"lppopselect");
+                        break;
+                        case 3:
+                        rightThreePic.image = UIImageNamed(@"lppopselect");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -237,27 +240,38 @@
             contentParagraphStyle.alignment = NSTextAlignmentJustified;
 
             if (type == LPPOP_FACTORS){
-                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.considerations] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
-                
-                _textView.attributedText = attributedString;
+                if (model.considerations!=nil) {
+                    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.considerations] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                    
+                    _textView.attributedText = attributedString;
+                }
             }else if (type==LPPOP_DETAIL){
-                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.explanation] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                if (model.explanation) {
+                    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.explanation] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                    
+                    _textView.attributedText = attributedString;
+                }
                 
-                _textView.attributedText = attributedString;
             }else if (type==LPPOP_RULE){
-                NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.rule] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
-                
-                _textView.attributedText = attributedString;
+                if (model.rule) {
+                    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[self replaceXFrom:model.rule] attributes:[NSDictionary dictionaryWithObjectsAndKeys:contentParagraphStyle, NSParagraphStyleAttributeName, [UIFont systemFontOfSize:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, @0.5, NSKernAttributeName, nil]];
+                    
+                    _textView.attributedText = attributedString;
+
+                }
             }
         }
     }
 }
 
 -(NSString *)replaceXFrom:(NSString *)string{
+    if (string) {
     NSMutableString *ms = [[NSMutableString alloc]initWithString:string];
     [ms replaceOccurrencesOfString:@"<p>" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ms.length)];
     [ms replaceOccurrencesOfString:@"</p>" withString:@"\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ms.length)];
     return ms;
+    }
+    return nil;
 }
 
 @end

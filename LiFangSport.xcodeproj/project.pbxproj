@@ -91,6 +91,7 @@
 		2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */; };
 		2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB281D17DE3800954C63 /* VSicon@2x.png */; };
 		2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */; };
+		2D740A3C1D220D64007D29B3 /* LearningInfoPopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D740A3B1D220D64007D29B3 /* LearningInfoPopCell.m */; };
 		2D76357D1D1A92FC0085BB03 /* LearningInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */; };
 		2D76357F1D1A93720085BB03 /* videobofang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D76357E1D1A93720085BB03 /* videobofang@2x.png */; };
 		2D7635821D1A967B0085BB03 /* LearningVideoPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7635811D1A967B0085BB03 /* LearningVideoPlayVC.m */; };
@@ -510,6 +511,8 @@
 		2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2D6EEB281D17DE3800954C63 /* VSicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VSicon@2x.png"; sourceTree = "<group>"; };
 		2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videolistBannerLabpic@2x.png"; sourceTree = "<group>"; };
+		2D740A3A1D220D64007D29B3 /* LearningInfoPopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoPopCell.h; sourceTree = "<group>"; };
+		2D740A3B1D220D64007D29B3 /* LearningInfoPopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoPopCell.m; sourceTree = "<group>"; };
 		2D76357B1D1A92FC0085BB03 /* LearningInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoVC.h; sourceTree = "<group>"; };
 		2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoVC.m; sourceTree = "<group>"; };
 		2D76357E1D1A93720085BB03 /* videobofang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videobofang@2x.png"; sourceTree = "<group>"; };
@@ -1183,6 +1186,8 @@
 				2D07DA041D1BDC17007F73F1 /* LearningPlayPopView.m */,
 				2DF227E11D20C0AC005E49A0 /* LearningInfoPopView.h */,
 				2DF227E21D20C0AC005E49A0 /* LearningInfoPopView.m */,
+				2D740A3A1D220D64007D29B3 /* LearningInfoPopCell.h */,
+				2D740A3B1D220D64007D29B3 /* LearningInfoPopCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2624,6 +2629,7 @@
 				0AA9A6AB1D20FBCC0015786F /* PlayerVideoVC.m in Sources */,
 				2DE2C8451D0D2F5000310C4C /* HYCircleLoadingView.m in Sources */,
 				9CAF824B1D190F560025224F /* AVPlayer+AJMediaPlayerKit.m in Sources */,
+				2D740A3C1D220D64007D29B3 /* LearningInfoPopCell.m in Sources */,
 				2DA4B2161D0E80C700136DA7 /* UIView+SDExtension.m in Sources */,
 				2DA4B2131D0E80C700136DA7 /* TAPageControl.m in Sources */,
 				2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */,

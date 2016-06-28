@@ -45,7 +45,7 @@
     [self addSubview:_picView];
     [self addSubview:_nameLab];
     
-     playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     playView.image = UIImageNamed(@"videobofang");
     playView.center = _picView.center;
     [self addSubview:playView];

@@ -5,7 +5,7 @@
 //  Created by 张毅 on 16/6/23.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
-
+#import "VideoSingleInfoModel.h"
 #import <UIKit/UIKit.h>
 typedef void(^LearningPlayControlViewBlock)(void);
 
@@ -15,6 +15,9 @@ typedef void(^LearningPlayControlViewBlock)(void);
 @property (nonatomic, copy) LearningPlayControlViewBlock decisionBlock;
 @property (nonatomic, copy) LearningPlayControlViewBlock detailBlock;
 @property (nonatomic, copy) LearningPlayControlViewBlock ruleBlock;
+@property (nonatomic, strong) VideoSingleInfoModel *model;
+
+-(instancetype)initWithFrame:(CGRect)frame WithModel:(VideoSingleInfoModel *)model;
 
 @end
 

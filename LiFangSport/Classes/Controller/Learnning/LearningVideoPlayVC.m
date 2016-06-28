@@ -176,7 +176,10 @@
 - (LearningPlayControlView *)ctrView
 {
     if (!_ctrView) {
-        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175)];
+//        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175)];
+        VideoSingleInfoModel *model = [[VideoSingleInfoModel alloc]init];
+        model = _videoInfoArr[0];
+        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175) WithModel:model];
         _ctrView.userInteractionEnabled = YES;
         _ctrView.right = kScreenWidth;
         _ctrView.centerY = kScreenHeight/2;

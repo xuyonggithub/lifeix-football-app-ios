@@ -40,6 +40,7 @@
 @property(nonatomic,strong)UITableView *centerTableview;
 @property(nonatomic,strong)UICollectionView *rightCollectionview;
 @property(nonatomic,strong)NSString *ruleStr;
+@property(nonatomic,strong)NSString *leftSubtitlePrifxStr;
 
 @end
 
@@ -109,6 +110,7 @@
 }
 -(void)dealWithCenterData:(id )dic{
     [_centerDataArray removeAllObjects];
+    _leftSubtitlePrifxStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"name"]];
     _centerDataArray = [CenterSwitchModel arrayOfModelsFromDictionaries:dic[@"matches"]];
     _ruleStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"rule"]];
     
@@ -279,6 +281,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = _leftDataArray[indexPath.row];
+        cell.leftSubtitlePrifxStr = _leftSubtitlePrifxStr;
         return cell;
     }else if(tableView == _centerTableview){
         static NSString *cellidx = @"centertableviewcellid";

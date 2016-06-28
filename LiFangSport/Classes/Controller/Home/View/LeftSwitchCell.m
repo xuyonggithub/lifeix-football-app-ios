@@ -81,8 +81,9 @@
 }
 
 -(void)setModel:(LeftSwitchModel *)model{
-    NSString *ss = model.competitionInfo[@"name"];
-    NSTimeInterval dateIN=(NSTimeInterval)[model.startDate integerValue];
+//    NSString *ss = model.competitionInfo[@"name"];
+    NSString *ss = _leftSubtitlePrifxStr?_leftSubtitlePrifxStr:@"世预赛";
+    NSTimeInterval dateIN=(NSTimeInterval)[model.startDate integerValue]/1000;
     NSDate * dateData=[NSDate dateWithTimeIntervalSince1970:dateIN];
     
     NSTimeInterval timeIN=(NSTimeInterval)[model.startTime integerValue];

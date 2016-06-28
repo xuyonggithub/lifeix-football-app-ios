@@ -10,6 +10,6 @@
 
 @interface LeftSwitchCell : UITableViewCell
 @property(nonatomic,strong)LeftSwitchModel *model;
-
+@property(nonatomic,strong)NSString *leftSubtitlePrifxStr;
 
 @end

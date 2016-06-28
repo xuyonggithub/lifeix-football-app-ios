@@ -30,6 +30,5 @@ typedef NS_ENUM(NSInteger, LFQuestionMode){
 - (instancetype)initWithQuestionMode:(LFQuestionMode)questionMode questionCnt:(NSInteger)questionCnt;
 
 - (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel;
-- (void)refreshLastContentView;
 
 @end

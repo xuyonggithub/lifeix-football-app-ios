@@ -136,10 +136,6 @@
     [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", _questionMode == LFQuestionModeDefaultFoul ? self.categoryModel.categoryId : [self.categoryModel.subArray[modeIndex - 1] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         weakSelf.questionArray = [[LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict] subarrayWithRange:NSMakeRange(0, 2)];
         [weakSelf toPlayWithAJMediaPlayerItem];
-        if (_isAgain) {
-            [weakSelf.questionView refreshLastContentView];
-            _isAgain = NO;
-        }
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
     }];
@@ -169,8 +165,10 @@
 {
     if (_currentQuestionIndex + 1 == self.questionArray.count) {
         //  重新挑战
-        _isAgain = YES;
-        [self promptViewStartTesting:_questionMode];
+        _isNeedNewQuestionView = YES;
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+        [self.questionView removeFromSuperview];
+        [self.view bringSubviewToFront:self.promptView];
     }else {
         _currentQuestionIndex++;
         [self toPlayWithAJMediaPlayerItem];

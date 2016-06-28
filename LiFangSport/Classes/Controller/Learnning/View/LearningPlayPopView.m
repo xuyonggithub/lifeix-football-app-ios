@@ -51,70 +51,121 @@
         _baseDecisionView.backgroundColor = kclearColor;
         [self addSubview:_baseDecisionView];
     }
+    if (model==nil) {
+        return;
+    }
     UIFont *kpoplabfont = [UIFont systemFontOfSize:20];
     UILabel *leftOneLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
+    UIImageView *leftOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+
+    if (!model.r1) {
+        return;
+    }
+    if (model.r1.count>0) {
     leftOneLab.top = (kScreenHeight -(3*30+4*20))/2;
     leftOneLab.backgroundColor = kclearColor;
     leftOneLab.font = kpoplabfont;
     leftOneLab.textAlignment = NSTextAlignmentRight;
     leftOneLab.textColor = kwhiteColor;
-    leftOneLab.text= @"没有犯规";
+    NSDictionary *oneDic = [[NSDictionary alloc]initWithDictionary:[model.r1 objectAtIndex:0]];
+    leftOneLab.text= oneDic[@"text"];
     [_baseDecisionView addSubview:leftOneLab];
-    
-    UILabel *leftTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
+        
+    leftOnePic.backgroundColor = kclearColor;
+    leftOnePic.centerY = leftOneLab.centerY;
+    leftOnePic.left = leftOneLab.right +20;
+    leftOnePic.image = UIImageNamed(@"lppopunselect");
+    [_baseDecisionView addSubview:leftOnePic];
+}
+    UILabel *leftTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 160, 20)];
+    UIImageView *leftTwoPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+
+    if (model.r1.count>1) {
     leftTwoLab.top = leftOneLab.bottom +30;
+    leftTwoLab.right = leftOneLab.right;
     leftTwoLab.backgroundColor = kclearColor;
     leftTwoLab.font = kpoplabfont;
     leftTwoLab.textAlignment = NSTextAlignmentRight;
     leftTwoLab.textColor = kwhiteColor;
-    leftTwoLab.text= @"间接任意球";
+    NSDictionary *twoDic = [[NSDictionary alloc]initWithDictionary:[model.r1 objectAtIndex:1]];
+    leftTwoLab.text= twoDic[@"text"];
     [_baseDecisionView addSubview:leftTwoLab];
-    
-    UILabel *leftThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
-    leftThreeLab.top = leftTwoLab.bottom +30;
-    leftThreeLab.backgroundColor = kclearColor;
-    leftThreeLab.font = kpoplabfont;
-    leftThreeLab.textAlignment = NSTextAlignmentRight;
-    leftThreeLab.textColor = kwhiteColor;
-    leftThreeLab.text= @"直接任意球";
-    [_baseDecisionView addSubview:leftThreeLab];
-    
-    UILabel *leftFourLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
-    leftFourLab.top = leftThreeLab.bottom +30;
-    leftFourLab.backgroundColor = kclearColor;
-    leftFourLab.font = kpoplabfont;
-    leftFourLab.textAlignment = NSTextAlignmentRight;
-    leftFourLab.textColor = kwhiteColor;
-    leftFourLab.text= @"点球";
-    [_baseDecisionView addSubview:leftFourLab];
-    
-    UIImageView *leftOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftOnePic.backgroundColor = kclearColor;
-    leftOnePic.centerY = leftOneLab.centerY;
-    leftOnePic.left = leftOneLab.right +20;
-    leftOnePic.image = UIImageNamed(@"lppopunselect");//lppopselect
-    [_baseDecisionView addSubview:leftOnePic];
-    
-    UIImageView *leftTwoPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        
     leftTwoPic.backgroundColor = kclearColor;
     leftTwoPic.centerY = leftTwoLab.centerY;
     leftTwoPic.left = leftTwoLab.right +20;
     leftTwoPic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:leftTwoPic];
-    
+    }
+    UILabel *leftThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
     UIImageView *leftThreePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftThreePic.backgroundColor = kclearColor;
-    leftThreePic.centerY = leftThreeLab.centerY;
-    leftThreePic.left = leftThreeLab.right +20;
-    leftThreePic.image = UIImageNamed(@"lppopunselect");
-    [_baseDecisionView addSubview:leftThreePic];
+
+    if (model.r1.count>2) {
+        leftThreeLab.top = leftTwoLab.bottom +30;
+        leftThreeLab.right = leftTwoLab.right;
+
+        leftThreeLab.backgroundColor = kclearColor;
+        leftThreeLab.font = kpoplabfont;
+        leftThreeLab.textAlignment = NSTextAlignmentRight;
+        leftThreeLab.textColor = kwhiteColor;
+        NSDictionary *threeDic = [[NSDictionary alloc]initWithDictionary:[model.r1 objectAtIndex:2]];
+        leftThreeLab.text= threeDic[@"text"];
+        [_baseDecisionView addSubview:leftThreeLab];
+        
+        leftThreePic.backgroundColor = kclearColor;
+        leftThreePic.centerY = leftThreeLab.centerY;
+        leftThreePic.left = leftThreeLab.right +20;
+        leftThreePic.image = UIImageNamed(@"lppopunselect");
+        [_baseDecisionView addSubview:leftThreePic];
+    }
     
+    UILabel *leftFourLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
     UIImageView *leftFourPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+
+    if (model.r1.count>3) {
+    leftFourLab.top = leftThreeLab.bottom +30;
+    leftFourLab.right = leftThreeLab.right;
+    leftFourLab.backgroundColor = kclearColor;
+    leftFourLab.font = kpoplabfont;
+    leftFourLab.textAlignment = NSTextAlignmentRight;
+    leftFourLab.textColor = kwhiteColor;
+    NSDictionary *fourDic = [[NSDictionary alloc]initWithDictionary:[model.r1 objectAtIndex:3]];
+    leftFourLab.text= fourDic[@"text"];
+    [_baseDecisionView addSubview:leftFourLab];
+        
     leftFourPic.backgroundColor = kclearColor;
     leftFourPic.centerY = leftFourLab.centerY;
     leftFourPic.left = leftFourLab.right +20;
     leftFourPic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:leftFourPic];
+
+    }
+    if (model.r1) {
+        for (NSDictionary *dic in model.r1) {
+            LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
+            if (popModel.right == 1) {
+                switch (popModel.index) {
+                    case 1:
+                        leftOnePic.image = UIImageNamed(@"lppopselect");
+                        break;
+                    case 2:
+                        leftTwoPic.image = UIImageNamed(@"lppopselect");
+                        break;
+                    case 3:
+                        leftThreePic.image = UIImageNamed(@"lppopselect");
+                        break;
+                    case 4:
+                        leftFourPic.image = UIImageNamed(@"lppopselect");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+    if (model.r2==nil) {
+        return;
+    }
     //右
     UIImageView *rightOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     rightOnePic.backgroundColor = kclearColor;
@@ -138,57 +189,67 @@
     [_baseDecisionView addSubview:rightThreePic];
     
     UILabel *rightOneLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
-    rightOneLab.backgroundColor = kclearColor;
-    rightOneLab.centerY = rightOnePic.centerY;
-    rightOneLab.left = rightOnePic.right +20;
-    rightOneLab.font = kpoplabfont;
-    rightOneLab.textAlignment = NSTextAlignmentLeft;
-    rightOneLab.textColor = kwhiteColor;
-    rightOneLab.text= @"不给牌";
-    [_baseDecisionView addSubview:rightOneLab];
+    if (model.r2.count>0) {
+        rightOneLab.backgroundColor = kclearColor;
+        rightOneLab.centerY = rightOnePic.centerY;
+        rightOneLab.left = rightOnePic.right +20;
+        rightOneLab.font = kpoplabfont;
+        rightOneLab.textAlignment = NSTextAlignmentLeft;
+        rightOneLab.textColor = kwhiteColor;
+        NSDictionary *oneDic = [[NSDictionary alloc]initWithDictionary:[model.r2 objectAtIndex:0]];
+        rightOneLab.text= oneDic[@"text"];
+        [_baseDecisionView addSubview:rightOneLab];
+    }
 
     UILabel *rightTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
-    rightTwoLab.backgroundColor = kclearColor;
-    rightTwoLab.centerY = rightTwoPic.centerY;
-    rightTwoLab.left = rightOnePic.right +20;
-    rightTwoLab.font = kpoplabfont;
-    rightTwoLab.textAlignment = NSTextAlignmentLeft;
-    rightTwoLab.textColor = kwhiteColor;
-    rightTwoLab.text= @"黄牌";
-    [_baseDecisionView addSubview:rightTwoLab];
+    if (model.r2.count>1) {
+        rightTwoLab.backgroundColor = kclearColor;
+        rightTwoLab.centerY = rightTwoPic.centerY;
+        rightTwoLab.left = rightOnePic.right +20;
+        rightTwoLab.font = kpoplabfont;
+        rightTwoLab.textAlignment = NSTextAlignmentLeft;
+        rightTwoLab.textColor = kwhiteColor;
+        NSDictionary *twoDic = [[NSDictionary alloc]initWithDictionary:[model.r2 objectAtIndex:1]];
+        rightTwoLab.text= twoDic[@"text"];
+        [_baseDecisionView addSubview:rightTwoLab];
+    }
     
     UILabel *rightThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
-    rightThreeLab.backgroundColor = kclearColor;
-    rightThreeLab.centerY = rightThreePic.centerY;
-    rightThreeLab.left = rightOnePic.right +20;
-    rightThreeLab.font = kpoplabfont;
-    rightThreeLab.textAlignment = NSTextAlignmentLeft;
-    rightThreeLab.textColor = kwhiteColor;
-    rightThreeLab.text= @"红牌";
-    [_baseDecisionView addSubview:rightThreeLab];
-    if (model.r1) {
-        for (NSDictionary *dic in model.r1) {
-            LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
-            if (popModel.right == 1) {
-                switch (popModel.index) {
-                        case 1:
-                        leftOnePic.image = UIImageNamed(@"lppopselect");
-                        break;
-                        case 2:
-                        leftTwoPic.image = UIImageNamed(@"lppopselect");
-                        break;
-                        case 3:
-                        leftThreePic.image = UIImageNamed(@"lppopselect");
-                        break;
-                        case 4:
-                        leftFourPic.image = UIImageNamed(@"lppopselect");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+    if (model.r2.count>2) {
+        rightThreeLab.backgroundColor = kclearColor;
+        rightThreeLab.centerY = rightThreePic.centerY;
+        rightThreeLab.left = rightOnePic.right +20;
+        rightThreeLab.font = kpoplabfont;
+        rightThreeLab.textAlignment = NSTextAlignmentLeft;
+        rightThreeLab.textColor = kwhiteColor;
+        NSDictionary *threeDic = [[NSDictionary alloc]initWithDictionary:[model.r2 objectAtIndex:2]];
+        rightThreeLab.text= threeDic[@"text"];
+        [_baseDecisionView addSubview:rightThreeLab];
     }
+
+//    if (model.r1) {
+//        for (NSDictionary *dic in model.r1) {
+//            LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
+//            if (popModel.right == 1) {
+//                switch (popModel.index) {
+//                        case 1:
+//                        leftOnePic.image = UIImageNamed(@"lppopselect");
+//                        break;
+//                        case 2:
+//                        leftTwoPic.image = UIImageNamed(@"lppopselect");
+//                        break;
+//                        case 3:
+//                        leftThreePic.image = UIImageNamed(@"lppopselect");
+//                        break;
+//                        case 4:
+//                        leftFourPic.image = UIImageNamed(@"lppopselect");
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+//    }
     
     if (model.r2) {
         for (NSDictionary *dic in model.r2) {

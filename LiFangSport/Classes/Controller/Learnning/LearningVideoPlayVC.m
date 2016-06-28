@@ -176,7 +176,6 @@
 - (LearningPlayControlView *)ctrView
 {
     if (!_ctrView) {
-//        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175)];
         VideoSingleInfoModel *model = [[VideoSingleInfoModel alloc]init];
         model = _videoInfoArr[0];
         _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175) WithModel:model];

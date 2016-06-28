@@ -37,7 +37,7 @@
 -(void)displayCell:(PlayerVideoModel *)model{
     
     NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?vframe/jpg/offset/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, model.url, (int)_bgImgView.width, (int)_bgImgView.height];
-    [self.bgImgView sd_setImageWithURL:bgImageUrl placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
+    [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
 
     self.titleLabel.text = model.title;
 }

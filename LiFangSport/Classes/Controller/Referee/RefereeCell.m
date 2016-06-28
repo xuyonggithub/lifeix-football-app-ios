@@ -62,7 +62,7 @@
 -(void)displayCell:(RefereeModel *)refereeModel{
     if(refereeModel.avatar != nil){
         NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, refereeModel.avatar, (int)self.bgImgView.width, (int)self.bgImgView.height];
-        [self.bgImgView sd_setImageWithURL:bgImageUrl placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
+        [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
     }else{
         self.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];
     }

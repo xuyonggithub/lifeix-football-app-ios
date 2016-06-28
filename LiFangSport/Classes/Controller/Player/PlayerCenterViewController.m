@@ -145,7 +145,7 @@
     
     if(player.avatar != nil){
         NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, player.avatar, (int)cell.bgImgView.width, (int)cell.bgImgView.height];
-        [cell.bgImgView sd_setImageWithURL:bgImageUrl placeholderImage:placehold];
+        [cell.bgImgView sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:placehold];
     }else{
         cell.bgImgView.image = placehold;
     }

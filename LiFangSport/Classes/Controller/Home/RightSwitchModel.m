@@ -18,4 +18,20 @@
     }
     return self;
 }
+
++(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic{
+    
+    RightSwitchModel *model = [[RightSwitchModel alloc]init];
+    model.avatar = dic[@"avatar"];
+    model.birthday = dic[@"birthday"];
+    model.birthplace = dic[@"birthplace"];
+    model.country = dic[@"country"];
+    model.KID = dic[@"id"];
+    model.level = dic[@"level"];
+    model.name = dic[@"name"];
+    model.position = dic[@"position"];
+    
+    NSArray *arr = [NSArray arrayWithObject:model];
+    return arr;
+}
 @end

@@ -41,7 +41,15 @@
 
 -(void)setModel:(RightSwitchModel *)model{    
     [_picView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.avatar]] placeholderImage:UIImageNamed(@"placeHold_player")];
-    _nameLab.text = model.name;
+    _nameLab.text = [NSString stringWithFormat:@"%@",model.name];
+//    if ([model.menberType isEqualToString:@"assistantCoach"]) {
+//        _nameLab.text = [NSString stringWithFormat:@"%@%@",@"[助理教练]",model.name];
+//    }else if ([model.menberType isEqualToString:@"chiefCoachArr"]){
+//        _nameLab.text = [NSString stringWithFormat:@"%@%@",@"[主教练]",model.name];
+//    }else if ([model.menberType isEqualToString:@"player"]){
+//        _nameLab.text = [NSString stringWithFormat:@"%@%@",@"[球员]",model.name];
+//    }
+
 }
 
 @end

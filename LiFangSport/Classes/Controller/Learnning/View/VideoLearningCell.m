@@ -26,7 +26,7 @@
     return self;
 }
 -(void)initSubviews{
-    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, kScreenWidth, 120-5)];
+    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, kScreenWidth, 140-5)];
     _picView.width = kScreenWidth;
     [self addSubview:_picView];
     _picView.image = [UIImage imageNamed:@"ou1233aeer"];

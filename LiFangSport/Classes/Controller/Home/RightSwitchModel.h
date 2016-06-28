@@ -17,8 +17,12 @@
 @property (nonatomic, strong) NSString<Optional> *level;
 @property (nonatomic, strong) NSString<Optional> *name;
 @property (nonatomic, strong) NSString<Optional> *position;
-@property (nonatomic, assign) NSInteger jeserysNum;
-@property (nonatomic, strong) NSDictionary<Optional> *record;
-@property (nonatomic, assign) NSInteger weight;
+//@property (nonatomic, assign) NSInteger jeserysNum;
+//@property (nonatomic, strong) NSDictionary<Optional> *record;
+//@property (nonatomic, assign) NSInteger weight;
+@property (nonatomic, strong) NSString<Ignore> *menberType;
+
+
++(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic;
 
 @end

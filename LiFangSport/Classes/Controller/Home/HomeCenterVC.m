@@ -121,17 +121,20 @@
     NSMutableArray *assistantCoachArr = [NSMutableArray array];
     assistantCoachArr = [RightSwitchModel arrayOfModelsFromDictionaries:dic[@"assistantCoach"]];
     NSMutableArray *chiefCoachArr = [NSMutableArray array];
-    chiefCoachArr = [RightSwitchModel arrayOfModelsFromDictionaries:dic[@"chiefCoach"]];
+    chiefCoachArr = (NSMutableArray*)[RightSwitchModel modelDealDataFromWithDic:dic[@"chiefCoach"]];
     NSMutableArray *playersArr = [NSMutableArray array];
     playersArr = [RightSwitchModel arrayOfModelsFromDictionaries:dic[@"players"]];
     
     for (RightSwitchModel *model in assistantCoachArr) {
+        model.menberType = @"assistantCoach";
         [_rightDataArray addObject:model];
     }
     for (RightSwitchModel *model in chiefCoachArr) {
+        model.menberType = @"chiefCoach";
         [_rightDataArray addObject:model];
     }
     for (RightSwitchModel *model in playersArr) {
+        model.menberType = @"player";
         [_rightDataArray addObject:model];
     }
     [_rightCollectionview reloadData];
@@ -227,7 +230,7 @@
         _centerTableview.delegate = self;
         _centerTableview.dataSource = self;
         [self.view addSubview:_centerTableview];
-        UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 150)];
+        UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 250)];
 //        ruleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
 //        ruleLab.font = [UIFont systemFontOfSize:11];
 //        ruleLab.numberOfLines = 0;
@@ -238,7 +241,7 @@
 //        [ruleLab sizeToFit];
 //        [hview addSubview:ruleLab];
         
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 150)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 250)];
         [webView loadHTMLString:_ruleStr baseURL:nil];
         [hview addSubview:webView];
         hview.backgroundColor = [UIColor whiteColor];

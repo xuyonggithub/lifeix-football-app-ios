@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSNumber *type;
 @property (nonatomic, strong) NSArray *subArray;
+@property (nonatomic, assign) NSInteger rightCount;
 
 + (LFSimulationCategoryModel *)simulationTestModelWithDict:(NSDictionary *)dict;
 + (NSArray *)simulationTestModelArrayWithArray:(NSArray *)array;

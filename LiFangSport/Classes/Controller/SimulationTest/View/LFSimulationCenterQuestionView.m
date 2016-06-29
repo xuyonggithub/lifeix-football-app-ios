@@ -17,6 +17,7 @@
 {
     LFQuestionMode _questionMode;
     NSInteger _questionCnt;
+    NSInteger _rightCount;
     NSInteger _leftSelectedIndex;
     NSInteger _rightSelectedIndex;
     NSInteger _falseCnt;
@@ -37,13 +38,14 @@
 @end
 
 @implementation LFSimulationCenterQuestionView
-- (instancetype)initWithQuestionMode:(LFQuestionMode)questionMode questionCnt:(NSInteger)questionCnt
+- (instancetype)initWithQuestionMode:(LFQuestionMode)questionMode questionCnt:(NSInteger)questionCnt rightCount:(NSInteger)rightCount
 {
     self = [super init];
     if (self) {
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
         _questionMode = questionMode;
         _questionCnt = questionCnt;
+        _rightCount = rightCount;
         _leftSelectedIndex = _rightSelectedIndex = -1;
         _falseCnt = _trueCnt = 0;
         
@@ -177,7 +179,7 @@
 {
     _isLastQuestion = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
-        _resultLabel.text = [NSString stringWithFormat:@"恭喜您，成功通过本次测试，敢不敢继续挑战？\n共%@题，正确%@题，错误%@题", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
+        _resultLabel.text = [NSString stringWithFormat:@"%@通过本次测试，敢不敢继续挑战？\n共%@题，正确%@题，错误%@题", _trueCnt >= _rightCount ? @"恭喜您，成功" : @"很抱歉，您未", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
         _resultLabel.hidden = NO;
         [self refreshLastContentView];
     });

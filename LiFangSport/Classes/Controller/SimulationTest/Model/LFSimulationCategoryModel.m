@@ -18,6 +18,7 @@
     model.name = dict[@"name"];
     model.text = dict[@"text"];
     model.type = dict[@"type"];
+    model.rightCount = [dict[@"rightCount"] integerValue];
     NSArray *catArray = dict[@"cats"];
     if (catArray) {
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];

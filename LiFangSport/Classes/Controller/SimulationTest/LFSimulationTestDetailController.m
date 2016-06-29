@@ -103,13 +103,12 @@
 - (void)toPlayWithAJMediaPlayerItem
 {
     if (_currentQuestionIndex < self.questionArray.count) {
-        [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
         self.currentQuestionModel = self.questionArray[_currentQuestionIndex];
         
         if (_isNeedNewQuestionView) {
             __weak typeof(self) weakSelf = self;
             _isNeedNewQuestionView = NO;
-            self.questionView = [[LFSimulationCenterQuestionView alloc] initWithQuestionMode:_questionMode questionCnt:self.questionArray.count];
+            self.questionView = [[LFSimulationCenterQuestionView alloc] initWithQuestionMode:_questionMode questionCnt:self.questionArray.count rightCount:self.categoryModel.rightCount];
             self.questionView.delegate = self;
             [self.view insertSubview:self.questionView belowSubview:self.mediaPlayerViewController.view];
             [self.questionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,6 +119,7 @@
         
         AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:[self.categoryModel.name stringByAppendingString:self.modeString ? self.modeString : @""] uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
+        [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
     }
 }
 

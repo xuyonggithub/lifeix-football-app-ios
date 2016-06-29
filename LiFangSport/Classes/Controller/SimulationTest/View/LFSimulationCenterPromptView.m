@@ -30,6 +30,7 @@
         }];
         
         UITextView *textView = [UITextView new];
+        textView.font = [UIFont systemFontOfSize:17];
         textView.backgroundColor = [UIColor clearColor];
         textView.editable = NO;
         textView.selectable = NO;
@@ -52,6 +53,7 @@
         }];
         
         UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        startBtn.titleLabel.font = [UIFont systemFontOfSize:20];
         startBtn.layer.cornerRadius = 5;
         startBtn.layer.masksToBounds = YES;
         startBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -69,8 +71,8 @@
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(textView.mas_centerX).offset(-90);
                 make.bottom.equalTo(self.mas_bottom).offset(-50);
-                make.width.equalTo(@100);
-                make.height.equalTo(@50);
+                make.width.equalTo(@130);
+                make.height.equalTo(@45);
             }];
             
             for (NSInteger i = 1; i < model.subArray.count; i++) {
@@ -88,8 +90,8 @@
                 [otherBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(textView.mas_centerX).offset(90);
                     make.bottom.equalTo(self.mas_bottom).offset(-50);
-                    make.width.equalTo(@100);
-                    make.height.equalTo(@50);
+                    make.width.equalTo(@130);
+                    make.height.equalTo(@45);
                 }];
             }
         }else {
@@ -99,8 +101,8 @@
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(textView);
                 make.bottom.equalTo(self.mas_bottom).offset(-50);
-                make.width.equalTo(@100);
-                make.height.equalTo(@50);
+                make.width.equalTo(@130);
+                make.height.equalTo(@45);
             }];
         }
         

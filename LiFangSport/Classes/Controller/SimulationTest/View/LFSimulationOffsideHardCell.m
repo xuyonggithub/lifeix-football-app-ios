@@ -27,7 +27,8 @@
         _imageView = [UIImageView new];
         [self.contentView addSubview:_imageView];
         [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, 0, 30, 0));
+            make.left.and.top.and.width.equalTo(weakSelf.contentView);
+            make.height.equalTo(weakSelf.contentView.mas_width).multipliedBy(230.0/300);
         }];
         
         _coverImageView = [UIImageView new];
@@ -37,6 +38,7 @@
         }];
         
         _label = [UILabel new];
+        _label.font = [UIFont systemFontOfSize:20];
         _label.textColor = [UIColor whiteColor];
         [self.contentView addSubview:_label];
         [_label mas_makeConstraints:^(MASConstraintMaker *make) {

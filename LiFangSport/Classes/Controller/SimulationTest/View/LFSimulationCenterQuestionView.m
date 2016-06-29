@@ -23,6 +23,8 @@
     NSInteger _falseCnt;
     NSInteger _trueCnt;
     UIButton *_nextBtn;
+    UIView *_leftBorderView;
+    UIView *_rightBorderView;
 }
 
 @property (nonatomic, strong) UITableView *leftTableView;
@@ -65,16 +67,43 @@
         if (_questionMode == LFQuestionModeDefaultFoul) {
             [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.and.centerY.equalTo(weakSelf);
-                make.width.equalTo(@180);
-                make.height.equalTo(@140);
+                make.width.equalTo(@165);
+                make.height.equalTo(@100);
+            }];
+            
+            _leftBorderView = [UIView new];
+            _leftBorderView.layer.masksToBounds = YES;
+            _leftBorderView.layer.borderColor = [UIColor whiteColor].CGColor;
+            _leftBorderView.layer.borderWidth = 1;
+            _leftBorderView.layer.cornerRadius = 20;
+            [self addSubview:_leftBorderView];
+            [_leftBorderView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(weakSelf);
+                make.left.equalTo(weakSelf.mas_left).offset(-20);
+                make.right.equalTo(weakSelf.scoreView.mas_left).offset(-15);
+                make.height.equalTo(@210);
             }];
             
             [self addSubview:self.leftTableView];
             [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(_leftBorderView).insets(UIEdgeInsetsMake(0, 20, 0, 10));
+//                make.centerY.equalTo(weakSelf);
+//                make.left.equalTo(weakSelf.mas_left).offset(10);
+//                make.right.equalTo(weakSelf.scoreView.mas_left).offset(-20);
+//                make.height.equalTo(@200);
+            }];
+            
+            _rightBorderView = [UIView new];
+            _rightBorderView.layer.masksToBounds = YES;
+            _rightBorderView.layer.borderColor = [UIColor whiteColor].CGColor;
+            _rightBorderView.layer.borderWidth = 1;
+            _rightBorderView.layer.cornerRadius = 20;
+            [self addSubview:_rightBorderView];
+            [_rightBorderView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(weakSelf);
-                make.left.equalTo(weakSelf.mas_left).offset(10);
-                make.right.equalTo(weakSelf.scoreView.mas_left).offset(-20);
-                make.height.equalTo(@240);
+                make.left.equalTo(weakSelf.scoreView.mas_right).offset(10);
+                make.right.equalTo(weakSelf.mas_right).offset(20);
+                make.height.equalTo(@210);
             }];
             
             [self addSubview:self.rightTableView];
@@ -82,35 +111,37 @@
                 make.centerY.equalTo(weakSelf);
                 make.left.equalTo(weakSelf.scoreView.mas_right).offset(20);
                 make.right.equalTo(weakSelf.mas_right).offset(-10);
-                make.height.equalTo(@180);
+                make.height.equalTo(@150);
             }];
         }else {
             [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(weakSelf);
-                make.width.equalTo(@180);
-                make.height.equalTo(@140);
-                make.top.equalTo(weakSelf).offset(30);
+                make.width.equalTo(@165);
+                make.height.equalTo(@100);
+                make.top.equalTo(weakSelf).offset(50);
             }];
             if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
                 [self addSubview:self.rightTableView];
                 [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf.scoreView.mas_bottom);
-                    make.left.equalTo(weakSelf.scoreView.mas_left).offset(-10);
+                    make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(25);
+                    make.left.equalTo(weakSelf.scoreView.mas_left);
                     make.right.equalTo(weakSelf.mas_right).offset(-10);
-                    make.height.equalTo(@120);
+                    make.height.equalTo(@100);
                 }];
             }else if (_questionMode == LFQuestionModeDefaultOffsideHard) {
                 [self addSubview:self.collectionView];
+                CGFloat width = ((SCREEN_WIDTH - 30 - 60) / 4.0) * (230.0 / 300.0) + 5 + 20;
                 [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf.scoreView.mas_bottom);
-                    make.left.equalTo(weakSelf.mas_left).offset(30);
-                    make.right.equalTo(weakSelf.mas_right).offset(-30);
-                    make.height.equalTo(@120);
+                    make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(10);
+                    make.left.equalTo(weakSelf.mas_left).offset(15);
+                    make.right.equalTo(weakSelf.mas_right).offset(-15);
+                    make.height.equalTo(@(width));
                 }];
             }
         }
     
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _nextBtn.titleLabel.font = [UIFont systemFontOfSize:18];
         _nextBtn.layer.cornerRadius = 5;
         _nextBtn.layer.masksToBounds = YES;
         _nextBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -120,8 +151,8 @@
         [self addSubview:_nextBtn];
         [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(weakSelf);
-            make.width.equalTo(@100);
-            make.height.equalTo(@50);
+            make.width.equalTo(@150);
+            make.height.equalTo(@45);
             make.bottom.equalTo(weakSelf.mas_bottom).offset(-30);
         }];
     }
@@ -169,13 +200,13 @@
         UILabel *resultLabel = [UILabel new];
         resultLabel.numberOfLines = 0;
         resultLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        resultLabel.font = [UIFont systemFontOfSize:25];
+        resultLabel.font = [UIFont systemFontOfSize:17];
         resultLabel.textColor = kwhiteColor;
         resultLabel.textAlignment = NSTextAlignmentCenter;
         resultLabel.text = [NSString stringWithFormat:@"%@通过本次测试，敢不敢继续挑战？\n共%@题，正确%@题，错误%@题", _trueCnt >= _rightCount ? @"恭喜您，成功" : @"很抱歉，您未", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
         [self addSubview:resultLabel];
         [resultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf).offset(50);
+            make.top.equalTo(weakSelf).offset(75);
             make.left.equalTo(weakSelf).offset(40);
             make.right.equalTo(weakSelf).offset(-40);
         }];
@@ -183,7 +214,7 @@
         switch (_questionMode) {
             case LFQuestionModeDefaultFoul:
             {
-                self.leftTableView.hidden = self.rightTableView.hidden = YES;
+                self.leftTableView.hidden = self.rightTableView.hidden = _leftBorderView.hidden = _rightBorderView.hidden = YES;
                 [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.centerY.equalTo(weakSelf).offset(10);
                 }];
@@ -441,7 +472,8 @@
         _leftTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _leftTableView.delegate = self;
         _leftTableView.dataSource = self;
-        _leftTableView.rowHeight = 60;
+        _leftTableView.bounces = NO;
+        _leftTableView.rowHeight = 50;
         _leftTableView.backgroundColor = [UIColor clearColor];
         _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _leftTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -455,7 +487,8 @@
         _rightTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _rightTableView.delegate = self;
         _rightTableView.dataSource = self;
-        _rightTableView.rowHeight = 60;
+        _rightTableView.bounces = NO;
+        _rightTableView.rowHeight = 50;
         _rightTableView.backgroundColor = [UIColor clearColor];
         _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _rightTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -470,12 +503,12 @@
         [_scoreView addSubview:self.leftLabel];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.top.equalTo(_scoreView);
-            make.width.and.height.equalTo(@80);
+            make.width.and.height.equalTo(@75);
         }];
         
         UILabel *promptLeftLabel = [UILabel new];
-        promptLeftLabel.font = [UIFont systemFontOfSize:25];
-        promptLeftLabel.textColor = HEXRGBCOLOR(0x9dee38);
+        promptLeftLabel.font = [UIFont systemFontOfSize:20];
+        promptLeftLabel.textColor = HEXRGBCOLOR(0x6aed00);
         promptLeftLabel.text = @"正确";
         [_scoreView addSubview:promptLeftLabel];
         [promptLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -486,16 +519,16 @@
         [_scoreView addSubview:self.rightLabel];
         [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.and.top.equalTo(_scoreView);
-            make.width.and.height.equalTo(@80);
+            make.width.and.height.equalTo(@75);
         }];
         UILabel *promptRightLabel = [UILabel new];
-        promptRightLabel.font = [UIFont systemFontOfSize:25];
-        promptRightLabel.textColor = HEXRGBCOLOR(0xc2021e);
+        promptRightLabel.font = [UIFont systemFontOfSize:20];
+        promptRightLabel.textColor = HEXRGBCOLOR(0xe30019);
         promptRightLabel.text = @"错误";
         [_scoreView addSubview:promptRightLabel];
         [promptRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_rightLabel);
-            make.top.equalTo(_rightLabel.mas_bottom).offset(10);
+            make.top.equalTo(promptLeftLabel);
         }];
     }
     return _scoreView;
@@ -506,11 +539,12 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal | UICollectionViewScrollDirectionVertical];
-        flowLayout.minimumLineSpacing = 10;
+        flowLayout.minimumLineSpacing = 12;
         flowLayout.minimumInteritemSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
         //flowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 300 / 750.0 + 10 + 32);
-        flowLayout.itemSize = CGSizeMake((SCREEN_WIDTH - 60 - 50) / 4.0, (SCREEN_WIDTH - 60 - 50) / 4.0);
+        CGFloat width = (SCREEN_WIDTH - 30 - 60) / 4.0;
+        flowLayout.itemSize = CGSizeMake(width, width * (230.0 / 300.0) + 5 + 20);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, self.bounds.size.height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;
@@ -531,7 +565,7 @@
         _leftLabel.layer.borderColor = [UIColor whiteColor].CGColor;
         _leftLabel.layer.borderWidth = 1;
         _leftLabel.font = [UIFont systemFontOfSize:50];
-        _leftLabel.textColor = HEXRGBCOLOR(0x9dee38);
+        _leftLabel.textColor = HEXRGBCOLOR(0x6aed00);
         _leftLabel.text = @"00";
         _leftLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -547,7 +581,7 @@
         _rightLabel.layer.borderColor = [UIColor whiteColor].CGColor;
         _rightLabel.layer.borderWidth = 1;
         _rightLabel.font = [UIFont systemFontOfSize:50];
-        _rightLabel.textColor = HEXRGBCOLOR(0xc2021e);
+        _rightLabel.textColor = HEXRGBCOLOR(0xe30019);
         _rightLabel.text = @"00";
         _rightLabel.textAlignment = NSTextAlignmentCenter;
     }

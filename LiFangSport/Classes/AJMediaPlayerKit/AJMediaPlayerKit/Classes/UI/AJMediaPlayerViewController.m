@@ -1832,8 +1832,7 @@
 - (void)hideMediaPlayerControlBar
 {
     _ignoreMoveSchedule = YES;
-    [self.mediaPlayerControlBar removeFromSuperview];
-    self.mediaPlayerControlBar = nil;
+    self.mediaPlayerControlBar.alpha = 0;
 }
 
 - (void)setShouldHidePlayerControls:(BOOL)shouldHide {

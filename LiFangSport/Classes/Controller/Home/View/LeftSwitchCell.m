@@ -117,7 +117,8 @@
 - (NSString *)extractDateToTime:(NSDate *)date {
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    formatter.timeZone = [NSTimeZone systemTimeZone];
+    //formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     [formatter setDateFormat:@"hh:mm"];
     NSString *currenttimeString = [NSString stringWithFormat:@"%@",
                                    [formatter stringFromDate:date]];

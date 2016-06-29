@@ -23,6 +23,6 @@ pod 'MJRefresh', '~> 3.1.0'
 
 pod 'RESideMenu', '~> 4.0.7'
 
-
+pod 'UMengSocialCOM', '~> 5.2.1'
 
 end

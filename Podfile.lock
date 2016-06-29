@@ -49,6 +49,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SMPageControl (1.2)
+  - UMengSocialCOM (5.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - RESideMenu (~> 4.0.7)
   - SDWebImage (~> 3.7.1)
   - SMPageControl (~> 1.2)
+  - UMengSocialCOM (~> 5.2.1)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -84,7 +86,8 @@ SPEC CHECKSUMS:
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
+  UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
 
-PODFILE CHECKSUM: 1bcb3e01c29919b9d1857a71348830c22291959a
+PODFILE CHECKSUM: 65a05a6dfc1d4d2d32bb1783d6a2fe1cda08e960
 
 COCOAPODS: 1.0.1

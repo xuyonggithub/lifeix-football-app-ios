@@ -282,5 +282,8 @@ IB_DESIGNABLE
 
 - (void)showPlaybackControls;
 
+//  隐藏
+- (void)hideMediaPlayerControlBar;
+
 @end
 

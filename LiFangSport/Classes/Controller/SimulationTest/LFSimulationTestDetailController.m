@@ -53,6 +53,7 @@
     }];
     [self addChildViewController:self.mediaPlayerViewController];
     [self.mediaPlayerViewController initialShowFullScreen];
+    [self.mediaPlayerViewController hideMediaPlayerControlBar];
     
     //  提示界面
     [self.view addSubview:self.promptView];

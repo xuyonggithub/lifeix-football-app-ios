@@ -52,6 +52,7 @@
     BOOL isSoundSlideChangeValue;
     id schedulingResult;
     BOOL isAirPlayReceviedPlayToEnd;
+    BOOL _ignoreMoveSchedule;   //  忽略手势快进和后退
 }
 
 @property(nonatomic, strong) dispatch_queue_t Q;
@@ -1828,6 +1829,13 @@
     }
 }
 
+- (void)hideMediaPlayerControlBar
+{
+    _ignoreMoveSchedule = YES;
+    [self.mediaPlayerControlBar removeFromSuperview];
+    self.mediaPlayerControlBar = nil;
+}
+
 - (void)setShouldHidePlayerControls:(BOOL)shouldHide {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -2385,6 +2393,7 @@
 - (void)mediaPlayerView:(AJMediaPlayerView * __nonnull)mediaPlayerView moveScheduleWithType:(ProgessType)type screenPercent:(float)percent
 {
     [self removeTapGestureRecognizer];
+    if (_ignoreMoveSchedule) return;
     if (_currentStreamItem.type == AJMediaPlayerVODStreamItem) {
         _progressView.hidden = NO;
         if (!isMoveSchedule) {

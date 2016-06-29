@@ -85,6 +85,7 @@
 -(void)popViewDidSelectCategory:(NSString *)cateId andName:(NSString *)name{
     self.categoryIds = cateId;
     self.title = name;
+    self.date = nil;
     [self requestDataWithisHeaderRefresh:YES];
     [popKit dismiss:YES];
 }

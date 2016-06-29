@@ -149,7 +149,7 @@
     }else{
         cell.bgImgView.image = placehold;
     }
-    cell.titleLabel.text = [NSString stringWithFormat:@"【%@】%@", player.position, player.name];
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@", player.name];
     return cell;
 }
 

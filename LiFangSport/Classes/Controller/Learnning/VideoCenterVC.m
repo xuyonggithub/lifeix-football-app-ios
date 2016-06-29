@@ -80,8 +80,8 @@
         dVC.title = model.name;
         [self.navigationController pushViewController:dVC animated:YES];
     }else if(model.type == 2){
-
         LearningInfoVC *IVC = [[LearningInfoVC alloc]init];
+        IVC.catsArr = [VideoLearningDetModel arrayOfModelsFromDictionaries:model.cats];
         IVC.title = model.name;
         [self.navigationController pushViewController:IVC animated:YES];
     }

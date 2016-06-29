@@ -27,7 +27,7 @@
 }
 
 -(void)createSubviews{
-    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, 80, 44)];
+    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, 120, 44)];
     _titleLab.textColor = HEXRGBCOLOR(0x929292);
     _titleLab.font = [UIFont systemFontOfSize:19];
     _titleLab.textAlignment = NSTextAlignmentLeft;

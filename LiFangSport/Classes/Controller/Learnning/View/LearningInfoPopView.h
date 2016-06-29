@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^LearningInfoPopViewBC)(NSInteger);
 
 @interface LearningInfoPopView : UIView
+
+-(instancetype)initWithFrame:(CGRect)frame WithData:(NSArray*)arr;
+@property(nonatomic, strong)NSMutableArray *dataArr;
+@property(nonatomic,copy)LearningInfoPopViewBC cellClickBc;
 
 @end

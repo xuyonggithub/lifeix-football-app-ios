@@ -11,5 +11,6 @@
 #import "BaseRightDrawerVC.h"
 
 @interface LearningInfoVC : BaseRightDrawerVC
+@property(nonatomic,copy)NSArray *catsArr;
 
 @end

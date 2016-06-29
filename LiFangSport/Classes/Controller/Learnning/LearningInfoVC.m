@@ -11,12 +11,13 @@
 #import "CommonRequest.h"
 #import "PopViewKit.h"
 #import "LearningInfoPopView.h"
-
-@interface LearningInfoVC (){
+#import "VideoLearningDetModel.h"
+@interface LearningInfoVC ()<UIWebViewDelegate>{
     PopViewKit *popKit;
-    LearningInfoPopView *rightView;
 }
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,strong)UIWebView *bwebView;
+@property(nonatomic,strong)LearningInfoPopView *rightView;
 
 @end
 
@@ -24,38 +25,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dataArray = [[NSMutableArray alloc]initWithArray:_catsArr];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
-//    [self requestData];
-}
-
--(void)requestData{
-    [CommonRequest requstPath:kvideoListPath loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        [self dealWithJason:jsonDict];
-    } failure:^(CommonRequest *request, NSError *error) {
-        
-    }];
-}
-
--(void)dealWithJason:(id )dic{
-    [_dataArray removeAllObjects];
-
+    _bwebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    _bwebView.delegate = self;
+    VideoLearningDetModel *model = _dataArray[0];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.contentUri]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [_bwebView loadRequest:request];
+    [self.view addSubview:_bwebView];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)rightDrawerAction:(UIBarButtonItem *)sender {
     if (!popKit) {
         popKit = [[PopViewKit alloc] init];
         popKit.bTapDismiss = YES;
-        popKit.bInnerTapDismiss = YES;
+        popKit.bInnerTapDismiss = NO;
     }
-    if (!rightView) {
-        rightView = [[LearningInfoPopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-80, kScreenHeight)];
+    if (!_rightView) {
+        _rightView = [[LearningInfoPopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-80, kScreenHeight) WithData:_catsArr];
     }
-    rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
-    popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-rightView.width, 0);
+    DefineWeak(self);
+    DefineWeak(popKit);
+    _rightView.cellClickBc = ^(NSInteger index){
+        if ((index-1)>_dataArray.count-1) {
+            return ;
+        }
+        VideoLearningDetModel *model = Weak(self).dataArray[index-1];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.contentUri]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [Weak(self).bwebView loadRequest:request];
+        [Weak(popKit) dismiss:YES];
+    };
+    _rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
+    popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-_rightView.width, 0);
     
-    [popKit popView:rightView animateType:PAT_WidthRightToLeft];
-
+    [popKit popView:_rightView animateType:PAT_WidthRightToLeft];
+}
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

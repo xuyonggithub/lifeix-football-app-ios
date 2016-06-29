@@ -54,15 +54,18 @@
     if (model==nil) {
         return;
     }
-    UIFont *kpoplabfont = [UIFont systemFontOfSize:20];
-    UILabel *leftOneLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
+    UIFont *kpoplabfont = [UIFont systemFontOfSize:18];
+    UILabel *leftOneLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 180, 20)];
     UIImageView *leftOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 
     if (!model.r1) {
         return;
     }
     if (model.r1.count>0) {
+    leftOnePic.right = kScreenWidth/2-55;
+    leftOneLab.right = leftOnePic.left - 20;
     leftOneLab.top = (kScreenHeight -(3*30+4*20))/2;
+    leftOnePic.centerY = leftOneLab.centerY;
     leftOneLab.backgroundColor = kclearColor;
     leftOneLab.font = kpoplabfont;
     leftOneLab.textAlignment = NSTextAlignmentRight;
@@ -72,12 +75,10 @@
     [_baseDecisionView addSubview:leftOneLab];
         
     leftOnePic.backgroundColor = kclearColor;
-    leftOnePic.centerY = leftOneLab.centerY;
-    leftOnePic.left = leftOneLab.right +20;
     leftOnePic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:leftOnePic];
 }
-    UILabel *leftTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 160, 20)];
+    UILabel *leftTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 180, 20)];
     UIImageView *leftTwoPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 
     if (model.r1.count>1) {
@@ -97,7 +98,7 @@
     leftTwoPic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:leftTwoPic];
     }
-    UILabel *leftThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
+    UILabel *leftThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 180, 20)];
     UIImageView *leftThreePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 
     if (model.r1.count>2) {
@@ -119,7 +120,7 @@
         [_baseDecisionView addSubview:leftThreePic];
     }
     
-    UILabel *leftFourLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 100, 20)];
+    UILabel *leftFourLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 180, 20)];
     UIImageView *leftFourPic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 
     if (model.r1.count>3) {
@@ -188,7 +189,7 @@
     rightThreePic.image = UIImageNamed(@"lppopunselect");
     [_baseDecisionView addSubview:rightThreePic];
     
-    UILabel *rightOneLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    UILabel *rightOneLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 20)];
     if (model.r2.count>0) {
         rightOneLab.backgroundColor = kclearColor;
         rightOneLab.centerY = rightOnePic.centerY;
@@ -201,7 +202,7 @@
         [_baseDecisionView addSubview:rightOneLab];
     }
 
-    UILabel *rightTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    UILabel *rightTwoLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 20)];
     if (model.r2.count>1) {
         rightTwoLab.backgroundColor = kclearColor;
         rightTwoLab.centerY = rightTwoPic.centerY;
@@ -214,7 +215,7 @@
         [_baseDecisionView addSubview:rightTwoLab];
     }
     
-    UILabel *rightThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    UILabel *rightThreeLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 20)];
     if (model.r2.count>2) {
         rightThreeLab.backgroundColor = kclearColor;
         rightThreeLab.centerY = rightThreePic.centerY;

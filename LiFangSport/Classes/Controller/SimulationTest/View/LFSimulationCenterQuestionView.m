@@ -132,7 +132,6 @@
         _resultLabel.textColor = kwhiteColor;
         _resultLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_resultLabel];
-        _resultLabel.text = @"3333";
         [_resultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf).offset(50);
             make.left.equalTo(weakSelf).offset(40);
@@ -147,28 +146,30 @@
 - (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel
 {
     self.questionModel = questionModel;
-    
-    _resultLabel.hidden = YES;
-    
-    _nextBtn.enabled = NO;
     _leftSelectedIndex = _rightSelectedIndex = -1;
-    
-    self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = self.collectionView.userInteractionEnabled = YES;
-    
-    switch (_questionMode) {
-        case LFQuestionModeDefaultFoul:
-            [self.leftTableView reloadData];
-            [self.rightTableView reloadData];
-            break;
-        case LFQuestionModeDefaultOffsideEasy:
-            [self.rightTableView reloadData];
-            break;
-        case LFQuestionModeDefaultOffsideHard:
-            [self.collectionView reloadData];
-            break;
-        default:
-            break;
-    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _resultLabel.hidden = YES;
+        _nextBtn.enabled = NO;
+        
+        switch (_questionMode) {
+            case LFQuestionModeDefaultFoul:
+                self.leftTableView.userInteractionEnabled = self.rightTableView.userInteractionEnabled = YES;
+                [self.leftTableView reloadData];
+                [self.rightTableView reloadData];
+                break;
+            case LFQuestionModeDefaultOffsideEasy:
+                self.rightTableView.userInteractionEnabled = YES;
+                [self.rightTableView reloadData];
+                break;
+            case LFQuestionModeDefaultOffsideHard:
+                self.collectionView.userInteractionEnabled = YES;
+                [self.collectionView reloadData];
+                break;
+            default:
+                break;
+        }
+    });
 }
 
 #pragma mark - TestingResult
@@ -255,7 +256,10 @@
         }
     }
     if (_questionCnt == _falseCnt + _trueCnt) {
-        [self refreshTestingResult];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5*NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [self refreshTestingResult];
+        });
     }
 }
 
@@ -283,7 +287,10 @@
         }
     }
     if (_questionCnt == _falseCnt + _trueCnt) {
-        [self refreshTestingResult];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5*NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [self refreshTestingResult];
+        });
     }
 }
 

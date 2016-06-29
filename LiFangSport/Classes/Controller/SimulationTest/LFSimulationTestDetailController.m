@@ -134,7 +134,7 @@
         self.modeString = [NSString stringWithFormat:@"--%@", [self.categoryModel.subArray[modeIndex - 1] name]];
     }
     [CommonRequest requstPath:[NSString stringWithFormat:@"elearning/quiz_categories/%@/pages", _questionMode == LFQuestionModeDefaultFoul ? self.categoryModel.categoryId : [self.categoryModel.subArray[modeIndex - 1] categoryId]] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        weakSelf.questionArray = [[LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict] subarrayWithRange:NSMakeRange(0, 2)];
+        weakSelf.questionArray = [[LFSimulationQuestionModel simulationQuestionModelArrayWithArray:jsonDict] subarrayWithRange:NSMakeRange(0, 5)];
         [weakSelf toPlayWithAJMediaPlayerItem];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);

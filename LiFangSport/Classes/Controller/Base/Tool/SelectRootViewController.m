@@ -10,6 +10,13 @@
 #import "LFNavigationController.h"
 #import "LeftCategoryVC.h"
 #import "HomeCenterVC.h"
+#import "MediaCenterVC.h"
+#import "CoachCenterVC.h"
+#import "RefereeCenterVC.h"
+#import "VideoCenterVC.h"
+#import "SimulationCenterVC.h"
+#import "PlayerCenterViewController.h"
+#import "CurrentlyScoreVC.h"
 
 @implementation SelectRootViewController
 
@@ -22,7 +29,6 @@
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
                                                                     leftMenuViewController:leftVC
                                                                    rightMenuViewController:nil];
-    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     
     return sideMenuViewController;
 }

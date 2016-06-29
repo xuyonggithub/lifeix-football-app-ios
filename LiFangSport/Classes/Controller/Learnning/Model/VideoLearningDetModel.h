@@ -13,5 +13,6 @@
 @property(nonatomic,strong)NSString<Optional> *name;
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,assign)NSInteger pageCount;
+@property(nonatomic,strong)NSString<Optional> *contentUri;
 
 @end

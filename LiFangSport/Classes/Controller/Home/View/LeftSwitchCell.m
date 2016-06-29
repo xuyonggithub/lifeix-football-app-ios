@@ -109,7 +109,7 @@
 
 - (NSString *)extractDate:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"MM月dd日"];
+    [formatter setDateFormat:@"YYYY/MM/dd"];
     NSString *currentDateString = [NSString stringWithFormat:@"%@",
                                    [formatter stringFromDate:date]];
     return currentDateString;

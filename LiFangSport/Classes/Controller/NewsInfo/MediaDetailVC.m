@@ -66,34 +66,18 @@ const CGFloat topViewH = 180;
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *requset = [NSURLRequest requestWithURL:url];
     [self.contentWebView loadRequest:requset];
-    //    [self requestLikes];
-    //    [self requestData];
-    //    [self.contentWebView loadRequest:];
 }
 -(void)rollBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
- -(void)requestData{
- NSString *urlStr = [NSString stringWithFormat:@"wemedia/posts/%@", self.media.mediaId];
- [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
- NSDictionary *dic = jsonDict;
- self.htmlStr = [dic objectForKey:@"content"];
- [self.contentWebView loadHTMLString:self.htmlStr baseURL:nil];
- } failure:^(CommonRequest *request, NSError *error) {
- NSLog(@"error = %@", error);
- }];
- 
- }
- */
 -(void)requestLikes{
     NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=post", self.media.mediaId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"data = %@", jsonDict);
         NSDictionary *dic = jsonDict;
-        int like = [[dic objectForKey:@"likeNum"] integerValue];
-        int unLike = [[dic objectForKey:@"unlikeNum"] integerValue];
+        int like = [[dic objectForKey:@"likeNum"] intValue];
+        int unLike = [[dic objectForKey:@"unlikeNum"] intValue];
         self.likeNum = like;
         self.unLikeNum = unLike;
         [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];

@@ -8,17 +8,27 @@
 
 #import "LearningInfoPopView.h"
 #import "LearningInfoPopCell.h"
+#import "VideoLearningDetModel.h"
 
 @interface LearningInfoPopView()<UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, strong)NSMutableArray *dataArr;
 @property(nonatomic, strong)UITableView *tableView;
+@property(nonatomic, strong)NSMutableArray *newdataArr;
 
 @end
 @implementation LearningInfoPopView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
+-(instancetype)initWithFrame:(CGRect)frame WithData:(NSArray*)arr{
+    self = [super initWithFrame:frame];
+    _dataArr = [[NSMutableArray alloc]initWithArray:arr];
+    _newdataArr = [_dataArr copy];
     if (self) {
         self.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
         CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
@@ -42,11 +52,9 @@
     }
     return self;
 }
-
 #pragma mark - UITableViewDelegate
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;//self.dataArr.count + 1;
+    return self.newdataArr.count + 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -58,9 +66,8 @@
     if(indexPath.row == 0){
         cell.titleLab.text = @"全部";
     }else{
-//        NSDictionary *dic = [self.dataArr objectAtIndex:indexPath.row - 1];
-//        cell.titleLab.text = [dic objectForKey:@"name"];
-        cell.titleLab.text = @"123";
+    VideoLearningDetModel *model = [self.newdataArr objectAtIndex:indexPath.row - 1];
+    cell.titleLab.text = model.name;
     }
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
@@ -76,9 +83,10 @@
     if(indexPath.row == 0){
 
     }else{
-        
+        if (self.cellClickBc) {
+            self.cellClickBc(indexPath.row);
+        }
     }
 }
-
 
 @end

@@ -22,6 +22,7 @@
 #import "MediaModel.h"
 #import "MediaDetailVC.h"
 #import "PlayerDetailVC.h"
+#import "LeftSwitcDetVC.h"
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -345,7 +346,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (tableView == _leftTableview) {
+        LeftSwitchModel *model = _leftDataArray[indexPath.row];
+        LeftSwitcDetVC *svc = [[LeftSwitcDetVC alloc]init];
+        svc.title = [NSString stringWithFormat:@"%@%@%@",model.hostTeam[@"teamInfo"][@"name"],@"VS",model.awayTeam[@"teamInfo"][@"name"]];
+        [self.navigationController pushViewController:svc animated:YES];
+    }
 }
 
 #pragma mark --UICollectionViewDelegateFlowLayout

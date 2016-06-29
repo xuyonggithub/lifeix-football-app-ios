@@ -18,7 +18,7 @@
 
 @implementation CoachInfoView
 
--(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andHeight:(NSString *)height andWeight:(NSString *)weight andPosition:(NSString *)position andBirthplace:(NSString *)birthplace andClub:(NSString *)club{
+-(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andBirthplace:(NSString *)birthplace andPart:(NSString *)part andClub:(NSString *)club{
     if(self = [super initWithFrame:frame]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 120, 170)];
         if(!avatar){
@@ -37,10 +37,9 @@
         
         // 点赞
         
-        NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"身高／体重", @"场上位置", @"出生地", @"俱乐部", nil];
-        NSString *bodyInfo = [NSString stringWithFormat:@"%@cm/%@kg", height, weight];
-        NSArray *valueArr = [NSArray arrayWithObjects:birday, bodyInfo, position, birthplace, club, nil];
-        for(int i = 0; i < 5; i++){
+        NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"出生地", @"角色", @"俱乐部", nil];
+        NSArray *valueArr = [NSArray arrayWithObjects:birday, birthplace, part, club, nil];
+        for(int i = 0; i < 4; i++){
             UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 8 + 25 * i, 80, 24)];
             birLbl.backgroundColor = HEXRGBCOLOR(0xb9b9b9);
             birLbl.text = infoArr[i];

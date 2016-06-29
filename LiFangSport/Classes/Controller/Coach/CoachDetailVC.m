@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = self.coachName;
+    self.title = @"教练介绍";
     [self requestData];
 }
 
@@ -36,7 +36,7 @@
     NSDictionary *dict = dic;
     NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
     
-    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:@"待定" andWeight:@"待定" andPosition:@"待定" andBirthplace:[dict objectForKey:@"birthplace"] andClub:@"待定"];
+    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:@"待定" andClub:@"待定"];
     [self.view addSubview:coachView];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom + 5, 200, 44)];

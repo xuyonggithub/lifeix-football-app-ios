@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = self.playerName;
+    self.title = @"球员介绍";
     self.categoryArr = [NSMutableArray array];
     self.categoryUrlArr = [NSMutableArray array];
     self.playerVideosArr = [NSMutableArray array];

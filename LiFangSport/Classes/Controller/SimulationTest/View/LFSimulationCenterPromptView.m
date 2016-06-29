@@ -35,7 +35,7 @@
         textView.selectable = NO;
         [self addSubview:textView];
         [textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(60);
+            make.top.equalTo(self.mas_top).offset(55);
             make.left.equalTo(self.mas_left).offset(100);
             make.right.equalTo(self.mas_right).offset(-100);
             make.bottom.equalTo(self.mas_bottom).offset(-100);
@@ -46,8 +46,8 @@
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(10);
-            make.right.equalTo(self.mas_right).offset(-20);
+            make.top.equalTo(self.mas_top).offset(20);
+            make.right.equalTo(self.mas_right).offset(-30);
             make.width.and.height.equalTo(@50);
         }];
         

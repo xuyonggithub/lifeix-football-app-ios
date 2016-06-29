@@ -55,8 +55,8 @@
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(10);
-            make.right.equalTo(self.mas_right).offset(-20);
+            make.top.equalTo(self.mas_top).offset(20);
+            make.right.equalTo(self.mas_right).offset(-30);
             make.width.and.height.equalTo(@50);
         }];
         

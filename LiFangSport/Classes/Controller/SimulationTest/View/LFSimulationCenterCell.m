@@ -23,23 +23,26 @@
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        __weak typeof(self) weakSelf = self;
+        
         _bgImageView = [UIImageView new];
         [self.contentView addSubview:_bgImageView];
         [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(10, 10, 0, 10));
+            make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(25, 12.5, 0, 12.5));
         }];
         
         UIImageView *bannerView = [UIImageView new];
         bannerView.image = [UIImage imageNamed:@"videolistBannerLabpic"];
         [self.contentView addSubview:bannerView];
         [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.and.right.and.bottom.equalTo(_bgImageView);
-            make.height.equalTo(@30);
+            make.left.and.right.equalTo(_bgImageView);
+            make.bottom.equalTo(weakSelf.contentView.mas_bottom).offset(-10);
+            make.height.equalTo(@35);
         }];
         
         _titleLabel = [UILabel new];
         _titleLabel.textColor = kwhiteColor;
-        _titleLabel.font = [UIFont systemFontOfSize:19];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(bannerView);

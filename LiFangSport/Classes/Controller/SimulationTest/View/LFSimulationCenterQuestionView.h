@@ -12,8 +12,9 @@
 
 @protocol LFSimulationCenterQuestionViewDelegate <NSObject>
 
-- (void)questionViewNextQuestion;
-- (void)questionViewQuitQuesiotn;
+- (void)questionViewNextQuestion;   //  跳过
+- (void)questionViewQuitQuesiotn;   //  退出
+- (void)questionViewAgainQuesiotn;  //  重新挑战
 
 @end
 
@@ -30,5 +31,7 @@ typedef NS_ENUM(NSInteger, LFQuestionMode){
 - (instancetype)initWithQuestionMode:(LFQuestionMode)questionMode questionCnt:(NSInteger)questionCnt rightCount:(NSInteger)rightCount;
 
 - (void)refreshWithModel:(LFSimulationQuestionModel *)questionModel;
+
+- (void)beginPerformNextQuestion;
 
 @end

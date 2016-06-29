@@ -17,8 +17,6 @@
 {
     NSInteger _currentQuestionIndex;
     LFQuestionMode _questionMode;
-    BOOL _isNeedNewQuestionView;
-    BOOL _isAgain;
 }
 
 //播放器
@@ -106,9 +104,8 @@
     if (_currentQuestionIndex < self.questionArray.count) {
         self.currentQuestionModel = self.questionArray[_currentQuestionIndex];
         
-        if (_isNeedNewQuestionView) {
+        if (!self.questionView) {
             __weak typeof(self) weakSelf = self;
-            _isNeedNewQuestionView = NO;
             self.questionView = [[LFSimulationCenterQuestionView alloc] initWithQuestionMode:_questionMode questionCnt:self.questionArray.count rightCount:self.categoryModel.rightCount];
             self.questionView.delegate = self;
             [self.view insertSubview:self.questionView belowSubview:self.mediaPlayerViewController.view];
@@ -127,7 +124,6 @@
 #pragma mark - LFSimulationCenterPromptViewDelegate
 - (void)promptViewStartTesting:(NSInteger)modeIndex
 {
-    _isNeedNewQuestionView = YES;
     _currentQuestionIndex = 0;
     _questionMode = modeIndex;
     __weak typeof(self) weakSelf = self;
@@ -152,6 +148,7 @@
 {
     [self.mediaPlayerViewController showPlaybackControls];
     [self.view bringSubviewToFront:self.questionView];
+    [self.questionView beginPerformNextQuestion];
 }
 
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController
@@ -164,22 +161,23 @@
 #pragma mark - LFSimulationCenterQuestionViewDelegate
 - (void)questionViewNextQuestion
 {
-    if (_currentQuestionIndex + 1 == self.questionArray.count) {
-        //  重新挑战
-        _isNeedNewQuestionView = YES;
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
-        [self.questionView removeFromSuperview];
-        [self.view bringSubviewToFront:self.promptView];
-    }else {
-        _currentQuestionIndex++;
-        [self toPlayWithAJMediaPlayerItem];
-    }
+    _currentQuestionIndex++;
+    [self toPlayWithAJMediaPlayerItem];
 }
 
 - (void)questionViewQuitQuesiotn
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
     [self.questionView removeFromSuperview];
+    self.questionView = nil;
+    [self.view bringSubviewToFront:self.promptView];
+}
+
+- (void)questionViewAgainQuesiotn
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    [self.questionView removeFromSuperview];
+    self.questionView = nil;
     [self.view bringSubviewToFront:self.promptView];
 }
 

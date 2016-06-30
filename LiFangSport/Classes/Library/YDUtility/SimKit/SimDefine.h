@@ -16,6 +16,16 @@
 #define kApplicationTop (ABOVE_IOS7 ? 0 : 20)  //App显示，对于屏幕的实际Y坐标。
 #define kAppRenderTop (ABOVE_IOS7 ? 20 : 0)    //View的绘制需要的起始Y坐标
 
+#define ALDFullScreenHorizontal(x)      (x * SCREEN_WIDTH/667.0)    //  横屏x比例
+#define ALDFullScreenVertical(y)      (y * SCREEN_HEIGHT/375.0)    //  横屏y比例
+#define LFFullScreenFont(size) [UIFont systemFontOfSize:ALDFullScreenVertical(size)]
+#define LFFullScreenBoldFont(size) [UIFont boldSystemFontOfSize:ALDFullScreenVertical(size)]
+
+#define ALDHorizontal(x)      (x * SCREEN_WIDTH/375.0)  //  x比例
+#define ALDVertical(y)      (y * SCREEN_HEIGHT/667.0)   //  y比例
+#define LFFont(size) [UIFont systemFontOfSize:ALDHorizontal(size)]
+#define LFBoldFont(size) [UIFont boldSystemFontOfSize:ALDHorizontal(size)]
+
 //Color
 #ifndef RGBCOLOR
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]

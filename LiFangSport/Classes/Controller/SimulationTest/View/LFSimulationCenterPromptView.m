@@ -8,38 +8,34 @@
 
 #import "LFSimulationCenterPromptView.h"
 
-@implementation LFSimulationCenterPromptView
+@interface LFSimulationCenterPromptView ()
+{
+    UIImageView *_loadImageView;
+}
 
+@end
+
+@implementation LFSimulationCenterPromptView
+#pragma mark - init
 - (instancetype)initWithModel:(LFSimulationCategoryModel *)model
 {
     self = [super init];
     if (self) {
 
+        __weak typeof(self) weakSelf = self;
+        
         UIImageView *bgImageView = [UIImageView new];
         [bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",model.image]]];
         [self addSubview:bgImageView];
         [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.edges.equalTo(weakSelf);
         }];
         
         UIView *bgView= [UIImageView new];
         bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
         [self addSubview:bgView];
         [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-        
-        UITextView *textView = [UITextView new];
-        textView.font = [UIFont systemFontOfSize:17];
-        textView.backgroundColor = [UIColor clearColor];
-        textView.editable = NO;
-        textView.selectable = NO;
-        [self addSubview:textView];
-        [textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(55);
-            make.left.equalTo(self.mas_left).offset(100);
-            make.right.equalTo(self.mas_right).offset(-100);
-            make.bottom.equalTo(self.mas_bottom).offset(-100);
+            make.edges.equalTo(weakSelf);
         }];
         
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -47,11 +43,28 @@
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(20);
-            make.right.equalTo(self.mas_right).offset(-30);
-            make.width.and.height.equalTo(@50);
+            make.top.equalTo(self.mas_top).offset(ALDFullScreenVertical(20));
+            make.right.equalTo(self.mas_right).offset(ALDFullScreenHorizontal(-30));
         }];
         
+        _loadImageView = [UIImageView new];
+        _loadImageView.animationImages = @[UIImageNamed(@"loading_00000"),
+                                           UIImageNamed(@"loading_00001"),
+                                           UIImageNamed(@"loading_00002"),
+                                           UIImageNamed(@"loading_00003"),
+                                           UIImageNamed(@"loading_00004"),
+                                           UIImageNamed(@"loading_00005"),
+                                           UIImageNamed(@"loading_00006"),
+                                           UIImageNamed(@"loading_00007"),
+                                           UIImageNamed(@"loading_00008")];
+        _loadImageView.animationDuration = 1;
+        _loadImageView.animationRepeatCount = 0;
+        [self addSubview:_loadImageView];
+        [_loadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(weakSelf);
+            make.bottom.equalTo(weakSelf.mas_bottom).offset(ALDFullScreenVertical(-20));
+        }];
+
         UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         startBtn.titleLabel.font = [UIFont systemFontOfSize:20];
         startBtn.layer.cornerRadius = 5;
@@ -69,8 +82,8 @@
             
             [startBtn setTitle:[model.subArray[0] name] forState:UIControlStateNormal];
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(textView.mas_centerX).offset(-90);
-                make.bottom.equalTo(self.mas_bottom).offset(-50);
+                make.centerX.equalTo(weakSelf.mas_centerX).offset(-90);
+                make.bottom.equalTo(_loadImageView.mas_top).offset(ALDFullScreenVertical(-15));
                 make.width.equalTo(@130);
                 make.height.equalTo(@45);
             }];
@@ -86,10 +99,10 @@
                 [otherBtn setTitle:subModel.name forState:UIControlStateNormal];
                 [otherBtn addTarget:self action:@selector(startBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
                 [self addSubview:otherBtn];
-
+                
                 [otherBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(textView.mas_centerX).offset(90);
-                    make.bottom.equalTo(self.mas_bottom).offset(-50);
+                    make.centerX.equalTo(weakSelf.mas_centerX).offset(90);
+                    make.bottom.equalTo(startBtn);
                     make.width.equalTo(@130);
                     make.height.equalTo(@45);
                 }];
@@ -99,13 +112,28 @@
             string = model.text;
             [startBtn setTitle:@"开始测试" forState:UIControlStateNormal];
             [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(textView);
-                make.bottom.equalTo(self.mas_bottom).offset(-50);
+                make.centerX.equalTo(weakSelf);
+                make.bottom.equalTo(_loadImageView.mas_top).offset(ALDFullScreenVertical(-15));
                 make.width.equalTo(@130);
                 make.height.equalTo(@45);
             }];
         }
         
+        UITextView *textView = [UITextView new];
+        textView.font = [UIFont systemFontOfSize:17];
+        textView.backgroundColor = [UIColor clearColor];
+        textView.editable = NO;
+        textView.selectable = NO;
+        [self addSubview:textView];
+        
+        NSLog(@"width %@ height %@", @(SCREEN_WIDTH), @(SCREEN_HEIGHT));    //  568 320
+        
+        [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.mas_top).offset(ALDFullScreenVertical(50));
+            make.left.equalTo(weakSelf.mas_left).offset(ALDFullScreenHorizontal(140));
+            make.right.equalTo(weakSelf.mas_right).offset(ALDFullScreenHorizontal(-140));
+            make.bottom.equalTo(startBtn.mas_top).offset(ALDFullScreenVertical(-20));
+        }];
         NSMutableParagraphStyle *contentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
         contentParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         contentParagraphStyle.lineSpacing = 6;
@@ -116,9 +144,17 @@
     return self;
 }
 
+#pragma mark - Public Methods
+- (void)hiddenLoadingView
+{
+    [_loadImageView stopAnimating];
+}
+
+#pragma mark - Responder Methods
 - (void)startBtnTouched:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
+    [_loadImageView startAnimating];
     if (self.delegate && [self.delegate respondsToSelector:@selector(promptViewStartTesting:)]) {
         [self.delegate promptViewStartTesting:btn.tag - 200];
     }
@@ -126,6 +162,7 @@
 
 - (void)closeBtnTouched:(id)sender
 {
+    [_loadImageView stopAnimating];
     if (self.delegate && [self.delegate respondsToSelector:@selector(promptViewQuitTesting)]) {
         [self.delegate promptViewQuitTesting];
     }

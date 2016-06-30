@@ -83,14 +83,14 @@
 
 -(void)addRefereeCategoryView{
     DefineWeak(self);
-    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 44) category:self.topNameArr];
+    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 32) category:self.topNameArr];
     _CategoryView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
     [self.view addSubview:_CategoryView];
     _CategoryView.backgroundColor = kwhiteColor;
     if(_refereeView == nil){
-        _refereeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114) style:UITableViewStylePlain];
+        _refereeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 98, SCREEN_WIDTH, SCREEN_HEIGHT - 98) style:UITableViewStylePlain];
         _refereeView.delegate = self;
         _refereeView.dataSource = self;
         _refereeView.backgroundColor = kwhiteColor;
@@ -126,7 +126,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 190;
+    return 170;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -142,15 +142,15 @@
 }
 // 区头标题
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
+    return 30;
 }
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    headerView.backgroundColor = HEXRGBCOLOR(0xf0f0f0);
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+    headerView.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
     UILabel *sectionLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
-    sectionLabel.backgroundColor = HEXRGBCOLOR(0xf0f0f0);
+    sectionLabel.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
     sectionLabel.tintColor = HEXRGBCOLOR(0x666666);
-    sectionLabel.font = kBasicSmallTitleFont;
+    sectionLabel.font = kBasicBigDetailTitleFont;
     sectionLabel.textAlignment = NSTextAlignmentCenter;
     sectionLabel.text = self.selectedTitleArr[section];
     [headerView addSubview:sectionLabel];

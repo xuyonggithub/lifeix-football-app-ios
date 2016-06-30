@@ -32,7 +32,7 @@
 -(void)loadView{
     [super loadView];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
@@ -74,10 +74,10 @@
         popKit.bInnerTapDismiss = NO;
     }
     if (!rightView) {
-        rightView = [[MediaCatePopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-80, kScreenHeight)];
+        rightView = [[MediaCatePopView alloc]initWithFrame:CGRectMake(0, 0, 200, kScreenHeight)];
         rightView.delegate = self;
     }
-    rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
+    rightView.frame = CGRectMake(0, 0, 200, kScreenHeight);
     popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-rightView.width, 0);
     [popKit popView:rightView animateType:PAT_WidthRightToLeft];
 }
@@ -121,11 +121,12 @@
             [_tableView ins_endInfinityScrollWithStoppingContentOffset:arr.count > 0];
             [_dataArr addObjectsFromArray:arr];
         }
-        
+        self.date = nil;
         [self.tableView reloadData];
         
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error = %@", error);
+        self.date = nil;
     }];
 }
 
@@ -191,7 +192,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return SCREEN_WIDTH/2;
+    return 370/2;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

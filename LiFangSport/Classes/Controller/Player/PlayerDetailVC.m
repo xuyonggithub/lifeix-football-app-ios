@@ -75,19 +75,22 @@
         club = @"-";
     }
     
-    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
+    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 167) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
     [self.view addSubview:baseView];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, baseView.bottom, SCREEN_WIDTH, 1)];
-    lineView.backgroundColor = HEXRGBCOLOR(0x989898);
+    lineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
     [self.view addSubview:lineView];
     // 类目栏
     DefineWeak(self);
-    CategoryView *cateView = [[CategoryView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 44) category:self.categoryArr];
+    CategoryView *cateView = [[CategoryView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 32) category:self.categoryArr];
     cateView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
     [self.view addSubview:cateView];
+    UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, cateView.bottom - 1, SCREEN_WIDTH, 1)];
+    lineView1.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
+    [self.view addSubview:lineView1];
 }
 
 -(void)clickBtn:(CGFloat)tag{

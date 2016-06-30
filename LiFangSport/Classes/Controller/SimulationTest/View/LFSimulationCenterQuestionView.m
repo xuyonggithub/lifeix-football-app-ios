@@ -11,6 +11,8 @@
 #import "LFSimulationOffsideHardCell.h"
 
 #define CELL_ID @"LFSimulationOffsideHardCell"
+#define CELL_ITEM_SIZE_WIDTH (SCREEN_WIDTH - 30 - 60) / 4.0
+#define CELL_ITEM_SIZE_HEIGHT CELL_ITEM_SIZE_WIDTH * (230.0 / 300.0) + 20
 #define CELL_HEIGHT ALDFullScreenVertical(45)
 
 @interface LFSimulationCenterQuestionView ()
@@ -64,8 +66,8 @@
         
         [self addSubview:self.scoreView];
         [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@(150 + ALDFullScreenHorizontal(10)));
-            make.height.equalTo(@110);
+            make.width.equalTo(@(ALDFullScreenHorizontal(165)));
+            make.height.equalTo(@(ALDFullScreenHorizontal(80) + 20));
         }];
         
         if (_questionMode == LFQuestionModeDefaultFoul) {
@@ -130,12 +132,11 @@
                 }];
             }else if (_questionMode == LFQuestionModeDefaultOffsideHard) {
                 [self addSubview:self.collectionView];
-                CGFloat width = ((SCREEN_WIDTH - 30 - 60) / 4.0) * (230.0 / 300.0) + 5 + 20;
                 [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(10);
+                    make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(ALDFullScreenVertical(5));
                     make.left.equalTo(weakSelf.mas_left).offset(15);
                     make.right.equalTo(weakSelf.mas_right).offset(-15);
-                    make.height.equalTo(@(width));
+                    make.height.equalTo(@(CELL_ITEM_SIZE_HEIGHT));
                 }];
             }
         }
@@ -216,7 +217,7 @@
             {
                 self.leftTableView.hidden = self.rightTableView.hidden = _leftBorderView.hidden = _rightBorderView.hidden = YES;
                 [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.centerY.equalTo(weakSelf).offset(10);
+                    make.centerY.equalTo(weakSelf).offset(ALDFullScreenVertical(10));
                 }];
             }
                 break;
@@ -224,7 +225,7 @@
             {
                 self.rightTableView.hidden = YES;
                 [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf).offset(150);
+                    make.top.equalTo(weakSelf).offset(ALDFullScreenVertical(150));
                 }];
             }
                 break;
@@ -232,7 +233,7 @@
             {
                 self.collectionView.hidden = YES;
                 [self.scoreView mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf).offset(150);
+                    make.top.equalTo(weakSelf).offset(ALDFullScreenVertical(150));
                 }];
             }
                 break;
@@ -474,7 +475,7 @@
         _leftTableView.dataSource = self;
         _leftTableView.bounces = NO;
         _leftTableView.rowHeight = CELL_HEIGHT;
-        _leftTableView.backgroundColor = [UIColor redColor];
+        _leftTableView.backgroundColor = [UIColor clearColor];
         _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _leftTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
     }
@@ -489,7 +490,7 @@
         _rightTableView.dataSource = self;
         _rightTableView.bounces = NO;
         _rightTableView.rowHeight = CELL_HEIGHT;
-        _rightTableView.backgroundColor = [UIColor redColor];
+        _rightTableView.backgroundColor = [UIColor clearColor];
         _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _rightTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
     }
@@ -500,11 +501,10 @@
 {
     if (!_scoreView) {
         _scoreView = [UIView new];
-        _scoreView.backgroundColor = [UIColor redColor];
         [_scoreView addSubview:self.leftLabel];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.top.equalTo(_scoreView);
-            make.width.and.height.equalTo(@75);
+            make.width.and.height.equalTo(@(ALDFullScreenHorizontal(75)));
         }];
         
         UILabel *promptLeftLabel = [UILabel new];
@@ -514,13 +514,13 @@
         [_scoreView addSubview:promptLeftLabel];
         [promptLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_leftLabel);
-            make.top.equalTo(_leftLabel.mas_bottom).offset(10);
+            make.top.equalTo(_leftLabel.mas_bottom).offset(ALDFullScreenVertical(5));
         }];
         
         [_scoreView addSubview:self.rightLabel];
         [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.and.top.equalTo(_scoreView);
-            make.width.and.height.equalTo(@75);
+            make.width.and.height.equalTo(_leftLabel);
         }];
         UILabel *promptRightLabel = [UILabel new];
         promptRightLabel.font = [UIFont systemFontOfSize:20];
@@ -544,8 +544,7 @@
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
         //flowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 300 / 750.0 + 10 + 32);
-        CGFloat width = (SCREEN_WIDTH - 30 - 60) / 4.0;
-        flowLayout.itemSize = CGSizeMake(width, width * (230.0 / 300.0) + 5 + 20);
+        flowLayout.itemSize = CGSizeMake(CELL_ITEM_SIZE_WIDTH, CELL_ITEM_SIZE_HEIGHT);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, self.bounds.size.height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;

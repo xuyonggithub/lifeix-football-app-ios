@@ -285,7 +285,7 @@
         // http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
         _currentIndex ++;
         [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@%@%zd",kvideoListPath,_videoId,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-//            [self dealWithJason:jsonDict];
+            [self dealWithJason:jsonDict];
             
         } failure:^(CommonRequest *request, NSError *error) {
             

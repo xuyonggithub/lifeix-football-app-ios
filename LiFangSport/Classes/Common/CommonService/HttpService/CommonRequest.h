@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, ServerErrorCode){
 
 //服务器地址
 #if (defined(Env_Online))
-#define kServerAddress      @"http://ssapi.knowbox.cn/v/1_2_0/"
+#define kServerAddress      @"http://api.c-f.com:8000/football/"
 //#define kServerAddressDomin  [CommonRequest serverAddressDomin]
 
 #elif defined(Env_Dev_Test)

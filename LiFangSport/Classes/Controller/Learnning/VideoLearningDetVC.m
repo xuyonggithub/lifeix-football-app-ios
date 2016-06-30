@@ -207,15 +207,12 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     VideoLearningUnitModel *model = _dataArr[indexPath.row];
-    NSMutableArray *videoIdsArr = [NSMutableArray array];
-    for (VideoLearningUnitModel *mod in _dataArr) {
-        NSString *str = [NSString stringWithFormat:@"%@",mod.videos[0][@"id"]];
-        [videoIdsArr addObject:str];
-    }
+
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
     LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
-    LearningPlayVC.videoIdsArr = [NSArray arrayWithArray:videoIdsArr];
+    LearningPlayVC.videosArr = [NSArray arrayWithArray:_dataArr];
     LearningPlayVC.pageCount = _pageCount;
+    LearningPlayVC.currentIndex = startNum+limitNum;
     [self.navigationController pushViewController:LearningPlayVC animated:YES];
 }
 

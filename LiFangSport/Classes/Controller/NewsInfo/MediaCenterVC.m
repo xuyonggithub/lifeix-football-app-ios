@@ -62,6 +62,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[MediaCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[MediaCell class] forCellReuseIdentifier:@"cell1"];
     [self requestDataWithisHeaderRefresh: YES];
     [self setupRefresh];
 }
@@ -172,13 +173,19 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MediaModel *media = [self.dataArr objectAtIndex:indexPath.row];
     static NSString *reuseCell = @"cell";
-    MediaCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCell forIndexPath:indexPath];
+    static NSString *reuseCell1 = @"cell1";
+    MediaCell *cell;
+    if(media.containVideo == YES){
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseCell forIndexPath:indexPath];
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseCell1 forIndexPath:indexPath];
+    }
     if(!cell){
         cell = [[MediaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCell];
     }
     cell.backgroundColor = kclearColor;
-    MediaModel *media = [self.dataArr objectAtIndex:indexPath.row];
     [cell displayCell:media];
     return cell;
 }

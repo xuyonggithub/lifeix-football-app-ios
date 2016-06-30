@@ -10,6 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "CommonRequest.h"
 #import "UIBarButtonItem+SimAdditions.h"
+#import "UMSocial.h"
+#import "UMSocialSnsData.h"
 
 const CGFloat topViewH = 180;
 @interface MediaDetailVC ()<UIWebViewDelegate>
@@ -27,7 +29,7 @@ const CGFloat topViewH = 180;
 
 @property(nonatomic, assign)int likeNum;
 @property(nonatomic, assign)int unLikeNum;
-
+@property(nonatomic, assign)BOOL isClick;
 @end
 
 @implementation MediaDetailVC
@@ -66,6 +68,7 @@ const CGFloat topViewH = 180;
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *requset = [NSURLRequest requestWithURL:url];
     [self.contentWebView loadRequest:requset];
+    self.isClick = NO;
 }
 -(void)rollBack{
     [self.navigationController popViewControllerAnimated:YES];
@@ -91,22 +94,37 @@ const CGFloat topViewH = 180;
 
 -(void)shareBtnClicked{
     NSLog(@"分享");
+    [self setupShareView];
 }
 
 -(void)likeBtnClicked{
     NSLog(@"like");
-    [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", self.likeNum + 1] forState:UIControlStateNormal];
+    if(_isClick == YES){
+        return;
+    };
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@1};
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"succeed!%@", jsonDict);
+        [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error: %@", error);
     }];
+    _isClick = YES;
 }
 
 -(void)unLikeBtnClicked{
     NSLog(@"unLike");
-    [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", self.unLikeNum + 1] forState:UIControlStateNormal];
+    if(_isClick == YES){
+        return;
+    };
+    NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@0};
+    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
+        NSLog(@"succeed!%@", jsonDict);
+        [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", _unLikeNum + 1] forState:UIControlStateNormal];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
+    _isClick = YES;
 }
 
 #pragma mark - webViewDelegate
@@ -163,5 +181,79 @@ const CGFloat topViewH = 180;
     return currentDateStr;
 }
 
+-(void)setupShareView{
+    UIView *lbl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
+    lbl.bottom = _shareBtn.top;
+    NSArray *arr = @[@"sina", @"微信好友", @"微信朋友圈", @"QQ空间"];
+    for(int i = 0; i < 4; i++){
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(90 * i, 0, 80, 80);
+        btn.backgroundColor = [UIColor grayColor];
+        [btn addTarget:self action:@selector(didSelectedShareBtnIndex:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:arr[i] forState:UIControlStateNormal];
+        btn.tag = 1000 + i;
+        [lbl addSubview:btn];
+    }
+    [self.view addSubview:lbl];
+}
+
+#pragma mark - shareDelegate
+-(void)didSelectedShareBtnIndex:(UIButton *)btn{
+    NSInteger index = btn.tag - 1000;
+    NSString *snsName;
+    NSString *shareTitle = @"中国足球网";
+    NSString *shareText = [NSString stringWithFormat:@"%@", _media.title];
+    NSString *shareUrl = [NSString stringWithFormat:@"%@", _media.url] ;
+    
+    NSString *avatarUrl = [NSString stringWithFormat:@"%@", _media.image];
+    
+    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:avatarUrl];
+    
+    UMSocialData *socialData;
+    switch (index) {
+        case 0:{ // 新浪微博
+            snsName                                             = UMShareToSina;
+            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"sinaweibo"];
+            socialData.extConfig.sinaData.shareText             = [NSString stringWithFormat:@"%@\n%@%@",shareTitle,shareText,shareUrl];
+            socialData.extConfig.sinaData.urlResource           = urlResource;
+        }
+            break;
+        case 1:{ // 微信好友
+            snsName                                             = UMShareToWechatSession;
+            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatSession"];
+            socialData.extConfig.wechatSessionData.title        = shareTitle;
+            socialData.extConfig.wechatSessionData.url          = shareUrl;
+            socialData.extConfig.wechatSessionData.shareText    = shareText;
+            socialData.extConfig.wechatSessionData.urlResource  = urlResource;
+            
+        }
+            break;
+        case 2:{ // 微信朋友圈
+            snsName                                             = UMShareToWechatTimeline;
+            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatTimeline"];
+            socialData.extConfig.wechatTimelineData.title       = shareTitle;
+            socialData.extConfig.wechatTimelineData.url         = shareUrl;
+            socialData.extConfig.wechatTimelineData.shareText   = shareText;
+            
+            socialData.extConfig.wechatTimelineData.urlResource = urlResource;
+        }
+            break;
+        case 3:{ // QQ空间
+            snsName                                             = UMShareToQzone;
+            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"Qzone"];
+            socialData.extConfig.qzoneData.title       = shareTitle;
+            socialData.extConfig.qzoneData.url         = shareUrl;
+            socialData.extConfig.qzoneData.shareText   = shareText;
+            socialData.extConfig.qzoneData.urlResource = urlResource;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    UMSocialControllerService *shareService             = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
+    UMSocialSnsPlatform *snsPlatform                    = [UMSocialSnsPlatformManager getSocialPlatformWithName:snsName];
+    snsPlatform.snsClickHandler(self,shareService,YES);
+}
 
 @end

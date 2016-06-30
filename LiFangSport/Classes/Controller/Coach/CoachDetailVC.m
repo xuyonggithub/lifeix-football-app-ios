@@ -36,7 +36,7 @@
     NSDictionary *dict = dic;
     NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
     
-    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:@"待定" andClub:@"待定"];
+    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:[[dict objectForKey:@"team"] objectForKey:@"position"] andClub:[dict objectForKey:@"company"]];
     [self.view addSubview:coachView];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom + 5, 200, 44)];
@@ -44,7 +44,7 @@
     label.font = [UIFont systemFontOfSize:14];
     label.textColor = kBlackColor;
     [self.view addSubview:label];
-                       
+    
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 5, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = HEXRGBCOLOR(0x989898);
     [self.view addSubview:lineView];

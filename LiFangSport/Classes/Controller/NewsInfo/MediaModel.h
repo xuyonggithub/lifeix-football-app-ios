@@ -22,4 +22,5 @@
 @property(nonatomic, assign)NSInteger status;
 @property(nonatomic, retain)NSString<Optional> *image;
 @property(nonatomic, retain)NSString<Optional> *url;
+@property(nonatomic, assign)BOOL containVideo;
 @end

@@ -44,6 +44,13 @@
     }else{
         self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];
     }
+    if(media.containVideo == YES){
+        UIImageView *playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        playView.image = UIImageNamed(@"videobofang");
+        playView.center = _bgImgView.center;
+        playView.userInteractionEnabled = YES;
+        [_bgImgView addSubview:playView];
+    }
     self.titleLabel.text = media.title;
 }
 

@@ -120,6 +120,7 @@
         }
         
         UITextView *textView = [UITextView new];
+        textView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
         textView.font = [UIFont systemFontOfSize:17];
         textView.backgroundColor = [UIColor clearColor];
         textView.editable = NO;

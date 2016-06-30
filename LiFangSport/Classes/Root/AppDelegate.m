@@ -33,12 +33,6 @@
     [SDImageCache sharedImageCache].maxCacheAge = 60 * 60 * 24 * 30;
     [SDImageCache sharedImageCache].maxCacheSize = 1024 * 1024 * 100; // 100M
     [self setupUMengShare];
-    
-    int cacheSizeMemory =  1024 * 1024 * 4; // 4MB
-    int cacheSizeDisk =  1024 * 1024 * 32; // 32MB
-    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"];
-    [NSURLCache setSharedURLCache:sharedCache];
-    
     return YES;
 }
 
@@ -64,12 +58,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-// try to clean up as much memory as possible. next step is to terminate app
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 -(void)setupUIInterface{

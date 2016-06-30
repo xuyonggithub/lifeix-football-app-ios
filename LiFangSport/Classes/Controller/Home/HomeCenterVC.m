@@ -24,6 +24,8 @@
 #import "PlayerDetailVC.h"
 #import "LeftSwitcDetVC.h"
 #import "CommonLoading.h"
+#import "LocalNotiPush.h"
+
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
@@ -232,15 +234,6 @@
         _centerTableview.dataSource = self;
         [self.view addSubview:_centerTableview];
         UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 250)];
-//        ruleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-//        ruleLab.font = [UIFont systemFontOfSize:11];
-//        ruleLab.numberOfLines = 0;
-//        ruleLab.text = _ruleStr;
-//        NSDictionary *detstyleDic = @{@"bigFont":[UIFont systemFontOfSize:12],@"color":HEXRGBCOLOR(0x787878)};
-//        [ruleLab setAttributedText:[_ruleStr attributedStringWithStyleBook:detstyleDic]];
-//        
-//        [ruleLab sizeToFit];
-//        [hview addSubview:ruleLab];
         
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 250)];
         [webView loadHTMLString:_ruleStr baseURL:nil];
@@ -284,9 +277,9 @@
             cell = [[LeftSwitchCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellid];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = _leftDataArray[indexPath.row];
-        cell.leftSubtitlePrifxStr = _leftSubtitlePrifxStr;
         LeftSwitchModel *kmodel = _leftDataArray[indexPath.row];
+        cell.model = kmodel;
+        cell.leftSubtitlePrifxStr = _leftSubtitlePrifxStr;
         DefineWeak(cell);
         cell.likeBC = ^(void){
         NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
@@ -295,11 +288,15 @@
             Weak(cell).likeView.image = UIImageNamed(@"guanzhu02");
             [userDefaults removeObjectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
             [CommonLoading showTips:@"您已取消该比赛提醒"];
+            [LocalNotiPush cancelLocalNotificationWithNotiID:index];
         }else{
             [userDefaults setObject:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage] forKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
             [userDefaults synchronize];
             Weak(cell).likeView.image = UIImageNamed(@"guanzhu01");
             [CommonLoading showTips:@"您已增加该比赛提醒"];
+            NSTimeInterval timeIN=(NSTimeInterval)[kmodel.startTime integerValue];
+            NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
+            [LocalNotiPush registerLocalNotification:timeData WithalertBody:[NSString stringWithFormat:@"%@和%@%@",kmodel.hostTeam[@"teamInfo"][@"name"],kmodel.awayTeam[@"teamInfo"][@"name"],@"比赛已经开始了"] WithNotiID:index];
         }
     };
         return cell;

@@ -23,7 +23,7 @@
 #import "MediaDetailVC.h"
 #import "PlayerDetailVC.h"
 #import "LeftSwitcDetVC.h"
-
+#import "CommonLoading.h"
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
@@ -286,6 +286,22 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = _leftDataArray[indexPath.row];
         cell.leftSubtitlePrifxStr = _leftSubtitlePrifxStr;
+        LeftSwitchModel *kmodel = _leftDataArray[indexPath.row];
+        DefineWeak(cell);
+        cell.likeBC = ^(void){
+        NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+        NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
+        if (index) {
+            Weak(cell).likeView.image = UIImageNamed(@"VSicon");
+            [userDefaults removeObjectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
+            [CommonLoading showTips:@"您已取消该比赛提醒"];
+        }else{
+            [userDefaults setObject:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage] forKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
+            [userDefaults synchronize];
+            Weak(cell).likeView.image = UIImageNamed(@"good");
+            [CommonLoading showTips:@"您已增加该比赛提醒"];
+        }
+    };
         return cell;
     }else if(tableView == _centerTableview){
         static NSString *cellidx = @"centertableviewcellid";

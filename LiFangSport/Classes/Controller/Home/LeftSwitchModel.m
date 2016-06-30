@@ -10,5 +10,10 @@
 
 @implementation LeftSwitchModel
 
++(JSONKeyMapper*)keyMapper{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"KID"
+                                                       }];
+}
 
 @end

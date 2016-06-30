@@ -17,7 +17,6 @@
 @property(nonatomic,strong)UIImageView *awayTeamFlagView;
 @property(nonatomic,strong)UILabel *hostTeamNameLab;
 @property(nonatomic,strong)UILabel *awayTeamNameLab;
-@property(nonatomic,strong)UIImageView *vsView;
 
 @end
 
@@ -60,11 +59,14 @@
     _awayTeamFlagView.top = _hostTeamFlagView.top;
     _awayTeamFlagView.right = kScreenWidth-40;
     
-    _vsView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 20)];
-    _vsView.centerY = _hostTeamFlagView.centerY;
-    _vsView.centerX = kScreenWidth/2;
-    [self addSubview:_vsView];
-    _vsView.image = UIImageNamed(@"VSicon");
+    _likeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 20)];
+    _likeView.centerY = _hostTeamFlagView.centerY;
+    _likeView.centerX = kScreenWidth/2;
+    [self addSubview:_likeView];
+    _likeView.image = UIImageNamed(@"VSicon");
+    _likeView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(likeGame:)];
+    [_likeView addGestureRecognizer:gestureRecognizer];
     
     _hostTeamNameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
     _hostTeamNameLab.top = _hostTeamFlagView.bottom;
@@ -81,7 +83,12 @@
 }
 
 -(void)setModel:(LeftSwitchModel *)model{
-//    NSString *ss = model.competitionInfo[@"name"];
+    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+    NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",model.KID,model.startDate,model.position,model.stage]];
+    if (index) {
+        _likeView.image = UIImageNamed(@"good");
+    }
+    
     NSString *ss = _leftSubtitlePrifxStr?_leftSubtitlePrifxStr:@"世预赛";
     NSTimeInterval dateIN=(NSTimeInterval)[model.startDate integerValue]/1000;
     NSDate * dateData=[NSDate dateWithTimeIntervalSince1970:dateIN];
@@ -125,6 +132,13 @@
     return currenttimeString;
 }
 
+
+- (void)likeGame:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (self.likeBC) {
+        self.likeBC();
+    }
+}
 
 - (void)awakeFromNib {
     // Initialization code

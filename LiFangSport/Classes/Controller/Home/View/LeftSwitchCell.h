@@ -7,9 +7,12 @@
 //
 #import "LeftSwitchModel.h"
 #import <UIKit/UIKit.h>
+typedef void(^LeftSwitchCellBC)(void);
 
 @interface LeftSwitchCell : UITableViewCell
 @property(nonatomic,strong)LeftSwitchModel *model;
 @property(nonatomic,strong)NSString *leftSubtitlePrifxStr;
+@property(nonatomic,copy)LeftSwitchCellBC likeBC;
+@property(nonatomic,strong)UIImageView *likeView;
 
 @end

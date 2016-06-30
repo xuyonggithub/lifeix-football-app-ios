@@ -14,7 +14,7 @@
 @property(nonatomic,strong)NSDictionary<Optional> *court;
 @property (nonatomic, strong) NSString<Optional> *group;
 @property(nonatomic,strong)NSDictionary<Optional> *hostTeam;
-@property(nonatomic,assign)NSInteger id;
+@property(nonatomic,assign)NSInteger KID;//id
 @property (nonatomic, strong) NSString<Optional> *position;
 @property (nonatomic, strong) NSString<Optional> *stage;
 @property (nonatomic, strong) NSString<Optional> *startDate;

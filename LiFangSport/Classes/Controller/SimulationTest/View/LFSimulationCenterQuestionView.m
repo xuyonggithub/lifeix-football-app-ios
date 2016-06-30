@@ -189,7 +189,7 @@
 
 - (void)beginPerformNextQuestion
 {
-    //[self performSelector:@selector(performNextQuestion) withObject:nil afterDelay:10];
+    [self performSelector:@selector(performNextQuestion) withObject:nil afterDelay:10];
 }
 
 #pragma mark - TestingResult

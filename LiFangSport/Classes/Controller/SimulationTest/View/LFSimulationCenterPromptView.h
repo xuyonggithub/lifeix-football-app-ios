@@ -23,4 +23,6 @@
 
 - (instancetype)initWithModel:(LFSimulationCategoryModel *)model;
 
+- (void)hiddenLoadingView;
+
 @end

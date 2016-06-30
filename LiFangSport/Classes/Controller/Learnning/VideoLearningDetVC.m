@@ -36,6 +36,7 @@
 @property(nonatomic, strong)CategoryView *CategoryView;
 @property(nonatomic, strong)NSMutableArray *topNameArr;
 @property(nonatomic, strong)UIImageView *backPicView;
+@property(nonatomic,assign)NSInteger pageCount;
 
 @end
 
@@ -63,6 +64,7 @@
 
 -(void)requestDataWithBtnTag:(NSInteger)btnIndex isHeaderRefresh:(BOOL)isHeaderRefresh{
     VideoLearningDetModel *model = _catsArr[btnIndex];
+    _pageCount = model.pageCount;
     [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/pages?start=%zd&limit=%zd",kvideodetPath,model.KID,startNum,limitNum] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict isHeaderRefresh:isHeaderRefresh];
         
@@ -213,6 +215,7 @@
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
     LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
     LearningPlayVC.videoIdsArr = [NSArray arrayWithArray:videoIdsArr];
+    LearningPlayVC.pageCount = _pageCount;
     [self.navigationController pushViewController:LearningPlayVC animated:YES];
 }
 

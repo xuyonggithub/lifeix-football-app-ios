@@ -274,6 +274,9 @@
     if (_currentPlayVideoIndex<_videoIdsArr.count) {
         NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
         [self requestSingleVideoInfoWith:videoid];
+    }else if(_currentPlayVideoIndex>=_videoIdsArr.count && _videoIdsArr.count<=_pageCount){
+//请求下一个数据
+        
     }else{
         [CommonLoading showTips:@"没有更多视频了"];
     }

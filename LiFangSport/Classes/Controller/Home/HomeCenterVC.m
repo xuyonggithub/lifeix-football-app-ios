@@ -292,13 +292,13 @@
         NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
         NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
         if (index) {
-            Weak(cell).likeView.image = UIImageNamed(@"VSicon");
+            Weak(cell).likeView.image = UIImageNamed(@"guanzhu02");
             [userDefaults removeObjectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
             [CommonLoading showTips:@"您已取消该比赛提醒"];
         }else{
             [userDefaults setObject:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage] forKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
             [userDefaults synchronize];
-            Weak(cell).likeView.image = UIImageNamed(@"good");
+            Weak(cell).likeView.image = UIImageNamed(@"guanzhu01");
             [CommonLoading showTips:@"您已增加该比赛提醒"];
         }
     };

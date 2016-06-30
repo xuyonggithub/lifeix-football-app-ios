@@ -63,12 +63,14 @@
         }];
         
         [self addSubview:self.scoreView];
+        [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(@(150 + ALDFullScreenHorizontal(10)));
+            make.height.equalTo(@110);
+        }];
         
         if (_questionMode == LFQuestionModeDefaultFoul) {
             [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.and.centerY.equalTo(weakSelf);
-                make.width.equalTo(@(150 + ALDFullScreenHorizontal(10)));
-                make.height.equalTo(@100);
             }];
             
             _leftBorderView = [UIView new];
@@ -115,17 +117,16 @@
         }else {
             [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(weakSelf);
-                make.width.equalTo(@165);
-                make.height.equalTo(@100);
-                make.top.equalTo(weakSelf).offset(50);
+                make.top.equalTo(weakSelf).offset(ALDFullScreenHorizontal(50));
             }];
+            
             if (_questionMode == LFQuestionModeDefaultOffsideEasy) {
                 [self addSubview:self.rightTableView];
                 [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(25);
+                    make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(ALDFullScreenHorizontal(15));
                     make.left.equalTo(weakSelf.scoreView.mas_left);
                     make.right.equalTo(weakSelf.mas_right).offset(-10);
-                    make.height.equalTo(@(CELL_HEIGHT * 2));
+                    make.height.equalTo(@(CELL_HEIGHT * 2 + 5));
                 }];
             }else if (_questionMode == LFQuestionModeDefaultOffsideHard) {
                 [self addSubview:self.collectionView];
@@ -499,6 +500,7 @@
 {
     if (!_scoreView) {
         _scoreView = [UIView new];
+        _scoreView.backgroundColor = [UIColor redColor];
         [_scoreView addSubview:self.leftLabel];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.and.top.equalTo(_scoreView);

@@ -32,7 +32,7 @@
             startingLineNumber = "86"
             endingLineNumber = "86"
             landmarkName = "-requestTopBannerSwitchData"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,7 +48,7 @@
             startingLineNumber = "110"
             endingLineNumber = "110"
             landmarkName = "-dealWithLeftData:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

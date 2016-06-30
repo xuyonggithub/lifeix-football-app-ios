@@ -126,8 +126,6 @@
         textView.selectable = NO;
         [self addSubview:textView];
         
-        NSLog(@"width %@ height %@", @(SCREEN_WIDTH), @(SCREEN_HEIGHT));    //  568 320
-        
         [textView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.mas_top).offset(ALDFullScreenVertical(50));
             make.left.equalTo(weakSelf.mas_left).offset(ALDFullScreenHorizontal(140));

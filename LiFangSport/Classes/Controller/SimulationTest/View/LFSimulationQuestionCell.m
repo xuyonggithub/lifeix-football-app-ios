@@ -32,28 +32,32 @@
         [self.contentView addSubview:_checkBtn];
         
         _nameLabel = [UILabel new];
+        //_nameLabel.backgroundColor = [UIColor blueColor];
+        _nameLabel.font = [UIFont systemFontOfSize:17];
         _nameLabel.textColor = [UIColor whiteColor];
         [self.contentView addSubview:_nameLabel];
         
         if ([reuseIdentifier isEqualToString:@"LFSimulationQuestionCellIDLeft"]) {
+            _nameLabel.textAlignment = NSTextAlignmentRight;
             [_checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.and.right.equalTo(weakSelf.contentView);
                 make.width.and.height.equalTo(@30);
             }];
             
             [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(_checkBtn.mas_left).offset(-10);
+                make.right.equalTo(_checkBtn.mas_left).offset(ALDFullScreenHorizontal(-10));
                 make.centerY.equalTo(weakSelf.contentView);
             }];
             
         }else if ([reuseIdentifier isEqualToString:@"LFSimulationQuestionCellIDRight"]) {
+            _nameLabel.textAlignment = NSTextAlignmentLeft;
             [_checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.and.left.equalTo(weakSelf.contentView);
                 make.width.and.height.equalTo(@30);
             }];
             
             [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_checkBtn.mas_right).offset(10);
+                make.left.equalTo(_checkBtn.mas_right).offset(ALDFullScreenHorizontal(10));
                 make.centerY.equalTo(weakSelf.contentView);
             }];
         }

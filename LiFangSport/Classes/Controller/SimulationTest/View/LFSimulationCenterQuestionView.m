@@ -11,6 +11,7 @@
 #import "LFSimulationOffsideHardCell.h"
 
 #define CELL_ID @"LFSimulationOffsideHardCell"
+#define CELL_HEIGHT ALDFullScreenVertical(45)
 
 @interface LFSimulationCenterQuestionView ()
     <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
@@ -57,9 +58,8 @@
         [closeBtn addTarget:self action:@selector(closeBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(20);
-            make.right.equalTo(self.mas_right).offset(-30);
-            make.width.and.height.equalTo(@50);
+            make.top.equalTo(self.mas_top).offset(ALDFullScreenVertical(20));
+            make.right.equalTo(self.mas_right).offset(ALDFullScreenHorizontal(-30));
         }];
         
         [self addSubview:self.scoreView];
@@ -67,7 +67,7 @@
         if (_questionMode == LFQuestionModeDefaultFoul) {
             [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.and.centerY.equalTo(weakSelf);
-                make.width.equalTo(@165);
+                make.width.equalTo(@(150 + ALDFullScreenHorizontal(10)));
                 make.height.equalTo(@100);
             }];
             
@@ -80,17 +80,16 @@
             [_leftBorderView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(weakSelf);
                 make.left.equalTo(weakSelf.mas_left).offset(-20);
-                make.right.equalTo(weakSelf.scoreView.mas_left).offset(-15);
-                make.height.equalTo(@210);
+                make.right.equalTo(weakSelf.scoreView.mas_left).offset(ALDFullScreenHorizontal(-10));
+                make.height.equalTo(@(CELL_HEIGHT * 4 + 10));
             }];
             
             [self addSubview:self.leftTableView];
             [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(_leftBorderView).insets(UIEdgeInsetsMake(0, 20, 0, 10));
-//                make.centerY.equalTo(weakSelf);
-//                make.left.equalTo(weakSelf.mas_left).offset(10);
-//                make.right.equalTo(weakSelf.scoreView.mas_left).offset(-20);
-//                make.height.equalTo(@200);
+                make.centerY.equalTo(weakSelf);
+                make.left.equalTo(weakSelf.mas_left);
+                make.right.equalTo(weakSelf.scoreView.mas_left).offset(ALDFullScreenHorizontal(-20));
+                make.height.equalTo(@(CELL_HEIGHT * 4));
             }];
             
             _rightBorderView = [UIView new];
@@ -101,17 +100,17 @@
             [self addSubview:_rightBorderView];
             [_rightBorderView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(weakSelf);
-                make.left.equalTo(weakSelf.scoreView.mas_right).offset(10);
+                make.left.equalTo(weakSelf.scoreView.mas_right).offset(ALDFullScreenHorizontal(10));
                 make.right.equalTo(weakSelf.mas_right).offset(20);
-                make.height.equalTo(@210);
+                make.height.equalTo(_leftBorderView);
             }];
             
             [self addSubview:self.rightTableView];
             [self.rightTableView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(weakSelf);
-                make.left.equalTo(weakSelf.scoreView.mas_right).offset(20);
-                make.right.equalTo(weakSelf.mas_right).offset(-10);
-                make.height.equalTo(@150);
+                make.left.equalTo(weakSelf.scoreView.mas_right).offset(ALDFullScreenHorizontal(20));
+                make.right.equalTo(weakSelf.mas_right);
+                make.height.equalTo(@(CELL_HEIGHT * 3));
             }];
         }else {
             [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,7 +125,7 @@
                     make.top.equalTo(weakSelf.scoreView.mas_bottom).offset(25);
                     make.left.equalTo(weakSelf.scoreView.mas_left);
                     make.right.equalTo(weakSelf.mas_right).offset(-10);
-                    make.height.equalTo(@100);
+                    make.height.equalTo(@(CELL_HEIGHT * 2));
                 }];
             }else if (_questionMode == LFQuestionModeDefaultOffsideHard) {
                 [self addSubview:self.collectionView];
@@ -153,7 +152,7 @@
             make.centerX.equalTo(weakSelf);
             make.width.equalTo(@150);
             make.height.equalTo(@45);
-            make.bottom.equalTo(weakSelf.mas_bottom).offset(-30);
+            make.bottom.equalTo(weakSelf.mas_bottom).offset(ALDFullScreenVertical(-30));
         }];
     }
     return self;
@@ -188,7 +187,7 @@
 
 - (void)beginPerformNextQuestion
 {
-    [self performSelector:@selector(performNextQuestion) withObject:nil afterDelay:10];
+    //[self performSelector:@selector(performNextQuestion) withObject:nil afterDelay:10];
 }
 
 #pragma mark - TestingResult
@@ -206,7 +205,7 @@
         resultLabel.text = [NSString stringWithFormat:@"%@通过本次测试，敢不敢继续挑战？\n共%@题，正确%@题，错误%@题", _trueCnt >= _rightCount ? @"恭喜您，成功" : @"很抱歉，您未", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
         [self addSubview:resultLabel];
         [resultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf).offset(75);
+            make.top.equalTo(weakSelf).offset(ALDFullScreenVertical(75));
             make.left.equalTo(weakSelf).offset(40);
             make.right.equalTo(weakSelf).offset(-40);
         }];
@@ -473,8 +472,8 @@
         _leftTableView.delegate = self;
         _leftTableView.dataSource = self;
         _leftTableView.bounces = NO;
-        _leftTableView.rowHeight = 50;
-        _leftTableView.backgroundColor = [UIColor clearColor];
+        _leftTableView.rowHeight = CELL_HEIGHT;
+        _leftTableView.backgroundColor = [UIColor redColor];
         _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _leftTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
     }
@@ -488,8 +487,8 @@
         _rightTableView.delegate = self;
         _rightTableView.dataSource = self;
         _rightTableView.bounces = NO;
-        _rightTableView.rowHeight = 50;
-        _rightTableView.backgroundColor = [UIColor clearColor];
+        _rightTableView.rowHeight = CELL_HEIGHT;
+        _rightTableView.backgroundColor = [UIColor redColor];
         _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _rightTableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
     }

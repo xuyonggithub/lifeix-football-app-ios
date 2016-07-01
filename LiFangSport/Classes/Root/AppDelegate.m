@@ -17,6 +17,7 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialWechatHandler.h"
+#import "MediaCenterVC.h"
 
 #define UmengAppkey @"5730424be0f55acd85001eef"
 @interface AppDelegate ()
@@ -86,7 +87,8 @@
     //显示界面
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [SelectRootViewController rootViewController];
+    HomeCenterVC *HVC=[[HomeCenterVC alloc]init];
+    self.window.rootViewController = [SelectRootViewController rootViewControllerWithController:HVC];
     [self.window makeKeyAndVisible];
     
 }

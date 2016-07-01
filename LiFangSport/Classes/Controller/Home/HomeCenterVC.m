@@ -57,7 +57,7 @@
     _centerDataArray = [NSMutableArray array];
     _rightDataArray = [NSMutableArray array];
     _mediaArray = [NSMutableArray array];
-    self.view.backgroundColor = [UIColor purpleColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
 

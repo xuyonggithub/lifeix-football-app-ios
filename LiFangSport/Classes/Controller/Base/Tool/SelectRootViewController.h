@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <RESideMenu.h>
+#import "LeftCategoryVC.h"
 
 @interface SelectRootViewController : NSObject
-+(RESideMenu *)rootViewController;
+//+(RESideMenu *)rootViewController;
++(RESideMenu *)rootViewControllerWithController:(UIViewController *)HVC;
+
++(RESideMenu *)resetRootViewControllerWithController:(UIViewController *)HVC WithLeftVC:(LeftCategoryVC *)leftVC;
 
 @end

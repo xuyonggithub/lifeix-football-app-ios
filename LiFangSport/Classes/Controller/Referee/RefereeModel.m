@@ -10,4 +10,18 @@
 
 @implementation RefereeModel
 
++(JSONKeyMapper*)keyMapper{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"function": @"function",
+                                                       @"avatar": @"avatar",
+                                                       @"name": @"name",
+                                                       @"birthday": @"birthday",
+                                                       @"association": @"association",
+                                                       @"fifaTopANum": @"fifaTopANum",
+                                                       @"sinceInternational": @"sinceInternational",
+                                                       @"topLeagueNum": @"topLeagueNum",
+                                                       @"id": @"refefeeId"
+                                                       }];
+}
+
 @end

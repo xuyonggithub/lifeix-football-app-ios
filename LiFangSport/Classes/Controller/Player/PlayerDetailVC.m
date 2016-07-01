@@ -14,14 +14,18 @@
 #import "PlayerVideoCell.h"
 #import "UIBarButtonItem+SimAdditions.h"
 #import "PlayerVideoVC.h"
+#import "CommonLoading.h"
 
 #define kReuseId @"cell"
-@interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource, BaseInfoViewDelegate>
 
 @property(nonatomic, retain)NSMutableArray *categoryArr;
 @property(nonatomic, retain)NSMutableArray *categoryUrlArr;
 @property(nonatomic, retain)NSMutableArray *playerVideosArr;
 
+@property(nonatomic, assign)int likeNum;
+@property(nonatomic, assign)BOOL isClick;
+@property(nonatomic, assign)BOOL isLike;
 @end
 
 @implementation PlayerDetailVC
@@ -31,7 +35,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.title = @"球员介绍";
     self.categoryArr = [NSMutableArray array];
     self.categoryUrlArr = [NSMutableArray array];
@@ -43,6 +46,26 @@
     NSString *urlStr = [NSString stringWithFormat:@"games/players/%@/basic", self.playerId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithDic: jsonDict];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error = %@", error);
+    }];
+}
+
+-(void)requestLikes:(UIView *)view{
+    BaseInfoView *baseView = (BaseInfoView *)view;
+    UIButton *likeButton = baseView.likeBtn;
+    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=nationalteam", self.playerId];
+    [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        NSLog(@"data = %@", jsonDict);
+        NSDictionary *dic = jsonDict;
+        if(![[dic objectForKey:@"like"] isEqual:[NSNull null]]){
+            if([[dic objectForKey:@"like"] boolValue] == YES){
+                self.isLike = YES;
+            }
+        }
+        int like = [[dic objectForKey:@"likeNum"] intValue];
+        _likeNum = like;
+        [likeButton setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error = %@", error);
     }];
@@ -76,6 +99,7 @@
     }
     
     BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 167) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
+    baseView.delegate = self;
     [self.view addSubview:baseView];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, baseView.bottom, SCREEN_WIDTH, 1)];
@@ -91,24 +115,47 @@
     UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, cateView.bottom - 1, SCREEN_WIDTH, 1)];
     lineView1.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
     [self.view addSubview:lineView1];
+    
+    [self requestLikes:baseView];
 }
 
 -(void)clickBtn:(CGFloat)tag{
     NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 300) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 274, SCREEN_WIDTH, SCREEN_HEIGHT - 274) style:UITableViewStylePlain];
         [self.view addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
         [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
     }else{
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT - 300)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 274, SCREEN_WIDTH, SCREEN_HEIGHT - 274)];
         [self.view addSubview:webView];
         webView.delegate = self;
         NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
     }
+}
+
+#pragma mark - BaseInfoViewDelegate
+-(void)likeBtnClicked:(UIButton *)btn{
+    NSLog(@"like");
+    if(_isClick == YES){
+        [CommonLoading showTips:@"重复操作"];
+        return;
+    }else if (_isLike == YES){
+        [CommonLoading showTips:@"不能重复点赞"];
+        return;
+    };
+    NSDictionary *dic = @{@"type":@"nationalteam", @"target":self.playerId, @"like":@1};
+    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
+        NSLog(@"succeed!%@", jsonDict);
+        [btn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
+    _isClick = YES;
+
 }
 
 #pragma mark - UIWebViewDelegate
@@ -170,5 +217,8 @@
     NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
     return formatterStr;
 }
+
+#pragma mark - share
+
 
 @end

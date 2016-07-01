@@ -8,7 +8,6 @@
 
 #import "SelectRootViewController.h"
 #import "LFNavigationController.h"
-#import "LeftCategoryVC.h"
 #import "HomeCenterVC.h"
 #import "MediaCenterVC.h"
 #import "CoachCenterVC.h"
@@ -20,9 +19,8 @@
 
 @implementation SelectRootViewController
 
-+(RESideMenu *)rootViewController {
-    LFNavigationController *navigationController = [[LFNavigationController alloc] initWithRootViewController:[[HomeCenterVC alloc] init]];
-    
++(RESideMenu *)rootViewControllerWithController:(UIViewController *)HVC {
+    LFNavigationController *navigationController = [[LFNavigationController alloc] initWithRootViewController:HVC];//[[HomeCenterVC alloc] init]];
     
     LeftCategoryVC *leftVC = [[LeftCategoryVC alloc]init];
     
@@ -32,5 +30,18 @@
     
     return sideMenuViewController;
 }
+
++(RESideMenu *)resetRootViewControllerWithController:(UIViewController *)HVC WithLeftVC:(LeftCategoryVC *)leftVC{
+    LFNavigationController *navigationController = [[LFNavigationController alloc] initWithRootViewController:HVC];//[[HomeCenterVC alloc] init]];
+    
+//    LeftCategoryVC *leftVC = [[LeftCategoryVC alloc]init];
+    
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+                                                                    leftMenuViewController:leftVC
+                                                                   rightMenuViewController:nil];
+    
+    return sideMenuViewController;
+}
+
 
 @end

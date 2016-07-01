@@ -36,6 +36,12 @@
         [self addSubview:self.nameLabel];
         
         // 点赞
+        self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 50 - _nameLabel.height, _nameLabel.top, _nameLabel.height + 50, _nameLabel.height);
+        [_likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
+        [_likeBtn setTitleColor:HEXRGBCOLOR(0xdddddd) forState:UIControlStateNormal];
+        [_likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_likeBtn];
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"身高／体重", @"场上位置", @"出生地", @"俱乐部", nil];
         NSString *bodyInfo = [NSString stringWithFormat:@"%@cm/%@kg", height, weight];
@@ -63,6 +69,10 @@
         }
     }
     return self;
+}
+
+-(void)likeBtnClicked:(UIButton *)btn{
+    [_delegate likeBtnClicked:btn];
 }
 
 @end

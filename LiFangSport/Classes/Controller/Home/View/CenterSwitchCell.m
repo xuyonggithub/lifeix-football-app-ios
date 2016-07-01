@@ -32,7 +32,9 @@
 }
 -(void)createUI{
     _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 20)];
-    _timeLab.centerY = self.centerY;
+    _timeLab.centerY = 30;//self.centerY;
+    _timeLab.font = [UIFont systemFontOfSize:16];
+    _timeLab.textColor = kTitleColor;
     [self addSubview:_timeLab];
     _hostTeamLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 20, 20)];
     _hostTeamLab.left = _timeLab.right + 50;
@@ -62,9 +64,9 @@
     _awayTeamLab.centerY = _timeLab.centerY;
     [self addSubview:_awayTeamLab];
     
-    _timeLab.font = [UIFont systemFontOfSize:8];
-    _hostTeamLab.font = [UIFont systemFontOfSize:11];
-    _awayTeamLab.font = [UIFont systemFontOfSize:11];
+    _timeLab.font = [UIFont systemFontOfSize:10];
+    _hostTeamLab.font = [UIFont systemFontOfSize:10];
+    _awayTeamLab.font = [UIFont systemFontOfSize:10];
 }
 
 -(void)setModel:(CenterSwitchModel *)model{
@@ -77,14 +79,19 @@
     
     [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.awayTeam[@"teamInfo"][@"flag"]]]];
     _timeLab.text = dataStr;
-    [_timeLab sizeToFit];
     _hostTeamLab.text = model.hostTeam[@"teamInfo"][@"name"];
+    _awayTeamLab.text = model.awayTeam[@"teamInfo"][@"name"];
+    [self resetLabFrame];
+}
+-(void)resetLabFrame{
+    [_timeLab sizeToFit];
     [_hostTeamLab sizeToFit];
     _hostTeamLab.right = _hostTeamFlagView.left-17;
-    _awayTeamLab.text = model.awayTeam[@"teamInfo"][@"name"];
     [_awayTeamLab sizeToFit];
+    _timeLab.centerY= _hostTeamFlagView.centerY;
+    _hostTeamLab.centerY = _hostTeamFlagView.centerY;
+    _awayTeamLab.centerY = _hostTeamFlagView.centerY;
 }
-
 - (NSString *)extractDateToTime:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.timeZone = [NSTimeZone systemTimeZone];

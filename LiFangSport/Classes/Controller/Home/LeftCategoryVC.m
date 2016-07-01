@@ -25,6 +25,7 @@
 #import "SimulationCenterVC.h"
 #import <RESideMenu.h>
 #import "LFNavigationController.h"
+#import "SelectRootViewController.h"
 
 @interface LeftCategoryVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableView;
@@ -59,6 +60,14 @@
         NSDictionary *notidic = [NSDictionary dictionaryWithObjectsAndKeys:model.KID, @"khomeKidNotiFicationStr", model.name, @"title", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:khomeKidNotiFicationStr object:nil userInfo:notidic];
     }
+    if (_dataArray.count > 0) {//重设主页面
+    HomeLeftCategModel *model = _dataArray[0];
+    if([model.page isEqualToString:@"medialist_page"]){
+        MediaCenterVC *mvc = [[MediaCenterVC alloc]init];
+    APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:mvc WithLeftVC:self];
+     }
+    }
+
 }
 -(void)createTableview{
     _kTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 550) style:UITableViewStylePlain];

@@ -18,5 +18,6 @@
 @property(nonatomic, copy)NSString<Optional> *fifaTopANum;
 @property(nonatomic, copy)NSString<Optional> *sinceInternational;
 @property(nonatomic, copy)NSString<Optional> *topLeagueNum;
+@property(nonatomic, copy)NSString<Optional> *refefeeId;
 
 @end

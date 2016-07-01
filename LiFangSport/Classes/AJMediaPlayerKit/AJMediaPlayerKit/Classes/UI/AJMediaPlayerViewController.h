@@ -277,13 +277,14 @@ IB_DESIGNABLE
 //  初始化为全屏
 - (void)initialShowFullScreen;
 
-//  全屏
-- (void)refreshFullScreenModel;
+//  播放结束时显示ControlBar
+- (void)showPlaybackControlsWhenPlayEnd;
 
-- (void)showPlaybackControls;
-
-//  隐藏
+//  隐藏PlayerControlBar
 - (void)hideMediaPlayerControlBar;
+
+//  显示快进、快退
+- (void)showFastControl;
 
 @end
 

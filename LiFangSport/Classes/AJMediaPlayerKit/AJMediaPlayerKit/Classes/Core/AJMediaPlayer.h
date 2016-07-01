@@ -288,6 +288,13 @@ extern NSString * const AJVideoPlayerItemReadyToPlayNofiticationName;
  */
 -(void)invalidate;
 
+/**
+ *  播放器移动到某时间点播放 For 培训视频
+ *
+ *  @param time 移动到的时间点
+ */
+- (void)seekToTimeForLearning:(NSTimeInterval)time;
+
 @end
 
 @interface AJMediaPlayer ()

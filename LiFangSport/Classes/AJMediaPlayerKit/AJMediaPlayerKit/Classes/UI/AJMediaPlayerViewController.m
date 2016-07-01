@@ -53,6 +53,8 @@
     id schedulingResult;
     BOOL isAirPlayReceviedPlayToEnd;
     BOOL _ignoreMoveSchedule;   //  忽略手势快进和后退
+    
+    UIView *_fastView;  //  快进、快退View
 }
 
 @property(nonatomic, strong) dispatch_queue_t Q;
@@ -1829,12 +1831,6 @@
     }
 }
 
-- (void)hideMediaPlayerControlBar
-{
-    _ignoreMoveSchedule = YES;
-    self.mediaPlayerControlBar.alpha = 0;
-}
-
 - (void)setShouldHidePlayerControls:(BOOL)shouldHide {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -1863,8 +1859,11 @@
             }
         }
         if (weakSelf.mediaPlayerControlBar.isFullScreen) {
+            _fastView.hidden = !shouldHide;
             [[UIApplication sharedApplication] setStatusBarHidden:shouldHide withAnimation:NO];
-            weakSelf.backButton.hidden = shouldHide;
+            if (self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentFinished) {
+                weakSelf.backButton.hidden = shouldHide;
+            }
             if (shouldHide) {
                 weakSelf.soundControlView.hidden = YES;
                 [weakSelf.mediaPlayerControlBar updateVolume:weakSelf.soundControlView.slider.value isHidden:weakSelf.soundControlView.hidden];
@@ -2348,14 +2347,6 @@
 
 - (void)updateSoundSlideValue {
     isSoundSlideChangeValue = NO;
-}
-
-//  初始化为全屏
-- (void)initialShowFullScreen
-{
-    _mediaPlayerControlBar.isFullScreen = YES;
-    [self showFullScreen];
-    [self transitionToFullScreenModel:YES];
 }
 
 - (void)showFullScreen {
@@ -3036,6 +3027,75 @@
     [self dismissViewControllerAnimated:YES completion:^{
         self.isMailViewControler = NO;
     }];
+}
+
+#pragma mark - LF
+//  初始化为全屏
+- (void)initialShowFullScreen
+{
+    _mediaPlayerControlBar.isFullScreen = YES;
+    [self showFullScreen];
+    [self transitionToFullScreenModel:YES];
+}
+
+//  播放结束时显示ControlBar
+- (void)showPlaybackControlsWhenPlayEnd
+{
+    [self setShouldHidePlayerControls:NO];
+}
+
+//  隐藏PlayerControlBar
+- (void)hideMediaPlayerControlBar
+{
+    _ignoreMoveSchedule = YES;
+    self.mediaPlayerControlBar.alpha = 0;
+}
+
+//  显示快进、快退
+- (void)showFastControl
+{
+    _fastView = [UIView new];
+    [self.mediaPlayerView addSubview:_fastView];
+    [_fastView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_mediaPlayerView);
+        make.left.equalTo(_mediaPlayerView.mas_left).offset(40);
+        make.width.equalTo(@50);
+        make.height.equalTo(@125);
+    }];
+    
+    UIButton *forwardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [forwardBtn setImage:[UIImage imageNamed:@"fastForward"] forState:UIControlStateNormal];
+    [forwardBtn addTarget:self action:@selector(forwardBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [_fastView addSubview:forwardBtn];
+    [forwardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.equalTo(_fastView);
+        make.width.and.height.equalTo(@50);
+    }];
+    
+    UIButton *reverseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reverseBtn setImage:[UIImage imageNamed:@"fastReverse"] forState:UIControlStateNormal];
+    [reverseBtn addTarget:self action:@selector(reverseBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [_fastView addSubview:reverseBtn];
+    [reverseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.and.left.equalTo(_fastView);
+        make.width.and.height.equalTo(forwardBtn);
+    }];
+    
+    _fastView.hidden = YES;
+}
+
+- (void)forwardBtnTouched:(id)sender
+{
+    _isManMadePause = YES;
+    [self pause];
+    [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] + 0.035];
+}
+
+- (void)reverseBtnTouched:(id)sender
+{
+    _isManMadePause = YES;
+    [self pause];
+    [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] - 0.035];
 }
 
 @end

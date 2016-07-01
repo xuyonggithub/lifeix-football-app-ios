@@ -70,6 +70,7 @@
     }];
     [self addChildViewController:self.mediaPlayerViewController];
     [_mediaPlayerViewController initialShowFullScreen];//全屏
+    [self.mediaPlayerViewController showFastControl];
 
     _currentPlayVideoIndex = [_videoIdsArr indexOfObject:_videoId];;
     [self requestSingleVideoInfoWith:_videoId];
@@ -138,7 +139,7 @@
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
 {
-
+    [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
 }
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
     [self.navigationController popViewControllerAnimated:YES];

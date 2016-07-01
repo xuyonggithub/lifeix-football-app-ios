@@ -349,6 +349,33 @@ static dispatch_queue_t mediaplayer_processing_queue() {
     }
 }
 
+#pragma mark - LF
+- (void)seekToTimeForLearning:(NSTimeInterval)time
+{
+    self.currentPlayState = AJMediaPlayerStateContentSeeking;
+    NSTimeInterval totalTime = [self currentItemDuration];
+    if (time == -1 || ((time + 0.035) >= totalTime && time != 0 && totalTime != 0)) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayer:didChangeStateFrom:to:)]) {
+            [self.delegate mediaPlayer:self didChangeStateFrom:self.currentPlayState to:AJMediaPlayerStateContentFinished];
+            self.currentPlayState = AJMediaPlayerStateContentFinished;
+        }
+    } else {
+        __weak typeof(self) weakSelf = self;
+        [self.videoPlayer seekToTimeInSeconds:time completionHandler:^(BOOL finished) {
+            if ([weakSelf.delegate respondsToSelector:@selector(mediaPlayer:didChangeStateFrom:to:)]) {
+                AJMediaPlayerState currentState = finished ? AJMediaPlayerStateContentPlaying : AJMediaPlayerStateContentBuffering;
+                [weakSelf.delegate mediaPlayer:weakSelf didChangeStateFrom:AJMediaPlayerStateContentSeeking to:currentState];
+                if (finished) {
+                    [weakSelf submitBigdataForPlayerDidSeekToPlay];
+                }
+            }
+        }];
+    }
+//    if (self.currentPlayState == AJMediaPlayerStateContentPaused || self.currentPlayState == AJMediaPlayerStateContentFinished) {
+//        [self play];
+//    }
+}
+
 #pragma mark - Get Basic Parameter Report to CDN
 
 - (NSString *)fetchBasicUrlWithMetadata:(AJMediaPlayerItem *)schedulingMetadata {

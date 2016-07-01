@@ -12,6 +12,7 @@
 #import "UIBarButtonItem+SimAdditions.h"
 #import "UMSocial.h"
 #import "UMSocialSnsData.h"
+#import "CommonLoading.h"
 
 const CGFloat topViewH = 180;
 @interface MediaDetailVC ()<UIWebViewDelegate>
@@ -30,6 +31,7 @@ const CGFloat topViewH = 180;
 @property(nonatomic, assign)int likeNum;
 @property(nonatomic, assign)int unLikeNum;
 @property(nonatomic, assign)BOOL isClick;
+@property(nonatomic, assign)BOOL isLike;
 @end
 
 @implementation MediaDetailVC
@@ -79,6 +81,11 @@ const CGFloat topViewH = 180;
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"data = %@", jsonDict);
         NSDictionary *dic = jsonDict;
+        if(![[dic objectForKey:@"like"] isEqual:[NSNull null]]){
+            self.isLike = [[dic objectForKey:@"like"] boolValue];
+        }else{
+            self.isLike = nil;
+        }
         int like = [[dic objectForKey:@"likeNum"] intValue];
         int unLike = [[dic objectForKey:@"unlikeNum"] intValue];
         self.likeNum = like;
@@ -100,6 +107,14 @@ const CGFloat topViewH = 180;
 -(void)likeBtnClicked{
     NSLog(@"like");
     if(_isClick == YES){
+        [CommonLoading showTips:@"重复操作"];
+        return;
+    }else if (self.isLike != nil){
+        if(_isLike == YES){
+            [CommonLoading showTips:@"不能重复点赞"];
+        }else{
+            [CommonLoading showTips:@"重复操作"];
+        }
         return;
     };
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@1};
@@ -115,6 +130,14 @@ const CGFloat topViewH = 180;
 -(void)unLikeBtnClicked{
     NSLog(@"unLike");
     if(_isClick == YES){
+        [CommonLoading showTips:@"重复操作"];
+        return;
+    }else if (_isLike != nil){
+        if(_isLike == YES){
+            [CommonLoading showTips:@"重复操作"];
+        }else{
+            [CommonLoading showTips:@"不能重复点踩"];
+        }
         return;
     };
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@0};

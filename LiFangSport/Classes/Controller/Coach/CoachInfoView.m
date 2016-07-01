@@ -36,7 +36,12 @@
         [self addSubview:self.nameLabel];
         
         // 点赞
-        
+        self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 50 - _nameLabel.height, _nameLabel.top, _nameLabel.height + 50, _nameLabel.height);
+        [_likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
+        [_likeBtn setTitleColor:HEXRGBCOLOR(0xdddddd) forState:UIControlStateNormal];
+        [_likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_likeBtn];
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"出生地", @"角色", @"俱乐部", nil];
         NSArray *valueArr = [NSArray arrayWithObjects:birday, birthplace, part, club, nil];
@@ -63,6 +68,10 @@
         }
     }
     return self;
+}
+
+-(void)likeBtnClicked:(UIButton *)btn{
+    [_delegate likeBtnClicked:btn];
 }
 
 @end

@@ -14,7 +14,7 @@
 #import "PopViewKit.h"
 #import "LearningPlayPopView.h"
 #import "CommonLoading.h"
-
+#import "VideoLearningUnitModel.h"
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
     BOOL _isFullScreen;
@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSArray *videoInfoArr;
 @property(nonatomic,strong)LearningPlayControlView *ctrView;
 @property(nonatomic,strong)UIButton *nextBtn;
+@property(nonatomic,strong)NSMutableArray *videoIdsArr;
 
 @end
 
@@ -55,6 +56,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _videoInfoArr = [NSArray array];
+    _videoIdsArr = [NSMutableArray array];
+    for (VideoLearningUnitModel *mod in _videosArr) {
+        NSString *str = [NSString stringWithFormat:@"%@",mod.videos[0][@"id"]];
+        [_videoIdsArr addObject:str];
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     DefineWeak(self);
     //  播放器界面
@@ -274,11 +280,27 @@
     if (_currentPlayVideoIndex<_videoIdsArr.count) {
         NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
         [self requestSingleVideoInfoWith:videoid];
+    }else if(_currentPlayVideoIndex>=_videoIdsArr.count && _videoIdsArr.count<=_pageCount){
+    //请求下一组数据
+        // http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
+        _currentIndex ++;
+        [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@%@%zd",kvideoListPath,_videoId,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+            [self dealWithJason:jsonDict];
+            
+        } failure:^(CommonRequest *request, NSError *error) {
+            
+        }];
+        
     }else{
         [CommonLoading showTips:@"没有更多视频了"];
     }
 }
+//超出原有数组的下一个数据处理
+-(void)dealWithJason:(id )dic{
+    NSArray *dataList = [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
+//    [self requestSingleVideoInfoWith:videoid];
 
+}
 -(void)dealloc{
     [self resignFullScreen];
 }

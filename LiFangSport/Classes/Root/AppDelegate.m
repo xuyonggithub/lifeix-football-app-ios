@@ -114,5 +114,9 @@
     }
     return result;
 }
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"noti:%@",notification);
+
+}
 
 @end

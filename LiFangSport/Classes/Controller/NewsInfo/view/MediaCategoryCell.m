@@ -16,16 +16,16 @@
     if (self) {
 //        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
-        self.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
+        self.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0xae141c);
         [self createSubviews];
     }
     return self;
 }
 
 -(void)createSubviews{
-    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, 80, 44)];
+    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(60, 0, 140, 40)];
     _titleLab.textColor = HEXRGBCOLOR(0x929292);
-    _titleLab.font = [UIFont systemFontOfSize:19];
+    _titleLab.font = [UIFont systemFontOfSize:13];
     _titleLab.textAlignment = NSTextAlignmentLeft;
     _titleLab.centerY = self.centerY;
     [self addSubview:_titleLab];

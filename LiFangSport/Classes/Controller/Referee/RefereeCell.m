@@ -14,29 +14,60 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
-        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 120, 170)];
+        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 110, 130)];
         self.bgImgView.userInteractionEnabled = YES;
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 160, 120, 20)];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 130, 110, 20)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.textColor = [UIColor whiteColor];
-        self.titleLabel.font = [UIFont systemFontOfSize:13];
+        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);
+        self.titleLabel.font = [UIFont systemFontOfSize:8];
         self.titleLabel.backgroundColor = [UIColor blackColor];
         self.titleLabel.alpha = 0.8;
         [self addSubview:self.bgImgView];
         [self addSubview:self.titleLabel];
         
-        //右侧数据栏
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, 15, SCREEN_WIDTH - 145, 20)];
-        self.nameLabel.font = [UIFont systemFontOfSize:13];
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 45, SCREEN_WIDTH - 135, 17.5/2)];
+        self.nameLabel.font = [UIFont systemFontOfSize:10];
         self.nameLabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.nameLabel];
         
-        self.birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, _nameLabel.bottom + 8, _nameLabel.width, 20)];
+        self.birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _nameLabel.bottom + 15, _nameLabel.width, 17.5/2)];
+        self.birthdayLabel.font = [UIFont systemFontOfSize:10];
+        self.birthdayLabel.textColor = HEXRGBCOLOR(0x343433);
+        [self addSubview:self.birthdayLabel];
+        
+        self.associationLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _birthdayLabel.bottom + 15, (SCREEN_WIDTH - 135)/2, 17.5/2)];
+        self.associationLabel.font = [UIFont systemFontOfSize:10];
+        self.associationLabel.textColor = HEXRGBCOLOR(0x343433);
+        [self addSubview:self.associationLabel];
+        
+        self.topALabel = [[UILabel alloc] initWithFrame:CGRectMake(self.associationLabel.right, _birthdayLabel.bottom + 15, _associationLabel.width, 17.5/2)];
+        self.topALabel.font = [UIFont systemFontOfSize:10];
+        self.topALabel.textColor = HEXRGBCOLOR(0x343433);
+        [self addSubview:self.topALabel];
+        
+        self.FIFAYearLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _topALabel.bottom + 15, _topALabel.width, 17.5/2)];
+        self.FIFAYearLabel.font = [UIFont systemFontOfSize:10];
+        self.FIFAYearLabel.textColor = HEXRGBCOLOR(0x343433);
+        [self addSubview:self.FIFAYearLabel];
+        
+        self.topLeagueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.FIFAYearLabel.right, _topALabel.bottom + 15, _topALabel.width, 17.5/2)];
+        self.topLeagueLabel.font = [UIFont systemFontOfSize:10];
+        self.topLeagueLabel.textColor = HEXRGBCOLOR(0x343433);
+        [self addSubview:self.topLeagueLabel];
+        
+        /*
+        //右侧数据栏
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 45, SCREEN_WIDTH - 135, 17.5)];
+        self.nameLabel.font = [UIFont systemFontOfSize:10];
+        self.nameLabel.textColor = HEXRGBCOLOR(0x343433);
+        [self addSubview:self.nameLabel];
+        
+        self.birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _nameLabel.bottom + 15, _nameLabel.width, 10)];
         self.birthdayLabel.font = [UIFont systemFontOfSize:13];
         self.birthdayLabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.birthdayLabel];
         
-        self.associationLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, _birthdayLabel.bottom + 8, SCREEN_WIDTH - 155, 20)];
+        self.associationLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _birthdayLabel.bottom + 8, SCREEN_WIDTH - 155, 20)];
         self.associationLabel.font = [UIFont systemFontOfSize:13];
         self.associationLabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.associationLabel];
@@ -46,15 +77,16 @@
         self.topALabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.topALabel];
         
-        self.FIFAYearLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, _topALabel.bottom + 8, _topALabel.width, 20)];
+        self.FIFAYearLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _topALabel.bottom + 8, _topALabel.width, 20)];
         self.FIFAYearLabel.font = [UIFont systemFontOfSize:13];
         self.FIFAYearLabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.FIFAYearLabel];
         
-        self.topLeagueLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, _FIFAYearLabel.bottom + 8, _topALabel.width, 20)];
+        self.topLeagueLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _FIFAYearLabel.bottom + 8, _topALabel.width, 20)];
         self.topLeagueLabel.font = [UIFont systemFontOfSize:13];
         self.topLeagueLabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.topLeagueLabel];
+         */
     }
     return self;
 }

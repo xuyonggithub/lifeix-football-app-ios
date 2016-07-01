@@ -13,15 +13,15 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
-        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, SCREEN_WIDTH - 10, SCREEN_WIDTH/2-5)];
+        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(25/2, 10, SCREEN_WIDTH - 25, 350/2)];
         self.bgImgView.userInteractionEnabled = YES;
         [self addSubview:self.bgImgView];
         
-        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH/2 - 30, self.bgImgView.frame.size.width, 25)];
+        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 350/2 - 35, self.bgImgView.width, 35)];
         titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH - 50, 25)];
-        self.titleLabel.font = kBasicSmallTitleFont;
-        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, titleBgView.width - 20, 25)];
+        self.titleLabel.font = [UIFont systemFontOfSize:12];
+        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);
         [titleBgView addSubview:self.titleLabel];
         [self.bgImgView addSubview:titleBgView];
         

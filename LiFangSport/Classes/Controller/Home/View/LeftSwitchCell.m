@@ -59,11 +59,11 @@
     _awayTeamFlagView.top = _hostTeamFlagView.top;
     _awayTeamFlagView.right = kScreenWidth-40;
     
-    _likeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 20)];
+    _likeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     _likeView.centerY = _hostTeamFlagView.centerY;
     _likeView.centerX = kScreenWidth/2;
     [self addSubview:_likeView];
-    _likeView.image = UIImageNamed(@"VSicon");
+    _likeView.image = UIImageNamed(@"guanzhu02");
     _likeView.userInteractionEnabled = YES;
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(likeGame:)];
     [_likeView addGestureRecognizer:gestureRecognizer];
@@ -86,7 +86,7 @@
     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
     NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",model.KID,model.startDate,model.position,model.stage]];
     if (index) {
-        _likeView.image = UIImageNamed(@"good");
+        _likeView.image = UIImageNamed(@"guanzhu01");
     }
     
     NSString *ss = _leftSubtitlePrifxStr?_leftSubtitlePrifxStr:@"世预赛";

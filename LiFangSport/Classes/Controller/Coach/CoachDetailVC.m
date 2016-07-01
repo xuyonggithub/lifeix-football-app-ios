@@ -35,18 +35,25 @@
 -(void)dealWithDic:(id)dic{
     NSDictionary *dict = dic;
     NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    NSArray *keys = [dict allKeys];
+    NSString *club;
+    if([keys containsObject:@"company"]){
+        club = [dict objectForKey:@"company"];
+    }else{
+        club = @"-";
+    }
     
-    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 190) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:[[dict objectForKey:@"team"] objectForKey:@"position"] andClub:[dict objectForKey:@"company"]];
+    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 150) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:[[dict objectForKey:@"team"] objectForKey:@"position"] andClub:club];
     [self.view addSubview:coachView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom + 5, 200, 44)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom, 200, 100/3)];
     label.text = @"执教生涯";
-    label.font = [UIFont systemFontOfSize:14];
-    label.textColor = kBlackColor;
+    label.font = [UIFont systemFontOfSize:10];
+    label.textColor = HEXRGBCOLOR(0x5f5f5f);
     [self.view addSubview:label];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 5, SCREEN_WIDTH, 1)];
-    lineView.backgroundColor = HEXRGBCOLOR(0x989898);
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
     [self.view addSubview:lineView];
     
     

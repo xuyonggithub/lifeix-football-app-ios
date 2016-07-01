@@ -15,30 +15,29 @@
 
 @property(nonatomic, retain)NSMutableArray *dataArr;
 @property(nonatomic, retain)UITableView *tableView;
-
+@property(nonatomic, retain)NSIndexPath *lastSelected;
 @end
 
 @implementation MediaCatePopView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        self.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
-//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+        self.backgroundColor = RGBCOLOR(240, 241, 242);
         CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
         CGFloat barHeight = statusBarHeight - self.frame.origin.y;
-        self.tableView.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
-        [self.tableView setSeparatorColor:HEXRGBCOLOR(0xdbdbdb)];
+        self.tableView.backgroundColor = RGBCOLOR(240, 241, 242);
+        [self.tableView setSeparatorColor:HEXRGBCOLOR(0xdcdcdc)];
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, barHeight, self.width, self.height - barHeight) style:UITableViewStylePlain];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         [self.tableView registerClass:[MediaCategoryCell class] forCellReuseIdentifier:@"cell"];
         self.dataArr = [NSMutableArray array];
-        UIView *headerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 44)];
-        UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 150, 44)];
+        UIView *headerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 40)];
+        UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 140, 40)];
         [headerV addSubview: headerView];
-        headerView.font = [UIFont systemFontOfSize:19];
+        headerView.font = [UIFont systemFontOfSize:11];
         headerView.text = @"资讯的分类";
-        headerView.centerY = 22;
+        headerView.centerY = 20;
         headerView.textColor = HEXRGBCOLOR(0x929292);
         self.tableView.tableHeaderView = headerV;
         [self addSubview:self.tableView];
@@ -75,17 +74,27 @@
         NSDictionary *dic = [self.dataArr objectAtIndex:indexPath.row - 1];
         cell.titleLab.text = [dic objectForKey:@"name"];
     }
+//    cell.backgroundColor = RGBCOLOR(240, 241, 242);
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
+    cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0xae141c);
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 40;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(_lastSelected != nil){
+        MediaCategoryCell *cell = [tableView cellForRowAtIndexPath:_lastSelected];
+        cell.backgroundColor = HEXRGBCOLOR(0xffffff);
+        cell.titleLab.textColor = HEXRGBCOLOR(0x929292);
+    }
+    MediaCategoryCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = HEXRGBCOLOR(0xae141c);
+    cell.titleLab.textColor = HEXRGBCOLOR(0xffffff);
+    _lastSelected = indexPath;
     if(indexPath.row == 0){
         [self.delegate popViewDidSelectCategory:nil andName:@"全部"];
     }else{

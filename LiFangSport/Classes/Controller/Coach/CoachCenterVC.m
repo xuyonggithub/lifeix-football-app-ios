@@ -82,19 +82,18 @@
 
 -(void)addCoachCategoryView{
     DefineWeak(self);
-    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 44) category:self.topNameArr];
+    _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 32) category:self.topNameArr];
     _CategoryView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
     [self.view addSubview:_CategoryView];
-    //    _CategoryView.backgroundColor = kwhiteColor;
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 118, SCREEN_WIDTH, 1)];
-    lineView.backgroundColor = HEXRGBCOLOR(0xe4e3e6);
-    [self.view addSubview:lineView];
+//    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 1)];
+//    lineView.backgroundColor = HEXRGBCOLOR(0xe4e3e6);
+//    [self.view addSubview:lineView];
     
     if(_coachView == nil){
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        _coachView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 119, SCREEN_WIDTH, SCREEN_HEIGHT - 119) collectionViewLayout:flowLayout];
+        _coachView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 98, SCREEN_WIDTH, SCREEN_HEIGHT - 98) collectionViewLayout:flowLayout];
         _coachView.delegate = self;
         _coachView.dataSource = self;
         _coachView.backgroundColor = kwhiteColor;
@@ -142,11 +141,11 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderReuseId forIndexPath:indexPath];
-    headerView.backgroundColor = HEXRGBCOLOR(0xf0f0f0);
+    headerView.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
     UILabel *sectionLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
-    sectionLabel.backgroundColor = HEXRGBCOLOR(0xf0f0f0);
+    sectionLabel.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
     sectionLabel.tintColor = HEXRGBCOLOR(0x666666);
-    sectionLabel.font = kBasicSmallTitleFont;
+    sectionLabel.font = kBasicBigDetailTitleFont;
     sectionLabel.textAlignment = NSTextAlignmentCenter;
     sectionLabel.text = self.selectedTitleArr[indexPath.section];
     [headerView addSubview:sectionLabel];
@@ -157,17 +156,17 @@
 #pragma mark --UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((SCREEN_WIDTH - 40) / 3,(SCREEN_WIDTH - 40) / 9 * 4);
+    return CGSizeMake((SCREEN_WIDTH - 48) / 3, 130);
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10,10,10,10);
+    return UIEdgeInsetsMake(12, 12, 12, 12);
 }
 
 // 区头高度
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(SCREEN_WIDTH, 44);
+    return CGSizeMake(SCREEN_WIDTH, 30);
 }
 
 #pragma mark --UICollectionViewDelegate

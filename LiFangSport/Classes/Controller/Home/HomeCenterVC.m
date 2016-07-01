@@ -284,19 +284,21 @@
         cell.likeBC = ^(void){
         NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
         NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
+            NSString *notiId = [NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage];
         if (index) {
             Weak(cell).likeView.image = UIImageNamed(@"guanzhu02");
             [userDefaults removeObjectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
             [CommonLoading showTips:@"您已取消该比赛提醒"];
-            [LocalNotiPush cancelLocalNotificationWithNotiID:index];
+            [LocalNotiPush cancelLocalNotificationWithNotiID:notiId];
         }else{
             [userDefaults setObject:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage] forKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
             [userDefaults synchronize];
             Weak(cell).likeView.image = UIImageNamed(@"guanzhu01");
             [CommonLoading showTips:@"您已增加该比赛提醒"];
             NSTimeInterval timeIN=(NSTimeInterval)[kmodel.startTime integerValue];
-            NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
-            [LocalNotiPush registerLocalNotification:timeData WithalertBody:[NSString stringWithFormat:@"%@和%@%@",kmodel.hostTeam[@"teamInfo"][@"name"],kmodel.awayTeam[@"teamInfo"][@"name"],@"比赛已经开始了"] WithNotiID:index];
+            NSDate * fireDate=[NSDate dateWithTimeIntervalSince1970:timeIN];
+//            NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:5];//测试
+            [LocalNotiPush registerLocalNotification:fireDate WithalertBody:[NSString stringWithFormat:@"%@ 和 %@%@",kmodel.hostTeam[@"teamInfo"][@"name"],kmodel.awayTeam[@"teamInfo"][@"name"],@"的比赛已经开始了"] WithNotiID:notiId];
         }
     };
         return cell;

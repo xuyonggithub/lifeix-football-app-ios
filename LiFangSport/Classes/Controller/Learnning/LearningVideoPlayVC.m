@@ -31,6 +31,7 @@
 @property(nonatomic,strong)LearningPlayControlView *ctrView;
 @property(nonatomic,strong)UIButton *nextBtn;
 @property(nonatomic,strong)NSMutableArray *videoIdsArr;
+@property (nonatomic, strong) NSArray *updateNextVideoArr;//超出原有数组后请求的
 
 @end
 
@@ -73,10 +74,7 @@
 
     _currentPlayVideoIndex = [_videoIdsArr indexOfObject:_videoId];;
     [self requestSingleVideoInfoWith:_videoId];
-//    //操控
-//    [self.view addSubview:self.ctrView];
-//    //next
-//    [self.view addSubview:self.nextBtn];
+
 }
 
 -(void)requestSingleVideoInfoWith:(NSString *)videoStr{
@@ -93,7 +91,9 @@
     //操控
     [self.view addSubview:self.ctrView];
     //next
-    [self.view addSubview:self.nextBtn];
+    if (_currentPlayVideoIndex < _pageCount-1) {
+        [self.view addSubview:self.nextBtn];
+    }
 }
 
 #pragma mark - FullScreen
@@ -126,7 +126,7 @@
 - (void)toPlayWithAJMediaPlayerItem
 {
     VideoSingleInfoModel *currentModel = _videoInfoArr[0];
-    if (_currentPlayVideoIndex < _videoIdsArr.count) {
+    if (_currentPlayVideoIndex < _pageCount) {//_videoIdsArr.count
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
         AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:currentModel.videoPath type:AJMediaPlayerVODStreamItem name:@"培训视频" uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
@@ -181,25 +181,37 @@
 
 - (LearningPlayControlView *)ctrView
 {
-    if (!_ctrView) {
+    if (_ctrView) {
+        _ctrView = nil;
+    }
         VideoSingleInfoModel *model = [[VideoSingleInfoModel alloc]init];
-        model = _videoInfoArr[0];
-        _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175) WithModel:model];
-        _ctrView.userInteractionEnabled = YES;
-        _ctrView.right = kScreenWidth;
-        _ctrView.centerY = kScreenHeight/2;
+    if (!_videoInfoArr) {
+        return nil;
     }
-    VideoSingleInfoModel *model = [[VideoSingleInfoModel alloc]init];
-    if (_videoInfoArr) {
-        model = _videoInfoArr[0];
-    }
+    model = _videoInfoArr[0];
+    _ctrView = [[LearningPlayControlView alloc]initWithFrame:CGRectMake(0, 200, 120, 175) WithModel:model];
+    _ctrView.userInteractionEnabled = YES;
+    _ctrView.right = kScreenWidth;
+    _ctrView.centerY = kScreenHeight/2;
+
     DefineWeak(self);
     DefineWeak(_videoIdsArr);
     DefineWeak(_currentPlayVideoIndex);
     _ctrView.replayBlock = ^(void){
-        if (_currentPlayVideoIndex<_videoIdsArr.count) {
-            NSString *videoid = [NSString stringWithFormat:@"%@",Weak(_videoIdsArr)[Weak(_currentPlayVideoIndex)]];
-            [Weak(self) requestSingleVideoInfoWith:videoid];
+//        if (_currentPlayVideoIndex<_videoIdsArr.count) {
+//            NSString *videoid = [NSString stringWithFormat:@"%@",Weak(_videoIdsArr)[Weak(_currentPlayVideoIndex)]];
+//            [Weak(self) requestSingleVideoInfoWith:videoid];
+//        }else {
+//            VideoLearningUnitModel *nmodel = Weak(self).updateNextVideoArr[0];
+//            [Weak(self) requestSingleVideoInfoWith:nmodel.videos[0][@"id"]];
+//        }
+        if (Weak(self).videoInfoArr) {
+            [Weak(self) toPlayWithAJMediaPlayerItem];
+//            [Weak(self).view bringSubviewToFront:Weak(self).ctrView];
+            //操控
+            [Weak(self).view addSubview:Weak(self).ctrView];
+            //next
+            [Weak(self).view addSubview:Weak(self).nextBtn];
         }
     };
     if (!popKit) {
@@ -284,7 +296,7 @@
     //请求下一组数据
         // http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
         _currentIndex ++;
-        [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@%@%zd",kvideoListPath,_videoId,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [CommonRequest requstPath:[NSString stringWithFormat:@"%@/%@%@%zd",kvideoListPath,_categoryID,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
             [self dealWithJason:jsonDict];
             
         } failure:^(CommonRequest *request, NSError *error) {
@@ -297,8 +309,9 @@
 }
 //超出原有数组的下一个数据处理
 -(void)dealWithJason:(id )dic{
-    NSArray *dataList = [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
-//    [self requestSingleVideoInfoWith:videoid];
+    _updateNextVideoArr = [VideoLearningUnitModel modelDealDataFromWithDic:dic];
+    VideoLearningUnitModel *model = _updateNextVideoArr[0];
+    [self requestSingleVideoInfoWith:model.videos[0][@"id"]];
 
 }
 -(void)dealloc{

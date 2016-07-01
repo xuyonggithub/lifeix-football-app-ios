@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/VideoCenterVC.m"
-            timestampString = "488971202.545906"
+            filePath = "LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
+            timestampString = "489034654.782268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-dealWithJason:"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-dealWithSingleVideoData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,93 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiFangSport/Classes/Controller/Learnning/VideoLearningDetVC.m"
-            timestampString = "488977418.368721"
+            timestampString = "489035043.777151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-            timestampString = "488977418.368721"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "-nextPlay"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-            timestampString = "488977597.777137"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "-nextPlay"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-            timestampString = "488977657.439238"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
-            landmarkName = "-nextPlay"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LearningVideoPlayVC nextPlay]"
-                  moduleName = "LiFangSport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhangyi/Desktop/lifeix-football-app-ios/LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-                  timestampString = "489028844.63784"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "287"
-                  endingLineNumber = "287"
-                  offsetFromSymbolStart = "481">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__31-[LearningVideoPlayVC nextPlay]_block_invoke"
-                  moduleName = "LiFangSport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhangyi/Desktop/lifeix-football-app-ios/LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-                  timestampString = "489028844.637997"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "287"
-                  endingLineNumber = "287"
-                  offsetFromSymbolStart = "61">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

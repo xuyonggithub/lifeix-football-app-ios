@@ -14,4 +14,6 @@
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,strong)NSArray<Optional> *videos;
 
++(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic;
+
 @end

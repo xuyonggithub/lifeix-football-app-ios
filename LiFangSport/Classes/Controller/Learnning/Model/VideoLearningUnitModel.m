@@ -17,4 +17,16 @@
     }
     return self;
 }
+
++(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic{
+    
+    VideoLearningUnitModel *model = [[VideoLearningUnitModel alloc]init];
+    model.KID = dic[@"id"];
+    model.title = dic[@"title"];
+    model.type = [dic[@"type"] integerValue];
+    model.videos = dic[@"videos"];
+
+    NSArray *arr = [NSArray arrayWithObject:model];
+    return arr;
+}
 @end

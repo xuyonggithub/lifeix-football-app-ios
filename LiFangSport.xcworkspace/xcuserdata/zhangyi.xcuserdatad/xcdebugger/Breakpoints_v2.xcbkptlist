@@ -49,38 +49,6 @@
             endingLineNumber = "288"
             landmarkName = "-nextPlay"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__31-[LearningVideoPlayVC nextPlay]_block_invoke"
-                  moduleName = "LiFangSport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhangyi/Desktop/lifeix-football-app-ios/LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-                  timestampString = "488977419.498603"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "290"
-                  endingLineNumber = "290"
-                  offsetFromSymbolStart = "77">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__31-[LearningVideoPlayVC nextPlay]_block_invoke_2"
-                  moduleName = "LiFangSport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhangyi/Desktop/lifeix-football-app-ios/LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-                  timestampString = "488977419.498935"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "290"
-                  endingLineNumber = "290"
-                  offsetFromSymbolStart = "75">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,12 +90,12 @@
                   moduleName = "LiFangSport"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangyi/Desktop/lifeix-football-app-ios/LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-                  timestampString = "488977657.441736"
+                  timestampString = "489028844.63784"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "287"
                   endingLineNumber = "287"
-                  offsetFromSymbolStart = "458">
+                  offsetFromSymbolStart = "481">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -137,12 +105,12 @@
                   moduleName = "LiFangSport"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangyi/Desktop/lifeix-football-app-ios/LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-                  timestampString = "488977657.441929"
+                  timestampString = "489028844.637997"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "287"
                   endingLineNumber = "287"
-                  offsetFromSymbolStart = "69">
+                  offsetFromSymbolStart = "61">
                </Location>
             </Locations>
          </BreakpointContent>

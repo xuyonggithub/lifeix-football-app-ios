@@ -1802,14 +1802,16 @@
 #pragma mark - Hidden Controls
 
 - (void)fireTimer {
-    [self invalidateTimer];
-    NSTimeInterval timeInterval = 6.0;
-    self.kTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
-                                                   target:self
-                                                 selector:@selector(hidePlaybackControls)
-                                                 userInfo:nil
-                                                  repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:_kTimer forMode:NSDefaultRunLoopMode];
+    if (self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentFinished) {
+        [self invalidateTimer];
+        NSTimeInterval timeInterval = 6.0;
+        self.kTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                       target:self
+                                                     selector:@selector(hidePlaybackControls)
+                                                     userInfo:nil
+                                                      repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:_kTimer forMode:NSDefaultRunLoopMode];
+    }
 }
 
 - (void)invalidateTimer {
@@ -1859,10 +1861,10 @@
             }
         }
         if (weakSelf.mediaPlayerControlBar.isFullScreen) {
-            _fastView.hidden = !shouldHide;
             [[UIApplication sharedApplication] setStatusBarHidden:shouldHide withAnimation:NO];
+            weakSelf.backButton.hidden = shouldHide;
             if (self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentFinished) {
-                weakSelf.backButton.hidden = shouldHide;
+                _fastView.hidden = !shouldHide;
             }
             if (shouldHide) {
                 weakSelf.soundControlView.hidden = YES;
@@ -2571,6 +2573,7 @@
 }
 
 - (void)mediaPlayer:(AJMediaPlayer *)mediaPlayer didVideoPlayToEnd:(AJMediaPlayerItem *)mediaPlayerItem {
+    _fastView.hidden = YES;
     [self invalidateTimer];
     if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayerViewController:videoDidPlayToEnd:)]) {
         if ([self isAirPlayActive]) {

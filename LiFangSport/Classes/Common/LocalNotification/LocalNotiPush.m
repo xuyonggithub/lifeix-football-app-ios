@@ -23,7 +23,7 @@
     // 通知内容
     notification.alertBody =  alertBodyStr;
     notification.alertAction =  @"滑动来查看";
-    notification.applicationIconBadgeNumber = 1;
+//    notification.applicationIconBadgeNumber = 1;
     // 通知被触发时播放的声音
     notification.soundName = UILocalNotificationDefaultSoundName;
     // 通知参数

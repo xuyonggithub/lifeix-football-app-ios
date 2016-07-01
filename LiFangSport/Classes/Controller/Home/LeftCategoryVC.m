@@ -67,7 +67,6 @@
     APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:mvc WithLeftVC:self];
      }
     }
-
 }
 -(void)createTableview{
     _kTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 550) style:UITableViewStylePlain];
@@ -131,7 +130,6 @@
             
             [self pushToController:[[SimulationCenterVC alloc]init]  andWithTitle:model.name];
         }
-    
     }
 }
 

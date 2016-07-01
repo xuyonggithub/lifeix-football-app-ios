@@ -18,6 +18,7 @@
 @property(nonatomic,strong)NSArray<LearningPlayPopDeciModel *> *r2;
 @property(nonatomic,strong)NSString<Optional> *rule;
 @property(nonatomic,strong)NSString<Optional> *videoPath;
+@property(nonatomic,strong)NSString<Optional> *title;
 
 +(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic;
 

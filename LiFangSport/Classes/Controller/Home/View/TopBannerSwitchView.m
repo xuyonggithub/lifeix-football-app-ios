@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     
     _leftBtn = [[SimButton alloc]initWithFrame:CGRectMake(0, 0, topBanner.width/3, topBanner.height)];
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:kbtnFont];
-    [_leftBtn setTitleColor:kBasicColor forState:UIControlStateNormal];
+    [_leftBtn setTitleColor:kDetailTitleColor forState:UIControlStateNormal];
     [_leftBtn setTitleColor:kDetailTitleColor forState:UIControlStateSelected];
     _leftBtn.selected = YES;
     _leftBtn.tag = SBT_Left;
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     [topBanner addSubview:_leftBtn];
     
     _leftLine = [[LineView alloc] initWithFrame:CGRectMake(3.5*10, _leftBtn.bottom - 3, _leftBtn.width - 7*10, 2)];
-    _leftLine.lineColor = kDetailTitleColor;
+    _leftLine.lineColor = kBasicColor;
     _leftLine.hidden = NO;
     [topBanner addSubview:_leftLine];
     
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     _centerBtn = [[SimButton alloc]initWithFrame:_leftBtn.bounds];
     _centerBtn.left = separateLine.right;
     _centerBtn.titleLabel.font = [UIFont systemFontOfSize:kbtnFont];
-    [_centerBtn setTitleColor:kBasicColor forState:UIControlStateNormal];
+    [_centerBtn setTitleColor:kDetailTitleColor forState:UIControlStateNormal];
     [_centerBtn setTitleColor:kDetailTitleColor forState:UIControlStateSelected];
     [_centerBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     _centerBtn.selected = NO;
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     
     _centerLine = [[LineView alloc] initWithFrame:CGRectMake(0, _centerBtn.bottom - 3, _centerBtn.width - 7*10, 2)];
     _centerLine.centerX = _centerBtn.centerX;
-    _centerLine.lineColor = kDetailTitleColor;
+    _centerLine.lineColor = kBasicColor;
     _centerLine.hidden = YES;
     [topBanner addSubview:_centerLine];
     
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     _rightBtn = [[SimButton alloc]initWithFrame:_leftBtn.bounds];
     _rightBtn.left = separateLine2.right;
     _rightBtn.titleLabel.font = [UIFont systemFontOfSize:kbtnFont];
-    [_rightBtn setTitleColor:kBasicColor forState:UIControlStateNormal];
+    [_rightBtn setTitleColor:kDetailTitleColor forState:UIControlStateNormal];
     [_rightBtn setTitleColor:kDetailTitleColor forState:UIControlStateSelected];
     [_rightBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     _rightBtn.selected = NO;
@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     
     _rightLine = [[LineView alloc] initWithFrame:CGRectMake(0, _rightBtn.bottom - 3, _rightBtn.width - 7*10, 2)];
     _rightLine.right = topBanner.right - 3.5*10;
-    _rightLine.lineColor = kDetailTitleColor;
+    _rightLine.lineColor = kBasicColor;
     _rightLine.hidden = YES;
     [topBanner addSubview:_rightLine];
     

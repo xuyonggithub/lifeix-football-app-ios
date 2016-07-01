@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiFangSport/Classes/Controller/Learnning/LearningVideoPlayVC.m"
-            timestampString = "489034654.782268"
+            timestampString = "489057034.926838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-dealWithSingleVideoData:"
             landmarkType = "5">
          </BreakpointContent>

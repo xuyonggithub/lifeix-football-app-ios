@@ -23,6 +23,7 @@
 
 //color
 #define kBasicColor                  HEXRGBCOLOR(0xfd675b)
+#define kTitleColor                  HEXRGBCOLOR(0x9a9a9a)
 #define kDetailTitleColor            HEXRGBCOLOR(0x5f5f5f)
 #define knavibarColor                HEXRGBACOLOR(0xce1126,1.0)
 #define kclearColor                  [UIColor clearColor]

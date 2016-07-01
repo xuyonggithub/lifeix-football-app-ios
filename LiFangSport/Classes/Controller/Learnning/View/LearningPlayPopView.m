@@ -14,6 +14,7 @@
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UIView *baseDecisionView;
 @property(nonatomic,strong)UITextView *textView;//UITextView *textView = [UITextView new];
+@property(nonatomic,strong)UIView *alphaBackView;
 
 @end
 
@@ -28,6 +29,11 @@
 }
 
 -(void)initSubViews{
+    _alphaBackView = [[UIView alloc]initWithFrame:self.bounds];
+    _alphaBackView.height = kScreenHeight - 110;
+    _alphaBackView.centerY = self.centerY;
+    _alphaBackView.backgroundColor = HEXRGBACOLOR(0xffffff,0.2);
+    [self addSubview:_alphaBackView];
     _closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(30, 0, 40, 40)];
     _closeBtn.top = 30;
     _closeBtn.right = self.width-30;
@@ -45,6 +51,7 @@
 }
 
 -(void)addSubviewOfDECISIONType:(VideoSingleInfoModel *)model {
+    _alphaBackView.hidden = NO;
     if (!_baseDecisionView) {
         _baseDecisionView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth-140, kScreenHeight)];
         _baseDecisionView.center = self.center;
@@ -275,10 +282,11 @@
 }
 
 -(void)addSubviewOfOtherType{
+    _alphaBackView.hidden = YES;
     if (!_textView) {
         _textView = [[UITextView alloc]init];
-        _textView.frame = CGRectMake(30, 0, kScreenWidth-180, kScreenHeight-100);
-        _textView.center = self.center;
+        _textView.frame = CGRectMake(0, 70, kScreenWidth-290, kScreenHeight-125);
+        _textView.centerX = self.centerX;
         _textView.backgroundColor = [UIColor clearColor];
         _textView.editable = NO;
         _textView.selectable = NO;

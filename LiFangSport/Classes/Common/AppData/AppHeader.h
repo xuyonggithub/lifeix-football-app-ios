@@ -9,6 +9,8 @@
 #ifndef AppHeader_h
 #define AppHeader_h
 #define ABOVE_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
+#define ABOVE_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
+
 //typedef NS_ENUM(NSInteger, RankType){
 //    ClassRank=0,
 //    SchoolRank=1,

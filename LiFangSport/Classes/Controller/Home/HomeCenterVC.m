@@ -233,13 +233,14 @@
         _centerTableview.backgroundColor = kwhiteColor;
         _centerTableview.delegate = self;
         _centerTableview.dataSource = self;
+        _centerTableview.separatorStyle = UITableViewCellSelectionStyleNone;
         [self.view addSubview:_centerTableview];
         centerBannerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 225)];
         UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, centerBannerView.width, 25)];
         lab.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
         lab.text = @"2018年世界杯预选赛亚洲区赛制方案";
         lab.textColor = HEXRGBCOLOR(0x9a9a9a);
-        lab.font = [UIFont systemFontOfSize:10];
+        lab.font = [UIFont systemFontOfSize:16];
         lab.textAlignment = NSTextAlignmentCenter;
         [centerBannerView addSubview:lab];
         

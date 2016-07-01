@@ -234,30 +234,6 @@
         rightThreeLab.text= threeDic[@"text"];
         [_baseDecisionView addSubview:rightThreeLab];
     }
-
-//    if (model.r1) {
-//        for (NSDictionary *dic in model.r1) {
-//            LearningPlayPopDeciModel *popModel = [[LearningPlayPopDeciModel alloc]initWithDictionary:dic error:nil];
-//            if (popModel.right == 1) {
-//                switch (popModel.index) {
-//                        case 1:
-//                        leftOnePic.image = UIImageNamed(@"lppopselect");
-//                        break;
-//                        case 2:
-//                        leftTwoPic.image = UIImageNamed(@"lppopselect");
-//                        break;
-//                        case 3:
-//                        leftThreePic.image = UIImageNamed(@"lppopselect");
-//                        break;
-//                        case 4:
-//                        leftFourPic.image = UIImageNamed(@"lppopselect");
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        }
-//    }
     
     if (model.r2) {
         for (NSDictionary *dic in model.r2) {

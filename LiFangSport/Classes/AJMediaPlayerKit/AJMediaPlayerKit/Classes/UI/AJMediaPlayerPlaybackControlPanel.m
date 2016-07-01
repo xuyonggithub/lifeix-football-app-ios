@@ -637,6 +637,7 @@
 
 - (void)addLandscapeContraints {
     if (_appearenceStyle == AJMediaPlayerStyleForiPhone) {
+        //[self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#000000" alpha:0.7f]];
         [self setBackgroundColor:[UIColor clearColor]];
     } else if (_appearenceStyle == AJMediaPlayerStyleForiPad) {
         [self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#222e36" alpha:0.7f]];

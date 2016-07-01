@@ -66,7 +66,7 @@
         
         [self addSubview:self.scoreView];
         [self.scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@(ALDFullScreenHorizontal(165)));
+            make.width.equalTo(@(ALDFullScreenHorizontal(175)));
             make.height.equalTo(@(ALDFullScreenHorizontal(80) + 20));
         }];
         
@@ -76,6 +76,7 @@
             }];
             
             _leftBorderView = [UIView new];
+            _leftBorderView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
             _leftBorderView.layer.masksToBounds = YES;
             _leftBorderView.layer.borderColor = [UIColor whiteColor].CGColor;
             _leftBorderView.layer.borderWidth = 1;
@@ -97,6 +98,7 @@
             }];
             
             _rightBorderView = [UIView new];
+            _rightBorderView.backgroundColor = _leftBorderView.backgroundColor;
             _rightBorderView.layer.masksToBounds = YES;
             _rightBorderView.layer.borderColor = [UIColor whiteColor].CGColor;
             _rightBorderView.layer.borderWidth = 1;
@@ -189,7 +191,7 @@
 
 - (void)beginPerformNextQuestion
 {
-    [self performSelector:@selector(performNextQuestion) withObject:nil afterDelay:10];
+    //[self performSelector:@selector(performNextQuestion) withObject:nil afterDelay:10];
 }
 
 #pragma mark - TestingResult
@@ -501,10 +503,39 @@
 {
     if (!_scoreView) {
         _scoreView = [UIView new];
-        [_scoreView addSubview:self.leftLabel];
+        
+        UIView *subView = [UIView new];
+        subView.backgroundColor = [UIColor blackColor];
+        subView.layer.cornerRadius = 10;
+        subView.layer.masksToBounds = YES;
+        subView.layer.borderColor = [UIColor whiteColor].CGColor;
+        subView.layer.borderWidth = 1;
+        [_scoreView addSubview:subView];
+        [subView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.and.top.and.right.equalTo(_scoreView);
+            make.height.equalTo(@(ALDFullScreenVertical(75)));
+        }];
+        
+        [subView addSubview:self.leftLabel];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.and.top.equalTo(_scoreView);
-            make.width.and.height.equalTo(@(ALDFullScreenHorizontal(75)));
+            make.left.and.equalTo(subView);
+            make.centerY.equalTo(subView.mas_centerY).offset(3);
+            make.width.equalTo(@(ALDFullScreenHorizontal(175 / 2.0)));
+        }];
+        
+        [subView addSubview:self.rightLabel];
+        [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(subView);
+            make.width.and.centerY.equalTo(_leftLabel);
+        }];
+        
+        UIView *lineView = [UIView new];
+        lineView.backgroundColor = [UIColor whiteColor];
+        [subView addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.and.centerX.equalTo(subView);
+            make.width.equalTo(@1);
+            make.height.equalTo(@(ALDFullScreenVertical(75) - ALDFullScreenVertical(20)));
         }];
         
         UILabel *promptLeftLabel = [UILabel new];
@@ -514,14 +545,9 @@
         [_scoreView addSubview:promptLeftLabel];
         [promptLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_leftLabel);
-            make.top.equalTo(_leftLabel.mas_bottom).offset(ALDFullScreenVertical(5));
+            make.top.equalTo(subView.mas_bottom).offset(ALDFullScreenVertical(5));
         }];
         
-        [_scoreView addSubview:self.rightLabel];
-        [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.and.top.equalTo(_scoreView);
-            make.width.and.height.equalTo(_leftLabel);
-        }];
         UILabel *promptRightLabel = [UILabel new];
         promptRightLabel.font = [UIFont systemFontOfSize:20];
         promptRightLabel.textColor = HEXRGBCOLOR(0xe30019);
@@ -560,11 +586,7 @@
 {
     if (!_leftLabel) {
         _leftLabel = [UILabel new];
-        _leftLabel.layer.cornerRadius = 5;
-        _leftLabel.layer.masksToBounds = YES;
-        _leftLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-        _leftLabel.layer.borderWidth = 1;
-        _leftLabel.font = [UIFont systemFontOfSize:50];
+        _leftLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:50];
         _leftLabel.textColor = HEXRGBCOLOR(0x6aed00);
         _leftLabel.text = @"00";
         _leftLabel.textAlignment = NSTextAlignmentCenter;
@@ -576,11 +598,7 @@
 {
     if (!_rightLabel) {
         _rightLabel = [UILabel new];
-        _rightLabel.layer.cornerRadius = 5;
-        _rightLabel.layer.masksToBounds = YES;
-        _rightLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-        _rightLabel.layer.borderWidth = 1;
-        _rightLabel.font = [UIFont systemFontOfSize:50];
+        _rightLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:50];
         _rightLabel.textColor = HEXRGBCOLOR(0xe30019);
         _rightLabel.text = @"00";
         _rightLabel.textAlignment = NSTextAlignmentCenter;

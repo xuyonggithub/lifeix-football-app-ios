@@ -27,9 +27,10 @@
 #import "LocalNotiPush.h"
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
-@interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIWebViewDelegate>
 {
     UILabel *ruleLab;
+    UIView *centerBannerView;
 }
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 @property(nonatomic,strong)NSMutableArray *dataArray;
@@ -232,16 +233,38 @@
         _centerTableview.backgroundColor = kwhiteColor;
         _centerTableview.delegate = self;
         _centerTableview.dataSource = self;
+        _centerTableview.separatorStyle = UITableViewCellSelectionStyleNone;
         [self.view addSubview:_centerTableview];
-        UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 250)];
+        centerBannerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 225)];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, centerBannerView.width, 25)];
+        lab.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
+        lab.text = @"2018年世界杯预选赛亚洲区赛制方案";
+        lab.textColor = HEXRGBCOLOR(0x9a9a9a);
+        lab.font = [UIFont systemFontOfSize:16];
+        lab.textAlignment = NSTextAlignmentCenter;
+        [centerBannerView addSubview:lab];
         
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 250)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 25, kScreenWidth, 200)];
+        webView.scrollView.bounces = NO;
+        webView.scrollView.alwaysBounceVertical = NO;
+        webView.userInteractionEnabled = NO;
         [webView loadHTMLString:_ruleStr baseURL:nil];
-        [hview addSubview:webView];
-        hview.backgroundColor = [UIColor whiteColor];
-        _centerTableview.tableHeaderView = hview;
+        webView.delegate = self;
+        [centerBannerView addSubview:webView];
+        centerBannerView.backgroundColor = [UIColor whiteColor];
+        _centerTableview.tableHeaderView = centerBannerView;
     }
     [self.view bringSubviewToFront:_centerTableview];
+
+}
+#pragma mark-webviewdelegate
+-(void)webViewDidFinishLoad:(UIWebView*)webView{
+    CGFloat webViewHeight=[[webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]floatValue];
+    CGRect newFrame=webView.frame;
+    newFrame.size.height=webViewHeight+10;
+    centerBannerView.height = webViewHeight+25+10;
+    webView.frame=newFrame;
+    _centerTableview.tableHeaderView = centerBannerView;
 
 }
 -(void)createRightView{
@@ -319,7 +342,7 @@
     if (tableView == _leftTableview) {
         return 130;
     }else{
-        return 70;
+        return 60;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -345,7 +368,7 @@
         UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
         hview.backgroundColor = [UIColor lightGrayColor];
         UILabel *hlab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-        hlab.textColor = [UIColor redColor];
+        hlab.textColor = kDetailTitleColor;
         hlab.textAlignment = NSTextAlignmentCenter;
         hlab.font = [UIFont systemFontOfSize:12];
         if (section==0) {

@@ -34,9 +34,9 @@
     _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
     [self addSubview:_picView];
     _picView.image = [UIImage imageNamed:@"leftswitchcellpic"];
-    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, kScreenWidth, 30)];
     [self addSubview:_titleLab];
-    _subTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 25)];
+    _subTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
     _subTitleLab.top = _titleLab.bottom;
     [self addSubview:_subTitleLab];
     _titleLab.textColor = kBlackColor;

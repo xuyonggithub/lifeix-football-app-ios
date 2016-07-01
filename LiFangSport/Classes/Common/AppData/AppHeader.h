@@ -9,6 +9,8 @@
 #ifndef AppHeader_h
 #define AppHeader_h
 #define ABOVE_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
+#define ABOVE_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
+
 //typedef NS_ENUM(NSInteger, RankType){
 //    ClassRank=0,
 //    SchoolRank=1,
@@ -23,6 +25,7 @@
 
 //color
 #define kBasicColor                  HEXRGBCOLOR(0xfd675b)
+#define kTitleColor                  HEXRGBCOLOR(0x9a9a9a)
 #define kDetailTitleColor            HEXRGBCOLOR(0x5f5f5f)
 #define knavibarColor                HEXRGBACOLOR(0xce1126,1.0)
 #define kclearColor                  [UIColor clearColor]

@@ -27,7 +27,8 @@
     model.r2 = dic[@"r2"];
     model.rule = dic[@"rule"];
     model.videoPath = dic[@"videoPath"];
-    
+    model.title = dic[@"title"];
+
     NSArray *arr = [NSArray arrayWithObject:model];
     return arr;
 }

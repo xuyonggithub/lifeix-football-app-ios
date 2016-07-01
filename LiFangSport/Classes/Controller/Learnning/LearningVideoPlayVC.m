@@ -129,7 +129,7 @@
     VideoSingleInfoModel *currentModel = _videoInfoArr[0];
     if (_currentPlayVideoIndex < _pageCount) {//_videoIdsArr.count
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
-        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:currentModel.videoPath type:AJMediaPlayerVODStreamItem name:@"培训视频" uid:@"uid"];
+        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:currentModel.videoPath type:AJMediaPlayerVODStreamItem name:currentModel.title uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
     }
     [self.view bringSubviewToFront:self.ctrView];

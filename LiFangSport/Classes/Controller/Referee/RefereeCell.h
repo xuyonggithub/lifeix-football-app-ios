@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class RefereeModel;
+@class RefereeCell;
+@protocol RefereeCellDelegate <NSObject>
+
+-(void)likeBtnClicked:(UIButton *)btn cell:(RefereeCell *)cell;
+
+@end
 
 @interface RefereeCell : UITableViewCell
 
@@ -21,6 +27,9 @@
 @property(nonatomic, retain)UILabel *FIFAYearLabel;
 @property(nonatomic, retain)UILabel *topLeagueLabel;
 
--(void)displayCell:(RefereeModel *)refereeModel;
+@property(nonatomic, retain)UIButton *likeBtn;
+@property(nonatomic, assign)id<RefereeCellDelegate> delegate;
+
+-(void)displayCell:(RefereeModel *)refereeModel likeNum:(int)likeNum;
 
 @end

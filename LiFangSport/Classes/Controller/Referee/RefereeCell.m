@@ -30,6 +30,14 @@
         self.nameLabel.textColor = HEXRGBCOLOR(0x343433);
         [self addSubview:self.nameLabel];
         
+        // 点赞
+        self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 100, 20, 80, 80);
+        [_likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
+        [_likeBtn setTitleColor:HEXRGBCOLOR(0xdddddd) forState:UIControlStateNormal];
+        [_likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_likeBtn];
+        
         self.birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, _nameLabel.bottom + 15, _nameLabel.width, 17.5/2)];
         self.birthdayLabel.font = [UIFont systemFontOfSize:10];
         self.birthdayLabel.textColor = HEXRGBCOLOR(0x343433);
@@ -91,7 +99,7 @@
     return self;
 }
 
--(void)displayCell:(RefereeModel *)refereeModel{
+-(void)displayCell:(RefereeModel *)refereeModel likeNum:(int)likeNum{
     if(refereeModel.avatar != nil){
         NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, refereeModel.avatar, (int)self.bgImgView.width, (int)self.bgImgView.height];
         [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
@@ -106,6 +114,9 @@
     self.FIFAYearLabel.text = refereeModel.sinceInternational?[NSString stringWithFormat:@"FIFA起始年份:%@", refereeModel.sinceInternational]:@"FIFA起始年份:-";
     self.topLeagueLabel.text = refereeModel.topLeagueNum?[NSString stringWithFormat:@"国际顶级联赛场次:%@", refereeModel.topLeagueNum]:@"国际顶级联赛场次:-";
     self.titleLabel.text = [NSString stringWithFormat:@"%@", refereeModel.name?refereeModel.name:@"-"];
+    
+    //like
+    [_likeBtn setTitle:[NSString stringWithFormat:@"%d", likeNum] forState:UIControlStateNormal];
 }
 
 // 时间戳转时间
@@ -120,6 +131,10 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *currentDateStr = [dateFormatter stringFromDate:localeDate];
     return currentDateStr;
+}
+
+-(void)likeBtnClicked:(UIButton *)btn{
+    [_delegate likeBtnClicked:btn cell:self];
 }
 
 @end

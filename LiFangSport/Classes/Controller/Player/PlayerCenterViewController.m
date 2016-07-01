@@ -93,7 +93,6 @@
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 96, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = HEXRGBCOLOR(0xe9e9eb);
     [self.view addSubview:lineView];
-    
     if(_playerView == nil){
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         _playerView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 97, SCREEN_WIDTH, SCREEN_HEIGHT - 97) collectionViewLayout:flowLayout];
@@ -104,7 +103,6 @@
         [_playerView registerClass:[PlayerCell class] forCellWithReuseIdentifier:kReuseId];
         [self.view addSubview:_playerView];
     }
-    
 }
 
 -(void)clickBtn:(CGFloat)tag{
@@ -117,6 +115,13 @@
         arr = [NSArray arrayWithArray:self.playerArr[1]];
     }
     [_selectedDataArr addObjectsFromArray:[arr objectAtIndex:tag]];
+    if(_selectedDataArr.count == 0){
+        UIImageView *whiteView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 97, 200, 200)];
+        whiteView.image = [UIImage imageNamed:@"placeHold_white.jpg"];
+        whiteView.centerX = self.view.centerX;
+        whiteView.centerY = self.view.centerY + 97/2;
+        [self.view addSubview:whiteView];
+    }
     [self.playerView reloadData];
 }
 

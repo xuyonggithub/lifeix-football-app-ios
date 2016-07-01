@@ -9,8 +9,13 @@
 #import "CoachDetailVC.h"
 #import "CoachInfoView.h"
 #import "CommonRequest.h"
+#import "CommonLoading.h"
 
-@interface CoachDetailVC ()
+@interface CoachDetailVC ()<CoachInfoViewDelegate>
+
+@property(nonatomic, assign)int likeNum;
+@property(nonatomic, assign)BOOL isClick;
+@property(nonatomic, assign)BOOL isLike;
 
 @end
 
@@ -32,6 +37,26 @@
     }];
 }
 
+-(void)requestLikes:(UIView *)view{
+    CoachInfoView *baseView = (CoachInfoView *)view;
+    UIButton *likeButton = baseView.likeBtn;
+    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=nationalteam", self.coachId];
+    [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        NSLog(@"data = %@", jsonDict);
+        NSDictionary *dic = jsonDict;
+        if(![[dic objectForKey:@"like"] isEqual:[NSNull null]]){
+            if([[dic objectForKey:@"like"] boolValue] == YES){
+                self.isLike = YES;
+            }
+        }
+        int like = [[dic objectForKey:@"likeNum"] intValue];
+        _likeNum = like;
+        [likeButton setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error = %@", error);
+    }];
+}
+
 -(void)dealWithDic:(id)dic{
     NSDictionary *dict = dic;
     NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
@@ -44,6 +69,7 @@
     }
     
     CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 150) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:[[dict objectForKey:@"team"] objectForKey:@"position"] andClub:club];
+    coachView.delegate = self;
     [self.view addSubview:coachView];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom, 200, 100/3)];
@@ -56,6 +82,27 @@
     lineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
     [self.view addSubview:lineView];
     
+    [self requestLikes:coachView];
+}
+
+#pragma mark - BaseInfoViewDelegate
+-(void)likeBtnClicked:(UIButton *)btn{
+    NSLog(@"like");
+    if(_isClick == YES){
+        [CommonLoading showTips:@"重复操作"];
+        return;
+    }else if (_isLike == YES){
+        [CommonLoading showTips:@"不能重复点赞"];
+        return;
+    };
+    NSDictionary *dic = @{@"type":@"nationalteam", @"target":self.coachId, @"like":@1};
+    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
+        NSLog(@"succeed!%@", jsonDict);
+        [btn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
+    _isClick = YES;
     
 }
 

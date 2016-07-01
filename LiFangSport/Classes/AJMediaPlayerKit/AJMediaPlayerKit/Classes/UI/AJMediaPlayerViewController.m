@@ -2671,6 +2671,11 @@
     }
 }
 
+- (void)seekSuccessToPlay
+{
+    [self play];
+}
+
 #pragma mark - AJMediaPlayerCaptionControlPanelDelegate
 
 - (void)playerCaptionControlPanel:(AJMediaPlayerCaptionControlPanel *)playbackControl didTapOnStreamListButton:(UIButton *)streamListButton {

@@ -148,6 +148,9 @@ extern NSString * const AJVideoPlayerItemReadyToPlayNofiticationName;
  */
 - (void)mediaPlayer:(AJMediaPlayer *)mediaPlayer didChangeAirPlayState:(AJMediaPlayerAirPlayState)state;
 
+// for LF
+- (void)seekSuccessToPlay;
+
 @end
 
 @class AVPlayer;

@@ -751,6 +751,9 @@ static dispatch_queue_t mediaplayer_processing_queue() {
                     [weakSelf submitBigdataForPlayerDidSeekToPlay];
                 }
             }
+            if ([weakSelf.delegate respondsToSelector:@selector(seekSuccessToPlay)]) {
+                [weakSelf.delegate seekSuccessToPlay];
+            }
         }];
     }
     if (self.currentPlayState == AJMediaPlayerStateContentPaused || self.currentPlayState == AJMediaPlayerStateContentFinished) {

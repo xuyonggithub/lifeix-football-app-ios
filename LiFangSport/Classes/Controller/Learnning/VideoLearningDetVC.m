@@ -12,7 +12,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import "VideoPlayerManager.h"
-#import "MulSwitchBannerView.h"
 #import "CommonRequest.h"
 #import "VideoLearningDetModel.h"
 #import "VideoLearningUnitModel.h"
@@ -20,6 +19,7 @@
 #import "UIScrollView+INSPullToRefresh.h"
 #import "VideoSingleInfoModel.h"
 #import "LearningVideoPlayVC.h"
+#import "YDMenuSwitchView.h"
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
 #define kvideodetPath @"elearning/training_categories/"

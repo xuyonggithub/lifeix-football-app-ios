@@ -41,6 +41,8 @@
 		2D07DA071D1BDF99007F73F1 /* popclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D07DA061D1BDF99007F73F1 /* popclose@2x.png */; };
 		2D3422D71D2520C100AF6FAD /* guanzhu01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D3422D51D2520C100AF6FAD /* guanzhu01@2x.png */; };
 		2D3422D81D2520C100AF6FAD /* guanzhu02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D3422D61D2520C100AF6FAD /* guanzhu02@2x.png */; };
+		2D4131891D295D2600675737 /* HomeSwitchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4131881D295D2600675737 /* HomeSwitchVC.m */; };
+		2D41318C1D297D9400675737 /* VideoLearningDetSwitchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D41318B1D297D9400675737 /* VideoLearningDetSwitchVC.m */; };
 		2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */; };
 		2D62E80B1D0FA7EA0006131B /* LeftCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */; };
 		2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D62E80E1D0FAC670006131B /* LeftCategoryCell.m */; };
@@ -453,6 +455,10 @@
 		2D07DA061D1BDF99007F73F1 /* popclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popclose@2x.png"; sourceTree = "<group>"; };
 		2D3422D51D2520C100AF6FAD /* guanzhu01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guanzhu01@2x.png"; sourceTree = "<group>"; };
 		2D3422D61D2520C100AF6FAD /* guanzhu02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guanzhu02@2x.png"; sourceTree = "<group>"; };
+		2D4131871D295D2600675737 /* HomeSwitchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSwitchVC.h; sourceTree = "<group>"; };
+		2D4131881D295D2600675737 /* HomeSwitchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSwitchVC.m; sourceTree = "<group>"; };
+		2D41318A1D297D9400675737 /* VideoLearningDetSwitchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetSwitchVC.h; sourceTree = "<group>"; };
+		2D41318B1D297D9400675737 /* VideoLearningDetSwitchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetSwitchVC.m; sourceTree = "<group>"; };
 		2D62E8061D0F9BB40006131B /* HomeLeftCategModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLeftCategModel.h; sourceTree = "<group>"; };
 		2D62E8071D0F9BB40006131B /* HomeLeftCategModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLeftCategModel.m; sourceTree = "<group>"; };
 		2D62E8091D0FA7EA0006131B /* LeftCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCategoryVC.h; sourceTree = "<group>"; };
@@ -1618,6 +1624,8 @@
 				2D62E80C1D0FAC420006131B /* View */,
 				2DA4B1FA1D0E598500136DA7 /* HomeCenterVC.h */,
 				2DA4B1FB1D0E598500136DA7 /* HomeCenterVC.m */,
+				2D4131871D295D2600675737 /* HomeSwitchVC.h */,
+				2D4131881D295D2600675737 /* HomeSwitchVC.m */,
 				2D62E8091D0FA7EA0006131B /* LeftCategoryVC.h */,
 				2D62E80A1D0FA7EA0006131B /* LeftCategoryVC.m */,
 				2DF4C8B31D237A5100092A5B /* LeftSwitcDetVC.h */,
@@ -1634,6 +1642,8 @@
 				2D84EA571D115EAD00113404 /* VideoCenterVC.m */,
 				2DBB72641D11B510009BD38F /* VideoLearningDetVC.h */,
 				2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */,
+				2D41318A1D297D9400675737 /* VideoLearningDetSwitchVC.h */,
+				2D41318B1D297D9400675737 /* VideoLearningDetSwitchVC.m */,
 				2D76357B1D1A92FC0085BB03 /* LearningInfoVC.h */,
 				2D76357C1D1A92FC0085BB03 /* LearningInfoVC.m */,
 				2D7635801D1A967B0085BB03 /* LearningVideoPlayVC.h */,
@@ -2658,6 +2668,7 @@
 				2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */,
 				2DE2C8A81D0D4A8500310C4C /* WPAttributedStyleAction.m in Sources */,
 				2D6996161D193F2900B5F52D /* INSLappsyInfiniteIndicator.m in Sources */,
+				2D41318C1D297D9400675737 /* VideoLearningDetSwitchVC.m in Sources */,
 				2DE2C8A21D0D4A8500310C4C /* UIImage+SimAdditions.m in Sources */,
 				EC504A0E1D0E99E700095C63 /* MediaVC.m in Sources */,
 				9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */,
@@ -2744,6 +2755,7 @@
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,
 				EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */,
 				9CAF82541D190F560025224F /* AJMediaPlayerButton.m in Sources */,
+				2D4131891D295D2600675737 /* HomeSwitchVC.m in Sources */,
 				2DF227E01D20BD2F005E49A0 /* BaseRightDrawerVC.m in Sources */,
 				2D69ACF41D1A5E8E00B5F52D /* VideoSingleInfoModel.m in Sources */,
 				2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */,

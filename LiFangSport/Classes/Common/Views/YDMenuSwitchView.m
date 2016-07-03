@@ -66,7 +66,7 @@ typedef void(^YDMenuSwitchViewBlock)(UIViewController *vc, NSInteger index);
     topView.showsHorizontalScrollIndicator = NO;
     topView.showsVerticalScrollIndicator = NO;
     topView.delegate = self;
-    topView.scrollEnabled = NO;
+    topView.scrollEnabled = YES;
     [self addSubview:topView];
     self.topscrView = topView;
     //  BoomView
@@ -202,6 +202,14 @@ typedef void(^YDMenuSwitchViewBlock)(UIViewController *vc, NSInteger index);
         [self removeBtnAble];
         btn.selected = YES;
         [self CreatAnimate:btn index:index];
+    }
+    if (scrollView == self.topscrView) {
+        [self.BoomView setContentOffset:CGPointMake(scrollView.contentOffset.x, 0) animated:NO];
+    }
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (decelerate == NO) {//轻轻拖动状态
+        [self.BoomView setContentOffset:CGPointMake(scrollView.contentOffset.x, 0) animated:NO];
     }
 }
 /** 移除按钮的选定状态 */

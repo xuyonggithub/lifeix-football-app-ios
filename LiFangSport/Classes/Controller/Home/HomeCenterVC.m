@@ -25,6 +25,8 @@
 #import "LeftSwitcDetVC.h"
 #import "CommonLoading.h"
 #import "LocalNotiPush.h"
+#import "YDMenuSwitchView.h"
+#import "HomeSwitchVC.h"
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIWebViewDelegate>

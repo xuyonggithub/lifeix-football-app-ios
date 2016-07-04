@@ -306,10 +306,20 @@
         cell.model = kmodel;
         cell.leftSubtitlePrifxStr = _leftSubtitlePrifxStr;
         DefineWeak(cell);
+        NSUserDefaults *userDefaultsorigin=[NSUserDefaults standardUserDefaults];
+        NSString *userindex=[userDefaultsorigin objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
+        NSString *notiId = [NSString stringWithFormat:@"%@&&%zd%@%@",kmodel.startDate,kmodel.KID,kmodel.position,kmodel.stage];
+        NSString *notiValue = [NSString stringWithFormat:@"%zd%@%@",kmodel.KID,kmodel.position,kmodel.stage];
+        NSString *alertBody = [NSString stringWithFormat:@"%@ 和 %@%@",kmodel.hostTeam[@"teamInfo"][@"name"],kmodel.awayTeam[@"teamInfo"][@"name"],@"的比赛已经开始了"];
+        if (userindex) {//查询是否变更过比赛时间
+            NSTimeInterval timeIN=(NSTimeInterval)[kmodel.startTime integerValue];
+            NSDate * fireDate=[NSDate dateWithTimeIntervalSince1970:timeIN];
+            [LocalNotiPush queryLocalNotificationWithNotiObject:notiValue WithStartdate:fireDate WithalertBody:alertBody WithNotiID:notiId];
+        }
+        
         cell.likeBC = ^(void){
-        NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-        NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
-            NSString *notiId = [NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage];
+            NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+            NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
         if (index) {
             Weak(cell).likeView.image = UIImageNamed(@"guanzhu02");
             [userDefaults removeObjectForKey:[NSString stringWithFormat:@"%zd%@%@%@",kmodel.KID,kmodel.startDate,kmodel.position,kmodel.stage]];
@@ -323,7 +333,7 @@
             NSTimeInterval timeIN=(NSTimeInterval)[kmodel.startTime integerValue];
             NSDate * fireDate=[NSDate dateWithTimeIntervalSince1970:timeIN];
 //            NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:5];//测试
-            [LocalNotiPush registerLocalNotification:fireDate WithalertBody:[NSString stringWithFormat:@"%@ 和 %@%@",kmodel.hostTeam[@"teamInfo"][@"name"],kmodel.awayTeam[@"teamInfo"][@"name"],@"的比赛已经开始了"] WithNotiID:notiId];
+            [LocalNotiPush registerLocalNotification:fireDate WithalertBody:[NSString stringWithFormat:@"%@ 和 %@%@",kmodel.hostTeam[@"teamInfo"][@"name"],kmodel.awayTeam[@"teamInfo"][@"name"],@"的比赛已经开始了"] WithNotiID:notiId WithNotiValue:notiValue];
         }
     };
         return cell;

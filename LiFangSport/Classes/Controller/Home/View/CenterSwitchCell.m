@@ -71,8 +71,8 @@
 
 -(void)setModel:(CenterSwitchModel *)model{
     
-//    NSTimeInterval timeIN=(NSTimeInterval)[model.competitionInfo[@"startDate"] integerValue];
     NSTimeInterval timeIN=(NSTimeInterval)[model.startDate integerValue]/1000;
+
     NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
     NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDateToTime:timeData]];
     [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.hostTeam[@"teamInfo"][@"flag"]]]];//kQiNiuHeaderPathPrifx

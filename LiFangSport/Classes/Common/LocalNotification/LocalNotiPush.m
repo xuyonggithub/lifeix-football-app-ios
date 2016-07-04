@@ -10,7 +10,7 @@
 
 @implementation LocalNotiPush
 
-+ (void)registerLocalNotification:(NSDate*)fireDate WithalertBody:(NSString *)alertBodyStr WithNotiID:(NSString*)key{
++ (void)registerLocalNotification:(NSDate*)fireDate WithalertBody:(NSString *)alertBodyStr WithNotiID:(NSString*)key WithNotiValue:(NSString*)value{
  
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     // 设置触发通知的时间
@@ -22,7 +22,7 @@
     notification.alertAction =  @"滑动来查看";
     notification.applicationIconBadgeNumber = 0;
     notification.soundName = UILocalNotificationDefaultSoundName;
-    NSDictionary *userDict = [NSDictionary dictionaryWithObject:alertBodyStr forKey:key];
+    NSDictionary *userDict = [NSDictionary dictionaryWithObject:value forKey:key];
     notification.userInfo = userDict;
     
     // ios8后
@@ -46,6 +46,25 @@
         }
     }
 }
++ (void)queryLocalNotificationWithNotiObject:(NSString *)notiObject WithStartdate:(NSDate *)date  WithalertBody:(NSString *)alertBodyStr WithNotiID:(NSString*)newNotiID{
+    NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
+    for (UILocalNotification *notification in localNotifications) {
+        NSDictionary *userInfo = notification.userInfo;
+        
+        for (NSString *originkey in userInfo.allKeys) {
+            if ([userInfo[originkey] isEqualToString:notiObject]) {
+                if (![originkey isEqualToString:newNotiID]) {
+                    [self replaceLocalNotificationWithOriginKey:originkey andNewKey:newNotiID WithStartDate:date WithNotiValue:userInfo[originkey] WithalertBody:alertBodyStr];
+                    break;
+                }
+            }
+        }
+    }
+}
 
++(void)replaceLocalNotificationWithOriginKey:(NSString*)originKey andNewKey:(NSString *)newKey WithStartDate:(NSDate*)date WithNotiValue:(NSString *)notiValue WithalertBody:(NSString *)alertBodyStr{
+    [self cancelLocalNotificationWithNotiID:originKey];
+    [self registerLocalNotification:date WithalertBody:alertBodyStr WithNotiID:newKey WithNotiValue:notiValue];
+}
 
 @end

@@ -11,7 +11,8 @@
 @interface LocalNotiPush : UILocalNotification
 
 // 设置本地通知
-+ (void)registerLocalNotification:(NSDate*)fireDate WithalertBody:(NSString *)alertBodyStr WithNotiID:(NSString*)key;
++ (void)registerLocalNotification:(NSDate*)fireDate WithalertBody:(NSString *)alertBodyStr WithNotiID:(NSString*)key WithNotiValue:(NSString*)value;
 + (void)cancelLocalNotificationWithNotiID:(NSString *)key;
++ (void)queryLocalNotificationWithNotiObject:(NSString *)notiObject WithStartdate:(NSDate *)date  WithalertBody:(NSString *)alertBodyStr WithNotiID:(NSString*)newNotiID;
 
 @end

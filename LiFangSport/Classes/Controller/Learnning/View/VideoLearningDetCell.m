@@ -48,6 +48,7 @@
     playView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     playView.image = UIImageNamed(@"videobofang");
     playView.center = _picView.center;
+    playView.centerY = _picView.centerY-8;
     [self addSubview:playView];
     playView.hidden = YES;
 }

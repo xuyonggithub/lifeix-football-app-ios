@@ -432,6 +432,7 @@
         LeftSwitchModel *model = _leftDataArray[indexPath.row];
         LeftSwitcDetVC *svc = [[LeftSwitcDetVC alloc]init];
         svc.title = [NSString stringWithFormat:@"%@%@%@",model.hostTeam[@"teamInfo"][@"name"],@"VS",model.awayTeam[@"teamInfo"][@"name"]];
+        svc.urlStr = model.url;
         [self.navigationController pushViewController:svc animated:YES];
     }
 }

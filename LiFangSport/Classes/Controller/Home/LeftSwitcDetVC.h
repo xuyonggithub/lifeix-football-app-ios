@@ -10,4 +10,6 @@
 
 @interface LeftSwitcDetVC : BaseVC
 
+@property(nonatomic,strong)NSString *urlStr;
+
 @end

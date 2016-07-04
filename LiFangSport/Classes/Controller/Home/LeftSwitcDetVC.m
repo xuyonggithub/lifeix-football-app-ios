@@ -8,7 +8,8 @@
 
 #import "LeftSwitcDetVC.h"
 
-@interface LeftSwitcDetVC ()
+@interface LeftSwitcDetVC ()<UIWebViewDelegate>
+@property(nonatomic,strong)UIWebView *bwebView;
 
 @end
 
@@ -16,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _bwebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    _bwebView.delegate = self;
+    NSURL *url = [NSURL URLWithString:_urlStr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [_bwebView loadRequest:request];
+    [self.view addSubview:_bwebView];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {

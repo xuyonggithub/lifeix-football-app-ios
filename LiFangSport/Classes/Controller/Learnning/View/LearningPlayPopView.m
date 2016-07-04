@@ -268,6 +268,7 @@
         _textView.selectable = NO;
         [self addSubview:_textView];
     }
+    _textView.showsVerticalScrollIndicator = YES;
 }
 
 -(void)setModel:(VideoSingleInfoModel *)model WithType:(LearningPlayPopViewType)type{

@@ -19,5 +19,9 @@
 @property (nonatomic, strong) NSString<Optional> *stage;
 @property (nonatomic, strong) NSString<Optional> *startDate;
 @property (nonatomic, strong) NSString<Optional> *startTime;
+@property(nonatomic,assign)NSInteger awayScore;//id
+@property(nonatomic,assign)NSInteger hostScore;//id
+@property(nonatomic,strong)NSString<Optional>* url;//id
+
 
 @end

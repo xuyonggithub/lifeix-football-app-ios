@@ -84,6 +84,7 @@
 
 -(void)setModel:(LeftSwitchModel *)model{
     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+//    NSString *notiId = [NSString stringWithFormat:@"%@&&%zd%@%@",model.startDate,model.KID,model.position,model.stage];
     NSString *index=[userDefaults objectForKey:[NSString stringWithFormat:@"%zd%@%@%@",model.KID,model.startDate,model.position,model.stage]];
     if (index) {
         _likeView.image = UIImageNamed(@"guanzhu01");

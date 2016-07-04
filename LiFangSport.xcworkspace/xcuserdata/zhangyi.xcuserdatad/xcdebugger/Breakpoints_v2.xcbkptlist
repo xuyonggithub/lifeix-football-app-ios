@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Home/HomeCenterVC.m"
-            timestampString = "489059469.836417"
+            filePath = "LiFangSport/Classes/Common/LocalNotification/LocalNotiPush.m"
+            timestampString = "489295592.738573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "+queryLocalNotificationWithNotiObject:WithStartdate:WithalertBody:WithNotiID:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiFangSport/Classes/Controller/Home/HomeCenterVC.m"
-            timestampString = "489059556.476247"
+            filePath = "LiFangSport/Classes/Common/LocalNotification/LocalNotiPush.m"
+            timestampString = "489295622.065097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "+queryLocalNotificationWithNotiObject:WithStartdate:WithalertBody:WithNotiID:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LiFangSport/Classes/Common/LocalNotification/LocalNotiPush.m"
+            timestampString = "489296039.240922"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "+registerLocalNotification:WithalertBody:WithNotiID:WithNotiValue:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

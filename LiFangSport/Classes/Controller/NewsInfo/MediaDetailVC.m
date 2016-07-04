@@ -13,6 +13,10 @@
 #import "UMSocial.h"
 #import "UMSocialSnsData.h"
 #import "CommonLoading.h"
+#import "WeiboSDK.h"
+#import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 const CGFloat topViewH = 180;
 @interface MediaDetailVC ()<UIWebViewDelegate>
@@ -223,19 +227,45 @@ const CGFloat topViewH = 180;
 }
 
 -(void)setupShareView{
-    UIView *lbl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
-    lbl.bottom = _shareBtn.top;
-    NSArray *arr = @[@"sina", @"微信好友", @"微信朋友圈", @"QQ空间"];
+    UIView *lbl = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 175)];
+    topView.backgroundColor = HEXRGBCOLOR(0x000000);
+    topView.alpha = 0.3;
+    [lbl addSubview:topView];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, lbl.height - 175, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = HEXRGBCOLOR(0xae1417);
+    [lbl addSubview:lineView];
+    UIView *wView = [[UIView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 175)];
+    wView.backgroundColor = [UIColor whiteColor];
+    [lbl addSubview:wView];
+    CGFloat btnWidth = (SCREEN_WIDTH - 170)/4;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 58 - btnWidth)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:12];
+    label.text = @"分享此篇文章";
+    label.textColor = HEXRGBCOLOR(0x9a9a9a);
+    [wView addSubview:label];
+    NSArray *arr = @[@"wechat", @"timeline", @"sina", @"Qzone"];
     for(int i = 0; i < 4; i++){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(90 * i, 0, 80, 80);
-        btn.backgroundColor = [UIColor grayColor];
+        btn.frame = CGRectMake(i==0?25:(25 + (40 + btnWidth) * i), label.bottom + 20, btnWidth, btnWidth);
         [btn addTarget:self action:@selector(didSelectedShareBtnIndex:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitle:arr[i] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:arr[i]] forState:UIControlStateNormal];
         btn.tag = 1000 + i;
-        [lbl addSubview:btn];
+        [wView addSubview:btn];
     }
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 20 + btnWidth + 32, SCREEN_WIDTH, 1)];
+    line2.backgroundColor = HEXRGBCOLOR(0xdfdfdf);
+    [wView addSubview:line2];
+    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelBtn.frame = CGRectMake(0, line2.bottom, SCREEN_WIDTH, 35);
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:HEXRGBCOLOR(0x1f1f1f) forState:UIControlStateNormal];
+    cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [cancelBtn addTarget:self action:@selector(cancelBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [wView addSubview:cancelBtn];
     [self.view addSubview:lbl];
+    lbl.tag = 12345;
 }
 
 #pragma mark - shareDelegate
@@ -252,14 +282,14 @@ const CGFloat topViewH = 180;
     
     UMSocialData *socialData;
     switch (index) {
-        case 0:{ // 新浪微博
+        case 2:{ // 新浪微博
             snsName                                             = UMShareToSina;
             socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"sinaweibo"];
             socialData.extConfig.sinaData.shareText             = [NSString stringWithFormat:@"%@\n%@%@",shareTitle,shareText,shareUrl];
             socialData.extConfig.sinaData.urlResource           = urlResource;
         }
             break;
-        case 1:{ // 微信好友
+        case 0:{ // 微信好友
             snsName                                             = UMShareToWechatSession;
             socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatSession"];
             socialData.extConfig.wechatSessionData.title        = shareTitle;
@@ -269,7 +299,7 @@ const CGFloat topViewH = 180;
             
         }
             break;
-        case 2:{ // 微信朋友圈
+        case 1:{ // 微信朋友圈
             snsName                                             = UMShareToWechatTimeline;
             socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatTimeline"];
             socialData.extConfig.wechatTimelineData.title       = shareTitle;
@@ -295,6 +325,12 @@ const CGFloat topViewH = 180;
     UMSocialControllerService *shareService             = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
     UMSocialSnsPlatform *snsPlatform                    = [UMSocialSnsPlatformManager getSocialPlatformWithName:snsName];
     snsPlatform.snsClickHandler(self,shareService,YES);
+    UIView *view = [self.view viewWithTag:12345];
+    [view removeFromSuperview];
 }
 
+-(void)cancelBtnClicked:(UIButton *)cancelBtn{
+    UIView *view = [self.view viewWithTag:12345];
+    [view removeFromSuperview];
+}
 @end

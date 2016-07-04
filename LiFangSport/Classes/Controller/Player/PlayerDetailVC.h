@@ -7,9 +7,11 @@
 //
 
 #import "BaseVC.h"
+@class PlayerModel;
 
 @interface PlayerDetailVC : BaseVC
 
 @property(nonatomic, copy)NSString *playerId;
 @property(nonatomic, copy)NSString *playerName;
+@property(nonatomic, retain)PlayerModel *player;
 @end

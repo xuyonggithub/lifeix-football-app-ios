@@ -177,6 +177,7 @@
     CoachDetailVC *coachDetailVC = [[CoachDetailVC alloc] init];
     coachDetailVC.coachId = coach.coachaId;
     coachDetailVC.coachName = coach.name;
+    coachDetailVC.coach = coach;
     [self.navigationController pushViewController:coachDetailVC animated:YES];
 
 }

@@ -29,22 +29,20 @@
 }
 
 -(void)createSubviews{
-    _iconView = [[UIImageView alloc]initWithFrame:CGRectMake(55, 0, 40, 40)];
-    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 40)];
-//    _iconView.centerY = self.centerY;
-//    _titleLab.centerY = self.centerY;
+    _iconView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 30, 30)];
+    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 30)];
     _titleLab.left = _iconView.right + 15;
     _titleLab.textColor = HEXRGBCOLOR(0x929292);
-    _titleLab.font = [UIFont systemFontOfSize:19];
+    _titleLab.font = [UIFont systemFontOfSize:13];
     _titleLab.textAlignment = NSTextAlignmentLeft;
     [self addSubview:_iconView];
     [self addSubview:_titleLab];
 
 }
 -(void)layoutSubviews{
-    [super layoutSubviews];
+//    _iconView.centerY = self.centerY;
+//    _titleLab.centerY = self.centerY;
 }
-
 
 -(void)setModel:(HomeLeftCategModel *)model{
     _titleLab.text = model.name;

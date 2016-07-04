@@ -75,6 +75,7 @@
     _kTableView.dataSource = self;
     _kTableView.scrollEnabled =NO;
     [self.view addSubview:_kTableView];
+    _kTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -787,21 +787,27 @@
 - (void)configureSoundControlView {
     self.soundControlView = [[AJMediaPlayerVolumeControl alloc] initWithAppearenceStyle:_appearenceStyle];
     _soundControlView.translatesAutoresizingMaskIntoConstraints = NO;
-    _soundControlView.hidden = YES;
+    //_soundControlView.hidden = YES;
     [_soundControlView.slider addTarget:self action:@selector(soundSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_soundControlView.slider addTarget:self action:@selector(soundSlidersTouchUp:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel];
     [self.view addSubview:_soundControlView];
     
     if (_appearenceStyle == AJMediaPlayerStyleForiPhone) {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_soundControlView(30)]-15-|"
-                                                                          options:0
-                                                                          metrics:nil
-                                                                            views:NSDictionaryOfVariableBindings(_soundControlView)]];
-        
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soundControlView(130)]-57-|"
-                                                                          options:0
-                                                                          metrics:nil
-                                                                            views:NSDictionaryOfVariableBindings(_soundControlView)]];
+        [_soundControlView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_mediaPlayerControlBar);
+            make.left.equalTo(_mediaPlayerControlBar.mas_right).offset(-10);
+            make.right.equalTo(self.view.mas_right).offset(-15);
+            make.height.equalTo(@10);
+        }];
+//        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_soundControlView(30)]-15-|"
+//                                                                          options:0
+//                                                                          metrics:nil
+//                                                                            views:NSDictionaryOfVariableBindings(_soundControlView)]];
+//        
+//        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soundControlView(130)]-57-|"
+//                                                                          options:0
+//                                                                          metrics:nil
+//                                                                            views:NSDictionaryOfVariableBindings(_soundControlView)]];
     } else if (_appearenceStyle == AJMediaPlayerStyleForiPad) {
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_soundControlView(36)]-15-|"
                                                                           options:0
@@ -824,7 +830,7 @@
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
     if (pinch.state == UIGestureRecognizerStateEnded) {
-        BOOL fullScreenMode;
+        BOOL fullScreenMode = NO;
         if (_isFullScreenController && pinch.scale < 1.f) {
             fullScreenMode = NO;
         } else if (!_isFullScreenController && pinch.scale > 1.f) {
@@ -948,7 +954,11 @@
                                                                                   options:0
                                                                                   metrics:nil
                                                                                 views:_subViewsDictionary]];
-    [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mediaPlayerControlBar]-0-|"
+//    [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mediaPlayerControlBar]-0-|"
+//                                                                                  options:0
+//                                                                                  metrics:nil
+//                                                                                views:_subViewsDictionary]];
+    [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mediaPlayerControlBar]-80-|"
                                                                                   options:0
                                                                                   metrics:nil
                                                                                 views:_subViewsDictionary]];
@@ -1075,7 +1085,11 @@
                                                                                       metrics:nil
                                                                                         views:_subViewsDictionary]];
     }
-    [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mediaPlayerControlBar]-0-|"
+//    [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mediaPlayerControlBar]-0-|"
+//                                                                                  options:0
+//                                                                                  metrics:nil
+//                                                                                views:_subViewsDictionary]];
+    [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mediaPlayerControlBar]-80-|"
                                                                                   options:0
                                                                                   metrics:nil
                                                                                 views:_subViewsDictionary]];
@@ -1866,10 +1880,14 @@
             if (self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentFinished) {
                 _fastView.hidden = !shouldHide;
             }
-            if (shouldHide) {
-                weakSelf.soundControlView.hidden = YES;
+//            if (shouldHide) {
+//                weakSelf.soundControlView.hidden = YES;
+//                [weakSelf.mediaPlayerControlBar updateVolume:weakSelf.soundControlView.slider.value isHidden:weakSelf.soundControlView.hidden];
+//            }
+            //if (shouldHide) {
+                weakSelf.soundControlView.hidden = shouldHide;
                 [weakSelf.mediaPlayerControlBar updateVolume:weakSelf.soundControlView.slider.value isHidden:weakSelf.soundControlView.hidden];
-            }
+            //}
             if (shouldHide == NO && weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(mediaPlayerViewControllerPlaybackControlsWillAppear:)]) {
                 [weakSelf.delegate mediaPlayerViewControllerPlaybackControlsWillAppear:weakSelf];
                 return;

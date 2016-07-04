@@ -27,20 +27,23 @@
         _slider.translatesAutoresizingMaskIntoConstraints = NO;
         _slider.minimumValue = 0;
         _slider.maximumValue = 1;
-        _slider.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#29c4c6"];
-        _slider.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+        //_slider.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#29c4c6"];
+        //_slider.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+        _slider.minimumTrackTintColor = [UIColor whiteColor];
+        _slider.maximumTrackTintColor = [UIColor whiteColor];
         [_slider setThumbImage:[UIImage imageNamed:@"player_ic_point"] forState:UIControlStateNormal];
-        [_slider setTransform:CGAffineTransformMakeRotation(3 * M_PI / 2)];
+        //[_slider setTransform:CGAffineTransformMakeRotation(3 * M_PI / 2)];
         _slider.value = [[AJMediaSessionVolume sharedVolume] volume];
         [self addSubview:_slider];
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
             float sliderSpace = _appearenceStyle==AJMediaPlayerStyleForiPhone ? -38 : -50;
+            sliderSpace = 0.0;
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(sliderSpace)-[_slider]-(sliderSpace)-|"
                                                                          options:0
                                                                          metrics:@{@"sliderSpace":@(sliderSpace)}
                                                                            views:NSDictionaryOfVariableBindings(_slider)]];
-            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_slider]-5-|"
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_slider]-0-|"
                                                                          options:0
                                                                          metrics:nil
                                                                            views:NSDictionaryOfVariableBindings(_slider)]];
@@ -58,10 +61,10 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
-    NSString *imageName = _appearenceStyle == AJMediaPlayerStyleForiPhone ? @"player_bg_sound":@"player_bg_sound_iPad";
-    UIImage *image = [UIImage imageNamed:imageName];
-    [image drawInRect:rect];
-}
+//- (void)drawRect:(CGRect)rect {
+//    NSString *imageName = _appearenceStyle == AJMediaPlayerStyleForiPhone ? @"player_bg_sound":@"player_bg_sound_iPad";
+//    UIImage *image = [UIImage imageNamed:imageName];
+//    [image drawInRect:rect];
+//}
 
 @end

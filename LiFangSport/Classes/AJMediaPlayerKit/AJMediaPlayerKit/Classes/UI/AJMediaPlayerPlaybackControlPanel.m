@@ -3,7 +3,7 @@
 //  AJMediaPlayerShowcase
 //
 //  Created by Zhangqibin on 5/23/15.
-//  Copyright (c) 2015 LeTV Sports Culture Develop (Beijing) Co., Ltd. All rights reserved.
+//
 //
 
 #import "AJMediaPlayerPlaybackControlPanel.h"
@@ -109,7 +109,8 @@
     _progressScubber.continuous = YES;
     _progressScubber.enabled = NO;
     _progressScubber.maximumTrackTintColor = [UIColor clearColor];
-    _progressScubber.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#29c4c6"];
+    //_progressScubber.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#29c4c6"];
+    _progressScubber.minimumTrackTintColor = [UIColor whiteColor];
     [_progressScubber addTarget:self action:@selector(sliderTouchUp:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel];
     [_progressScubber addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
@@ -130,7 +131,8 @@
     _availableProgressScubber.value = 0;
     _availableProgressScubber.continuous = YES;
     _availableProgressScubber.enabled  = NO;
-    _availableProgressScubber.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+    //_availableProgressScubber.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+    _availableProgressScubber.maximumTrackTintColor = [UIColor clearColor];
     _availableProgressScubber.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#efeff4"];
     [_availableProgressScubber setThumbImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
     [self addSubview:_availableProgressScubber];
@@ -180,7 +182,8 @@
     _timeShiftProgressScubber.continuous = YES;
     _timeShiftProgressScubber.enabled  = NO;
     _timeShiftProgressScubber.hidden = YES;
-    _timeShiftProgressScubber.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+    //_timeShiftProgressScubber.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+    _timeShiftProgressScubber.maximumTrackTintColor = [UIColor whiteColor];
     _timeShiftProgressScubber.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#29c4c6"];
     [_timeShiftProgressScubber addTarget:self action:@selector(sliderTouchUp:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel];
     [_timeShiftProgressScubber addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -239,6 +242,7 @@
     [_volumenControlButton setContentMode:UIViewContentModeCenter];
     _volumenControlButton.translatesAutoresizingMaskIntoConstraints = NO;
     _volumenControlButton.hidden = YES;
+    _volumenControlButton.enabled = NO;
     [_volumenControlButton addTarget:self action:@selector(soundClick) forControlEvents:UIControlEventTouchUpInside];
     [_volumenControlButton setImage:[UIImage imageNamed:@"player_bt_sound"] forState:UIControlStateNormal];
     [self addSubview:_volumenControlButton];

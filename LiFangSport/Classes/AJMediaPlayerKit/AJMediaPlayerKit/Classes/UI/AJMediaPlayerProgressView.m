@@ -37,7 +37,8 @@
         _progressSlider.value = 0;
         _progressSlider.continuous = YES;
         _progressSlider.enabled = YES;
-        _progressSlider.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+        //_progressSlider.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
+        _progressSlider.maximumTrackTintColor = [UIColor whiteColor];
         _progressSlider.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#29c4c6"];
         [_progressSlider setThumbImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         [self addSubview:_progressSlider];

@@ -45,8 +45,8 @@
 //qiniu
 #define kQiNiuHeaderPathPrifx @"http://o8rg11ywr.bkt.clouddn.com/"
 
-//pad及iphone屏幕特殊处理(6p为基准)
-#define kScreenRatioBase6Plus           (DEVICE_IS_IPAD?1.0:([[UIScreen mainScreen] bounds].size.width / 540.0))
+//pad及iphone屏幕特殊处理(6为基准)
+#define kScreenRatioBase6Iphone           (DEVICE_IS_IPAD?1.4:([[UIScreen mainScreen] bounds].size.width / 375.0))
 
 #define khomeKidNotiFicationStr  @"khomeKidNotiFicationStr"
 

@@ -41,7 +41,6 @@
     _nameLab.font = [UIFont systemFontOfSize:12];
     
     _picView.image = [UIImage imageNamed:@"videosingleplacehoder"];
-    _nameLab.text = @"教学视频";
     [self addSubview:_picView];
     [self addSubview:_nameLab];
     
@@ -51,6 +50,9 @@
     playView.centerY = _picView.centerY-8;
     [self addSubview:playView];
     playView.hidden = YES;
+}
+-(void)layoutSubviews{
+    _nameLab.bottom = self.height;
 }
 
 -(void)setModel:(VideoLearningUnitModel *)model{

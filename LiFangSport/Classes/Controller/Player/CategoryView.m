@@ -39,7 +39,7 @@
     CGFloat btnHeight = _categaryScrollView.height;
     self.categaryScrollView.contentSize = CGSizeMake(0, 32);
     for(int i = 0; i < numOfCategory; i++){
-        NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize: 20] forKey:NSFontAttributeName];
+        NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize: 21] forKey:NSFontAttributeName];
         CGRect contnentRect = [self.categoryArr[i] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
         
         CGSize size = self.categaryScrollView.contentSize;

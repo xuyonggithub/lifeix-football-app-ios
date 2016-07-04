@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     [_leftBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [topBanner addSubview:_leftBtn];
     
-    _leftLine = [[LineView alloc] initWithFrame:CGRectMake(3.5*10, _leftBtn.bottom - 3, _leftBtn.width - 7*10, 2)];
+    _leftLine = [[LineView alloc] initWithFrame:CGRectMake(3.5*0, _leftBtn.bottom - 3, _leftBtn.width - 7*0, 2)];
     _leftLine.lineColor = kBasicColor;
     _leftLine.hidden = NO;
     [topBanner addSubview:_leftLine];
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     _centerBtn.tag = SBT_Center;
     [topBanner addSubview:_centerBtn];
     
-    _centerLine = [[LineView alloc] initWithFrame:CGRectMake(0, _centerBtn.bottom - 3, _centerBtn.width - 7*10, 2)];
+    _centerLine = [[LineView alloc] initWithFrame:CGRectMake(0, _centerBtn.bottom - 3, _centerBtn.width - 7*0, 2)];
     _centerLine.centerX = _centerBtn.centerX;
     _centerLine.lineColor = kBasicColor;
     _centerLine.hidden = YES;
@@ -93,8 +93,9 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     _rightBtn.tag = SBT_RiIght;
     [topBanner addSubview:_rightBtn];
     
-    _rightLine = [[LineView alloc] initWithFrame:CGRectMake(0, _rightBtn.bottom - 3, _rightBtn.width - 7*10, 2)];
-    _rightLine.right = topBanner.right - 3.5*10;
+    _rightLine = [[LineView alloc] initWithFrame:CGRectMake(0, _rightBtn.bottom - 3, _rightBtn.width - 7*0, 2)];
+//    _rightLine.right = topBanner.right - 3.5*10;
+    _rightLine.centerX = _rightBtn.centerX;
     _rightLine.lineColor = kBasicColor;
     _rightLine.hidden = YES;
     [topBanner addSubview:_rightLine];

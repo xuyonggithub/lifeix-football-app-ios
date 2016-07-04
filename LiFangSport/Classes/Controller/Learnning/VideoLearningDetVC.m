@@ -197,15 +197,15 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (IPHONE_5||IPHONE_4) {
-        return CGSizeMake(80,84);
+        return CGSizeMake(80,60+20);
     }else{
-        return CGSizeMake(100,100);//290 220
+        return CGSizeMake(100*kScreenRatioBase6Iphone,75*kScreenRatioBase6Iphone+20);//100 75+20
     }
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(4,4,4,4);
+    return UIEdgeInsetsMake(4,15*kScreenRatioBase6Iphone,4,15*kScreenRatioBase6Iphone);
 }
 
 #pragma mark --UICollectionViewDelegate

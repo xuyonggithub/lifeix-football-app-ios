@@ -18,6 +18,10 @@
 #import "PlayerModel.h"
 #import "UMSocial.h"
 #import "UMSocialSnsData.h"
+#import "WeiboSDK.h"
+#import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 #define kReuseId @"cell"
 @interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource, BaseInfoViewDelegate>
@@ -31,6 +35,8 @@
 @property(nonatomic, assign)BOOL isLike;
 @property(nonatomic, retain)UIView *loadingView;
 
+@property(nonatomic, retain)NSMutableArray *shareArr;
+@property(nonatomic, retain)UIView *lbl;
 @end
 
 @implementation PlayerDetailVC
@@ -62,7 +68,7 @@
 -(void)requestLikes:(UIView *)view{
     BaseInfoView *baseView = (BaseInfoView *)view;
     UIButton *likeButton = baseView.likeBtn;
-    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=nationalteam", self.playerId];
+    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=player", self.playerId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"data = %@", jsonDict);
         NSDictionary *dic = jsonDict;
@@ -251,19 +257,61 @@
 
 #pragma mark - share
 -(void)shareBtnClicked:(UIButton *)btn{
-    UIView *lbl = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 80, SCREEN_WIDTH, 80)];
-    NSArray *arr = @[@"sina", @"微信好友", @"微信朋友圈", @"QQ空间"];
-    for(int i = 0; i < 4; i++){
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(90 * i, 0, 80, 80);
-        btn.backgroundColor = [UIColor grayColor];
-        [btn addTarget:self action:@selector(didSelectedShareBtnIndex:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitle:arr[i] forState:UIControlStateNormal];
-        btn.tag = 1000 + i;
-        [lbl addSubview:btn];
+    if(self.lbl == nil || ![self.view.subviews containsObject:_lbl]){
+        _lbl = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 175)];
+        topView.backgroundColor = HEXRGBCOLOR(0x000000);
+        topView.alpha = 0.3;
+        [_lbl addSubview:topView];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, _lbl.height - 175, SCREEN_WIDTH, 1)];
+        lineView.backgroundColor = HEXRGBCOLOR(0xae1417);
+        [_lbl addSubview:lineView];
+        UIView *wView = [[UIView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 175)];
+        wView.backgroundColor = [UIColor whiteColor];
+        [_lbl addSubview:wView];
+        CGFloat btnWidth = (SCREEN_WIDTH - 170)/4;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 58 - btnWidth)];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:12];
+        label.text = @"分享";
+        label.textColor = HEXRGBCOLOR(0x9a9a9a);
+        [wView addSubview:label];
+        self.shareArr = [NSMutableArray array];
+        if(![WXApi isWXAppInstalled]){
+            if([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]){
+                [self.shareArr addObjectsFromArray:@[@"sina", @"Qzone"]];
+            }else{
+                [self.shareArr addObjectsFromArray:@[@"sina"]];
+            }
+            
+        }else{
+            if([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]){
+                [self.shareArr addObjectsFromArray:@[@"wechat", @"timeline", @"sina", @"Qzone"]];
+            }else{
+                [self.shareArr addObjectsFromArray:@[@"wechat", @"timeline", @"sina"]];
+            }
+        }
+        for(int i = 0; i < self.shareArr.count; i++){
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(i==0?25:(25 + (40 + btnWidth) * i), label.bottom + 20, btnWidth, btnWidth);
+            [btn addTarget:self action:@selector(didSelectedShareBtnIndex:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setImage:[UIImage imageNamed:self.shareArr[i]] forState:UIControlStateNormal];
+            btn.tag = 1000 + i;
+            [wView addSubview:btn];
+        }
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 20 + btnWidth + 32, SCREEN_WIDTH, 1)];
+        line2.backgroundColor = HEXRGBCOLOR(0xdfdfdf);
+        [wView addSubview:line2];
+        UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelBtn.frame = CGRectMake(0, line2.bottom, SCREEN_WIDTH, 35);
+        [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelBtn setTitleColor:HEXRGBCOLOR(0x1f1f1f) forState:UIControlStateNormal];
+        cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+        [cancelBtn addTarget:self action:@selector(cancelBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [wView addSubview:cancelBtn];
+        [self.view addSubview:_lbl];
+        _lbl.tag = 12345;
     }
-    [self.view addSubview:lbl];
-    lbl.tag = 12345;
 }
 
 -(void)didSelectedShareBtnIndex:(UIButton *)btn{
@@ -277,42 +325,109 @@
     UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:avatarUrl];
     
     UMSocialData *socialData;
-    switch (index) {
-        case 0:{ // 新浪微博
+    switch (self.shareArr.count) {
+        case 1:
             snsName                                             = UMShareToSina;
             socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"sinaweibo"];
             socialData.extConfig.sinaData.shareText             = [NSString stringWithFormat:@"%@\n%@%@",shareTitle,shareText,shareUrl];
             socialData.extConfig.sinaData.urlResource           = urlResource;
-        }
             break;
-        case 1:{ // 微信好友
-            snsName                                             = UMShareToWechatSession;
-            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatSession"];
-            socialData.extConfig.wechatSessionData.title        = shareTitle;
-            socialData.extConfig.wechatSessionData.url          = shareUrl;
-            socialData.extConfig.wechatSessionData.shareText    = shareText;
-            socialData.extConfig.wechatSessionData.urlResource  = urlResource;
-            
-        }
+        case 2:
+            switch (index) {
+                case 0:{ // 新浪微博
+                    snsName                                             = UMShareToSina;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"sinaweibo"];
+                    socialData.extConfig.sinaData.shareText             = [NSString stringWithFormat:@"%@\n%@%@",shareTitle,shareText,shareUrl];
+                    socialData.extConfig.sinaData.urlResource           = urlResource;
+                }
+                    break;
+                case 1:{ // QQ空间
+                    snsName                                             = UMShareToQzone;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"Qzone"];
+                    socialData.extConfig.qzoneData.title       = shareTitle;
+                    socialData.extConfig.qzoneData.url         = shareUrl;
+                    socialData.extConfig.qzoneData.shareText   = shareText;
+                    socialData.extConfig.qzoneData.urlResource = urlResource;
+                }
+                    break;
+                default:
+                    break;
+            }
             break;
-        case 2:{ // 微信朋友圈
-            snsName                                             = UMShareToWechatTimeline;
-            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatTimeline"];
-            socialData.extConfig.wechatTimelineData.title       = shareTitle;
-            socialData.extConfig.wechatTimelineData.url         = shareUrl;
-            socialData.extConfig.wechatTimelineData.shareText   = shareText;
-            
-            socialData.extConfig.wechatTimelineData.urlResource = urlResource;
-        }
+        case 3:
+            switch (index) {
+                case 2:{ // 新浪微博
+                    snsName                                             = UMShareToSina;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"sinaweibo"];
+                    socialData.extConfig.sinaData.shareText             = [NSString stringWithFormat:@"%@\n%@%@",shareTitle,shareText,shareUrl];
+                    socialData.extConfig.sinaData.urlResource           = urlResource;
+                }
+                    break;
+                case 0:{ // 微信好友
+                    snsName                                             = UMShareToWechatSession;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatSession"];
+                    socialData.extConfig.wechatSessionData.title        = shareTitle;
+                    socialData.extConfig.wechatSessionData.url          = shareUrl;
+                    socialData.extConfig.wechatSessionData.shareText    = shareText;
+                    socialData.extConfig.wechatSessionData.urlResource  = urlResource;
+                    
+                }
+                    break;
+                case 1:{ // 微信朋友圈
+                    snsName                                             = UMShareToWechatTimeline;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatTimeline"];
+                    socialData.extConfig.wechatTimelineData.title       = shareTitle;
+                    socialData.extConfig.wechatTimelineData.url         = shareUrl;
+                    socialData.extConfig.wechatTimelineData.shareText   = shareText;
+                    
+                    socialData.extConfig.wechatTimelineData.urlResource = urlResource;
+                }
+                    break;
+                default:
+                    break;
+            }
             break;
-        case 3:{ // QQ空间
-            snsName                                             = UMShareToQzone;
-            socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"Qzone"];
-            socialData.extConfig.qzoneData.title       = shareTitle;
-            socialData.extConfig.qzoneData.url         = shareUrl;
-            socialData.extConfig.qzoneData.shareText   = shareText;
-            socialData.extConfig.qzoneData.urlResource = urlResource;
-        }
+        case 4:
+            switch (index) {
+                case 2:{ // 新浪微博
+                    snsName                                             = UMShareToSina;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"sinaweibo"];
+                    socialData.extConfig.sinaData.shareText             = [NSString stringWithFormat:@"%@\n%@%@",shareTitle,shareText,shareUrl];
+                    socialData.extConfig.sinaData.urlResource           = urlResource;
+                }
+                    break;
+                case 0:{ // 微信好友
+                    snsName                                             = UMShareToWechatSession;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatSession"];
+                    socialData.extConfig.wechatSessionData.title        = shareTitle;
+                    socialData.extConfig.wechatSessionData.url          = shareUrl;
+                    socialData.extConfig.wechatSessionData.shareText    = shareText;
+                    socialData.extConfig.wechatSessionData.urlResource  = urlResource;
+                    
+                }
+                    break;
+                case 1:{ // 微信朋友圈
+                    snsName                                             = UMShareToWechatTimeline;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"wechatTimeline"];
+                    socialData.extConfig.wechatTimelineData.title       = shareTitle;
+                    socialData.extConfig.wechatTimelineData.url         = shareUrl;
+                    socialData.extConfig.wechatTimelineData.shareText   = shareText;
+                    
+                    socialData.extConfig.wechatTimelineData.urlResource = urlResource;
+                }
+                    break;
+                case 3:{ // QQ空间
+                    snsName                                             = UMShareToQzone;
+                    socialData                                          = [[UMSocialData alloc] initWithIdentifier:@"Qzone"];
+                    socialData.extConfig.qzoneData.title       = shareTitle;
+                    socialData.extConfig.qzoneData.url         = shareUrl;
+                    socialData.extConfig.qzoneData.shareText   = shareText;
+                    socialData.extConfig.qzoneData.urlResource = urlResource;
+                }
+                    break;
+                default:
+                    break;
+            }
             break;
         default:
             break;
@@ -321,6 +436,11 @@
     UMSocialControllerService *shareService             = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
     UMSocialSnsPlatform *snsPlatform                    = [UMSocialSnsPlatformManager getSocialPlatformWithName:snsName];
     snsPlatform.snsClickHandler(self,shareService,YES);
+    UIView *view = [self.view viewWithTag:12345];
+    [view removeFromSuperview];
+}
+
+-(void)cancelBtnClicked:(UIButton *)cancelBtn{
     UIView *view = [self.view viewWithTag:12345];
     [view removeFromSuperview];
 }

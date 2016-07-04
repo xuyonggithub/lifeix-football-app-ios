@@ -112,7 +112,7 @@
     [self.selectedTitleArr addObjectsFromArray:[self.categoryNameArr objectAtIndex:tag]];
     //获取对应分区下列表
     [_selectedDataArr addObjectsFromArray:ceteArr];
-
+    
     [self.refereeView reloadData];
 }
 
@@ -135,20 +135,16 @@
     NSArray *arr = [_selectedDataArr objectAtIndex:indexPath.section];
     RefereeModel *referee = [arr objectAtIndex:indexPath.row];
     
-    RefereeCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
+    //    RefereeCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseId forIndexPath:indexPath];
+    RefereeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if(!cell){
         cell = [[RefereeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kReuseId];
+    }else{
+        if([cell.contentView.subviews lastObject] != nil){
+            [[cell.contentView.subviews lastObject] removeAllSubviews];
+        }
     }
-    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=nationalteam", referee.refefeeId];
-    [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        NSLog(@"data = %@", jsonDict);
-        NSDictionary *dic = jsonDict;
-        int like = [[dic objectForKey:@"likeNum"] intValue];
-        _likeNum = like;
-        [cell displayCell:referee likeNum:_likeNum];
-    } failure:^(CommonRequest *request, NSError *error) {
-        NSLog(@"error = %@", error);
-    }];
+    [cell displayCell:referee];
     cell.delegate = self;
     return cell;
 }
@@ -179,7 +175,7 @@
     NSIndexPath *indexpath = [_refereeView indexPathForCell:cell];
     NSArray *arr = [_selectedDataArr objectAtIndex:indexpath.section];
     RefereeModel *referee = [arr objectAtIndex:indexpath.row];
-    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=nationalteam", referee.refefeeId];
+    NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=referee", referee.refefeeId];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"data = %@", jsonDict);
         NSDictionary *dic = jsonDict;
@@ -187,10 +183,11 @@
             return ;
         }else{
             _likeNum = [[dic objectForKey:@"likeNum"] intValue];
-            NSDictionary *dic = @{@"type":@"nationalteam", @"target":referee.refefeeId, @"like":@1};
+            NSDictionary *dic = @{@"type":@"referee", @"target":referee.refefeeId, @"like":@1};
             [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
                 NSLog(@"succeed!%@", jsonDict);
                 [btn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"fired"] forState:UIControlStateNormal];
             } failure:^(CommonRequest *request, NSError *error) {
                 NSLog(@"error: %@", error);
             }];

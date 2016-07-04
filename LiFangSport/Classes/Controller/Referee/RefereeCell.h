@@ -30,6 +30,6 @@
 @property(nonatomic, retain)UIButton *likeBtn;
 @property(nonatomic, assign)id<RefereeCellDelegate> delegate;
 
--(void)displayCell:(RefereeModel *)refereeModel likeNum:(int)likeNum;
+-(void)displayCell:(RefereeModel *)refereeModel;
 
 @end

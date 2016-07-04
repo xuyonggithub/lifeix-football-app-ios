@@ -34,14 +34,15 @@
         self.nameLabel.textColor = HEXRGBCOLOR(0x000000);
         self.nameLabel.text = name;
         [self addSubview:self.nameLabel];
-
+        
         // 点赞
         self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.likeBtn.frame = CGRectMake(SCREEN_WIDTH - 80, 0, 60, 40);
         [self.likeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
         [self.likeBtn setImage:[UIImage imageNamed:@"fired.png"] forState:UIControlStateSelected];
-        [self.likeBtn setTitleColor:HEXRGBCOLOR(0x000000) forState:UIControlStateNormal];
+        [self.likeBtn setTitleColor:HEXRGBCOLOR(0x5f5f5f) forState:UIControlStateNormal];
         [self.likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        self.likeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:self.likeBtn];
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"身高／体重", @"场上位置", @"出生地", @"俱乐部", nil];

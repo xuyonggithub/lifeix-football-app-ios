@@ -38,9 +38,10 @@
         // 点赞
         self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 50 - _nameLabel.height, _nameLabel.top, _nameLabel.height + 50, _nameLabel.height);
-        [_likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
-        [_likeBtn setTitleColor:HEXRGBCOLOR(0xdddddd) forState:UIControlStateNormal];
+        [_likeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
+        [_likeBtn setTitleColor:HEXRGBCOLOR(0x5f5f5f) forState:UIControlStateNormal];
         [_likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _likeBtn.titleLabel.font = [UIFont systemFontOfSize:12];;
         [self addSubview:_likeBtn];
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"出生地", @"角色", @"俱乐部", nil];

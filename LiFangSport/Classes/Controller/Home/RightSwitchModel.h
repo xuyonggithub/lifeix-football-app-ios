@@ -6,6 +6,7 @@
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
+
 #import <JSONModel/JSONModel.h>
 
 @interface RightSwitchModel : JSONModel

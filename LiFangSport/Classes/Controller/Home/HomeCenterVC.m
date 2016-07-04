@@ -27,6 +27,7 @@
 #import "LocalNotiPush.h"
 #import "YDMenuSwitchView.h"
 #import "HomeSwitchVC.h"
+#import "CoachDetailVC.h"
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIWebViewDelegate>
@@ -127,22 +128,48 @@
     NSMutableArray *assistantCoachArr = [NSMutableArray array];
     assistantCoachArr = [RightSwitchModel arrayOfModelsFromDictionaries:dic[@"assistantCoach"]];
     NSMutableArray *chiefCoachArr = [NSMutableArray array];
-    chiefCoachArr = (NSMutableArray*)[RightSwitchModel modelDealDataFromWithDic:dic[@"chiefCoach"]];
+    if ([dic[@"chiefCoach"] isKindOfClass:[NSDictionary class]]) {
+        chiefCoachArr = (NSMutableArray*)[RightSwitchModel modelDealDataFromWithDic:dic[@"chiefCoach"]];
+    }else if ([dic[@"chiefCoach"] isKindOfClass:[NSArray class]]){
+        chiefCoachArr = (NSMutableArray*)[RightSwitchModel arrayOfModelsFromDictionaries:dic[@"chiefCoach"]];
+    }
     NSMutableArray *playersArr = [NSMutableArray array];
     playersArr = [RightSwitchModel arrayOfModelsFromDictionaries:dic[@"players"]];
-    
-    for (RightSwitchModel *model in assistantCoachArr) {
-        model.menberType = @"assistantCoach";
-        [_rightDataArray addObject:model];
+    NSMutableArray *teamLeaderArr = [NSMutableArray array];
+    if ([dic[@"teamLeader"] isKindOfClass:[NSDictionary class]]) {
+        teamLeaderArr = (NSMutableArray*)[RightSwitchModel modelDealDataFromWithDic:dic[@"teamLeader"]];
+    }else if ([dic[@"teamLeader"] isKindOfClass:[NSArray class]]){
+        teamLeaderArr = (NSMutableArray*)[RightSwitchModel arrayOfModelsFromDictionaries:dic[@"teamLeader"]];
     }
+    NSMutableArray *staffsArr = [NSMutableArray array];
+    if ([dic[@"staffs"] isKindOfClass:[NSDictionary class]]) {
+        staffsArr = (NSMutableArray*)[RightSwitchModel modelDealDataFromWithDic:dic[@"staffs"]];
+    }else if ([dic[@"staffs"] isKindOfClass:[NSArray class]]){
+        staffsArr = (NSMutableArray*)[RightSwitchModel arrayOfModelsFromDictionaries:dic[@"staffs"]];
+    }
+    
     for (RightSwitchModel *model in chiefCoachArr) {
         model.menberType = @"chiefCoach";
         [_rightDataArray addObject:model];
     }
+    for (RightSwitchModel *model in assistantCoachArr) {
+        model.menberType = @"assistantCoach";
+        [_rightDataArray addObject:model];
+    }
+
     for (RightSwitchModel *model in playersArr) {
         model.menberType = @"player";
         [_rightDataArray addObject:model];
     }
+    for (RightSwitchModel *model in teamLeaderArr) {
+        model.menberType = @"teamLeader";
+        [_rightDataArray addObject:model];
+    }
+    for (RightSwitchModel *model in staffsArr) {
+        model.menberType = @"staffs";
+        [_rightDataArray addObject:model];
+    }
+
     [_rightCollectionview reloadData];
 }
 
@@ -418,12 +445,25 @@
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-        PlayerDetailVC *pVC = [[PlayerDetailVC alloc]init];
         RightSwitchModel *model = _rightDataArray[indexPath.row];
+    /*
+     model.menberType = @"chiefCoach";
+     model.menberType = @"assistantCoach";
+        model.menberType = @"player";
+     */
+    
+    if ([model.menberType isEqualToString:@"player"]) {
+        PlayerDetailVC *pVC = [[PlayerDetailVC alloc]init];
         pVC.playerId = [NSString stringWithFormat:@"%@",model.KID];
         pVC.playerName = model.name;
-        pVC.title = model.name;
         [self.navigationController pushViewController:pVC animated:YES];
+    }else if ([model.menberType isEqualToString:@"chiefCoach"]||[model.menberType isEqualToString:@"assistantCoach"]){
+        CoachDetailVC *cvc = [[CoachDetailVC alloc]init];
+        cvc.coachId = [NSString stringWithFormat:@"%@",model.KID];
+        cvc.coachName = model.name;
+        [self.navigationController pushViewController:cvc animated:YES];
+    }
+
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

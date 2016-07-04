@@ -181,6 +181,7 @@
     PlayerDetailVC *playerDetVC = [[PlayerDetailVC alloc] init];
     playerDetVC.playerId = player.playerId;
     playerDetVC.playerName = player.name;
+    playerDetVC.player = player;
     [self.navigationController pushViewController:playerDetVC animated:YES];
 }
 

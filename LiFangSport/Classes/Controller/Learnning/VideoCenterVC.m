@@ -51,13 +51,12 @@
         _centerTableview.dataSource = self;
         [self.view addSubview:_centerTableview];
     }
+    _centerTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _centerTableview.rowHeight = 0.48 * kScreenWidth+5;
 }
 #pragma mark-tableviewdelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataArray.count;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -34,15 +34,15 @@
         self.nameLabel.textColor = HEXRGBCOLOR(0x000000);
         self.nameLabel.text = name;
         [self addSubview:self.nameLabel];
-        
+
         // 点赞
         self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 50 - _nameLabel.height, 30, _nameLabel.height + 50, 30);
-        [_likeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
-        [_likeBtn setImage:[UIImage imageNamed:@"fired.png"] forState:UIControlStateSelected];
-        [_likeBtn setTitleColor:HEXRGBCOLOR(0xdddddd) forState:UIControlStateNormal];
-        [_likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_likeBtn];
+        self.likeBtn.frame = CGRectMake(SCREEN_WIDTH - 80, 0, 60, 40);
+        [self.likeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
+        [self.likeBtn setImage:[UIImage imageNamed:@"fired.png"] forState:UIControlStateSelected];
+        [self.likeBtn setTitleColor:HEXRGBCOLOR(0x000000) forState:UIControlStateNormal];
+        [self.likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.likeBtn];
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"身高／体重", @"场上位置", @"出生地", @"俱乐部", nil];
         NSString *bodyInfo = [NSString stringWithFormat:@"%@cm/%@kg", height, weight];

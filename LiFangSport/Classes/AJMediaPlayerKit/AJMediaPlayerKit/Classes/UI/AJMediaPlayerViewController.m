@@ -3075,6 +3075,7 @@
 {
     _ignoreMoveSchedule = YES;
     self.mediaPlayerControlBar.alpha = 0;
+    self.soundControlView.alpha = 0;
 }
 
 //  显示快进、快退

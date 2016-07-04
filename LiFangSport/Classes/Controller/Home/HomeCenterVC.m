@@ -28,6 +28,9 @@
 #import "YDMenuSwitchView.h"
 #import "HomeSwitchVC.h"
 #import "CoachDetailVC.h"
+#define picWith 590
+#define picHeight 360
+#define bannerHeight 44
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
 @interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIWebViewDelegate>
@@ -55,6 +58,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     _dataArray = [NSMutableArray array];
     _picArray = [NSMutableArray array];
     _leftDataArray = [NSMutableArray array];
@@ -65,7 +70,7 @@
 
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
 
-    [self addTopBannnerView];
+//    [self addTopBannnerView];
     [self requestTopBannerSwitchData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRequest:) name:khomeKidNotiFicationStr object:nil];
 
@@ -181,13 +186,14 @@
 
     for (CenterCyclePicModel *model in _dataArray) {
         if (model.images.count) {
+            model.image = [NSString stringWithFormat:@"%@?imageView/1/w/%zd/h/%zd",model.image,picWith,picHeight];//七牛图片处理
             [_picArray addObject:[NSURL URLWithString:model.image]];
         }
     }
     if (_picArray&&_picArray.count) {
         [self dealAdvImages:_picArray With:_dataArray];
     }
-//    [self addTopBannnerView];
+    [self addTopBannnerView];
 }
 - (void)dealAdvImages:(NSArray *)imagesURL With:(NSArray *)dataArr
 {
@@ -202,8 +208,8 @@
         _cycleScrollView = nil;
         
     }else{
-        if (!_cycleScrollView) {
-            _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, kScreenWidth, 150) imageURLsGroup:imagesURL];
+        if (!_cycleScrollView) {//0.61,picHeight/picWith
+            _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, kScreenWidth, kScreenWidth*0.61) imageURLsGroup:imagesURL];
             [self.view addSubview:_cycleScrollView];
             _cycleScrollView.titlesGroup = titleArr;
 
@@ -220,9 +226,8 @@
 - (void)addTopBannnerView
 {
     DefineWeak(self);
-    _topBannnerView = [[TopBannerSwitchView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
+    _topBannnerView = [[TopBannerSwitchView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, bannerHeight)];
     _topBannnerView.top = _cycleScrollView.bottom;
-    _topBannnerView.top = 214;
     _topBannnerView.backgroundColor = [UIColor whiteColor];
     _topBannnerView.isShowIcon = NO;
     _topBannnerView.leftTitleStr = @"中国队赛程";
@@ -243,7 +248,7 @@
 //创建leftview
 -(void)createLeftView{
     if (_leftTableview == nil) {
-        _leftTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-214-44) style:UITableViewStylePlain];
+        _leftTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-_cycleScrollView.bottom-bannerHeight) style:UITableViewStylePlain];
         _leftTableview.top = _topBannnerView.bottom;
         _leftTableview.backgroundColor = kwhiteColor;
         _leftTableview.delegate = self;
@@ -257,7 +262,7 @@
 }
 -(void)createCenterView{
     if (_centerTableview==nil) {
-        _centerTableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-214-44) style:UITableViewStylePlain];
+        _centerTableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-_cycleScrollView.bottom-bannerHeight) style:UITableViewStylePlain];
         _centerTableview.top = _topBannnerView.bottom;
         _centerTableview.backgroundColor = kwhiteColor;
         _centerTableview.delegate = self;
@@ -300,7 +305,7 @@
     if (_rightCollectionview == nil) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _rightCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-214-44) collectionViewLayout:flowLayout];
+        _rightCollectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-_cycleScrollView.bottom-bannerHeight) collectionViewLayout:flowLayout];
         _rightCollectionview.top = _topBannnerView.bottom;
         _rightCollectionview.delegate = self;
         _rightCollectionview.dataSource = self;
@@ -446,12 +451,6 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
         RightSwitchModel *model = _rightDataArray[indexPath.row];
-    /*
-     model.menberType = @"chiefCoach";
-     model.menberType = @"assistantCoach";
-        model.menberType = @"player";
-     */
-    
     if ([model.menberType isEqualToString:@"player"]) {
         PlayerDetailVC *pVC = [[PlayerDetailVC alloc]init];
         pVC.playerId = [NSString stringWithFormat:@"%@",model.KID];

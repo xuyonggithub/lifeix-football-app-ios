@@ -8,6 +8,8 @@
 
 #import "VideoLearningCell.h"
 #import "UIImageView+WebCache.h"
+#define picWith 634
+#define picHeight 304
 
 @interface VideoLearningCell ()
 @property(nonatomic,strong)UIImageView *picView;
@@ -26,10 +28,9 @@
     return self;
 }
 -(void)initSubviews{
-    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, kScreenWidth, 140-5)];
+    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.48 * kScreenWidth-5)];
     _picView.width = kScreenWidth;
     [self addSubview:_picView];
-    _picView.image = [UIImage imageNamed:@"ou1233aeer"];
     
     _bannerView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, self.width, 25)];
     _bannerView.bottom = _picView.bottom-5;
@@ -43,12 +44,11 @@
     _titleLab.textColor = kwhiteColor;
     _titleLab.textAlignment = NSTextAlignmentLeft;
     _titleLab.font = [UIFont systemFontOfSize:19];
-    _titleLab.text = @"详细文字";
 }
 
 -(void)setModel:(VideoListModel *)model{
     _titleLab.text = model.name;
-    NSString *picstr = [NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",model.image];
+    NSString *picstr = [NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",[NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d",model.image,picWith,picHeight]];
     [_picView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"placeholder_media")];
 }
 

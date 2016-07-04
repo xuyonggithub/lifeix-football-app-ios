@@ -37,6 +37,7 @@
         _activityIndicatorView.hidesWhenStopped = NO;
         _activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
         _activityIndicatorView.tintColor = [UIColor colorWithRed:41.f/255 green:196.f/255 blue:198.f/255 alpha:1];
+        _activityIndicatorView.tintColor = knavibarColor;
         _activityIndicatorView.backgroundColor = [UIColor clearColor];
         [_activityIndicatorView startAnimating];
         [self addSubview:_activityIndicatorView];

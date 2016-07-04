@@ -131,8 +131,7 @@
     _availableProgressScubber.value = 0;
     _availableProgressScubber.continuous = YES;
     _availableProgressScubber.enabled  = NO;
-    //_availableProgressScubber.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
-    _availableProgressScubber.maximumTrackTintColor = [UIColor clearColor];
+    _availableProgressScubber.maximumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#b5b5b5" alpha:0.6];
     _availableProgressScubber.minimumTrackTintColor = [UIColor colorWithHTMLColorMark:@"#efeff4"];
     [_availableProgressScubber setThumbImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
     [self addSubview:_availableProgressScubber];

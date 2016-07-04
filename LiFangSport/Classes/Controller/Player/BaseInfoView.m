@@ -37,8 +37,9 @@
         
         // 点赞
         self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 50 - _nameLabel.height, _nameLabel.top, _nameLabel.height + 50, _nameLabel.height);
-        [_likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
+        _likeBtn.frame = CGRectMake(SCREEN_WIDTH - 50 - _nameLabel.height, 30, _nameLabel.height + 50, 30);
+        [_likeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
+        [_likeBtn setImage:[UIImage imageNamed:@"fired.png"] forState:UIControlStateSelected];
         [_likeBtn setTitleColor:HEXRGBCOLOR(0xdddddd) forState:UIControlStateNormal];
         [_likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_likeBtn];

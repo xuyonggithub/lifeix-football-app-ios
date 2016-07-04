@@ -32,6 +32,8 @@ const CGFloat topViewH = 180;
 @property(nonatomic, assign)int unLikeNum;
 @property(nonatomic, assign)BOOL isClick;
 @property(nonatomic, assign)BOOL isLike;
+
+@property(nonatomic, retain)UIView *loadingView;
 @end
 
 @implementation MediaDetailVC
@@ -153,9 +155,25 @@ const CGFloat topViewH = 180;
 #pragma mark - webViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"+++webViewDidStartLoad");
+    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 44 - 64)];
+    _loadingView.backgroundColor = kwhiteColor;
+    [self.view addSubview:_loadingView];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeHold_newsLoading.jpg"]];
+    imageView.center = CGPointMake(self.view.centerX, self.view.centerY - 100);
+    imageView.contentMode = UIViewContentModeCenter;
+    [_loadingView addSubview:imageView];
+    
+    UILabel *reminderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom + 15, SCREEN_WIDTH, 20)];
+    reminderLabel.text = @"内容正飞奔在网络中";
+    reminderLabel.textAlignment = NSTextAlignmentCenter;
+    reminderLabel.font = [UIFont systemFontOfSize:14];
+    reminderLabel.textColor = HEXRGBCOLOR(0xd9d9d9);
+    [_loadingView addSubview:reminderLabel];
     
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [_loadingView removeFromSuperview];
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     NSLog(@"+++webViewDidFinishLoad");
     

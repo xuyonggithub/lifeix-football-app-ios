@@ -39,7 +39,7 @@
     _playerArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     [self requestData];
-    self.automaticallyAdjustsScrollViewInsets = NO; 
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 -(void)requestData{
@@ -115,12 +115,17 @@
         arr = [NSArray arrayWithArray:self.playerArr[1]];
     }
     [_selectedDataArr addObjectsFromArray:[arr objectAtIndex:tag]];
+    UIImageView *whiteView;
     if(_selectedDataArr.count == 0){
-        UIImageView *whiteView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 97, 200, 200)];
+        whiteView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 97, 200, 200)];
         whiteView.image = [UIImage imageNamed:@"placeHold_white.jpg"];
         whiteView.centerX = self.view.centerX;
         whiteView.centerY = self.view.centerY + 97/2;
         [self.view addSubview:whiteView];
+    }else{
+        [whiteView removeFromSuperview];
+        whiteView = nil;
+        [self.view bringSubviewToFront:_playerView];
     }
     [self.playerView reloadData];
 }

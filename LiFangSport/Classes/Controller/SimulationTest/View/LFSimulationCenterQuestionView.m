@@ -270,21 +270,22 @@
 
 - (void)performNextQuestion
 {
+    _nextBtn.enabled = NO;
     if (_leftSelectedIndex == -1 || _rightSelectedIndex == -1) {
         //  跳过
         _falseCnt++;
         [self refreshRightLabelContent];
     }
-    if (_questionCnt == _falseCnt + _trueCnt) {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5*NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5*NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        if (_questionCnt == _falseCnt + _trueCnt) {
             [self refreshTestingResult];
-        });
-    }else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewNextQuestion)]) {
-            [self.delegate questionViewNextQuestion];
+        }else {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(questionViewNextQuestion)]) {
+                [self.delegate questionViewNextQuestion];
+            }
         }
-    }
+    });
 }
 
 #pragma mark - Judgement Answer

@@ -65,8 +65,13 @@
         [self addTimeShiftTotalTimeLabel];
         [self addChatroomSwitch];
         
+        self.soundControlView = [[AJMediaPlayerVolumeControl alloc] initWithAppearenceStyle:_appearenceStyle];
+        _soundControlView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:_soundControlView];
+        
+        
         if (_appearenceStyle == AJMediaPlayerStyleForiPhone) {
-            self.subViewsDictionary = NSDictionaryOfVariableBindings(_backGroundImageView,_playOrPauseButton,_progressScubber,_availableProgressScubber,_presentationSelectionButton,_startTimeLabel,_totalDurationLabel,_volumenControlButton,_timeShiftProgressScubber,_timeShiftStartTimeLabel,_timeShiftTotalTimeLabel,_chatroomSwitch);
+            self.subViewsDictionary = NSDictionaryOfVariableBindings(_backGroundImageView,_playOrPauseButton,_progressScubber,_availableProgressScubber,_presentationSelectionButton,_startTimeLabel,_totalDurationLabel,_volumenControlButton,_timeShiftProgressScubber,_timeShiftStartTimeLabel,_timeShiftTotalTimeLabel,_chatroomSwitch, _soundControlView);
         } else if (_appearenceStyle == AJMediaPlayerStyleForiPad) {
             [self addExcerptsHDButton];
             [self addStreamListHDButton];
@@ -640,8 +645,7 @@
 
 - (void)addLandscapeContraints {
     if (_appearenceStyle == AJMediaPlayerStyleForiPhone) {
-        //[self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#000000" alpha:0.7f]];
-        [self setBackgroundColor:[UIColor clearColor]];
+        [self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#000000" alpha:0.2f]];
     } else if (_appearenceStyle == AJMediaPlayerStyleForiPad) {
         [self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#222e36" alpha:0.7f]];
         [self addSubview:_streamListHDButton];
@@ -704,6 +708,11 @@
                                                                                  metrics:nil
                                                                                    views:_subViewsDictionary]];
     
+    [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_soundControlView]-0-|"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:_subViewsDictionary]];
+    
     if (appearenceStyle == AJMediaPlayerStyleForiPhone) {
         [_constraintList addObject:[NSLayoutConstraint constraintWithItem:_chatroomSwitch
                                                                 attribute:NSLayoutAttributeCenterY
@@ -733,15 +742,15 @@
                                                                                          metrics:nil
                                                                                            views:_subViewsDictionary]];
         } else {
-            [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_playOrPauseButton(59)]-0-[_startTimeLabel]-18-[_progressScubber]-18-[_totalDurationLabel]-0-[_volumenControlButton(59)]-0-|"
+            [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_playOrPauseButton(59)]-0-[_startTimeLabel]-18-[_progressScubber]-10-[_totalDurationLabel]-0-[_volumenControlButton(38)]-0-[_soundControlView(80)]-5-|"
                                                                                          options:0
                                                                                          metrics:nil
                                                                                            views:_subViewsDictionary]];
-            [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_playOrPauseButton(59)]-0-[_startTimeLabel]-18-[_availableProgressScubber]-18-[_totalDurationLabel]-0-[_volumenControlButton(59)]-0-|"
+            [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_playOrPauseButton(59)]-0-[_startTimeLabel]-18-[_availableProgressScubber]-10-[_totalDurationLabel]-0-[_volumenControlButton(38)]-0-[_soundControlView(80)]-5-|"
                                                                                          options:0
                                                                                          metrics:nil
                                                                                            views:_subViewsDictionary]];
-            [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_playOrPauseButton(59)]-0-[_timeShiftStartTimeLabel]-18-[_timeShiftProgressScubber]-18-[_timeShiftTotalTimeLabel]-0-[_volumenControlButton(59)]-0-|"
+            [_constraintList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_playOrPauseButton(59)]-0-[_timeShiftStartTimeLabel]-18-[_timeShiftProgressScubber]-10-[_timeShiftTotalTimeLabel]-0-[_volumenControlButton(38)]-0-[_soundControlView(80)]-5-|"
                                                                                          options:0
                                                                                          metrics:nil
                                                                                            views:_subViewsDictionary]];

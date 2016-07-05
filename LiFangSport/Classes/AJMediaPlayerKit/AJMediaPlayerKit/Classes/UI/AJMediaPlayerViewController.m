@@ -1064,7 +1064,7 @@
                                                                                       options:0
                                                                                       metrics:nil
                                                                                         views:_subViewsDictionary]];
-        [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_backButton(32)]"
+        [_constraintsList addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_backButton(42)]"
                                                                                       options:0
                                                                                       metrics:nil
                                                                                         views:_subViewsDictionary]];

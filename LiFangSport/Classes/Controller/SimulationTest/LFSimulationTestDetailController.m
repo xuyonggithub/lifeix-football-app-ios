@@ -147,6 +147,7 @@
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
 {
+    [self.mediaPlayerViewController pauseByAdditionView];
     [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
     [self.view bringSubviewToFront:self.questionView];
     [self.questionView beginPerformNextQuestion];

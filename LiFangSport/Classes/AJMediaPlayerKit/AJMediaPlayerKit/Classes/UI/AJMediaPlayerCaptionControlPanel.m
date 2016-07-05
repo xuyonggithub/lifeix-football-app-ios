@@ -321,8 +321,7 @@
 
 - (void)addLanscapeConstraints {
     if (_appearenceStyle == AJMediaPlayerStyleForiPhone) {
-        //[self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#000000" alpha:0.7f]];
-        [self setBackgroundColor:[UIColor clearColor]];
+        [self setBackgroundColor:[UIColor colorWithHTMLColorMark:@"#000000" alpha:0.2f]];
         [_backGroundImageView removeFromSuperview];
         [self addSubview:_titleLabel];
         [self addSubview:_bufferButton];

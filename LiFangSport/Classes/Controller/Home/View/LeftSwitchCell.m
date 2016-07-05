@@ -94,7 +94,7 @@
     NSTimeInterval dateIN=(NSTimeInterval)[model.startDate integerValue]/1000;
     NSDate * dateData=[NSDate dateWithTimeIntervalSince1970:dateIN];
     
-    NSTimeInterval timeIN=(NSTimeInterval)[model.startTime integerValue];
+    NSTimeInterval timeIN=(NSTimeInterval)[model.startTime integerValue]/1000;
     NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
     
     NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDate:dateData]];
@@ -127,7 +127,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.timeZone = [NSTimeZone systemTimeZone];
     //formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    [formatter setDateFormat:@"hh:mm"];
+    [formatter setDateFormat:@"HH:mm"];
     NSString *currenttimeString = [NSString stringWithFormat:@"%@",
                                    [formatter stringFromDate:date]];
     return currenttimeString;

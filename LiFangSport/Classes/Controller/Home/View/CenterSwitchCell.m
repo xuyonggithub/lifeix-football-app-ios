@@ -96,7 +96,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.timeZone = [NSTimeZone systemTimeZone];
     //formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    [formatter setDateFormat:@"YYYY/MM/dd / hh:mm"];
+    [formatter setDateFormat:@"YYYY/MM/dd / HH:mm"];
 //    [formatter setDateFormat:@"YYYY/MM/dd"];
     NSString *currenttimeString = [NSString stringWithFormat:@"%@",
                                    [formatter stringFromDate:date]];

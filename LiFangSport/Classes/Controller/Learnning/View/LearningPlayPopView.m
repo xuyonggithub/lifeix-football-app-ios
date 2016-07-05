@@ -13,7 +13,7 @@
 @interface LearningPlayPopView ()
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UIView *baseDecisionView;
-@property(nonatomic,strong)UITextView *textView;//UITextView *textView = [UITextView new];
+@property(nonatomic,strong)UITextView *textView;
 @property(nonatomic,strong)UIView *alphaBackView;
 
 @end
@@ -35,7 +35,7 @@
     _alphaBackView.backgroundColor = HEXRGBACOLOR(0xffffff,0.2);
     [self addSubview:_alphaBackView];
     _closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(30, 0, 40, 40)];
-    _closeBtn.top = 30;
+    _closeBtn.top = 15;
     _closeBtn.right = self.width-30;
     _closeBtn.backgroundColor = [UIColor clearColor];
     [_closeBtn setImage:UIImageNamed(@"popclose") forState:UIControlStateNormal];
@@ -61,6 +61,9 @@
     if (model==nil) {
         return;
     }
+    if (model.isOffsideHard!=nil) {//越位高级
+        [self dealUIWith:model];
+    }else{//非越位或者越位普通
     UIFont *kpoplabfont = [UIFont systemFontOfSize:18];
     UILabel *leftOneLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 180, 20)];
     UIImageView *leftOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -69,7 +72,7 @@
         return;
     }
     if (model.r1.count>0) {
-    leftOnePic.right = kScreenWidth/2-55;
+    leftOnePic.right = kScreenWidth/2-30-15-20;
     leftOneLab.right = leftOnePic.left - 20;
     leftOneLab.top = (kScreenHeight -(3*30+4*20))/2;
     leftOnePic.centerY = leftOneLab.centerY;
@@ -256,7 +259,10 @@
         }
     }
 }
-
+}
+-(void)dealUIWith:(VideoSingleInfoModel *)model{//越位高级处理ui
+    
+}
 -(void)addSubviewOfOtherType{
     _alphaBackView.hidden = YES;
     if (!_textView) {

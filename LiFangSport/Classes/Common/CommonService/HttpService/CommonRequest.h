@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, ServerErrorCode){
 //#define kServerAddressDomin  @"http://192.168.1. "
 #endif
 /*路径地址*/
-#define kcategoryPath       @"category/menus/app" //类目
+#define kcategoryPath       @"category/menus/ios" //类目
 #define kChinaMatchSchdulePath       @"games/competitions/5/matches?teamId=1" //中国队赛程
 #define kMatchSuggestPath       @"games/competitions/5" //赛事介绍
 #define kHeroListPath       @"games/competitions/5/teams/1/competitionTeam" //英雄榜

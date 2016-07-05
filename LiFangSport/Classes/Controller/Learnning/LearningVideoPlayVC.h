@@ -14,6 +14,7 @@
 @property(nonatomic,assign)NSInteger pageCount;
 @property(nonatomic,assign)NSInteger currentIndex;
 @property(nonatomic,strong)NSString *categoryID;
+@property(nonatomic,strong)NSString *isOffsideHard;
 
 
 @end

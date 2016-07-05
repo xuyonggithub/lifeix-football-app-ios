@@ -26,6 +26,7 @@
 #import <RESideMenu.h>
 #import "LFNavigationController.h"
 #import "SelectRootViewController.h"
+#import "CurrentlyScoreVC.h"
 
 @interface LeftCategoryVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableView;
@@ -133,6 +134,9 @@
         }else if ([model.page isEqualToString:@"quiz_categroy_page"]){
             
             [self pushToController:[[SimulationCenterVC alloc]init]  andWithTitle:model.name];
+        }else if ([model.page isEqualToString:@"fraction_page"]){
+    
+            [self pushToController:[[CurrentlyScoreVC alloc]init]  andWithTitle:model.name];
         }
     }
 }

@@ -23,6 +23,7 @@
 
 #define kvideoCollectionviewcellid  @"videoCollectionviewcellid"
 #define kvideodetPath @"elearning/training_categories/"
+#define offsideHard  @"offsideTypeHard"
 
 @interface VideoLearningDetVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
@@ -38,6 +39,7 @@
 @property(nonatomic, strong)UIImageView *backPicView;
 @property(nonatomic,assign)NSInteger pageCount;
 @property(nonatomic, strong)NSString *categoryID;
+@property(nonatomic, strong)NSString *offsideTypeHard;
 
 @end
 
@@ -66,9 +68,12 @@
 -(void)requestDataWithBtnTag:(NSInteger)btnIndex isHeaderRefresh:(BOOL)isHeaderRefresh{
     VideoLearningDetModel *model = _catsArr[btnIndex];
     _pageCount = model.pageCount;
-//    if (_categoryID == nil) {
-//        _categoryID = [[NSString alloc]init];
-//    }
+
+    if ([model.name isEqualToString:@"高级"] && [model.KID isEqualToString:@"elearning_t_iovt2010_02"]) {
+        _offsideTypeHard = [NSString stringWithFormat:offsideHard];
+    }else{
+        _offsideTypeHard = nil;
+    }
     _categoryID = [NSString stringWithFormat:@"%@",model.KID];
     [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/pages?start=%zd&limit=%zd",kvideodetPath,model.KID,startNum,limitNum] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict isHeaderRefresh:isHeaderRefresh];
@@ -217,6 +222,7 @@
     LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
     LearningPlayVC.videosArr = [NSArray arrayWithArray:_dataArr];
     LearningPlayVC.pageCount = _pageCount;
+    LearningPlayVC.isOffsideHard = _offsideTypeHard;
     if (_pageCount<limitNum) {
     LearningPlayVC.currentIndex = _pageCount;
     }else{

@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NSString<Optional> *rule;
 @property(nonatomic,strong)NSString<Optional> *videoPath;
 @property(nonatomic,strong)NSString<Optional> *title;
+@property(nonatomic,strong)NSString<Ignore> *isOffsideHard;//越位高级
 
 +(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic;
 

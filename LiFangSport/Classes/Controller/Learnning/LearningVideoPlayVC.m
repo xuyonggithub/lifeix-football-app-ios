@@ -15,6 +15,8 @@
 #import "LearningPlayPopView.h"
 #import "CommonLoading.h"
 #import "VideoLearningUnitModel.h"
+#define offsideHard  @"offsideTypeHard"
+
 @interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
 {
     BOOL _isFullScreen;
@@ -88,6 +90,11 @@
 
 -(void)dealWithSingleVideoData:(id )dic{
     _videoInfoArr = [VideoSingleInfoModel modelDealDataFromWithDic:dic];
+    if (_isOffsideHard!=nil) {
+        for (VideoSingleInfoModel *model in _videoInfoArr) {
+            model.isOffsideHard = offsideHard;
+        }
+    }
     [self toPlayWithAJMediaPlayerItem];
     //操控
     [self.view addSubview:self.ctrView];
@@ -199,16 +206,8 @@
     DefineWeak(_videoIdsArr);
     DefineWeak(_currentPlayVideoIndex);
     _ctrView.replayBlock = ^(void){
-//        if (_currentPlayVideoIndex<_videoIdsArr.count) {
-//            NSString *videoid = [NSString stringWithFormat:@"%@",Weak(_videoIdsArr)[Weak(_currentPlayVideoIndex)]];
-//            [Weak(self) requestSingleVideoInfoWith:videoid];
-//        }else {
-//            VideoLearningUnitModel *nmodel = Weak(self).updateNextVideoArr[0];
-//            [Weak(self) requestSingleVideoInfoWith:nmodel.videos[0][@"id"]];
-//        }
         if (Weak(self).videoInfoArr) {
             [Weak(self) toPlayWithAJMediaPlayerItem];
-//            [Weak(self).view bringSubviewToFront:Weak(self).ctrView];
             //操控
             [Weak(self).view addSubview:Weak(self).ctrView];
             //next

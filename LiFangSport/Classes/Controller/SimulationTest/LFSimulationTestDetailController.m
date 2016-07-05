@@ -115,7 +115,7 @@
         }
         [self.questionView refreshWithModel:self.currentQuestionModel];
         
-        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:[self.categoryModel.name stringByAppendingString:self.modeString ? self.modeString : @""] uid:@"uid"];
+        AJMediaPlayRequest *playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.currentQuestionModel.videoPath type:AJMediaPlayerVODStreamItem name:@"" uid:@"uid"];
         [self.mediaPlayerViewController startToPlay:playRequest];
         [self.view bringSubviewToFront:self.mediaPlayerViewController.view];
     }
@@ -147,6 +147,7 @@
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
 {
+    [self.mediaPlayerViewController pauseByAdditionView];
     [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
     [self.view bringSubviewToFront:self.questionView];
     [self.questionView beginPerformNextQuestion];

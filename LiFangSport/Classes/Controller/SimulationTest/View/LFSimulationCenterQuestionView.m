@@ -206,7 +206,7 @@
         resultLabel.font = [UIFont systemFontOfSize:17];
         resultLabel.textColor = kwhiteColor;
         resultLabel.textAlignment = NSTextAlignmentCenter;
-        resultLabel.text = [NSString stringWithFormat:@"%@通过本次测试，敢不敢继续挑战？\n共%@题，正确%@题，错误%@题", _trueCnt >= _rightCount ? @"恭喜您，成功" : @"很抱歉，您未", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
+        resultLabel.text = [NSString stringWithFormat:@"%@通过本次测试。\n共%@题，正确%@题，错误%@题", _trueCnt >= _rightCount ? @"恭喜您，成功" : @"很抱歉，您未", @(_questionCnt), @(_trueCnt), @(_falseCnt)];
         [self addSubview:resultLabel];
         [resultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf).offset(ALDFullScreenVertical(75));
@@ -243,7 +243,7 @@
                 break;
         }
         _nextBtn.enabled = YES;
-        [_nextBtn setTitle:@"继续挑战" forState:UIControlStateNormal];
+        [_nextBtn setTitle:@"继续测试" forState:UIControlStateNormal];
     });
 }
 

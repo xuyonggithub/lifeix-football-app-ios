@@ -9,6 +9,8 @@
 @import UIKit;
 #import "AJMediaPlayerStyleDefines.h"
 #import "AJMediaPlayerButton.h"
+#import "AJMediaPlayerVolumeControl.h"
+
 typedef NS_ENUM(NSInteger, AJMediaPlayerPresentationMode) {
     AJMediaPlayerFullscreenPresentation,
     AJMediaPlayerEmbeddedPresentation
@@ -105,6 +107,10 @@ IB_DESIGNABLE
  *  切换全屏按钮
  */
 @property (nonatomic, strong) IBInspectable UIButton *presentationSelectionButton;
+/**
+ *  声音
+ */
+@property (nonatomic, strong) IBInspectable AJMediaPlayerVolumeControl *soundControlView;
 /**
  *  iPad播放器切换码流按钮
  */

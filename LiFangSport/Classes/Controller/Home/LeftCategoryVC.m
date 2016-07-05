@@ -101,11 +101,14 @@
     if (_dataArray.count) {
         cell.model = _dataArray[indexPath.section];
     }
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_dataArray.count) {
         HomeLeftCategModel *model = _dataArray[indexPath.section];
             if ([model.page isEqualToString:@"competition_page"]) {

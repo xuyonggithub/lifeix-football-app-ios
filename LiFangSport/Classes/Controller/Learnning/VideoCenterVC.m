@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor clearColor];
     
     [self createTableview];
     [self requestData];
@@ -50,6 +50,7 @@
         _centerTableview.delegate = self;
         _centerTableview.dataSource = self;
         [self.view addSubview:_centerTableview];
+        _centerTableview.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"videolearningbackground"]];
     }
     _centerTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _centerTableview.rowHeight = 0.48 * kScreenWidth+5;

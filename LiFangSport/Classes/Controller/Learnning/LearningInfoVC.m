@@ -49,10 +49,10 @@
     DefineWeak(self);
     DefineWeak(popKit);
     _rightView.cellClickBc = ^(NSInteger index){
-        if ((index-1)>_dataArray.count-1) {
+        if ((index)>_dataArray.count-1) {
             return ;
         }
-        VideoLearningDetModel *model = Weak(self).dataArray[index-1];
+        VideoLearningDetModel *model = Weak(self).dataArray[index];
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.contentUri]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [Weak(self).bwebView loadRequest:request];

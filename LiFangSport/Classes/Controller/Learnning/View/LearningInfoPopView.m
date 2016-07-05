@@ -54,7 +54,7 @@
 }
 #pragma mark - UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.newdataArr.count + 1;
+    return self.newdataArr.count;// + 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -63,12 +63,12 @@
     if(!cell){
         cell = [[LearningInfoPopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCell];
     }
-    if(indexPath.row == 0){
-        cell.titleLab.text = @"全部";
-    }else{
-    VideoLearningDetModel *model = [self.newdataArr objectAtIndex:indexPath.row - 1];
+//    if(indexPath.row == 0){
+//        cell.titleLab.text = @"全部";
+//    }else{
+    VideoLearningDetModel *model = [self.newdataArr objectAtIndex:indexPath.row];
     cell.titleLab.text = model.name;
-    }
+//    }
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
     return cell;
@@ -80,13 +80,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.row == 0){
-
-    }else{
         if (self.cellClickBc) {
             self.cellClickBc(indexPath.row);
         }
-    }
 }
 
 @end

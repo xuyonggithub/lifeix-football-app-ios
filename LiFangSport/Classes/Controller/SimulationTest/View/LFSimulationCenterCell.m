@@ -28,7 +28,7 @@
         _bgImageView = [UIImageView new];
         [self.contentView addSubview:_bgImageView];
         [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(25, 12.5, 0, 12.5));
+            make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(15, 12.5, 0, 12.5));
         }];
         
         UIImageView *bannerView = [UIImageView new];
@@ -42,7 +42,7 @@
         
         _titleLabel = [UILabel new];
         _titleLabel.textColor = kwhiteColor;
-        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(bannerView);
@@ -53,15 +53,22 @@
     return self;
 }
 
-- (void)refreshContent:(LFSimulationCategoryModel *)model
+- (void)refreshContentWithSimulationCategoryModel:(LFSimulationCategoryModel *)model
 {
-    [_bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",model.image]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [_bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",model.image]] placeholderImage:UIImageNamed(@"placeholder_media") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:model.image];   // 保存文件的名称
 //        BOOL result = [UIImagePNGRepresentation(image)writeToFile:filePath atomically:YES]; // 保存成功会返回YES
 //        NSLog(@"%@", @(result));
     }];
     _titleLabel.text = model.name;
+}
+
+- (void)refreshContentWithVideoListModel:(VideoListModel *)model
+{
+    _titleLabel.text = model.name;
+    NSString *picstr = [NSString stringWithFormat:@"%@%@%@",kQiNiuHeaderPathPrifx,@"mobile/",[NSString stringWithFormat:@"%@?imageView/1/w/%@/h/%@",model.image,@(SCREEN_WIDTH*2),@(SCREEN_WIDTH)]];
+    [_bgImageView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"placeholder_media")];
 }
 
 @end

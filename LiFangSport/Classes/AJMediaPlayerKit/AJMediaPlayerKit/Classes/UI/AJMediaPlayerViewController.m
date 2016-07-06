@@ -135,6 +135,10 @@
  */
 @property(nonatomic, strong) NSTimer *kTimer;
 /**
+ *  快进快退的定时器
+ */
+@property(nonatomic, strong) NSTimer *fastTimer;
+/**
  *  是否隐藏控制栏标示位
  */
 @property(nonatomic, assign) BOOL hidePlayerControlBar;
@@ -2540,6 +2544,11 @@
                 [weakSelf.delegate mediaPlayerViewController:self userDidClickOnPlayOrPauseButton:NO];
             }
         }
+        if (weakSelf.currentMediaPlayerState == AJMediaPlayerStateContentFinished) {
+            _fastView.hidden = YES;
+            [weakSelf.fastTimer invalidate];
+            weakSelf.fastTimer = nil;
+        }
     });
 }
 
@@ -2576,7 +2585,6 @@
 }
 
 - (void)mediaPlayer:(AJMediaPlayer *)mediaPlayer didVideoPlayToEnd:(AJMediaPlayerItem *)mediaPlayerItem {
-    _fastView.hidden = YES;
     [self invalidateTimer];
     if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayerViewController:videoDidPlayToEnd:)]) {
         if ([self isAirPlayActive]) {
@@ -3077,6 +3085,7 @@
     UIButton *forwardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [forwardBtn setImage:[UIImage imageNamed:@"fastForward"] forState:UIControlStateNormal];
     [forwardBtn addTarget:self action:@selector(forwardBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [forwardBtn addTarget:self action:@selector(forwardTimer:) forControlEvents:UIControlEventTouchDown];
     [_fastView addSubview:forwardBtn];
     [forwardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.top.equalTo(_fastView);
@@ -3086,6 +3095,7 @@
     UIButton *reverseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [reverseBtn setImage:[UIImage imageNamed:@"fastReverse"] forState:UIControlStateNormal];
     [reverseBtn addTarget:self action:@selector(reverseBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [reverseBtn addTarget:self action:@selector(reverseTimer:) forControlEvents:UIControlEventTouchDown];
     [_fastView addSubview:reverseBtn];
     [reverseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.and.left.equalTo(_fastView);
@@ -3095,15 +3105,66 @@
     _fastView.hidden = YES;
 }
 
+- (void)forwardTimer:(id)sender
+{
+    NSTimeInterval timeInterval = 0.5;
+    self.fastTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                      target:self
+                                                    selector:@selector(forward)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.fastTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)forward
+{
+    if (self.currentMediaPlayerState != AJMediaPlayerStateContentFinished) {
+        _isManMadePause = YES;
+        [self pause];
+        [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] + 0.035];
+    }
+}
+
 - (void)forwardBtnTouched:(id)sender
 {
+    if (self.fastTimer) {
+        [self.fastTimer invalidate];
+        self.fastTimer = nil;
+    }
+
     _isManMadePause = YES;
-    [self pause];
-    [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] + 0.035];
+    if (self.currentMediaPlayerState != AJMediaPlayerStateContentFinished) {
+        [self pause];
+        [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] + 0.035];
+    }
+}
+
+- (void)reverseTimer:(id)sender
+{
+    NSTimeInterval timeInterval = 0.5;
+    self.fastTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                      target:self
+                                                    selector:@selector(reverse)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.fastTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)reverse
+{
+    if (self.currentMediaPlayerState != AJMediaPlayerStateContentFinished) {
+        _isManMadePause = YES;
+        [self pause];
+        [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] - 0.035 > 0 ? [self.mediaPlayer currentPlaybackTime] - 0.035 : 0];
+    }
 }
 
 - (void)reverseBtnTouched:(id)sender
 {
+    if (self.fastTimer) {
+        [self.fastTimer invalidate];
+        self.fastTimer = nil;
+    }
     _isManMadePause = YES;
     [self pause];
     [self.mediaPlayer seekToTimeForLearning:[self.mediaPlayer currentPlaybackTime] - 0.035];

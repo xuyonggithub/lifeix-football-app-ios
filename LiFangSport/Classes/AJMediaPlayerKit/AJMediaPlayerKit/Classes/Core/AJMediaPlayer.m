@@ -354,7 +354,9 @@ static dispatch_queue_t mediaplayer_processing_queue() {
 {
     self.currentPlayState = AJMediaPlayerStateContentSeeking;
     NSTimeInterval totalTime = [self currentItemDuration];
-    if (time == -1 || ((time + 0.035) >= totalTime && time != 0 && totalTime != 0)) {
+    if (time == -1 || ((time + 0.035 * 2) >= totalTime && time != 0 && totalTime != 0)) {
+        //  需重新播放 为了得到播放结束的通知
+        [self.videoPlayer play];
         if (self.delegate && [self.delegate respondsToSelector:@selector(mediaPlayer:didChangeStateFrom:to:)]) {
             [self.delegate mediaPlayer:self didChangeStateFrom:self.currentPlayState to:AJMediaPlayerStateContentFinished];
             self.currentPlayState = AJMediaPlayerStateContentFinished;

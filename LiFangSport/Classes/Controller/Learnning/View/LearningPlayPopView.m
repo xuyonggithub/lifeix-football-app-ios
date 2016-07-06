@@ -9,7 +9,7 @@
 #import "LearningPlayPopView.h"
 #import "NSString+WPAttributedMarkup.h"
 #import "LearningPlayPopDeciModel.h"
-
+#define kScreenRatioBase6IphoneHeight_popplay           (DEVICE_IS_IPAD?1.4:([[UIScreen mainScreen] bounds].size.width / 667.0))
 @interface LearningPlayPopView ()
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UIView *baseDecisionView;
@@ -51,6 +51,12 @@
 }
 
 -(void)addSubviewOfDECISIONType:(VideoSingleInfoModel *)model {
+    if (model==nil) {
+        return;
+    }
+    if (model.isOffsideHard!=nil) {//越位高级
+        [self dealUIWith:model];
+    }else{//非越位或者越位普通
     _alphaBackView.hidden = NO;
     if (!_baseDecisionView) {
         _baseDecisionView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth-140, kScreenHeight)];
@@ -58,12 +64,7 @@
         _baseDecisionView.backgroundColor = kclearColor;
         [self addSubview:_baseDecisionView];
     }
-    if (model==nil) {
-        return;
-    }
-    if (model.isOffsideHard!=nil) {//越位高级
-        [self dealUIWith:model];
-    }else{//非越位或者越位普通
+
     UIFont *kpoplabfont = [UIFont systemFontOfSize:18];
     UILabel *leftOneLab = [[UILabel alloc]initWithFrame:CGRectMake(100, 60, 180, 20)];
     UIImageView *leftOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -261,6 +262,33 @@
 }
 }
 -(void)dealUIWith:(VideoSingleInfoModel *)model{//越位高级处理ui
+    for (int i=0; i<4; i++) {
+        UIImageView *picView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth - 4*130*kScreenRatioBase6IphoneHeight_popplay-3*12)/2 +(130*kScreenRatioBase6IphoneHeight_popplay+12)*i, 0, 130*kScreenRatioBase6IphoneHeight_popplay, 100*kScreenRatioBase6IphoneHeight_popplay)];
+        picView.centerY = self.centerY;
+        [self addSubview:picView];
+        NSDictionary *dic =(NSDictionary *) model.r1[i];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,dic[@"image"]]];
+        [picView sd_setImageWithURL:url];
+        
+        if ([dic[@"right"] integerValue] == 0) {//蒙层
+            UIView *hardOutsideView = [[UIView alloc]initWithFrame:picView.bounds];
+            hardOutsideView.alpha = 0.4;
+            hardOutsideView.backgroundColor = HEXRGBCOLOR(0xffffff);
+            [picView addSubview:hardOutsideView];
+        }
+        
+        UILabel *lab =[[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth - 4*130*kScreenRatioBase6IphoneHeight_popplay-3*12)/2 +(130*kScreenRatioBase6IphoneHeight_popplay+12)*i, 0, 130*kScreenRatioBase6IphoneHeight_popplay, 20)];
+        lab.top = picView.bottom +10;
+        lab.backgroundColor = kclearColor;
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.font = [UIFont systemFontOfSize:20];
+        lab.text = dic[@"text"];
+        [self addSubview:lab];
+        lab.textColor = kwhiteColor;
+        if ([dic[@"right"] integerValue] == 1) {//正确答案
+            lab.textColor = [UIColor redColor];
+        }
+    }
     
 }
 -(void)addSubviewOfOtherType{
@@ -326,5 +354,16 @@
     }
     return nil;
 }
+
+//-(UIImage *)darkenFromImage:(NSString *)imageNameStr{
+//    UIImage *image = [UIImage imageNamed:imageNameStr];
+//    UIGraphicsBeginImageContextWithOptions(image.size, NO, [UIScreen mainScreen].scale);
+//    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)
+//            blendMode:kCGBlendModeDarken
+//                alpha:0.6];
+//    UIImage *highlighted = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return highlighted;
+//}
 
 @end

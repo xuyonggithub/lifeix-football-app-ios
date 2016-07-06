@@ -86,6 +86,13 @@ static NSMutableSet *requestURLKeys;
         }
         urlPath = [urlPath stringByAppendingString:@"key=visitor"];
     }
+    NSRange range = [path rangeOfString:@"http"];//判断请求路径是否包含http(完整路径)
+    if (range.length >0)//包含
+    {
+        urlPath = path;
+    }else{//不包含
+        
+    }
     
     void (^SuccessBlock)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject){
         if(loadingType != RLT_None){

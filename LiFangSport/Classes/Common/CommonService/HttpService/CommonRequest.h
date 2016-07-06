@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, ServerErrorCode){
 
 #define kvideoListPath @"elearning/training_categories" //视频列表
 #define kvideoSinglePath @"elearning/videos/"//点击单个视频
-
+#define kCurrentlyScorePath @"http://api.caibisai.com/cbs/fb/contest/list?"//实时比分完整路径
 
 typedef void(^FetchCachedJson)(NSDictionary *json);
 typedef void(^CompleteBlock)(BOOL success);

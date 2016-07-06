@@ -67,10 +67,7 @@
     _rightDataArray = [NSMutableArray array];
     _mediaArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
-
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
-
-//    [self addTopBannnerView];
     [self requestTopBannerSwitchData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRequest:) name:khomeKidNotiFicationStr object:nil];
 

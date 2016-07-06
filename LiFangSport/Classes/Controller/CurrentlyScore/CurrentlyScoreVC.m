@@ -10,7 +10,7 @@
 #import "LeftSwitchCell.h"
 #import "LeftSwitchModel.h"
 #import "CommonRequest.h"
-
+//http://192.168.2.160:8080/cbs/fb/contest/list?start_time=2016-07-01&end_time=2016-07-05
 @interface CurrentlyScoreVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableview;
 @property(nonatomic,strong)NSMutableArray *dataArray;
@@ -22,10 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.kTableview];
-    [self requestData];
+    [self requestDataWithStart:@"" andWithEnd:@""];
 }
--(void)requestData{
-    [CommonRequest requstPath:@"" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+-(void)requestDataWithStart:(NSString *)startStr andWithEnd:(NSString *)endStr{
+    [CommonRequest requstPath:[NSString stringWithFormat:@"%@start_time=%@&end_time=%@",kCurrentlyScorePath,startStr,endStr] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithData:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);

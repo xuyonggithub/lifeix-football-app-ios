@@ -32,7 +32,7 @@
 #define bannerHeight 44
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
-@interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIWebViewDelegate>
+@interface HomeCenterVC ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIWebViewDelegate, UIScrollViewDelegate>
 {
     UILabel *ruleLab;
     UIView *centerBannerView;
@@ -50,6 +50,7 @@
 @property(nonatomic,strong)UICollectionView *rightCollectionview;
 @property(nonatomic,strong)NSString *ruleStr;
 @property(nonatomic,strong)NSString *leftSubtitlePrifxStr;
+@property(nonatomic,strong)UIScrollView *topScrollView;
 
 @end
 
@@ -231,12 +232,15 @@
     _topBannnerView.rightTitleStr = @"英雄榜";
     _topBannnerView.clickLeftBtn = ^(void){
         [Weak(self) createLeftView];
+        [Weak(self) resetTop:0];
     };
     _topBannnerView.clickCenterBtn = ^(void){
         [Weak(self) createCenterView];
+        [Weak(self) resetTop:1];
     };
     _topBannnerView.clickRightBtn = ^(void){
         [Weak(self) createRightView];
+        [Weak(self) resetTop:2];
     };
     [self.view addSubview:_topBannnerView];
     [self createLeftView];
@@ -254,6 +258,7 @@
     }
 
     [self.view bringSubviewToFront:_leftTableview];
+    self.topScrollView = _leftTableview;
 
 }
 -(void)createCenterView{
@@ -285,6 +290,8 @@
         _centerTableview.tableHeaderView = centerBannerView;
     }
     [self.view bringSubviewToFront:_centerTableview];
+    self.topScrollView = _centerTableview;
+    
 
 }
 #pragma mark-webviewdelegate
@@ -312,6 +319,8 @@
         [self.view addSubview:_rightCollectionview];
     }
     [self.view bringSubviewToFront:_rightCollectionview];
+    self.topScrollView = _rightCollectionview;
+    
 
 }
 #pragma mark-tableviewdelegate
@@ -504,4 +513,56 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+#pragma mark- UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y > 0) {
+        //  向上拖动
+        _cycleScrollView.top = 64-scrollView.contentOffset.y;
+    }else {
+        //  向下拖动
+        _cycleScrollView.top = 64;
+    }
+    _topBannnerView.top = _cycleScrollView.bottom;
+    if (_topBannnerView.top <= 64) {
+        _topBannnerView.top = 64;
+    }
+    scrollView.top = _topBannnerView.bottom;
+    scrollView.height = kScreenHeight - scrollView.top;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (![scrollView isEqual:self.topScrollView]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.topScrollView.top = _topBannnerView.bottom;
+            self.topScrollView.height = kScreenHeight - _leftTableview.top;
+        });
+    }
+}
+
+- (void)resetTop:(NSInteger)index
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        _cycleScrollView.top = 64;
+//        _topBannnerView.top = _cycleScrollView.bottom;
+        [self.view bringSubviewToFront:_cycleScrollView];
+        [self.view bringSubviewToFront:_topBannnerView];
+        if (index == 0) {
+//            _leftTableview.top = _topBannnerView.bottom;
+//            _leftTableview.height = kScreenHeight - _leftTableview.top;
+            _leftTableview.contentOffset = CGPointMake(0, 0);
+        }else if (index == 1) {
+//            _centerTableview.top = _topBannnerView.bottom;
+//            _centerTableview.height = kScreenHeight - _centerTableview.top;
+            _centerTableview.contentOffset = CGPointMake(0, 0);
+        }else if (index == 2) {
+//            _rightCollectionview.top = _topBannnerView.bottom;
+//            _rightCollectionview.height = kScreenHeight - _rightCollectionview.top;
+            _rightCollectionview.contentOffset = CGPointMake(0, 0);
+        }
+    });
+}
+
 @end

@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, ServerErrorCode){
 #elif defined(Env_Dev_Test)
 #define kServerAddress      @"http://192.168.50.154:8000/football/"
 //#define kServerAddressDomin  @"http://192.168.1. "
+//http://124.207.104.18:18082
 #endif
 /*路径地址*/
 #define kcategoryPath       @"category/menus/ios" //类目

@@ -28,8 +28,7 @@
 #import "YDMenuSwitchView.h"
 #import "HomeSwitchVC.h"
 #import "CoachDetailVC.h"
-#define picWith 590
-#define picHeight 360
+
 #define bannerHeight 44
 
 #define krightCollectionviewcellid  @"rightCollectionviewcellid"
@@ -186,7 +185,7 @@
 
     for (CenterCyclePicModel *model in _dataArray) {
         if (model.images.count) {
-            model.image = [NSString stringWithFormat:@"%@?imageView/1/w/%zd/h/%zd",model.image,picWith,picHeight];//七牛图片处理
+            model.image = [NSString stringWithFormat:@"%@?imageView/1/w/%@/h/%@",model.image,@(SCREEN_WIDTH * 2), [NSNumber numberWithInt:SCREEN_WIDTH * 9 / 8.0]];//七牛图片处理
             [_picArray addObject:[NSURL URLWithString:model.image]];
         }
     }
@@ -208,8 +207,8 @@
         _cycleScrollView = nil;
         
     }else{
-        if (!_cycleScrollView) {//0.61,picHeight/picWith
-            _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, kScreenWidth, kScreenWidth*0.61) imageURLsGroup:imagesURL];
+        if (!_cycleScrollView) {
+            _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, kScreenWidth, kScreenWidth*9 / 16.0) imageURLsGroup:imagesURL];
             [self.view addSubview:_cycleScrollView];
             _cycleScrollView.titlesGroup = titleArr;
 

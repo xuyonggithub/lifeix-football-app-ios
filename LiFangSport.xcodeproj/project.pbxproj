@@ -158,6 +158,8 @@
 		2DBB72631D11B1D3009BD38F /* homebannerplaceholder@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */; };
 		2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */; };
 		2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */; };
+		2DD4F1391D2D038A0038FA52 /* CurrentlyScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4F1381D2D038A0038FA52 /* CurrentlyScoreCell.m */; };
+		2DD4F13C1D2D03A10038FA52 /* CurrentlyScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4F13B1D2D03A10038FA52 /* CurrentlyScoreModel.m */; };
 		2DD6579D1D2562950075F0C8 /* LocalNotiPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6579C1D2562950075F0C8 /* LocalNotiPush.m */; };
 		2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */; };
 		2DE0BF4E1D1CDB2000FFA297 /* lppopselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */; };
@@ -643,6 +645,10 @@
 		2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetVC.m; sourceTree = "<group>"; };
 		2DBB72671D11B659009BD38F /* VideoLearningDetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetCell.h; sourceTree = "<group>"; };
 		2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetCell.m; sourceTree = "<group>"; };
+		2DD4F1371D2D038A0038FA52 /* CurrentlyScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentlyScoreCell.h; sourceTree = "<group>"; };
+		2DD4F1381D2D038A0038FA52 /* CurrentlyScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentlyScoreCell.m; sourceTree = "<group>"; };
+		2DD4F13A1D2D03A10038FA52 /* CurrentlyScoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentlyScoreModel.h; sourceTree = "<group>"; };
+		2DD4F13B1D2D03A10038FA52 /* CurrentlyScoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentlyScoreModel.m; sourceTree = "<group>"; };
 		2DD6579B1D2562950075F0C8 /* LocalNotiPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotiPush.h; sourceTree = "<group>"; };
 		2DD6579C1D2562950075F0C8 /* LocalNotiPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotiPush.m; sourceTree = "<group>"; };
 		2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
@@ -1307,6 +1313,8 @@
 		2D9D12EE1D21304400A31A16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2DD4F13A1D2D03A10038FA52 /* CurrentlyScoreModel.h */,
+				2DD4F13B1D2D03A10038FA52 /* CurrentlyScoreModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1314,6 +1322,8 @@
 		2D9D12EF1D21304400A31A16 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2DD4F1371D2D038A0038FA52 /* CurrentlyScoreCell.h */,
+				2DD4F1381D2D038A0038FA52 /* CurrentlyScoreCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2717,6 +2727,7 @@
 				2DA4B1FC1D0E598500136DA7 /* HomeCenterVC.m in Sources */,
 				2D62E8081D0F9BB40006131B /* HomeLeftCategModel.m in Sources */,
 				9CAF825A1D190F560025224F /* AJMediaPlayerSlider.m in Sources */,
+				2DD4F13C1D2D03A10038FA52 /* CurrentlyScoreModel.m in Sources */,
 				9CAF825E1D190F560025224F /* AJMediaPlayRequest.m in Sources */,
 				2DA4B2101D0E80C700136DA7 /* TAAbstractDotView.m in Sources */,
 				9CE136851D1A22680007A22D /* LFSimulationCenterPromptView.m in Sources */,
@@ -2774,6 +2785,7 @@
 				2D84EA391D10F99C00113404 /* CenterSwitchModel.m in Sources */,
 				EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */,
 				9CAF824A1D190F560025224F /* AJMediaStreamProvider.m in Sources */,
+				2DD4F1391D2D038A0038FA52 /* CurrentlyScoreCell.m in Sources */,
 				2DE2C87D1D0D498600310C4C /* SimButton.m in Sources */,
 				9C658B6D1D1A7D9B0005215D /* LFSimulationCategoryModel.m in Sources */,
 				9CAF82861D19237F0025224F /* VTBulletItem.m in Sources */,

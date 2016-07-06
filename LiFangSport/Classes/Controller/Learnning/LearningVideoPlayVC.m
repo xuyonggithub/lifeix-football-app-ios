@@ -146,6 +146,7 @@
 #pragma mark - AJMediaViewControllerDelegate
 - (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
 {
+    self.mediaPlayerViewController.isAddtionView = YES;
     [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
 }
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
@@ -227,46 +228,54 @@
     DefineWeak(popKit);
     DefineWeak(rview);
     _ctrView.factorsBlock = ^(void){
-        [Weak(self).mediaPlayerViewController pause];
+        [Weak(self).mediaPlayerViewController pauseByAdditionView];
+        [Weak(self).mediaPlayerViewController invalidateMediaPlayerNavigationBarTimer];
         [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
         Weak(rview).closeBc = ^(void){
             [Weak(popKit) dismiss:YES];
         };
         Weak(popKit).dismissBlock = ^(void){
-            [Weak(self).mediaPlayerViewController play];
+            [Weak(self).mediaPlayerViewController playByAdditionView];
+            [Weak(self).mediaPlayerViewController fireMediaPlayerNavigationBarTimer];
         };
         [Weak(rview) setModel:model WithType:LPPOP_FACTORS];
     };
     _ctrView.decisionBlock = ^(void){
-        [Weak(self).mediaPlayerViewController pause];
+        [Weak(self).mediaPlayerViewController pauseByAdditionView];
+        [Weak(self).mediaPlayerViewController invalidateMediaPlayerNavigationBarTimer];
         [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
         Weak(rview).closeBc = ^(void){
             [Weak(popKit) dismiss:YES];
         };
         Weak(popKit).dismissBlock = ^(void){
-            [Weak(self).mediaPlayerViewController play];
+            [Weak(self).mediaPlayerViewController playByAdditionView];
+            [Weak(self).mediaPlayerViewController fireMediaPlayerNavigationBarTimer];
         };
         [Weak(rview) setModel:model WithType:LPPOP_DECISION];
     };
     _ctrView.detailBlock = ^(void){
-        [Weak(self).mediaPlayerViewController pause];
+        [Weak(self).mediaPlayerViewController pauseByAdditionView];
+        [Weak(self).mediaPlayerViewController invalidateMediaPlayerNavigationBarTimer];
         [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
         Weak(rview).closeBc = ^(void){
             [Weak(popKit) dismiss:YES];
         };
         Weak(popKit).dismissBlock = ^(void){
-            [Weak(self).mediaPlayerViewController play];
+            [Weak(self).mediaPlayerViewController playByAdditionView];
+            [Weak(self).mediaPlayerViewController fireMediaPlayerNavigationBarTimer];
         };
         [Weak(rview) setModel:model WithType:LPPOP_DETAIL];
     };
     _ctrView.ruleBlock = ^(void){
-        [Weak(self).mediaPlayerViewController pause];
+        [Weak(self).mediaPlayerViewController pauseByAdditionView];
+        [Weak(self).mediaPlayerViewController invalidateMediaPlayerNavigationBarTimer];
         [Weak(popKit) popView:Weak(rview) animateType:PAT_Alpha];
         Weak(rview).closeBc = ^(void){
             [Weak(popKit) dismiss:YES];
         };
         Weak(popKit).dismissBlock = ^(void){
-            [Weak(self).mediaPlayerViewController play];
+            [Weak(self).mediaPlayerViewController playByAdditionView];
+            [Weak(self).mediaPlayerViewController fireMediaPlayerNavigationBarTimer];
         };
         [Weak(rview) setModel:model WithType:LPPOP_RULE];
     };

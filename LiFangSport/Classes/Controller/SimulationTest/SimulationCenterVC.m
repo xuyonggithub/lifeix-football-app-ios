@@ -59,11 +59,6 @@
     return self.dataArray.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 25 + (SCREEN_WIDTH - 25) / 2.0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *customCellID = @"LFSimulationCenterCellID";
@@ -72,7 +67,7 @@
     if (!cell) {
         cell = [[LFSimulationCenterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
-    [cell refreshContent:self.dataArray[indexPath.row]];
+    [cell refreshContentWithSimulationCategoryModel:self.dataArray[indexPath.row]];
     return cell;
 }
 
@@ -91,6 +86,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.rowHeight = 15 + (SCREEN_WIDTH - 25) / 2.0;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
         _tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"videolearningbackground"]];

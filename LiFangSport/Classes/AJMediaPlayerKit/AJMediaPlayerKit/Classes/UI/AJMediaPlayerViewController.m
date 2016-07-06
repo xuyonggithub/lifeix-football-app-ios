@@ -460,26 +460,26 @@
         NSString *videoType = [storageURLDictionary valueForKey:@"videoType"];
         int interval = (int)([@([[NSDate date] timeIntervalSince1970]) integerValue]-[storageURLDictionary[@"timeStamp"] integerValue]);
         if ([videoType isEqualToString:@"video"]) {
-            if (interval > VideoPlayerEnterBackgroundTimeout) {
-                if (storageURLDictionary[@"playURL"]) {
-                    __weak typeof(self) weakSelf = self;
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [[AJMediaPlayerInfrastructureContext cloudService] syncSecuredStreamURLWithSchedulingURL:storageURLDictionary[@"playURL"] success:^(NSError *error, NSURL *cdeLinkUrl) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                if (cdeLinkUrl) {
-                                    NSTimeInterval currentPlayTime = [weakSelf.mediaPlayer currentPlaybackTime];
-                                    [weakSelf.mediaPlayer restartToPlayVideoUrl:cdeLinkUrl currentTime:currentPlayTime error:error];
-                                }
-                            });
-                        }];
-                    });
-                }
-            } else {
+//            if (interval > VideoPlayerEnterBackgroundTimeout) {
+//                if (storageURLDictionary[@"playURL"]) {
+//                    __weak typeof(self) weakSelf = self;
+//                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                        [[AJMediaPlayerInfrastructureContext cloudService] syncSecuredStreamURLWithSchedulingURL:storageURLDictionary[@"playURL"] success:^(NSError *error, NSURL *cdeLinkUrl) {
+//                            dispatch_async(dispatch_get_main_queue(), ^{
+//                                if (cdeLinkUrl) {
+//                                    NSTimeInterval currentPlayTime = [weakSelf.mediaPlayer currentPlaybackTime];
+//                                    [weakSelf.mediaPlayer restartToPlayVideoUrl:cdeLinkUrl currentTime:currentPlayTime error:error];
+//                                }
+//                            });
+//                        }];
+//                    });
+//                }
+//            } else {
                 if ([[AJMediaPlayerInfrastructureContext cloudService] currentPlayURL]) {
                     NSTimeInterval currentPlayTime = [self.mediaPlayer currentPlaybackTime];
                     [self.mediaPlayer restartToPlayVideoUrl:[NSURL URLWithString:[[AJMediaPlayerInfrastructureContext cloudService] currentPlayURL]] currentTime:currentPlayTime error:nil];
                 }
-            }
+//            }
         } else if ([videoType isEqualToString:@"live"]) {
             if (interval > LivePlayerEnterBackgroundTimeout) {
                 if (storageURLDictionary[@"playURL"]) {
@@ -3105,6 +3105,20 @@
     _fastView.hidden = YES;
 }
 
+
+//  启动隐藏mediaPlayerNavigationBar Timer
+- (void)fireMediaPlayerNavigationBarTimer
+{
+    [self fireTimer];
+}
+
+//  销毁隐藏mediaPlayerNavigationBar Timer
+- (void)invalidateMediaPlayerNavigationBarTimer
+{
+    [self invalidateTimer];
+}
+
+#pragma mark - Responder Methods
 - (void)forwardTimer:(id)sender
 {
     NSTimeInterval timeInterval = 0.5;

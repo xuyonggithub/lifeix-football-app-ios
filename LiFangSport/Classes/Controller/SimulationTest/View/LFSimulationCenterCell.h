@@ -9,9 +9,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LFSimulationCategoryModel.h"
+#import "VideoListModel.h"
 
 @interface LFSimulationCenterCell : UITableViewCell
 
-- (void)refreshContent:(LFSimulationCategoryModel *)model;
+- (void)refreshContentWithSimulationCategoryModel:(LFSimulationCategoryModel *)model;
+- (void)refreshContentWithVideoListModel:(VideoListModel *)model;
 
 @end

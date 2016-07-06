@@ -13,6 +13,7 @@
 #import "VideoListModel.h"
 #import "VideoLearningDetModel.h"
 #import "LearningInfoVC.h"
+#import "LFSimulationCenterCell.h"
 
 @interface VideoCenterVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *centerTableview;
@@ -53,7 +54,7 @@
         _centerTableview.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"videolearningbackground"]];
     }
     _centerTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _centerTableview.rowHeight = 0.48 * kScreenWidth+5;
+    _centerTableview.rowHeight = 15 + (SCREEN_WIDTH - 25) / 2.0;
 }
 #pragma mark-tableviewdelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -61,14 +62,23 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellid = @"VideoCenterVCcellid";
+//    static NSString *cellid = @"VideoCenterVCcellid";
+//    
+//    VideoLearningCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
+//    if (cell == nil) {
+//        cell = [[VideoLearningCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+//    }
+//    cell.model = _dataArray[indexPath.row];
+//    return cell;
+    static NSString *customCellID = @"LFSimulationCenterCellID";
     
-    VideoLearningCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
-    if (cell == nil) {
-        cell = [[VideoLearningCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    LFSimulationCenterCell * cell = [tableView dequeueReusableCellWithIdentifier:customCellID];
+    if (!cell) {
+        cell = [[LFSimulationCenterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
-    cell.model = _dataArray[indexPath.row];
+    [cell refreshContentWithVideoListModel:self.dataArray[indexPath.row]];
     return cell;
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -44,8 +44,8 @@
     _playerController.player = _player;
     _playerController.videoGravity = AVLayerVideoGravityResizeAspect;
     _playerController.delegate = self;
-    _playerController.allowsPictureInPicturePlayback = true;
-    _playerController.showsPlaybackControls = true;
+    //_playerController.allowsPictureInPicturePlayback = true;
+    _playerController.showsPlaybackControls = NO;
     
     [self addChildViewController:_playerController];
     _playerController.view.translatesAutoresizingMaskIntoConstraints = true;

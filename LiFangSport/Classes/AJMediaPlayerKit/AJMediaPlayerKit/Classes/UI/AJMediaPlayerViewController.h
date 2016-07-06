@@ -286,5 +286,11 @@ IB_DESIGNABLE
 //  显示快进、快退
 - (void)showFastControl;
 
+//  启动隐藏mediaPlayerNavigationBar Timer
+- (void)fireMediaPlayerNavigationBarTimer;
+
+//  销毁隐藏mediaPlayerNavigationBar Timer
+- (void)invalidateMediaPlayerNavigationBarTimer;
+
 @end
 

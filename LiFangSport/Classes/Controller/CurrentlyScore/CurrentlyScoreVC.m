@@ -29,11 +29,6 @@
     return 10;//self.dataArray.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 25 + (SCREEN_WIDTH - 25) / 2.0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *customCellID = @"LeftSwitchCellid";
@@ -42,6 +37,7 @@
     if (!cell) {
         cell = [[LeftSwitchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
+
 //    [cell refreshContent:self.dataArray[indexPath.row]];
     return cell;
 }
@@ -55,12 +51,12 @@
 #pragma mark - Getter and Setter
 -(UITableView *)kTableview{
     if (!_kTableview) {
-        _kTableview = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _kTableview.backgroundColor = [UIColor lightGrayColor];
+        _kTableview = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _kTableview.delegate = self;
         _kTableview.dataSource = self;
-//        _kTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _kTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        _kTableview.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
+        _kTableview.rowHeight = 130*kScreenRatioBase6Iphone;
     }
     return _kTableview;
 }

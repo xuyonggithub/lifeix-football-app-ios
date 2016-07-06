@@ -16,10 +16,12 @@
     // 设置触发通知的时间
     notification.fireDate = fireDate;
     // 时区
-    notification.timeZone = [NSTimeZone systemTimeZone];
-    notification.repeatInterval = 0;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+//    notification.repeatInterval = NSCalendarUnitEra;
     notification.alertBody =  alertBodyStr;
+    notification.hasAction = YES;
     notification.alertAction =  @"滑动来查看";
+    notification.alertTitle = alertBodyStr;
     notification.applicationIconBadgeNumber = 0;
     notification.soundName = UILocalNotificationDefaultSoundName;
     NSDictionary *userDict = [NSDictionary dictionaryWithObject:value forKey:key];

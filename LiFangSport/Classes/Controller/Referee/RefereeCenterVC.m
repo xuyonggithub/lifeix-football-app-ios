@@ -12,11 +12,17 @@
 #import "RefereeModel.h"
 #import "RefereeCell.h"
 #import "CommonLoading.h"
+#import "PopViewKit.h"
+#import "RefereeCatePopView.h"
+#import "UIBarButtonItem+SimAdditions.h"
 
 #define kReuseId  @"tableViewCell"
 #define kHeaderReuseId  @"Header"
 #define kRefereePath  @"games/referees?level=fifa"
-@interface RefereeCenterVC()<UITableViewDelegate, UITableViewDataSource, RefereeCellDelegate>
+@interface RefereeCenterVC()<UITableViewDelegate, UITableViewDataSource, RefereeCellDelegate, RefereeCatePopViewDelegate>{
+    PopViewKit *popKit;
+    RefereeCatePopView *rightView;
+}
 //@property(nonatomic, retain)NSMutableDictionary *dataDic;
 @property(nonatomic, retain)NSMutableArray *topNameArr; // 裁判员 五人制 沙滩足球
 @property(nonatomic, retain)NSMutableArray *categoryNameArr; // [[男足裁判，男足助理],[array2], ...]
@@ -34,6 +40,8 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.title = @"FIFA";
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"list_right.png"] target:self action:@selector(rightDrawerAction:)];
     //    _dataDic = [NSMutableDictionary dictionary];
     self.automaticallyAdjustsScrollViewInsets = false;
     
@@ -44,6 +52,87 @@
     _refereeArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     [self requestData];
+}
+
+- (void)rightDrawerAction:(UIBarButtonItem *)sender {
+    if (!popKit) {
+        popKit = [[PopViewKit alloc] init];
+        popKit.bTapDismiss = YES;
+        popKit.bInnerTapDismiss = NO;
+    }
+    if (!rightView) {
+        rightView = [[RefereeCatePopView alloc]initWithFrame:CGRectMake(0, 0, 200, kScreenHeight)];
+        rightView.delegate = self;
+    }
+    rightView.frame = CGRectMake(0, 0, 200, kScreenHeight);
+    popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-rightView.width, 0);
+    [popKit popView:rightView animateType:PAT_WidthRightToLeft];
+}
+
+#pragma mark - popViewDelegate
+-(void)popViewDidSelectCategory:(NSString *)cate{
+    self.title = cate;
+    [self requestDataWithCate:cate];
+    [popKit dismiss:YES];
+}
+
+-(void)requestDataWithCate:(NSString *)cate{
+    if([cate isEqualToString:@"FIFA"]){
+        [self requestData];
+    }
+    NSString *urlStr = [[NSString stringWithFormat:@"games/referees/league?league=%@", cate] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [CommonRequest requstPath:urlStr loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        
+        [self dealWithCateData: jsonDict];
+        
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"+++error: %@", error);
+    }];
+}
+
+-(void)dealWithCateData:(id)jsonDict{
+    NSArray *jsonArr = jsonDict;
+    NSDictionary *dict = [jsonArr objectAtIndex:1];
+    _selectedTitleArr = [NSMutableArray array];
+    _selectedDataArr = [NSMutableArray array];
+    //分组
+    NSArray *a = [dict objectForKey:@"referees"];
+    if(a.count != 0){
+        for(NSDictionary *dic in jsonArr){
+            [_selectedTitleArr addObject:[dic objectForKey:@"categoryName"]];
+            NSArray *referees = [dic objectForKey:@"referees"];
+            NSMutableArray *sectionReffeeArr = [NSMutableArray array];
+            for(int j = 0; j < referees.count; j++){
+                NSDictionary *dic = referees[j];
+                RefereeModel *referee = [[RefereeModel alloc] initWithDictionary:dic error:nil];
+                [sectionReffeeArr addObject:referee];
+            }
+            [_selectedDataArr addObject:sectionReffeeArr];
+        }
+    }else{ // 无分组
+        NSDictionary *dict = [jsonArr objectAtIndex:0];
+        NSArray *referees = [dict objectForKey:@"referees"];
+        NSMutableArray *sectionReffeeArr = [NSMutableArray array];
+        for(int j = 0; j < referees.count; j++){
+            NSDictionary *dic = referees[j];
+            RefereeModel *referee = [[RefereeModel alloc] initWithDictionary:dic error:nil];
+            [sectionReffeeArr addObject:referee];
+        }
+        [_selectedDataArr addObject:sectionReffeeArr];
+        _selectedTitleArr = nil;
+    }
+    [self addRefereeTableView];
+}
+
+-(void)addRefereeTableView{
+    _refereeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+    _refereeView.delegate = self;
+    _refereeView.dataSource = self;
+    _refereeView.backgroundColor = kwhiteColor;
+    _refereeView.showsVerticalScrollIndicator = NO;
+    [_refereeView registerClass:[RefereeCell class] forCellReuseIdentifier:kReuseId];
+    _refereeView.allowsSelection = NO;
+    [self.view addSubview:_refereeView];
 }
 
 -(void)requestData{
@@ -59,6 +148,9 @@
 
 -(void)dealWithData:(id)jsonDict{
     NSArray *jsonArr = jsonDict;
+    [_topNameArr removeAllObjects];
+    [_categoryNameArr removeAllObjects];
+    [_refereeArr removeAllObjects];
     for(NSDictionary *dic in jsonArr) {
         [self.topNameArr addObject:[dic objectForKey:@"topName"]];
         NSArray *categoryArr = [dic objectForKey:@"category"];
@@ -91,22 +183,21 @@
     };
     [self.view addSubview:_CategoryView];
     _CategoryView.backgroundColor = kwhiteColor;
-    if(_refereeView == nil){
-        _refereeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 98, SCREEN_WIDTH, SCREEN_HEIGHT - 98) style:UITableViewStylePlain];
-        _refereeView.delegate = self;
-        _refereeView.dataSource = self;
-        _refereeView.backgroundColor = kwhiteColor;
-        _refereeView.showsVerticalScrollIndicator = NO;
-        [_refereeView registerClass:[RefereeCell class] forCellReuseIdentifier:kReuseId];
-        _refereeView.allowsSelection = NO;
-        [self.view addSubview:_refereeView];
-    }
+    _refereeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 98, SCREEN_WIDTH, SCREEN_HEIGHT - 98) style:UITableViewStylePlain];
+    _refereeView.delegate = self;
+    _refereeView.dataSource = self;
+    _refereeView.backgroundColor = kwhiteColor;
+    _refereeView.showsVerticalScrollIndicator = NO;
+    [_refereeView registerClass:[RefereeCell class] forCellReuseIdentifier:kReuseId];
+    _refereeView.allowsSelection = NO;
+    [self.view addSubview:_refereeView];
 }
 
 
 -(void)clickBtn:(NSUInteger)tag{
     self.selectedIndex = tag;
     [_selectedDataArr removeAllObjects];
+    [_selectedTitleArr removeAllObjects];
     NSArray *ceteArr = [self.refereeArr objectAtIndex:tag];
     //获取所有分区标题
     [self.selectedTitleArr addObjectsFromArray:[self.categoryNameArr objectAtIndex:tag]];
@@ -119,7 +210,10 @@
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return _selectedDataArr.count;
+    if(_selectedTitleArr != nil){
+        return _selectedTitleArr.count;
+    }
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -150,7 +244,10 @@
 }
 // 区头标题
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+    if(_selectedTitleArr != nil){
+        return 30;
+    }
+    return 0;
 }
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];

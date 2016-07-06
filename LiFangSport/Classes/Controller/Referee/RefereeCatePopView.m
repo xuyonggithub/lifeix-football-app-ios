@@ -1,24 +1,25 @@
 //
-//  MediaCatePopView.m
+//  RefereeCatePopView.m
 //  LiFangSport
 //
-//  Created by 卢亚林 on 16/6/27.
+//  Created by 卢亚林 on 16/7/5.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "MediaCatePopView.h"
+#import "RefereeCatePopView.h"
 #import "MediaCategoryCell.h"
 #import "CommonRequest.h"
-#import "MediaCenterVC.h"
+#import "RefereeCenterVC.h"
 
-@interface MediaCatePopView()<UITableViewDelegate, UITableViewDataSource>
+@interface RefereeCatePopView()<UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, retain)NSMutableArray *dataArr;
 @property(nonatomic, retain)UITableView *tableView;
 @property(nonatomic, retain)NSIndexPath *lastSelected;
+
 @end
 
-@implementation MediaCatePopView
+@implementation RefereeCatePopView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -36,7 +37,7 @@
         UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 140, 40)];
         [headerV addSubview: headerView];
         headerView.font = [UIFont systemFontOfSize:11];
-        headerView.text = @"资讯分类";
+        headerView.text = @"裁判员分类";
         headerView.centerY = 20;
         headerView.textColor = HEXRGBCOLOR(0x929292);
         self.tableView.tableHeaderView = headerV;
@@ -48,7 +49,7 @@
 }
 
 -(void)requsetCategory{
-    [CommonRequest requstPath:@"category/menus/app_wemedia" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:@"games/referees/leagueCategory" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         self.dataArr = jsonDict;
         [self.tableView reloadData];
     } failure:^(CommonRequest *request, NSError *error) {
@@ -69,12 +70,11 @@
         cell = [[MediaCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCell];
     }
     if(indexPath.row == 0){
-        cell.titleLab.text = @"全部";
+        cell.titleLab.text = @"FIFA";
     }else{
-        NSDictionary *dic = [self.dataArr objectAtIndex:indexPath.row - 1];
-        cell.titleLab.text = [dic objectForKey:@"name"];
+        cell.titleLab.text = [self.dataArr objectAtIndex:indexPath.row - 1];
     }
-//    cell.backgroundColor = RGBCOLOR(240, 241, 242);
+
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0xae141c);
     return cell;
@@ -96,10 +96,9 @@
     cell.titleLab.textColor = HEXRGBCOLOR(0xffffff);
     _lastSelected = indexPath;
     if(indexPath.row == 0){
-        [self.delegate popViewDidSelectCategory:nil andName:@"全部"];
+        [self.delegate popViewDidSelectCategory:@"FIFA"];
     }else{
-        NSDictionary *dic = [self.dataArr objectAtIndex:indexPath.row - 1];
-        [self.delegate popViewDidSelectCategory:[dic objectForKey:@"id"] andName:[dic objectForKey:@"name"]];
+        [self.delegate popViewDidSelectCategory:[self.dataArr objectAtIndex:indexPath.row - 1]];
     }
 }
 

@@ -3105,6 +3105,20 @@
     _fastView.hidden = YES;
 }
 
+
+//  启动隐藏mediaPlayerNavigationBar Timer
+- (void)fireMediaPlayerNavigationBarTimer
+{
+    [self fireTimer];
+}
+
+//  销毁隐藏mediaPlayerNavigationBar Timer
+- (void)invalidateMediaPlayerNavigationBarTimer
+{
+    [self invalidateTimer];
+}
+
+#pragma mark - Responder Methods
 - (void)forwardTimer:(id)sender
 {
     NSTimeInterval timeInterval = 0.5;

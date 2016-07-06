@@ -416,10 +416,10 @@
         hlab.textAlignment = NSTextAlignmentCenter;
         hlab.font = [UIFont systemFontOfSize:12];
         if (section==0) {
-            hlab.text = @"亚洲12强A组";
+            hlab.text = @"亚洲十二强赛A组";
         }
         if (section==1) {
-            hlab.text = @"亚洲12强B组";
+            hlab.text = @"亚洲十二强赛B组";
         }
         [hview addSubview:hlab];
         return hview;

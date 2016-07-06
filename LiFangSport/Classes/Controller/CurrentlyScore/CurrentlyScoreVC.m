@@ -8,6 +8,8 @@
 
 #import "CurrentlyScoreVC.h"
 #import "LeftSwitchCell.h"
+#import "LeftSwitchModel.h"
+#import "CommonRequest.h"
 
 @interface CurrentlyScoreVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableview;
@@ -20,7 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.kTableview];
+    [self requestData];
+}
+-(void)requestData{
+    [CommonRequest requstPath:@"" loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [self dealWithData:jsonDict];
+    } failure:^(CommonRequest *request, NSError *error) {
+        NSLog(@"+++error: %@", error);
+    }];
+}
+
+-(void)dealWithData:(id )dic{
+    [self.dataArray removeAllObjects];
     
+    
+    [self.kTableview reloadData];
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource
@@ -37,15 +53,13 @@
     if (!cell) {
         cell = [[LeftSwitchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
-
-//    [cell refreshContent:self.dataArray[indexPath.row]];
+//    cell.model = model;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-   
 }
 
 #pragma mark - Getter and Setter
@@ -66,7 +80,6 @@
     }
     return _dataArray;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -149,7 +149,10 @@
     }else if ([dic[@"staffs"] isKindOfClass:[NSArray class]]){
         staffsArr = (NSMutableArray*)[RightSwitchModel arrayOfModelsFromDictionaries:dic[@"staffs"]];
     }
-    
+    for (RightSwitchModel *model in teamLeaderArr) {
+        model.menberType = @"teamLeader";
+        [_rightDataArray addObject:model];
+    }
     for (RightSwitchModel *model in chiefCoachArr) {
         model.menberType = @"chiefCoach";
         [_rightDataArray addObject:model];
@@ -161,10 +164,6 @@
 
     for (RightSwitchModel *model in playersArr) {
         model.menberType = @"player";
-        [_rightDataArray addObject:model];
-    }
-    for (RightSwitchModel *model in teamLeaderArr) {
-        model.menberType = @"teamLeader";
         [_rightDataArray addObject:model];
     }
     for (RightSwitchModel *model in staffsArr) {
@@ -274,8 +273,8 @@
         UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, centerBannerView.width, 25)];
         lab.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
         lab.text = @"2018年世界杯预选赛亚洲区赛制方案";
-        lab.textColor = HEXRGBCOLOR(0x9a9a9a);
-        lab.font = [UIFont systemFontOfSize:16];
+        lab.textColor = HEXRGBCOLOR(0x5f5f5f);
+        lab.font = [UIFont systemFontOfSize:10];
         lab.textAlignment = NSTextAlignmentCenter;
         [centerBannerView addSubview:lab];
         

@@ -98,11 +98,16 @@
     _timeLab.centerY= _hostTeamFlagView.centerY;
     _hostTeamLab.centerY = _hostTeamFlagView.centerY;
     _awayTeamLab.centerY = _hostTeamFlagView.centerY;
+    
+    _hostTeamFlagView.layer.shadowOffset = CGSizeMake(0, 5);
+    _hostTeamFlagView.layer.shadowOpacity = 0.9;
+    _hostTeamFlagView.layer.shadowColor = HEXRGBCOLOR(0xdcdcdc).CGColor;
+    
+    _awayTeamFlagView.layer.shadowOffset = CGSizeMake(0, 5);
+    _awayTeamFlagView.layer.shadowOpacity = 0.9;
+    _awayTeamFlagView.layer.shadowColor = HEXRGBCOLOR(0xdcdcdc).CGColor;
 }
 
--(void)resetLabFrame{
-
-}
 - (NSString *)extractDateToTime:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.timeZone = [NSTimeZone systemTimeZone];

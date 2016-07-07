@@ -19,6 +19,8 @@
 @property(nonatomic,strong)UILabel *awayTeamNameLab;
 @property(nonatomic,strong)NSDictionary *weekDic;
 @property(nonatomic,strong)NSDictionary *monthDic;
+@property(nonatomic,strong)UILabel *normalScoreLab;
+@property(nonatomic,strong)UILabel *gameStatusLab;
 
 @end
 @implementation CurrentlyScoreCell
@@ -64,6 +66,23 @@
     [self addSubview:_likeView];
     _likeView.image = UIImageNamed(@"VSicon");
     
+    _normalScoreLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
+    _normalScoreLab.center = _likeView.center;
+    _normalScoreLab.textAlignment = NSTextAlignmentCenter;
+    _normalScoreLab.textColor = kTitleColor;
+    _normalScoreLab.font = [UIFont systemFontOfSize:20];
+    [self addSubview:_normalScoreLab];
+    _normalScoreLab.hidden = YES;
+    
+    _gameStatusLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 20)];
+    _gameStatusLab.centerX = _normalScoreLab.centerX;
+    _gameStatusLab.top = _normalScoreLab.bottom;
+    _gameStatusLab.textAlignment = NSTextAlignmentCenter;
+    _gameStatusLab.textColor = HEXRGBCOLOR(0xd0d0d0);
+    _gameStatusLab.font = [UIFont systemFontOfSize:10];
+    [self addSubview:_gameStatusLab];
+    _gameStatusLab.hidden = YES;
+    
     _hostTeamNameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
     _hostTeamNameLab.top = _hostTeamFlagView.bottom;
     _hostTeamNameLab.centerX = _hostTeamFlagView.centerX;
@@ -79,6 +98,23 @@
 }
 
 -(void)setModel:(CurrentlyScoreModel *)model{
+    _gameStatusLab.hidden = YES;
+    if ([model.status integerValue] == 0) {//未开始
+        _normalScoreLab.hidden = YES;
+        _likeView.hidden = NO;
+        
+    }else{
+        _normalScoreLab.hidden = NO;
+        _likeView.hidden = YES;
+        _normalScoreLab.text = [NSString stringWithFormat:@"%@:%@",model.home_scores,model.away_scores];
+        if ([model.status integerValue] == -1) {//完场
+            _gameStatusLab.hidden = NO;
+            _gameStatusLab.text = @"已完场";
+        }else{
+
+        }
+    }
+    
     NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model.start_time]];
     NSString *dataStr = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
     

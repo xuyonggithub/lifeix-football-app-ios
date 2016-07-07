@@ -80,6 +80,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CurrentlyScoreModel *model = self.dataArray[indexPath.row];
+
 }
 
 #pragma mark - Getter and Setter

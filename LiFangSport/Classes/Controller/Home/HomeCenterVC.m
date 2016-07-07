@@ -232,15 +232,15 @@
     _topBannnerView.rightTitleStr = @"英雄榜";
     _topBannnerView.clickLeftBtn = ^(void){
         [Weak(self) createLeftView];
-        [Weak(self) resetTop:0];
+        [Weak(self) bringCycleScrollViewToFront];
     };
     _topBannnerView.clickCenterBtn = ^(void){
         [Weak(self) createCenterView];
-        [Weak(self) resetTop:1];
+        [Weak(self) bringCycleScrollViewToFront];
     };
     _topBannnerView.clickRightBtn = ^(void){
         [Weak(self) createRightView];
-        [Weak(self) resetTop:2];
+        [Weak(self) bringCycleScrollViewToFront];
     };
     [self.view addSubview:_topBannnerView];
     [self createLeftView];
@@ -320,8 +320,6 @@
     }
     [self.view bringSubviewToFront:_rightCollectionview];
     self.topScrollView = _rightCollectionview;
-    
-
 }
 #pragma mark-tableviewdelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -532,37 +530,17 @@
     scrollView.height = kScreenHeight - scrollView.top;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (![scrollView isEqual:self.topScrollView]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.topScrollView.top = _topBannnerView.bottom;
-            self.topScrollView.height = kScreenHeight - _leftTableview.top;
-        });
-    }
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    
+//}
 
-- (void)resetTop:(NSInteger)index
+- (void)bringCycleScrollViewToFront
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-//        _cycleScrollView.top = 64;
-//        _topBannnerView.top = _cycleScrollView.bottom;
-        [self.view bringSubviewToFront:_cycleScrollView];
-        [self.view bringSubviewToFront:_topBannnerView];
-        if (index == 0) {
-//            _leftTableview.top = _topBannnerView.bottom;
-//            _leftTableview.height = kScreenHeight - _leftTableview.top;
-            _leftTableview.contentOffset = CGPointMake(0, 0);
-        }else if (index == 1) {
-//            _centerTableview.top = _topBannnerView.bottom;
-//            _centerTableview.height = kScreenHeight - _centerTableview.top;
-            _centerTableview.contentOffset = CGPointMake(0, 0);
-        }else if (index == 2) {
-//            _rightCollectionview.top = _topBannnerView.bottom;
-//            _rightCollectionview.height = kScreenHeight - _rightCollectionview.top;
-            _rightCollectionview.contentOffset = CGPointMake(0, 0);
-        }
-    });
+    [self.view bringSubviewToFront:_cycleScrollView];
+    [self.view bringSubviewToFront:_topBannnerView];
+    self.topScrollView.top = _topBannnerView.bottom;
+    //self.topScrollView.contentOffset = CGPointMake(0, 0);
 }
 
 @end

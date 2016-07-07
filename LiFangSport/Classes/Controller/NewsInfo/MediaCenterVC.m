@@ -85,6 +85,9 @@
 #pragma mark - popViewDelegate
 -(void)popViewDidSelectCategory:(NSString *)cateId andName:(NSString *)name{
     self.categoryIds = cateId;
+    if([name isEqualToString:@"全部"]){
+        name = @"资讯";
+    }
     self.title = name;
     self.date = nil;
     [self requestDataWithisHeaderRefresh:YES];

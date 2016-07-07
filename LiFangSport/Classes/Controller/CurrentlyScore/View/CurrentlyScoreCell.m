@@ -48,11 +48,9 @@
     _subTitleLab.font = [UIFont systemFontOfSize:12];
     _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     [self addSubview:_hostTeamFlagView];
-    //    _hostTeamFlagView.image = [UIImage imageNamed:@"chinaflag"];
     
     _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     [self addSubview:_awayTeamFlagView];
-    //    _awayTeamFlagView.image = [UIImage imageNamed:@"americaflag"];
     
     _titleLab.textAlignment = NSTextAlignmentCenter;
     _subTitleLab.textAlignment = NSTextAlignmentCenter;
@@ -60,14 +58,11 @@
     _awayTeamFlagView.top = _hostTeamFlagView.top;
     _awayTeamFlagView.right = kScreenWidth-40;
     
-    _likeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    _likeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 35, 25)];
     _likeView.centerY = _hostTeamFlagView.centerY;
     _likeView.centerX = kScreenWidth/2;
     [self addSubview:_likeView];
-    _likeView.image = UIImageNamed(@"guanzhu02");
-    _likeView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(likeGame:)];
-    [_likeView addGestureRecognizer:gestureRecognizer];
+    _likeView.image = UIImageNamed(@"VSicon");
     
     _hostTeamNameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
     _hostTeamNameLab.top = _hostTeamFlagView.bottom;
@@ -84,17 +79,13 @@
 }
 
 -(void)setModel:(CurrentlyScoreModel *)model{
-    NSString *ss = model.cup_name;
-//    NSTimeInterval dateIN=(NSTimeInterval)[model.start_time integerValue]/1000;
-//    NSDate * dateData=[NSDate dateWithTimeIntervalSince1970:dateIN];
-//    
-//    NSTimeInterval timeIN=(NSTimeInterval)[model.start_time integerValue]/1000;
-//    NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
-//    
-//    NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDate:dateData]];
-//    NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[self extractDateToTime:timeData],ss];
-//    _titleLab.text = dataStr;
-//    _subTitleLab.text = timeStr;
+    NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model.start_time]];
+    NSString *dataStr = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
+    
+    _titleLab.text = dataStr;
+    NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[dateTimeArr[3] substringToIndex:5],model.cup_name];
+    _subTitleLab.text = timeStr;
+
     [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kCurrentlyScoreCellPicHeaderPath,model.h_t[@"logo"]]]];
     
     [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kCurrentlyScoreCellPicHeaderPath,model.a_t[@"logo"]]]];
@@ -109,25 +100,24 @@
 }
 
 -(NSDictionary *)weekDic{
+    NSDictionary* dic = @{@"Mon":@"周一",@"Tue":@"周二",@"Wed":@"周三",@"Thu":@"周四",@"Fri":@"周五",@"Sat":@"周六",@"Sun":@"周日"};
     if (!_weekDic) {
-        
+        _weekDic = [[NSDictionary alloc]initWithDictionary:dic];
     }
     return _weekDic;
 }
 -(NSDictionary *)monthDic{
-    if (!_monthDic) {
-        
+    NSDictionary* monthDic = @{@"Jan":@"01",@"Feb":@"02",@"Mar":@"03",@"Apr":@"04",@"May":@"05",@"Jun":@"06",@"Jul":@"07",@"Aug":@"08",@"Sep":@"09",@"Oct":@"10",@"Nov":@"11",@"Dec":@"12"};
+    if (_monthDic==nil) {
+        _monthDic = [[NSDictionary alloc]initWithDictionary:monthDic];
     }
     return _monthDic;
 }
 
-- (void)likeGame:(UIGestureRecognizer *)gestureRecognizer
-{
-    if (self.likeBC) {
-        self.likeBC();
-    }
+-(NSArray *)dateTimeArrFromOfStr:(NSString *)str{
+    NSArray* ndateTimeArr = [str componentsSeparatedByString:@" "];
+    return ndateTimeArr;
 }
-
 
 - (void)awakeFromNib {
     // Initialization code

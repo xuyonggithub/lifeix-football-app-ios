@@ -22,6 +22,7 @@
 		0A1743C41D2A02A900DB70F6 /* timeline@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A1743BC1D2A02A900DB70F6 /* timeline@3x.jpg */; };
 		0A1743C51D2A02A900DB70F6 /* wechat@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A1743BD1D2A02A900DB70F6 /* wechat@2x.jpg */; };
 		0A1743C61D2A02A900DB70F6 /* wechat@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A1743BE1D2A02A900DB70F6 /* wechat@3x.jpg */; };
+		0A4428241D2DE8A8005DB8C0 /* ChinaRefereeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4428231D2DE8A8005DB8C0 /* ChinaRefereeCell.m */; };
 		0A56967D1D1CDD840030F615 /* CoachInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A56967C1D1CDD840030F615 /* CoachInfoView.m */; };
 		0AA9A6AB1D20FBCC0015786F /* PlayerVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9A6AA1D20FBCC0015786F /* PlayerVideoVC.m */; };
 		0AA9A6B11D211AE40015786F /* MediaCatePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9A6B01D211AE40015786F /* MediaCatePopView.m */; };
@@ -433,6 +434,8 @@
 		0A1743BC1D2A02A900DB70F6 /* timeline@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "timeline@3x.jpg"; sourceTree = "<group>"; };
 		0A1743BD1D2A02A900DB70F6 /* wechat@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wechat@2x.jpg"; sourceTree = "<group>"; };
 		0A1743BE1D2A02A900DB70F6 /* wechat@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wechat@3x.jpg"; sourceTree = "<group>"; };
+		0A4428221D2DE8A8005DB8C0 /* ChinaRefereeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChinaRefereeCell.h; sourceTree = "<group>"; };
+		0A4428231D2DE8A8005DB8C0 /* ChinaRefereeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChinaRefereeCell.m; sourceTree = "<group>"; };
 		0A56967B1D1CDD840030F615 /* CoachInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachInfoView.h; sourceTree = "<group>"; };
 		0A56967C1D1CDD840030F615 /* CoachInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachInfoView.m; sourceTree = "<group>"; };
 		0AA9A6A91D20FBCC0015786F /* PlayerVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerVideoVC.h; sourceTree = "<group>"; };
@@ -1044,6 +1047,8 @@
 				EC4D3C351D1392A800285243 /* RefereeCell.m */,
 				0A14ABAB1D2BB9A2001A9556 /* RefereeCatePopView.h */,
 				0A14ABAC1D2BB9A2001A9556 /* RefereeCatePopView.m */,
+				0A4428221D2DE8A8005DB8C0 /* ChinaRefereeCell.h */,
+				0A4428231D2DE8A8005DB8C0 /* ChinaRefereeCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2691,6 +2696,7 @@
 				2DE2C8791D0D495A00310C4C /* UIWindowAddition.m in Sources */,
 				2DE2C8761D0D495A00310C4C /* UINavigationBarAdditions.m in Sources */,
 				2D62E80F1D0FAC670006131B /* LeftCategoryCell.m in Sources */,
+				0A4428241D2DE8A8005DB8C0 /* ChinaRefereeCell.m in Sources */,
 				2DA4B20F1D0E80C700136DA7 /* NSData+SDDataCache.m in Sources */,
 				2D6996171D193F2900B5F52D /* INSLappsyPullToRefresh.m in Sources */,
 				2DE2C8A51D0D4A8500310C4C /* UIColor+expanded.m in Sources */,

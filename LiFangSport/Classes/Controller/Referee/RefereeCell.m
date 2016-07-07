@@ -114,7 +114,7 @@
     self.associationLabel.text = refereeModel.association?[NSString stringWithFormat:@"所属协会:%@", refereeModel.association]:@"所属协会:-";
     self.topALabel.text = refereeModel.fifaTopANum?[NSString stringWithFormat:@"国际A级赛事场次:%@", refereeModel.fifaTopANum]:@"国际A级赛事场次:-";
     self.FIFAYearLabel.text = refereeModel.sinceInternational?[NSString stringWithFormat:@"FIFA起始年份:%@", refereeModel.sinceInternational]:@"FIFA起始年份:-";
-    self.topLeagueLabel.text = refereeModel.topLeagueNum?[NSString stringWithFormat:@"国际顶级联赛场次:%@", refereeModel.topLeagueNum]:@"国际顶级联赛场次:-";
+    self.topLeagueLabel.text = refereeModel.topLeagueNum?[NSString stringWithFormat:@"中国顶级联赛场次:%@", refereeModel.topLeagueNum]:@"中国顶级联赛场次:-";
     self.titleLabel.text = [NSString stringWithFormat:@"%@", refereeModel.name?refereeModel.name:@"-"];
     
     //like

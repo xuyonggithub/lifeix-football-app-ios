@@ -138,15 +138,16 @@
 -(void)clickBtn:(CGFloat)tag{
     NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 274, SCREEN_WIDTH, SCREEN_HEIGHT - 274) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264) style:UITableViewStylePlain];
         [self.view addSubview:tableView];
         tableView.delegate = self;
         tableView.dataSource = self;
         [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
     }else{
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 274, SCREEN_WIDTH, SCREEN_HEIGHT - 274)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264)];
         [self.view addSubview:webView];
         webView.delegate = self;
+        webView.backgroundColor = kwhiteColor;
         NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];

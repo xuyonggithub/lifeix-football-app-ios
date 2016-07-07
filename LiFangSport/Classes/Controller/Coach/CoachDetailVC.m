@@ -97,6 +97,7 @@
     [self.view addSubview:lineView];
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, lineView.bottom + 10, SCREEN_WIDTH, SCREEN_HEIGHT - lineView.bottom - 10)];
+    webView.backgroundColor = kwhiteColor;
     if(![[dict objectForKey:@"url"] isEqual:[NSNull null]]){
         self.url = [NSString stringWithFormat:@"%@", [dict objectForKey:@"url"]];
         NSURL *url = [NSURL URLWithString:[dict objectForKey:@"url"]];

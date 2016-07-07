@@ -29,7 +29,7 @@
         }
         [self addSubview:_bgImgView];
         
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 10, SCREEN_WIDTH - 140 - 120, 20)];
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 10, SCREEN_WIDTH - 140 - 120 - 15, 20)];
         self.nameLabel.font = [UIFont systemFontOfSize:15];
         self.nameLabel.textColor = HEXRGBCOLOR(0x000000);
         self.nameLabel.text = name;
@@ -53,19 +53,19 @@
             birLbl.backgroundColor = HEXRGBCOLOR(0xbababa);
             birLbl.text = infoArr[i];
             birLbl.textColor = HEXRGBCOLOR(0xffffff);
-            birLbl.font = [UIFont systemFontOfSize:8];
+            birLbl.font = [UIFont systemFontOfSize:11];
             birLbl.textAlignment = NSTextAlignmentCenter;
             [self addSubview: birLbl];
             
-            UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, _nameLabel.bottom + 10 + (83/4+1) * i, SCREEN_WIDTH - 205, 83/4)];
+            UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, _nameLabel.bottom + 10 + (83/4+1) * i, SCREEN_WIDTH - 205 + 15, 83/4)];
             infoLbl.backgroundColor = HEXRGBCOLOR(0xf9f9f9);
             infoLbl.text = valueArr[i];
             infoLbl.textColor = HEXRGBCOLOR(0x333333);
-            infoLbl.font = [UIFont systemFontOfSize:8];
+            infoLbl.font = [UIFont systemFontOfSize:11];
             infoLbl.textAlignment = NSTextAlignmentCenter;
             [self addSubview:infoLbl];
             
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_nameLabel.left, birLbl.bottom, SCREEN_WIDTH - 150, 1)];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_nameLabel.left, birLbl.bottom, SCREEN_WIDTH - 150 + 15, 1)];
             lineView.backgroundColor = HEXRGBCOLOR(0xd8d8d8);
             [self addSubview:lineView];
         }

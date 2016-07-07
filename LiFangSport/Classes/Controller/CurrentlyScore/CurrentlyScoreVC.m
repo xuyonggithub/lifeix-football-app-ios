@@ -10,6 +10,8 @@
 #import "CurrentlyScoreCell.h"
 #import "CurrentlyScoreModel.h"
 #import "CommonRequest.h"
+#import "UIScrollView+INSPullToRefresh.h"
+
 //http://192.168.2.160:8080/cbs/fb/contest/list?start_time=2016-07-01&end_time=2016-07-05
 @interface CurrentlyScoreVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableview;
@@ -24,20 +26,35 @@
     [self.view addSubview:self.kTableview];
     NSString *startStr = [self getOneDayDate:0];
     NSString *endStr = [self getOneDayDate:6];
-    [self requestDataWithStart:startStr andWithEnd:endStr];
+    [self requestDataWithStart:startStr andWithEnd:endStr isHeaderRefresh:YES];
+    [self setupRefresh];
+
 }
--(void)requestDataWithStart:(NSString *)startStr andWithEnd:(NSString *)endStr{
+-(void)requestDataWithStart:(NSString *)startStr andWithEnd:(NSString *)endStr isHeaderRefresh:(BOOL)isHeaderRefresh{
     [CommonRequest requstPath:[NSString stringWithFormat:@"%@start_time=%@&end_time=%@",kCurrentlyScorePath,startStr,endStr] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-        [self dealWithData:jsonDict];
+        [self dealWithData:jsonDict isHeaderRefresh:isHeaderRefresh];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
+        if (isHeaderRefresh) {
+            [self.kTableview ins_endPullToRefresh];
+        }else{
+            [self.kTableview ins_endInfinityScroll];
+        }
     }];
 }
 
--(void)dealWithData:(id )dic{
+-(void)dealWithData:(id )dic isHeaderRefresh:(BOOL)isHeaderRefresh{
     [self.dataArray removeAllObjects];
     self.dataArray = [CurrentlyScoreModel arrayOfModelsFromDictionaries:dic[@"data"][@"contests"]];
+    if (isHeaderRefresh) {
+        [self.kTableview ins_endPullToRefresh];
+
     
+    } else{
+        [self.kTableview ins_endInfinityScroll];
+        [self.kTableview ins_endInfinityScrollWithStoppingContentOffset:self.dataArray.count > 0];
+
+    }
     [self.kTableview reloadData];
 }
 
@@ -87,12 +104,43 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *date = [NSDate date];//当前的时间
-//    NSDate *lastDay = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
-//    NSDate *nextDat = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
-    NSDate *getDate = [NSDate dateWithTimeInterval:dateIndex*24*60*60 sinceDate:date];//后多少天，0表示当天
+    NSDate *getDate = [NSDate dateWithTimeInterval:dateIndex*24*60*60 sinceDate:date];//前后多少天，0表示当天,+表示后几天。-号表示前几天
     NSString *dateTime = [formatter stringFromDate:getDate];
     return dateTime;
 }
+
+#pragma mark - Reresh
+- (void)setupRefresh
+{
+    DefineWeak(self);
+    [self.kTableview ins_addPullToRefreshWithHeight:kDefaultRefreshHeight handler:^(UIScrollView *scrollView) {
+        [Weak(self) headerRereshing];
+    }];
+    
+    [self.kTableview ins_addInfinityScrollWithHeight:kDefaultRefreshHeight handler:^(UIScrollView *scrollView) {
+        [Weak(self) footerRereshing];
+    }];
+    [self.kTableview ins_setPullToRefreshEnabled:YES];
+    [self.kTableview ins_setInfinityScrollEnabled:YES];
+    
+    UIView <INSAnimatable> *infinityIndicator = [self infinityIndicatorViewFromCurrentStyle];
+    [self.kTableview.ins_infiniteScrollBackgroundView addSubview:infinityIndicator];
+    [infinityIndicator startAnimating];
+    UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
+    self.kTableview.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
+    [self.kTableview.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
+}
+
+- (void)headerRereshing
+{
+//    [self requestDataWithBtnTag:_catsArrIndex isHeaderRefresh:YES];
+}
+
+- (void)footerRereshing
+{
+//    [self requestDataWithBtnTag:_catsArrIndex isHeaderRefresh:NO];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

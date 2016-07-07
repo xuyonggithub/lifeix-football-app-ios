@@ -232,15 +232,15 @@
     _topBannnerView.rightTitleStr = @"英雄榜";
     _topBannnerView.clickLeftBtn = ^(void){
         [Weak(self) createLeftView];
-        [Weak(self) bringCycleScrollViewToFront];
+        [Weak(self) resetScrollViewTop];
     };
     _topBannnerView.clickCenterBtn = ^(void){
         [Weak(self) createCenterView];
-        [Weak(self) bringCycleScrollViewToFront];
+        [Weak(self) resetScrollViewTop];
     };
     _topBannnerView.clickRightBtn = ^(void){
         [Weak(self) createRightView];
-        [Weak(self) bringCycleScrollViewToFront];
+        [Weak(self) resetScrollViewTop];
     };
     [self.view addSubview:_topBannnerView];
     [self createLeftView];
@@ -515,32 +515,37 @@
 #pragma mark- UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y > 0) {
-        //  向上拖动
-        _cycleScrollView.top = 64-scrollView.contentOffset.y;
-    }else {
-        //  向下拖动
-        _cycleScrollView.top = 64;
+    if (scrollView.contentOffset.y < _cycleScrollView.height + _topBannnerView.height + 64) {
+        if (scrollView.contentOffset.y > 0) {
+            //  向上拖动
+            _cycleScrollView.top = 64-scrollView.contentOffset.y;
+        }else {
+            //  向下拖动
+            _cycleScrollView.top = 64;
+        }
+        _topBannnerView.top = _cycleScrollView.bottom;
+        //    if (_topBannnerView.top <= 64) {
+        //        _topBannnerView.top = 64;
+        //    }
+        scrollView.top = _topBannnerView.bottom;
+        if (scrollView.top < 64) {
+            scrollView.top = 64;
+        }
+        scrollView.height = kScreenHeight - scrollView.top;
     }
-    _topBannnerView.top = _cycleScrollView.bottom;
-    if (_topBannnerView.top <= 64) {
-        _topBannnerView.top = 64;
-    }
-    scrollView.top = _topBannnerView.bottom;
-    scrollView.height = kScreenHeight - scrollView.top;
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    
-//}
-
-- (void)bringCycleScrollViewToFront
+- (void)resetScrollViewTop
 {
     [self.view bringSubviewToFront:_cycleScrollView];
     [self.view bringSubviewToFront:_topBannnerView];
+    
+    //  复位
+    _cycleScrollView.top = 64;
+    _topBannnerView.top = _cycleScrollView.bottom;
     self.topScrollView.top = _topBannnerView.bottom;
-    //self.topScrollView.contentOffset = CGPointMake(0, 0);
+    self.topScrollView.height = kScreenHeight - self.topScrollView.top;
+    self.topScrollView.contentOffset = CGPointMake(0, 0);
 }
 
 @end

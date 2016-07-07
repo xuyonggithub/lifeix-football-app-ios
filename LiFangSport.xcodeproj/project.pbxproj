@@ -44,7 +44,6 @@
 		0AC707611D1A269C000B2E13 /* share@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707581D1A269C000B2E13 /* share@x2.png */; };
 		0AC707621D1A269C000B2E13 /* share@x3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC707591D1A269C000B2E13 /* share@x3.png */; };
 		0AC707701D1A8DDB000B2E13 /* PlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */; };
-		0AC707711D1A8DDB000B2E13 /* WomanPlayerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */; };
 		0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */; };
 		0AC707771D1B978A000B2E13 /* BaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707761D1B978A000B2E13 /* BaseInfoView.m */; };
 		0AC7077A1D1BCA9B000B2E13 /* PlayerVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC707791D1BCA9B000B2E13 /* PlayerVideoModel.m */; };
@@ -387,20 +386,15 @@
 		EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1B1D1387E200285243 /* PlayerCell.m */; };
 		EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */; };
 		EC4D3C251D1387E200285243 /* PlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1F1D1387E200285243 /* PlayerModel.m */; };
-		EC4D3C261D1387E200285243 /* PlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C211D1387E200285243 /* PlayerVC.m */; };
 		EC4D3C3C1D1392A800285243 /* RefereeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C351D1392A800285243 /* RefereeCell.m */; };
 		EC4D3C3D1D1392A800285243 /* RefereeCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C371D1392A800285243 /* RefereeCenterVC.m */; };
 		EC4D3C3E1D1392A800285243 /* RefereeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C391D1392A800285243 /* RefereeModel.m */; };
-		EC4D3C3F1D1392A800285243 /* RefereeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C3B1D1392A800285243 /* RefereeVC.m */; };
 		EC4D3C421D13931C00285243 /* CoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C411D13931C00285243 /* CoachModel.m */; };
 		EC4D3C451D13933400285243 /* CoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C441D13933400285243 /* CoachCell.m */; };
 		EC4D3C481D13935200285243 /* CoachCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C471D13935200285243 /* CoachCenterVC.m */; };
-		EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C4A1D13936400285243 /* CoachVC.m */; };
 		EC504A091D0E99E700095C63 /* MediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5049FE1D0E99E700095C63 /* MediaModel.m */; };
 		EC504A0B1D0E99E700095C63 /* MediaCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC504A021D0E99E700095C63 /* MediaCenterVC.m */; };
 		EC504A0C1D0E99E700095C63 /* MediaDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC504A041D0E99E700095C63 /* MediaDetailVC.m */; };
-		EC504A0D1D0E99E700095C63 /* MediaRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC504A061D0E99E700095C63 /* MediaRightVC.m */; };
-		EC504A0E1D0E99E700095C63 /* MediaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC504A081D0E99E700095C63 /* MediaVC.m */; };
 		EC51412F1D1136F50034B0E5 /* MediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC51412E1D1136F50034B0E5 /* MediaCell.m */; };
 		EC5141321D11373F0034B0E5 /* MediaCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5141311D11373F0034B0E5 /* MediaCategoryCell.m */; };
 /* End PBXBuildFile section */
@@ -465,8 +459,6 @@
 		0AC707591D1A269C000B2E13 /* share@x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@x3.png"; sourceTree = "<group>"; };
 		0AC7076C1D1A8DDB000B2E13 /* PlayerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDetailVC.h; sourceTree = "<group>"; };
 		0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDetailVC.m; sourceTree = "<group>"; };
-		0AC7076E1D1A8DDB000B2E13 /* WomanPlayerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WomanPlayerDetailVC.h; sourceTree = "<group>"; };
-		0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WomanPlayerDetailVC.m; sourceTree = "<group>"; };
 		0AC707721D1A8DE9000B2E13 /* CoachDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDetailVC.h; sourceTree = "<group>"; };
 		0AC707731D1A8DE9000B2E13 /* CoachDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailVC.m; sourceTree = "<group>"; };
 		0AC707751D1B978A000B2E13 /* BaseInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInfoView.h; sourceTree = "<group>"; };
@@ -995,34 +987,24 @@
 		EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCenterViewController.m; sourceTree = "<group>"; };
 		EC4D3C1E1D1387E200285243 /* PlayerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerModel.h; sourceTree = "<group>"; };
 		EC4D3C1F1D1387E200285243 /* PlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerModel.m; sourceTree = "<group>"; };
-		EC4D3C201D1387E200285243 /* PlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerVC.h; sourceTree = "<group>"; };
-		EC4D3C211D1387E200285243 /* PlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerVC.m; sourceTree = "<group>"; };
 		EC4D3C341D1392A800285243 /* RefereeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefereeCell.h; sourceTree = "<group>"; };
 		EC4D3C351D1392A800285243 /* RefereeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefereeCell.m; sourceTree = "<group>"; };
 		EC4D3C361D1392A800285243 /* RefereeCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefereeCenterVC.h; sourceTree = "<group>"; };
 		EC4D3C371D1392A800285243 /* RefereeCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefereeCenterVC.m; sourceTree = "<group>"; };
 		EC4D3C381D1392A800285243 /* RefereeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefereeModel.h; sourceTree = "<group>"; };
 		EC4D3C391D1392A800285243 /* RefereeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefereeModel.m; sourceTree = "<group>"; };
-		EC4D3C3A1D1392A800285243 /* RefereeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefereeVC.h; sourceTree = "<group>"; };
-		EC4D3C3B1D1392A800285243 /* RefereeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefereeVC.m; sourceTree = "<group>"; };
 		EC4D3C401D13931C00285243 /* CoachModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachModel.h; sourceTree = "<group>"; };
 		EC4D3C411D13931C00285243 /* CoachModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachModel.m; sourceTree = "<group>"; };
 		EC4D3C431D13933400285243 /* CoachCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachCell.h; sourceTree = "<group>"; };
 		EC4D3C441D13933400285243 /* CoachCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachCell.m; sourceTree = "<group>"; };
 		EC4D3C461D13935200285243 /* CoachCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachCenterVC.h; sourceTree = "<group>"; };
 		EC4D3C471D13935200285243 /* CoachCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachCenterVC.m; sourceTree = "<group>"; };
-		EC4D3C491D13936400285243 /* CoachVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachVC.h; sourceTree = "<group>"; };
-		EC4D3C4A1D13936400285243 /* CoachVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachVC.m; sourceTree = "<group>"; };
 		EC5049FD1D0E99E700095C63 /* MediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaModel.h; sourceTree = "<group>"; };
 		EC5049FE1D0E99E700095C63 /* MediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaModel.m; sourceTree = "<group>"; };
 		EC504A011D0E99E700095C63 /* MediaCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCenterVC.h; sourceTree = "<group>"; };
 		EC504A021D0E99E700095C63 /* MediaCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaCenterVC.m; sourceTree = "<group>"; };
 		EC504A031D0E99E700095C63 /* MediaDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDetailVC.h; sourceTree = "<group>"; };
 		EC504A041D0E99E700095C63 /* MediaDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaDetailVC.m; sourceTree = "<group>"; };
-		EC504A051D0E99E700095C63 /* MediaRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaRightVC.h; sourceTree = "<group>"; };
-		EC504A061D0E99E700095C63 /* MediaRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaRightVC.m; sourceTree = "<group>"; };
-		EC504A071D0E99E700095C63 /* MediaVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaVC.h; sourceTree = "<group>"; };
-		EC504A081D0E99E700095C63 /* MediaVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaVC.m; sourceTree = "<group>"; };
 		EC51412D1D1136F50034B0E5 /* MediaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCell.h; sourceTree = "<group>"; };
 		EC51412E1D1136F50034B0E5 /* MediaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaCell.m; sourceTree = "<group>"; };
 		EC5141301D11373F0034B0E5 /* MediaCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCategoryCell.h; sourceTree = "<group>"; };
@@ -1062,6 +1044,23 @@
 				EC4D3C351D1392A800285243 /* RefereeCell.m */,
 				0A14ABAB1D2BB9A2001A9556 /* RefereeCatePopView.h */,
 				0A14ABAC1D2BB9A2001A9556 /* RefereeCatePopView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		0A4428211D2DE41C005DB8C0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0AC707751D1B978A000B2E13 /* BaseInfoView.h */,
+				0AC707761D1B978A000B2E13 /* BaseInfoView.m */,
+				0AC7077B1D1BD524000B2E13 /* PlayerVideoCell.h */,
+				0AC7077C1D1BD524000B2E13 /* PlayerVideoCell.m */,
+				0AA9A6A91D20FBCC0015786F /* PlayerVideoVC.h */,
+				0AA9A6AA1D20FBCC0015786F /* PlayerVideoVC.m */,
+				EC4D3C181D1387E200285243 /* CategoryView.h */,
+				EC4D3C191D1387E200285243 /* CategoryView.m */,
+				EC4D3C1A1D1387E200285243 /* PlayerCell.h */,
+				EC4D3C1B1D1387E200285243 /* PlayerCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1673,8 +1672,6 @@
 				EC4D3C441D13933400285243 /* CoachCell.m */,
 				EC4D3C461D13935200285243 /* CoachCenterVC.h */,
 				EC4D3C471D13935200285243 /* CoachCenterVC.m */,
-				EC4D3C491D13936400285243 /* CoachVC.h */,
-				EC4D3C4A1D13936400285243 /* CoachVC.m */,
 				0A56967B1D1CDD840030F615 /* CoachInfoView.h */,
 				0A56967C1D1CDD840030F615 /* CoachInfoView.m */,
 			);
@@ -1723,28 +1720,15 @@
 		2DE2C85B1D0D3BD200310C4C /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				0A4428211D2DE41C005DB8C0 /* view */,
 				0AC7076C1D1A8DDB000B2E13 /* PlayerDetailVC.h */,
 				0AC7076D1D1A8DDB000B2E13 /* PlayerDetailVC.m */,
-				0AC7076E1D1A8DDB000B2E13 /* WomanPlayerDetailVC.h */,
-				0AC7076F1D1A8DDB000B2E13 /* WomanPlayerDetailVC.m */,
-				EC4D3C181D1387E200285243 /* CategoryView.h */,
-				EC4D3C191D1387E200285243 /* CategoryView.m */,
-				EC4D3C1A1D1387E200285243 /* PlayerCell.h */,
-				EC4D3C1B1D1387E200285243 /* PlayerCell.m */,
 				EC4D3C1C1D1387E200285243 /* PlayerCenterViewController.h */,
 				EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */,
 				EC4D3C1E1D1387E200285243 /* PlayerModel.h */,
 				EC4D3C1F1D1387E200285243 /* PlayerModel.m */,
-				EC4D3C201D1387E200285243 /* PlayerVC.h */,
-				EC4D3C211D1387E200285243 /* PlayerVC.m */,
-				0AC707751D1B978A000B2E13 /* BaseInfoView.h */,
-				0AC707761D1B978A000B2E13 /* BaseInfoView.m */,
 				0AC707781D1BCA9B000B2E13 /* PlayerVideoModel.h */,
 				0AC707791D1BCA9B000B2E13 /* PlayerVideoModel.m */,
-				0AC7077B1D1BD524000B2E13 /* PlayerVideoCell.h */,
-				0AC7077C1D1BD524000B2E13 /* PlayerVideoCell.m */,
-				0AA9A6A91D20FBCC0015786F /* PlayerVideoVC.h */,
-				0AA9A6AA1D20FBCC0015786F /* PlayerVideoVC.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -2213,8 +2197,6 @@
 				EC4D3C371D1392A800285243 /* RefereeCenterVC.m */,
 				EC4D3C381D1392A800285243 /* RefereeModel.h */,
 				EC4D3C391D1392A800285243 /* RefereeModel.m */,
-				EC4D3C3A1D1392A800285243 /* RefereeVC.h */,
-				EC4D3C3B1D1392A800285243 /* RefereeVC.m */,
 			);
 			path = Referee;
 			sourceTree = "<group>";
@@ -2229,10 +2211,6 @@
 				EC504A021D0E99E700095C63 /* MediaCenterVC.m */,
 				EC504A031D0E99E700095C63 /* MediaDetailVC.h */,
 				EC504A041D0E99E700095C63 /* MediaDetailVC.m */,
-				EC504A051D0E99E700095C63 /* MediaRightVC.h */,
-				EC504A061D0E99E700095C63 /* MediaRightVC.m */,
-				EC504A071D0E99E700095C63 /* MediaVC.h */,
-				EC504A081D0E99E700095C63 /* MediaVC.m */,
 			);
 			path = NewsInfo;
 			sourceTree = "<group>";
@@ -2664,7 +2642,6 @@
 				9CAF827C1D1917EC0025224F /* LFSimulationTestDetailController.m in Sources */,
 				9CAF825F1D190F560025224F /* AJMediaQualityPickerView.m in Sources */,
 				2DA4B1EC1D0E456000136DA7 /* BaseDrawerVC.m in Sources */,
-				EC4D3C261D1387E200285243 /* PlayerVC.m in Sources */,
 				2DE2C8461D0D2F5000310C4C /* TAOverlay.m in Sources */,
 				9CAF82871D19237F0025224F /* VTBulletLabel.m in Sources */,
 				2DE2C8A11D0D4A8500310C4C /* UIImage+Additions.m in Sources */,
@@ -2746,7 +2723,6 @@
 				2D6996161D193F2900B5F52D /* INSLappsyInfiniteIndicator.m in Sources */,
 				2D41318C1D297D9400675737 /* VideoLearningDetSwitchVC.m in Sources */,
 				2DE2C8A21D0D4A8500310C4C /* UIImage+SimAdditions.m in Sources */,
-				EC504A0E1D0E99E700095C63 /* MediaVC.m in Sources */,
 				9CAF82881D19237F0025224F /* VTBulletModel.m in Sources */,
 				9CAF824E1D190F560025224F /* AJMediaIndicatorView.m in Sources */,
 				2DE2C8781D0D495A00310C4C /* UIViewController+SimAddition.m in Sources */,
@@ -2766,14 +2742,12 @@
 				2DA4B2161D0E80C700136DA7 /* UIView+SDExtension.m in Sources */,
 				2DA4B2131D0E80C700136DA7 /* TAPageControl.m in Sources */,
 				2D84EA3C1D10FAED00113404 /* RightSwitchModel.m in Sources */,
-				EC4D3C3F1D1392A800285243 /* RefereeVC.m in Sources */,
 				2DE2C8771D0D495A00310C4C /* UIView+SimAdditions.m in Sources */,
 				9CAF82451D190F560025224F /* AJMediaPlayerRemoteDisplay.m in Sources */,
 				2DA4B1F91D0E46C900136DA7 /* UIImage+ImageEffects.m in Sources */,
 				9C93FAEA1D1BE8A2008BBB3A /* LFSimulationOffsideHardCell.m in Sources */,
 				EC4D3C421D13931C00285243 /* CoachModel.m in Sources */,
 				9CAF823E1D190F560025224F /* AJMediaPlayer+Statistics.m in Sources */,
-				0AC707711D1A8DDB000B2E13 /* WomanPlayerDetailVC.m in Sources */,
 				9CAF824D1D190F560025224F /* AJMediaEpisodePickerView.m in Sources */,
 				2DE2C89F1D0D4A8500310C4C /* InnerShadowDrawing.m in Sources */,
 				2DE2C8A91D0D4A8500310C4C /* WPHotspotLabel.m in Sources */,
@@ -2805,7 +2779,6 @@
 				2D76357D1D1A92FC0085BB03 /* LearningInfoVC.m in Sources */,
 				9CAF82571D190F560025224F /* AJMediaPlayerMessageLayerView.m in Sources */,
 				2D84EA521D113A3200113404 /* LaunchInfoModel.m in Sources */,
-				EC504A0D1D0E99E700095C63 /* MediaRightVC.m in Sources */,
 				2DE2C82A1D0D26CF00310C4C /* AppDelegate.m in Sources */,
 				2DE2C8AA1D0D4A8500310C4C /* WPTappableLabel.m in Sources */,
 				2DA4B2111D0E80C700136DA7 /* TAAnimatedDotView.m in Sources */,
@@ -2830,7 +2803,6 @@
 				2D07DA051D1BDC17007F73F1 /* LearningPlayPopView.m in Sources */,
 				0AC7077A1D1BCA9B000B2E13 /* PlayerVideoModel.m in Sources */,
 				2D62E8151D101E820006131B /* TopBannerSwitchView.m in Sources */,
-				EC4D3C4B1D13936400285243 /* CoachVC.m in Sources */,
 				9CAF82541D190F560025224F /* AJMediaPlayerButton.m in Sources */,
 				0A14ABAD1D2BB9A2001A9556 /* RefereeCatePopView.m in Sources */,
 				2D4131891D295D2600675737 /* HomeSwitchVC.m in Sources */,

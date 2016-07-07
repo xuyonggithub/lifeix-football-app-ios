@@ -96,7 +96,7 @@
     cell.titleLab.textColor = HEXRGBCOLOR(0xffffff);
     _lastSelected = indexPath;
     if(indexPath.row == 0){
-        [self.delegate popViewDidSelectCategory:nil andName:@"全部"];
+        [self.delegate popViewDidSelectCategory:nil andName:@"资讯"];
     }else{
         NSDictionary *dic = [self.dataArr objectAtIndex:indexPath.row - 1];
         [self.delegate popViewDidSelectCategory:[dic objectForKey:@"id"] andName:[dic objectForKey:@"name"]];

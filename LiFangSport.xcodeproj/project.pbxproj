@@ -2954,6 +2954,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2977,6 +2978,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREFIX_HEADER = LiFangSport/AppHeader.pch;
 				INFOPLIST_FILE = LiFangSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -55,7 +55,8 @@
 {
     TAOverlay *overlay = [[TAOverlay alloc] init];
     overlay.backgroundColor = [UIColor clearColor];
-    overlay.overlayBackgroundColor = HEXRGBACOLOR(0xffffff, 0.9f);
+//    overlay.overlayBackgroundColor = HEXRGBACOLOR(0xffffff, 0.9f);
+    overlay.overlayBackgroundColor = kclearColor;
     overlay.rootView = view;
     overlay.overlayRectSize = CGSizeMake(94, 94);
     overlay.customAnimationDuration = 0.6;

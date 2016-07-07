@@ -5,20 +5,30 @@
 //  Created by 张毅 on 16/6/23.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
-
+#import "SDWebImageDownloader.h"
+#import "SDWebImageDownloaderOperation.h"
+#import "SDWebImageCompat.h"
+#import "SDWebImageOperation.h"
+#import "SDImageCache.h"
 #import "LearningPlayPopView.h"
 #import "NSString+WPAttributedMarkup.h"
 #import "LearningPlayPopDeciModel.h"
 #define kScreenRatioBase6IphoneHeight_popplay           (DEVICE_IS_IPAD?1.4:([[UIScreen mainScreen] bounds].size.width / 667.0))
+
+// PNG signature bytes and data (below)
+static NSData *kPNGSignatureData = nil;
+
 @interface LearningPlayPopView ()
 @property(nonatomic,strong)UIButton *closeBtn;
 @property(nonatomic,strong)UIView *baseDecisionView;
 @property(nonatomic,strong)UITextView *textView;
 @property(nonatomic,strong)UIView *alphaBackView;
+@property(nonatomic,strong)UIImage *pimg;
 
 @end
 
 @implementation LearningPlayPopView
+
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -75,7 +85,7 @@
     if (model.r1.count>0) {
     leftOnePic.right = kScreenWidth/2-30-15-20;
     leftOneLab.right = leftOnePic.left - 20;
-    leftOneLab.top = (kScreenHeight -(3*30+4*20))/2;
+    leftOneLab.top = (kScreenHeight -((model.r1.count-1)*30+model.r1.count*20))/2;
     leftOnePic.centerY = leftOneLab.centerY;
     leftOneLab.backgroundColor = kclearColor;
     leftOneLab.font = kpoplabfont;
@@ -182,7 +192,7 @@
     UIImageView *rightOnePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     rightOnePic.backgroundColor = kclearColor;
     rightOnePic.left = leftOnePic.right +30;
-    rightOnePic.top = (kScreenHeight -(3*30+2*20))/2;
+    rightOnePic.top = (kScreenHeight -(model.r2.count*30+(model.r1.count-1)*20))/2;
     rightOnePic.image = UIImageNamed(@"lppopunselect");//lppopselect
     [_baseDecisionView addSubview:rightOnePic];
     
@@ -263,21 +273,52 @@
 }
 -(void)dealUIWith:(VideoSingleInfoModel *)model{//越位高级处理ui
     for (int i=0; i<4; i++) {
+        UIView *vi = [self viewWithTag:1000+i];
+        UIView *lab = [self viewWithTag:2000+i];
+        [vi removeFromSuperview];
+        [lab removeFromSuperview];
+    }
+    
+    for (int i=0; i<4; i++) {
         UIImageView *picView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth - 4*130*kScreenRatioBase6IphoneHeight_popplay-3*12)/2 +(130*kScreenRatioBase6IphoneHeight_popplay+12)*i, 0, 130*kScreenRatioBase6IphoneHeight_popplay, 100*kScreenRatioBase6IphoneHeight_popplay)];
+        picView.tag = 1000+i;
         picView.centerY = self.centerY;
         [self addSubview:picView];
         NSDictionary *dic =(NSDictionary *) model.r1[i];
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,dic[@"image"]]];
-        [picView sd_setImageWithURL:url];
         
         if ([dic[@"right"] integerValue] == 0) {//蒙层
-            UIView *hardOutsideView = [[UIView alloc]initWithFrame:picView.bounds];
-            hardOutsideView.alpha = 0.4;
-            hardOutsideView.backgroundColor = HEXRGBCOLOR(0xffffff);
-            [picView addSubview:hardOutsideView];
+            [picView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    
+                    NSString* key = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
+                    BOOL result = [[SDImageCache sharedImageCache] diskImageExistsWithKey:key];
+                    NSString* imagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:key];
+                    NSData* newData = [NSData dataWithContentsOfFile:imagePath];
+                    if (!result || !newData) {
+                        BOOL imageIsPng = [self ImageDataHasPNGPreffix:nil];
+                        NSData* imageData = nil;
+                        if (imageIsPng) {
+                            imageData = UIImagePNGRepresentation(image);
+                        }
+                        else {
+                            imageData = UIImageJPEGRepresentation(image, (CGFloat)1.0);
+                        }
+                        NSFileManager* _fileManager = [NSFileManager defaultManager];
+                        if (imageData) {
+                            [_fileManager removeItemAtPath:imagePath error:nil];
+                            [_fileManager createFileAtPath:imagePath contents:imageData attributes:nil];
+                        }
+                    }
+                    newData = [NSData dataWithContentsOfFile:imagePath];
+                    UIImage* newImage = [UIImage imageWithData:newData];
+                    
+                    picView.image = [self darkenFromImage:newImage];
+            }];
+        }else{
+            [picView sd_setImageWithURL:url];
         }
-        
         UILabel *lab =[[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth - 4*130*kScreenRatioBase6IphoneHeight_popplay-3*12)/2 +(130*kScreenRatioBase6IphoneHeight_popplay+12)*i, 0, 130*kScreenRatioBase6IphoneHeight_popplay, 20)];
+        lab.tag = 2000+i;
         lab.top = picView.bottom +10;
         lab.backgroundColor = kclearColor;
         lab.textAlignment = NSTextAlignmentCenter;
@@ -289,7 +330,6 @@
             lab.textColor = [UIColor redColor];
         }
     }
-    
 }
 -(void)addSubviewOfOtherType{
     _alphaBackView.hidden = YES;
@@ -355,15 +395,24 @@
     return nil;
 }
 
-//-(UIImage *)darkenFromImage:(NSString *)imageNameStr{
-//    UIImage *image = [UIImage imageNamed:imageNameStr];
-//    UIGraphicsBeginImageContextWithOptions(image.size, NO, [UIScreen mainScreen].scale);
-//    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)
-//            blendMode:kCGBlendModeDarken
-//                alpha:0.6];
-//    UIImage *highlighted = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return highlighted;
-//}
+-(UIImage *)darkenFromImage:(UIImage *)image{//蒙层效果
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, [UIScreen mainScreen].scale);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)
+            blendMode:kCGBlendModeDarken
+                alpha:0.6];
+    UIImage *highlighted = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return highlighted;
+}
+
+-(BOOL)ImageDataHasPNGPreffix:(NSData *)data{
+        NSUInteger pngSignatureLength = [kPNGSignatureData length];
+        if ([data length] >= pngSignatureLength) {
+            if ([[data subdataWithRange:NSMakeRange(0, pngSignatureLength)] isEqualToData:kPNGSignatureData]) {
+                return YES;
+            }
+        }
+        return NO;
+}
 
 @end

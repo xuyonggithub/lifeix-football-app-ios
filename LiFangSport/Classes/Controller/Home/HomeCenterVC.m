@@ -523,13 +523,13 @@
             _cycleScrollView.top = 64;
         }
         _topBannnerView.top = _cycleScrollView.bottom;
-        //    if (_topBannnerView.top <= 64) {
-        //        _topBannnerView.top = 64;
-        //    }
-        scrollView.top = _topBannnerView.bottom;
-        if (scrollView.top < 64) {
-            scrollView.top = 64;
+        if (_topBannnerView.top < 64) {
+            _topBannnerView.top = 64;
         }
+        scrollView.top = _topBannnerView.bottom;
+//        if (scrollView.top < 64) {
+//            scrollView.top = 64;
+//        }
         scrollView.height = kScreenHeight - scrollView.top;
     }
 }

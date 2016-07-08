@@ -1473,8 +1473,12 @@
     AJMediaPlayerItem *metadataItem = [[AJMediaPlayerItem alloc] init];
     metadataItem.qualityName = @"高清";
     metadataItem.isPlayable = YES;
-    metadataItem.type = AJMediaPlayerVODStreamItem;
-    metadataItem.preferredSchedulingStreamURL = [NSString stringWithFormat:@"http://o8rg11ywr.bkt.clouddn.com/%@/LD", playRequest.videoPath];
+    metadataItem.type = playRequest.type;
+    if ([playRequest.videoPath hasPrefix:@"http://"]) {
+        metadataItem.preferredSchedulingStreamURL = playRequest.videoPath;
+    }else {
+        metadataItem.preferredSchedulingStreamURL = [NSString stringWithFormat:@"http://o8rg11ywr.bkt.clouddn.com/%@/LD", playRequest.videoPath];
+    }
     //    if (metadataItem.schedulingStreamURLs.count > 0) {
     //        metadataItem.preferredSchedulingStreamURL = metadataItem.schedulingStreamURLs[0];
     //    }

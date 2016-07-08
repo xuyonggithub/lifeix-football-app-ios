@@ -7,26 +7,35 @@
 //
 
 #import "PlayerVideoVC.h"
-#import <AVKit/AVKit.h>
-#import <AVFoundation/AVFoundation.h>
+#import "AJMediaPlayerKit.h"
 
-@interface PlayerVideoVC ()<AVPlayerViewControllerDelegate>
+@interface PlayerVideoVC ()<AJMediaViewControllerDelegate>
+
+//播放器
+@property (nonatomic, strong) AJMediaPlayerViewController *mediaPlayerViewController;
+@property (nonatomic, strong) AJMediaPlayRequest *playRequest;
 
 @end
 
-@implementation PlayerVideoVC{
-    AVPlayerViewController      *_playerController;
-    AVPlayer                    *_player;
-    AVAudioSession              *_session;
-    NSURL                       *_url;
+@implementation PlayerVideoVC
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
-- (id)initWithUrl:(NSURL *)url {
-    self = [super init];
-    if (self) {
-        _url = url;
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentPlaying||self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentLoading||self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentInit||self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentBuffering) {
+        [self.mediaPlayerViewController stop];
     }
-    return self;
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewDidLoad {
@@ -34,55 +43,29 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"高光时刻";
     
-    _session = [AVAudioSession sharedInstance];
-    [_session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-    AVPlayerItem *item = [AVPlayerItem playerItemWithURL:_url];
-    
-    _player = [AVPlayer playerWithPlayerItem:item];
-    _playerController = [[AVPlayerViewController alloc] init];
-    _playerController.player = _player;
-    _playerController.videoGravity = AVLayerVideoGravityResizeAspect;
-    _playerController.delegate = self;
-    //_playerController.allowsPictureInPicturePlayback = true;
-    _playerController.showsPlaybackControls = NO;
-    
-    [self addChildViewController:_playerController];
-    _playerController.view.translatesAutoresizingMaskIntoConstraints = true;
-    _playerController.view.frame = self.view.bounds;
-    [self.view addSubview:_playerController.view];
-    
-    [_playerController.player play];
+    //  播放器界面
+    DefineWeak(self);
+    [self.view addSubview:self.mediaPlayerViewController.view];
+    [self.mediaPlayerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(Weak(self).view);
+    }];
+    [self addChildViewController:self.mediaPlayerViewController];
+    // 全屏
+    [self.mediaPlayerViewController initialShowFullScreen];
+    // 播放
+    self.playRequest = [AJMediaPlayRequest playRequestWithVideoPath:self.url type:AJMediaPlayerVODStreamItem name:self.name uid:@"uid"];
+    [self.mediaPlayerViewController startToPlay:_playRequest];
+
 }
 
-#pragma mark - AVPlayerViewControllerDelegate
-- (void)playerViewControllerWillStartPictureInPicture:(AVPlayerViewController *)playerViewController {
-    NSLog(@"%s", __FUNCTION__);
+#pragma mark - AJMediaViewControllerDelegate
+- (void)mediaPlayerViewController:(AJMediaPlayerViewController *)mediaPlayerViewController videoDidPlayToEnd:(AJMediaPlayerItem *)playerItem
+{
+    self.mediaPlayerViewController.isAddtionView = YES;
+    [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
 }
-
-- (void)playerViewControllerDidStartPictureInPicture:(AVPlayerViewController *)playerViewController {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (void)playerViewController:(AVPlayerViewController *)playerViewController failedToStartPictureInPictureWithError:(NSError *)error {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (void)playerViewControllerWillStopPictureInPicture:(AVPlayerViewController *)playerViewController {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (void)playerViewControllerDidStopPictureInPicture:(AVPlayerViewController *)playerViewController {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (BOOL)playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart:(AVPlayerViewController *)playerViewController {
-    NSLog(@"%s", __FUNCTION__);
-    return true;
-}
-
-- (void)playerViewController:(AVPlayerViewController *)playerViewController restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:(void (^)(BOOL))completionHandler {
-    NSLog(@"%s", __FUNCTION__);
+- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIViewControllerRotation
@@ -106,4 +89,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Setter and Getter
+- (AJMediaPlayerViewController *)mediaPlayerViewController
+{
+    if (!_mediaPlayerViewController) {
+        _mediaPlayerViewController = [[AJMediaPlayerViewController alloc] initWithStyle:AJMediaPlayerStyleForiPhone delegate:self];
+        _mediaPlayerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _mediaPlayerViewController;
+}
 @end

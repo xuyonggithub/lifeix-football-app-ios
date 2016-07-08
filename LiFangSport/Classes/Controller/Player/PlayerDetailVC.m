@@ -263,9 +263,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     PlayerVideoModel *video = self.playerVideosArr[indexPath.row];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", kQiNiuHeaderPathPrifx, video.url];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    PlayerVideoVC *playerVideoVC = [[PlayerVideoVC alloc] initWithUrl:url];
-    
+    NSString *title = video.title;
+    PlayerVideoVC *playerVideoVC = [[PlayerVideoVC alloc] init];
+    playerVideoVC.url = urlStr;
+    playerVideoVC.name = title;
     [self.navigationController pushViewController:playerVideoVC animated:YES];
 }
 

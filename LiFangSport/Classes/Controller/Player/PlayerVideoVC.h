@@ -10,6 +10,7 @@
 
 @interface PlayerVideoVC : UIViewController
 
-- (id)initWithUrl:(NSURL *)url;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *name;
 
 @end

@@ -12,10 +12,18 @@
 #import "CommonRequest.h"
 #import "UIScrollView+INSPullToRefresh.h"
 
+#define diffValue 2
+#define headerUpdateDiffValue 1
+
 //http://192.168.2.160:8080/cbs/fb/contest/list?start_time=2016-07-01&end_time=2016-07-05
-@interface CurrentlyScoreVC ()<UITableViewDataSource,UITableViewDelegate>
+@interface CurrentlyScoreVC ()<UITableViewDataSource,UITableViewDelegate>{
+    NSInteger startIndex;
+    NSInteger endIndex;
+}
 @property(nonatomic,strong)UITableView *kTableview;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,strong)NSString *startStr;
+@property(nonatomic,strong)NSString *endStr;
 
 @end
 
@@ -24,9 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.kTableview];
-    NSString *startStr = [self getOneDayDate:0];
-    NSString *endStr = [self getOneDayDate:6];
-    [self requestDataWithStart:startStr andWithEnd:endStr isHeaderRefresh:YES];
+    _startStr = [NSString new];
+    _endStr = [NSString new];
+    startIndex = 0;
+    endIndex = startIndex + diffValue;
+    _startStr = [self getOneDayDate:startIndex];
+    _endStr = [self getOneDayDate:endIndex];
+    [self requestDataWithStart:_startStr andWithEnd:_endStr isHeaderRefresh:YES];
     [self setupRefresh];
 
 }
@@ -49,11 +61,9 @@
     if (isHeaderRefresh) {
         [self.kTableview ins_endPullToRefresh];
 
-    
     } else{
         [self.kTableview ins_endInfinityScroll];
         [self.kTableview ins_endInfinityScrollWithStoppingContentOffset:self.dataArray.count > 0];
-
     }
     [self.kTableview reloadData];
 }
@@ -72,6 +82,7 @@
     if (!cell) {
         cell = [[CurrentlyScoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     CurrentlyScoreModel *model = self.dataArray[indexPath.row];
     cell.model = model;
     return cell;
@@ -135,12 +146,18 @@
 
 - (void)headerRereshing
 {
-//    [self requestDataWithBtnTag:_catsArrIndex isHeaderRefresh:YES];
+    startIndex -=headerUpdateDiffValue;
+    _startStr = [self getOneDayDate:startIndex];
+    _endStr = [self getOneDayDate:endIndex];
+    [self requestDataWithStart:_startStr andWithEnd:_endStr isHeaderRefresh:YES];
 }
 
 - (void)footerRereshing
 {
-//    [self requestDataWithBtnTag:_catsArrIndex isHeaderRefresh:NO];
+    endIndex +=diffValue;
+    _startStr = [self getOneDayDate:startIndex];
+    _endStr = [self getOneDayDate:endIndex];
+    [self requestDataWithStart:_startStr andWithEnd:_endStr isHeaderRefresh:NO];
 }
 
 

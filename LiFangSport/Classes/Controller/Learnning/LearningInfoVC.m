@@ -44,7 +44,7 @@
         popKit.bInnerTapDismiss = NO;
     }
     if (!_rightView) {
-        _rightView = [[LearningInfoPopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-80, kScreenHeight) WithData:_catsArr];
+        _rightView = [[LearningInfoPopView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth/2, kScreenHeight) WithData:_catsArr];
     }
     DefineWeak(self);
     DefineWeak(popKit);
@@ -58,7 +58,7 @@
         [Weak(self).bwebView loadRequest:request];
         [Weak(popKit) dismiss:YES];
     };
-    _rightView.frame = CGRectMake(0, 0, kScreenWidth-80, kScreenHeight);
+    _rightView.frame = CGRectMake(0, 0, kScreenWidth/2, kScreenHeight);
     popKit.contentOrigin = CGPointMake(APP_DELEGATE.window.width-_rightView.width, 0);
     
     [popKit popView:_rightView animateType:PAT_WidthRightToLeft];

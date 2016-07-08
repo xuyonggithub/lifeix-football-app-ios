@@ -18,7 +18,7 @@
 
 @implementation CoachInfoView
 
--(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andBirthplace:(NSString *)birthplace andPart:(NSString *)part andClub:(NSString *)club{
+-(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andBirthplace:(NSString *)birthplace andPart:(NSString *)part andClub:(NSString *)club andCountry:(NSString *)country{
     if(self = [super initWithFrame:frame]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 105, 140)];
         if(!avatar){
@@ -29,7 +29,7 @@
         }
         [self addSubview:_bgImgView];
         
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 20, SCREEN_WIDTH - 140 - 120 - 15, 20)];
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 10, SCREEN_WIDTH - 140 - 120 - 15, 20)];
         self.nameLabel.font = [UIFont systemFontOfSize:15];
         self.nameLabel.textColor = HEXRGBCOLOR(0x000000);
         self.nameLabel.text = name;
@@ -44,10 +44,10 @@
         _likeBtn.titleLabel.font = [UIFont systemFontOfSize:12];;
         [self addSubview:_likeBtn];
         
-        NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"出生地", @"角色", @"俱乐部", nil];
-        NSArray *valueArr = [NSArray arrayWithObjects:birday, birthplace, part, club, nil];
-        for(int i = 0; i < 4; i++){
-            UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 10 + (39/2+1) * i, 55, 39/2)];
+        NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"出生地", @"角色", @"俱乐部", @"国籍", nil];
+        NSArray *valueArr = [NSArray arrayWithObjects:birday, birthplace, part, club, country, nil];
+        for(int i = 0; i < 5; i++){
+            UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 10 + (83/4+1) * i, 55, 83/4)];
             birLbl.backgroundColor = HEXRGBCOLOR(0xbababa);
             birLbl.text = infoArr[i];
             birLbl.textColor = HEXRGBCOLOR(0xffffff);
@@ -55,7 +55,7 @@
             birLbl.textAlignment = NSTextAlignmentCenter;
             [self addSubview: birLbl];
             
-            UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, _nameLabel.bottom + 10 + (39/2+1) * i, SCREEN_WIDTH - 205 + 15, 39/2)];
+            UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, _nameLabel.bottom + 10 + (83/4+1) * i, SCREEN_WIDTH - 205 + 15, 83/4)];
             infoLbl.backgroundColor = HEXRGBCOLOR(0xf9f9f9);
             infoLbl.text = valueArr[i];
             infoLbl.textColor = HEXRGBCOLOR(0x333333);
@@ -64,7 +64,7 @@
             [self addSubview:infoLbl];
             
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_nameLabel.left, birLbl.bottom, SCREEN_WIDTH - 150 + 15, 1)];
-            lineView.backgroundColor = HEXRGBCOLOR(0xd9d9d9);
+            lineView.backgroundColor = HEXRGBCOLOR(0xd8d8d8);
             [self addSubview:lineView];
         }
     }

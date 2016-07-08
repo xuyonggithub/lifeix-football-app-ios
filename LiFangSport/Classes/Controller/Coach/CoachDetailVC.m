@@ -74,7 +74,13 @@
 
 -(void)dealWithDic:(id)dic{
     NSDictionary *dict = dic;
-    NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    NSString *birthday;
+    if(![[dic objectForKey:@"birthday"] isEqual:[NSNull null]]){
+        birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    }else{
+        birthday = @"-";
+    }
+
     NSString *club;
     if(![[dic objectForKey:@"company"] isEqual:[NSNull null]]){
         club = [dict objectForKey:@"company"];
@@ -82,7 +88,35 @@
         club = @"-";
     }
     
-    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 150) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andBirthplace:[dict objectForKey:@"birthplace"] andPart:[[dict objectForKey:@"team"] objectForKey:@"position"] andClub:club];
+    NSString *name;
+    if(![[dic objectForKey:@"name"] isEqual:[NSNull null]]){
+        name = [dict objectForKey:@"name"];
+    }else{
+        name = @"-";
+    }
+    
+    NSString *birthplace;
+    if(![[dic objectForKey:@"birthplace"] isEqual:[NSNull null]]){
+        birthplace = [dict objectForKey:@"birthplace"];
+    }else{
+        birthplace = @"-";
+    }
+    
+    NSString *part;
+    if(![[dic objectForKey:@"team"] isEqual:[NSNull null]] && ![[[dic objectForKey:@"team"] objectForKey:@"position"] isEqual:[NSNull null]]){
+        part = [[dict objectForKey:@"team"] objectForKey:@"position"];
+    }else{
+        part = @"-";
+    }
+    
+    NSString *country;
+    if(![[dic objectForKey:@"country"] isEqual:[NSNull null]]){
+        country = [dict objectForKey:@"country"];
+    }else{
+        country = @"-";
+    }
+    
+    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 150) andAvatar:[dict objectForKey:@"avatar"] andName:name andBirday:birthday andBirthplace:name andPart:part andClub:club andCountry:country];
     coachView.delegate = self;
     [self.view addSubview:coachView];
     

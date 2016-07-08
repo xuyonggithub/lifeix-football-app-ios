@@ -19,5 +19,5 @@
 @property(nonatomic, retain)UIButton *likeBtn;
 @property(nonatomic, assign)id<CoachInfoViewDelegate> delegate;
 
--(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andBirthplace:(NSString *)birthplace andPart:(NSString *)part andClub:(NSString *)club;
+-(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andBirthplace:(NSString *)birthplace andPart:(NSString *)part andClub:(NSString *)club andCountry:(NSString *)country;
 @end

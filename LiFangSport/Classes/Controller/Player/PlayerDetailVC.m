@@ -99,7 +99,20 @@
         [self.categoryArr addObject:@"高光时刻"];
     }
     //基本信息
-    NSString *birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    NSString *birthday;
+    if(![[dic objectForKey:@"birthday"] isEqual:[NSNull null]]){
+        birthday = [self timeStampChangeTimeWithTimeStamp:[dict objectForKey:@"birthday"] timeStyle:@"YYYY-MM-dd"];
+    }else{
+        birthday = @"-";
+    }
+
+    NSString *name;
+    if(![[dic objectForKey:@"name"] isEqual:[NSNull null]]){
+        name = [dict objectForKey:@"name"];
+    }else{
+        name = @"-";
+    }
+    
     NSString *position;
     if([[dict objectForKey:@"nationTeam"] isKindOfClass:[NSDictionary class]]){
         position = [[dict objectForKey:@"nationTeam"] objectForKey:@"position"] != nil?[[dict objectForKey:@"nationTeam"] objectForKey:@"position"]:@"-";
@@ -113,7 +126,28 @@
         club = @"-";
     }
     
-    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 167) andAvatar:[dict objectForKey:@"avatar"] andName:[dict objectForKey:@"name"] andBirday:birthday andHeight:[dict objectForKey:@"height"] andWeight:[dict objectForKey:@"weight"] andPosition:position andBirthplace:[dict objectForKey:@"birthplace"] andClub:club];
+    NSString *birthplace;
+    if(![[dic objectForKey:@"birthplace"] isEqual:[NSNull null]]){
+        birthplace = [dict objectForKey:@"birthplace"];
+    }else{
+        birthplace = @"-";
+    }
+    
+    NSString *height;
+    if(![[dic objectForKey:@"height"] isEqual:[NSNull null]]){
+        height = [dict objectForKey:@"height"];
+    }else{
+        height = @"-";
+    }
+    
+    NSString *weight;
+    if(![[dic objectForKey:@"weight"] isEqual:[NSNull null]]){
+        weight = [dict objectForKey:@"weight"];
+    }else{
+        weight = @"-";
+    }
+    
+    BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 167) andAvatar:[dict objectForKey:@"avatar"] andName:name andBirday:birthday andHeight:height andWeight:weight andPosition:position andBirthplace:birthplace andClub:club];
     baseView.delegate = self;
     [self.view addSubview:baseView];
     

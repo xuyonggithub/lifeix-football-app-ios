@@ -468,7 +468,7 @@
         cvc.coachId = [NSString stringWithFormat:@"%@",model.KID];
         cvc.coachName = model.name;
         [self.navigationController pushViewController:cvc animated:YES];
-    }else if([model.menberType isEqualToString:@"staffs"]){
+    }else if([model.menberType isEqualToString:@"staffs"]||[model.menberType isEqualToString:@"teamLeader"]){
         StaffsDetVC *svc = [[StaffsDetVC alloc]init];
         svc.personId =[NSString stringWithFormat:@"%@",model.KID];
         svc.personName = model.name;

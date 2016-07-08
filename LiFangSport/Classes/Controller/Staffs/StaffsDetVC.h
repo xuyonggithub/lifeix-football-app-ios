@@ -8,7 +8,7 @@
 #import "CoachDetailVC.h"
 #import "BaseVC.h"
 
-@interface StaffsDetVC : CoachDetailVC
+@interface StaffsDetVC : BaseVC
 @property(nonatomic, copy)NSString *personId;
 @property(nonatomic, copy)NSString *personName;
 

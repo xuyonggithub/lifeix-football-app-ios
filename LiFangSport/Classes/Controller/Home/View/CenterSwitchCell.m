@@ -59,28 +59,22 @@
     _timeLab.font = [UIFont systemFontOfSize:10*kScreenRatioBase6Iphone];
     _hostTeamLab.font = [UIFont systemFontOfSize:10*kScreenRatioBase6Iphone];
     _awayTeamLab.font = [UIFont systemFontOfSize:10*kScreenRatioBase6Iphone];
-    
-//    _hostTeamFlagView.layer.shadowColor=[UIColor lightGrayColor].CGColor;
-//    _hostTeamFlagView.layer.shadowOffset=CGSizeMake(10, 10);
-//    _hostTeamFlagView.layer.shadowOpacity=0.5;
-//    _hostTeamFlagView.layer.shadowRadius=5;
-//    
-//    _awayTeamFlagView.layer.shadowColor=[UIColor lightGrayColor].CGColor;
-//    _awayTeamFlagView.layer.shadowOffset=CGSizeMake(10, 10);
-//    _awayTeamFlagView.layer.shadowOpacity=0.5;
-//    _awayTeamFlagView.layer.shadowRadius=5;
+
 }
 
 -(void)setModel:(CenterSwitchModel *)model{
     
-    NSTimeInterval timeIN=(NSTimeInterval)[model.startDate integerValue]/1000;
+    NSTimeInterval timeIN=(NSTimeInterval)[model.startTime integerValue]/1000;
 
     NSDate * timeData=[NSDate dateWithTimeIntervalSince1970:timeIN];
     NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDateToTime:timeData]];
+    _timeLab.text = dataStr;
+    if (!model.startTime) {
+        _timeLab.text = @"时间待定";
+    }
     [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.hostTeam[@"teamInfo"][@"flag"]]]];
     
     [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.awayTeam[@"teamInfo"][@"flag"]]]];
-    _timeLab.text = dataStr;
     _hostTeamLab.text = model.hostTeam[@"teamInfo"][@"name"];
     _awayTeamLab.text = model.awayTeam[@"teamInfo"][@"name"];
 

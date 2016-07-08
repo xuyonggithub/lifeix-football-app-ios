@@ -28,6 +28,7 @@
 #import "YDMenuSwitchView.h"
 #import "HomeSwitchVC.h"
 #import "CoachDetailVC.h"
+#import "StaffsDetVC.h"
 
 #define bannerHeight 44
 
@@ -161,13 +162,12 @@
         model.menberType = @"assistantCoach";
         [_rightDataArray addObject:model];
     }
-
-    for (RightSwitchModel *model in playersArr) {
-        model.menberType = @"player";
-        [_rightDataArray addObject:model];
-    }
     for (RightSwitchModel *model in staffsArr) {
         model.menberType = @"staffs";
+        [_rightDataArray addObject:model];
+    }
+    for (RightSwitchModel *model in playersArr) {
+        model.menberType = @"player";
         [_rightDataArray addObject:model];
     }
 
@@ -468,6 +468,11 @@
         cvc.coachId = [NSString stringWithFormat:@"%@",model.KID];
         cvc.coachName = model.name;
         [self.navigationController pushViewController:cvc animated:YES];
+    }else if([model.menberType isEqualToString:@"staffs"]){
+        StaffsDetVC *svc = [[StaffsDetVC alloc]init];
+        svc.personId =[NSString stringWithFormat:@"%@",model.KID];
+        svc.personName = model.name;
+        [self.navigationController pushViewController:svc animated:YES];
     }
 
 }

@@ -155,6 +155,7 @@
 		2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3D1D104A8000B956CA /* loading_00006@2x.png */; };
 		2DAF7C471D104A8000B956CA /* loading_00007@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3E1D104A8000B956CA /* loading_00007@2x.png */; };
 		2DAF7C481D104A8000B956CA /* loading_00008@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3F1D104A8000B956CA /* loading_00008@2x.png */; };
+		2DB64A021D2F40AC00645E37 /* StaffsDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB64A011D2F40AC00645E37 /* StaffsDetVC.m */; };
 		2DBB72631D11B1D3009BD38F /* homebannerplaceholder@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */; };
 		2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */; };
 		2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */; };
@@ -635,6 +636,8 @@
 		2DAF7C3D1D104A8000B956CA /* loading_00006@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_00006@2x.png"; sourceTree = "<group>"; };
 		2DAF7C3E1D104A8000B956CA /* loading_00007@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_00007@2x.png"; sourceTree = "<group>"; };
 		2DAF7C3F1D104A8000B956CA /* loading_00008@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_00008@2x.png"; sourceTree = "<group>"; };
+		2DB64A001D2F40AC00645E37 /* StaffsDetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffsDetVC.h; sourceTree = "<group>"; };
+		2DB64A011D2F40AC00645E37 /* StaffsDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffsDetVC.m; sourceTree = "<group>"; };
 		2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "homebannerplaceholder@2x.jpg"; sourceTree = "<group>"; };
 		2DBB72641D11B510009BD38F /* VideoLearningDetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetVC.h; sourceTree = "<group>"; };
 		2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetVC.m; sourceTree = "<group>"; };
@@ -1409,6 +1412,15 @@
 			path = SimulationTest;
 			sourceTree = "<group>";
 		};
+		2DB649FF1D2F3FB900645E37 /* Staffs */ = {
+			isa = PBXGroup;
+			children = (
+				2DB64A001D2F40AC00645E37 /* StaffsDetVC.h */,
+				2DB64A011D2F40AC00645E37 /* StaffsDetVC.m */,
+			);
+			path = Staffs;
+			sourceTree = "<group>";
+		};
 		2DD6579A1D2562690075F0C8 /* LocalNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -1517,14 +1529,15 @@
 			isa = PBXGroup;
 			children = (
 				2DE2C85C1D0D3BF500310C4C /* Base */,
+				2DE2C8571D0D3BD200310C4C /* Home */,
+				2D9D12EA1D212FCD00A31A16 /* CurrentlyScore */,
 				EC4D3C331D1392A800285243 /* Referee */,
 				EC5049FC1D0E99E700095C63 /* NewsInfo */,
 				2DE2C8561D0D3BD200310C4C /* Coach */,
-				2DE2C8571D0D3BD200310C4C /* Home */,
+				2DE2C85B1D0D3BD200310C4C /* Player */,
 				2DE2C8591D0D3BD200310C4C /* Learnning */,
 				2DAF7C491D105DB300B956CA /* SimulationTest */,
-				2DE2C85B1D0D3BD200310C4C /* Player */,
-				2D9D12EA1D212FCD00A31A16 /* CurrentlyScore */,
+				2DB649FF1D2F3FB900645E37 /* Staffs */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2766,6 +2779,7 @@
 				EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */,
 				9CAF824A1D190F560025224F /* AJMediaStreamProvider.m in Sources */,
 				2DD4F1391D2D038A0038FA52 /* CurrentlyScoreCell.m in Sources */,
+				2DB64A021D2F40AC00645E37 /* StaffsDetVC.m in Sources */,
 				2DE2C87D1D0D498600310C4C /* SimButton.m in Sources */,
 				9C658B6D1D1A7D9B0005215D /* LFSimulationCategoryModel.m in Sources */,
 				9CAF82861D19237F0025224F /* VTBulletItem.m in Sources */,

@@ -20,5 +20,7 @@
 @property(nonatomic, copy)NSString<Optional> *position;
 @property(nonatomic, strong)NSDictionary<Optional> *team;
 @property(nonatomic, copy)NSString<Optional> *url;
+@property(nonatomic, copy)NSString<Ignore> *like;
+@property(nonatomic, copy)NSString<Ignore> *likeNum;
 
 @end

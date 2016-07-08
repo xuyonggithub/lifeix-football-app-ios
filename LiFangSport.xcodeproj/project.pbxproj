@@ -157,6 +157,8 @@
 		2DAF7C481D104A8000B956CA /* loading_00008@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3F1D104A8000B956CA /* loading_00008@2x.png */; };
 		2DB64A021D2F40AC00645E37 /* StaffsDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB64A011D2F40AC00645E37 /* StaffsDetVC.m */; };
 		2DB64A071D2F478F00645E37 /* StaffsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB64A061D2F478F00645E37 /* StaffsInfoModel.m */; };
+		2DB64A0A1D2F740200645E37 /* PersonInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB64A091D2F740200645E37 /* PersonInfoHeaderView.m */; };
+		2DB64A0D1D2F741A00645E37 /* StaffsInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB64A0C1D2F741A00645E37 /* StaffsInfoHeaderView.m */; };
 		2DBB72631D11B1D3009BD38F /* homebannerplaceholder@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */; };
 		2DBB72661D11B510009BD38F /* VideoLearningDetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */; };
 		2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB72681D11B659009BD38F /* VideoLearningDetCell.m */; };
@@ -641,6 +643,10 @@
 		2DB64A011D2F40AC00645E37 /* StaffsDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffsDetVC.m; sourceTree = "<group>"; };
 		2DB64A051D2F478F00645E37 /* StaffsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffsInfoModel.h; sourceTree = "<group>"; };
 		2DB64A061D2F478F00645E37 /* StaffsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffsInfoModel.m; sourceTree = "<group>"; };
+		2DB64A081D2F740200645E37 /* PersonInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoHeaderView.h; sourceTree = "<group>"; };
+		2DB64A091D2F740200645E37 /* PersonInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoHeaderView.m; sourceTree = "<group>"; };
+		2DB64A0B1D2F741A00645E37 /* StaffsInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffsInfoHeaderView.h; sourceTree = "<group>"; };
+		2DB64A0C1D2F741A00645E37 /* StaffsInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffsInfoHeaderView.m; sourceTree = "<group>"; };
 		2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "homebannerplaceholder@2x.jpg"; sourceTree = "<group>"; };
 		2DBB72641D11B510009BD38F /* VideoLearningDetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLearningDetVC.h; sourceTree = "<group>"; };
 		2DBB72651D11B510009BD38F /* VideoLearningDetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetVC.m; sourceTree = "<group>"; };
@@ -1438,6 +1444,10 @@
 		2DB64A041D2F476600645E37 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2DB64A081D2F740200645E37 /* PersonInfoHeaderView.h */,
+				2DB64A091D2F740200645E37 /* PersonInfoHeaderView.m */,
+				2DB64A0B1D2F741A00645E37 /* StaffsInfoHeaderView.h */,
+				2DB64A0C1D2F741A00645E37 /* StaffsInfoHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2831,6 +2841,7 @@
 				9CAF823D1D190F560025224F /* AJMediaPlayer+SDKAnalytics.m in Sources */,
 				2DE2C8A71D0D4A8500310C4C /* UIImage+launchImage.m in Sources */,
 				9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */,
+				2DB64A0A1D2F740200645E37 /* PersonInfoHeaderView.m in Sources */,
 				2DB64A071D2F478F00645E37 /* StaffsInfoModel.m in Sources */,
 				0AC707741D1A8DE9000B2E13 /* CoachDetailVC.m in Sources */,
 				2D6EEB1C1D17C72D00954C63 /* VideoListModel.m in Sources */,
@@ -2850,6 +2861,7 @@
 				2D4131891D295D2600675737 /* HomeSwitchVC.m in Sources */,
 				2DF227E01D20BD2F005E49A0 /* BaseRightDrawerVC.m in Sources */,
 				2D69ACF41D1A5E8E00B5F52D /* VideoSingleInfoModel.m in Sources */,
+				2DB64A0D1D2F741A00645E37 /* StaffsInfoHeaderView.m in Sources */,
 				2DBB72691D11B659009BD38F /* VideoLearningDetCell.m in Sources */,
 				EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */,
 				9CAF823F1D190F560025224F /* AJMediaPlayer.m in Sources */,

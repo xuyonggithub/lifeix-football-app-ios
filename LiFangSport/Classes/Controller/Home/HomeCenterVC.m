@@ -514,7 +514,7 @@
 #pragma mark- UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y < _cycleScrollView.height + _topBannnerView.height + 64) {
+    if (scrollView.contentOffset.y < _cycleScrollView.height + _topBannnerView.height + 64 && [scrollView isEqual:self.topScrollView]) {
         if (scrollView.contentOffset.y > 0) {
             //  向上拖动
             _cycleScrollView.top = 64-scrollView.contentOffset.y;

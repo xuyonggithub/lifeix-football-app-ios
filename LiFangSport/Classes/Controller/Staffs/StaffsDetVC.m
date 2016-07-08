@@ -12,7 +12,9 @@
 #import "StaffsInfoHeaderView.h"
 #import "LineView.h"
 
-@interface StaffsDetVC ()<UIWebViewDelegate>
+@interface StaffsDetVC ()<UIWebViewDelegate>{
+    NSInteger likeNum;
+}
 @property(nonatomic,strong)NSArray *dataArr;
 @property(nonatomic,strong)UIWebView *kwebView;
 @property(nonatomic,strong)StaffsInfoHeaderView *headerView;
@@ -57,6 +59,7 @@
     StaffsInfoModel *model = _dataArr[0];
     model.like = [NSString stringWithFormat:@"%@",dic[@"like"]];
     model.likeNum = [NSString stringWithFormat:@"%@",dic[@"likeNum"]];
+    likeNum = [model.likeNum integerValue];
     [self dealWitaDataForUI];
 }
 -(void)dealWitaDataForUI{
@@ -94,8 +97,9 @@
     NSDictionary *dic = @{@"type":@"staffs", @"target":self.personId, @"like":@1};
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
         [_headerView.likeBtn setImage:[UIImage imageNamed:@"fired"] forState:UIControlStateNormal];
-        int like = [[dic objectForKey:@"likeNum"] intValue];
-        [_headerView.likeBtn setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
+//        int like = [[dic objectForKey:@"likeNum"] intValue];
+        likeNum ++;
+        [_headerView.likeBtn setTitle:[NSString stringWithFormat:@"%zd", likeNum] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
 
     }];

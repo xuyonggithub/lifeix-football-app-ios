@@ -47,6 +47,9 @@
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"身高／体重", @"场上位置", @"出生地", @"俱乐部", nil];
         NSString *bodyInfo = [NSString stringWithFormat:@"%@cm/%@kg", height, weight];
+        if (position==nil) {
+            position = @"-";
+        }
         NSArray *valueArr = [NSArray arrayWithObjects:birday, bodyInfo, position, birthplace, club, nil];
         for(int i = 0; i < 5; i++){
             UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 10 + (83/4+1) * i, 55, 83/4)];

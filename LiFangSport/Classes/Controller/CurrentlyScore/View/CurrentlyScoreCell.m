@@ -20,7 +20,7 @@
 @property(nonatomic,strong)NSDictionary *weekDic;
 @property(nonatomic,strong)NSDictionary *monthDic;
 @property(nonatomic,strong)UILabel *normalScoreLab;
-@property(nonatomic,strong)UILabel *gameStatusLab;
+@property(nonatomic,strong)UIButton *gameStatusBtn;
 
 @end
 @implementation CurrentlyScoreCell
@@ -74,14 +74,14 @@
     [self addSubview:_normalScoreLab];
     _normalScoreLab.hidden = YES;
     
-    _gameStatusLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 20)];
-    _gameStatusLab.centerX = _normalScoreLab.centerX;
-    _gameStatusLab.top = _normalScoreLab.bottom;
-    _gameStatusLab.textAlignment = NSTextAlignmentCenter;
-    _gameStatusLab.textColor = HEXRGBCOLOR(0xd0d0d0);
-    _gameStatusLab.font = [UIFont systemFontOfSize:10];
-    [self addSubview:_gameStatusLab];
-    _gameStatusLab.hidden = YES;
+    _gameStatusBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 20)];
+    _gameStatusBtn.centerX = _normalScoreLab.centerX;
+    _gameStatusBtn.top = _normalScoreLab.bottom+5;
+    _gameStatusBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_gameStatusBtn setTitleColor:HEXRGBCOLOR(0xd0d0d0) forState:UIControlStateNormal];
+    _gameStatusBtn.titleLabel.font =[UIFont systemFontOfSize:10];
+    [self addSubview:_gameStatusBtn];
+    _gameStatusBtn.hidden = YES;
     
     _hostTeamNameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
     _hostTeamNameLab.top = _hostTeamFlagView.bottom;
@@ -98,7 +98,7 @@
 }
 
 -(void)setModel:(CurrentlyScoreModel *)model{
-    _gameStatusLab.hidden = YES;
+    _gameStatusBtn.hidden = YES;
     if ([model.status integerValue] == 0) {//未开始
         _normalScoreLab.hidden = YES;
         _likeView.hidden = NO;
@@ -106,10 +106,27 @@
     }else{
         _normalScoreLab.hidden = NO;
         _likeView.hidden = YES;
-        _normalScoreLab.text = [NSString stringWithFormat:@"%@:%@",model.home_scores,model.away_scores];
+        _normalScoreLab.text = [NSString stringWithFormat:@"%@-%@",model.home_scores,model.away_scores];
+        if (model.final_result) {
+            _normalScoreLab.text = [NSString stringWithFormat:@"(%@)%@-%@(%@)",model.final_result[@"home_scores"],model.home_scores,model.away_scores,model.final_result[@"away_scores"]];
+        }
+        [self resetLabFrame:_normalScoreLab];
         if ([model.status integerValue] == -1) {//完场
-            _gameStatusLab.hidden = NO;
-            _gameStatusLab.text = @"已完场";
+            _gameStatusBtn.hidden = NO;
+            [_gameStatusBtn setTitle:@"已完场" forState:UIControlStateNormal];
+            if ([model.final_result[@"score_type"] integerValue]==3) {
+                [_gameStatusBtn setTitle:@"已完场" forState:UIControlStateNormal];
+                [_gameStatusBtn setImage:UIImageNamed(@"overtime") forState:UIControlStateNormal];
+
+                [_gameStatusBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -_gameStatusBtn.imageView.size.width-3, 0, _gameStatusBtn.imageView.size.width)];
+                [_gameStatusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _gameStatusBtn.titleLabel.bounds.size.width+3, 0, -_gameStatusBtn.titleLabel.bounds.size.width)];
+            }else if ([model.final_result[@"score_type"] integerValue]==4) {
+                [_gameStatusBtn setTitle:@"已完场" forState:UIControlStateNormal];
+                [_gameStatusBtn setImage:UIImageNamed(@"penalty") forState:UIControlStateNormal];
+                [_gameStatusBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -_gameStatusBtn.imageView.size.width-3, 0, _gameStatusBtn.imageView.size.width)];
+                [_gameStatusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _gameStatusBtn.titleLabel.bounds.size.width+3, 0, -_gameStatusBtn.titleLabel.bounds.size.width)];
+            }
+
         }else{
 
         }
@@ -153,6 +170,12 @@
 -(NSArray *)dateTimeArrFromOfStr:(NSString *)str{
     NSArray* ndateTimeArr = [str componentsSeparatedByString:@" "];
     return ndateTimeArr;
+}
+
+-(void)resetLabFrame:(UILabel *)lab{
+    CGFloat x = lab.centerX;
+    [lab sizeToFit];
+    lab.centerX = x;
 }
 
 - (void)awakeFromNib {

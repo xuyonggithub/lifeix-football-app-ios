@@ -40,7 +40,7 @@
     _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, kScreenWidth, 30)];
     [self addSubview:_titleLab];
     _subTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-    _subTitleLab.top = _titleLab.bottom;
+    _subTitleLab.top = _titleLab.bottom-3;
     [self addSubview:_subTitleLab];
     _titleLab.textColor = kBlackColor;
     _subTitleLab.textColor = kBlackColor;

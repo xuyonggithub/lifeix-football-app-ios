@@ -274,7 +274,7 @@
         lab.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
         lab.text = @"2018年世界杯预选赛亚洲区赛制方案";
         lab.textColor = HEXRGBCOLOR(0x5f5f5f);
-        lab.font = [UIFont systemFontOfSize:10];
+        lab.font = [UIFont systemFontOfSize:13];
         lab.textAlignment = NSTextAlignmentCenter;
         [centerBannerView addSubview:lab];
         

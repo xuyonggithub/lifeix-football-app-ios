@@ -42,7 +42,7 @@
         
         _titleLabel = [UILabel new];
         _titleLabel.textColor = kwhiteColor;
-        _titleLabel.font = [UIFont systemFontOfSize:15];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:_titleLabel];
         [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(bannerView);

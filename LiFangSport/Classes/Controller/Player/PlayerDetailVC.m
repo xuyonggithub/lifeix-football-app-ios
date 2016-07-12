@@ -185,26 +185,27 @@
     [self resetScrollViewTop];
     NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
-        self.webView = nil;
+        [self.webView removeFromSuperview];
         if(!_tableView){
-            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264) style:UITableViewStylePlain];
-            tableView.delegate = self;
-            tableView.dataSource = self;
-            [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
-            [self.view addSubview:tableView];
+            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264) style:UITableViewStylePlain];
+            _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            _tableView.delegate = self;
+            _tableView.dataSource = self;
+            [_tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
         }
-        [self.view bringSubviewToFront:_tableView];
+        [self.view addSubview:_tableView];
+//        [self.view bringSubviewToFront:_tableView];
     }else{
-        self.tableView = nil;
+        [self.tableView removeFromSuperview];
         if(!_webView){
             _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264)];
-            [self.view addSubview:_webView];
             _webView.delegate = self;
             _webView.scrollView.delegate = self;
             _webView.tag = kWebViewTag;
             _webView.backgroundColor = kwhiteColor;
         }
-        [self.view bringSubviewToFront:_webView];
+        [self.view addSubview:_webView];
+//        [self.view bringSubviewToFront:_webView];
         NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [_webView loadRequest:request];
@@ -213,10 +214,22 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    BaseInfoView *baseView = [self.view viewWithTag:kBaseViewTag];
+    if(scrollView.contentOffset.y < 0){
+        baseView.top = 64;
+    }
     if([scrollView isKindOfClass:[UITableView class]]){
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY > baseView.height) {
+            baseView.top = 64 - baseView.height;
+        }else{
+            baseView.top = 64 - offsetY;
+        }
+        _cateView.top = baseView.bottom;
+        _tableView.top = _cateView.bottom;
+        _tableView.height = kScreenHeight - _tableView.top;
         return;
     }
-    BaseInfoView *baseView = [self.view viewWithTag:kBaseViewTag];
     UIWebView *webview = [self.view viewWithTag:kWebViewTag];
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > baseView.height) {

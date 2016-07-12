@@ -47,11 +47,16 @@
     _subTitleLab.font = [UIFont systemFontOfSize:12];
     _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     [self addSubview:_hostTeamFlagView];
-//    _hostTeamFlagView.image = [UIImage imageNamed:@"chinaflag"];
 
     _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
     [self addSubview:_awayTeamFlagView];
-//    _awayTeamFlagView.image = [UIImage imageNamed:@"americaflag"];
+    _hostTeamFlagView.layer.shadowOffset = CGSizeMake(0, 5);
+    _hostTeamFlagView.layer.shadowOpacity = 0.9;
+    _hostTeamFlagView.layer.shadowColor = HEXRGBCOLOR(0xdcdcdc).CGColor;
+    
+    _awayTeamFlagView.layer.shadowOffset = CGSizeMake(0, 5);
+    _awayTeamFlagView.layer.shadowOpacity = 0.9;
+    _awayTeamFlagView.layer.shadowColor = HEXRGBCOLOR(0xdcdcdc).CGColor;
 
     _titleLab.textAlignment = NSTextAlignmentCenter;
     _subTitleLab.textAlignment = NSTextAlignmentCenter;

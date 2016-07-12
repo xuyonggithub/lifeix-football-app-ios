@@ -70,7 +70,10 @@
     NSString *dataStr = [NSString stringWithFormat:@"%@",[self extractDateToTime:timeData]];
     _timeLab.text = dataStr;
     if (!model.startTime) {
-        _timeLab.text = @"时间待定";
+        NSTimeInterval timeINs=(NSTimeInterval)[model.startDate integerValue]/1000;
+        NSDate * timeDatas=[NSDate dateWithTimeIntervalSince1970:timeINs];
+        NSString *dataStrs = [NSString stringWithFormat:@"%@",[self extractDateToDate:timeDatas]];
+        _timeLab.text = dataStrs;
     }
     [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.hostTeam[@"teamInfo"][@"flag"]]]];
     
@@ -107,6 +110,15 @@
     formatter.timeZone = [NSTimeZone systemTimeZone];
     //formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    NSString *currenttimeString = [NSString stringWithFormat:@"%@",
+                                   [formatter stringFromDate:date]];
+    return currenttimeString;
+}
+
+- (NSString *)extractDateToDate:(NSDate *)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.timeZone = [NSTimeZone systemTimeZone];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
     NSString *currenttimeString = [NSString stringWithFormat:@"%@",
                                    [formatter stringFromDate:date]];
     return currenttimeString;

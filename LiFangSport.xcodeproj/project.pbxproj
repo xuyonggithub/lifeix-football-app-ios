@@ -106,8 +106,6 @@
 		2D6EEB1F1D17C75100954C63 /* VideoLearningDetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */; };
 		2D6EEB221D17D9D700954C63 /* list_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB201D17D9D700954C63 /* list_left@2x.png */; };
 		2D6EEB231D17D9D700954C63 /* list_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB211D17D9D700954C63 /* list_right@2x.png */; };
-		2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */; };
-		2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */; };
 		2D6EEB291D17DE3800954C63 /* VSicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB281D17DE3800954C63 /* VSicon@2x.png */; };
 		2D6EEB2B1D17DF4A00954C63 /* videolistBannerLabpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */; };
 		2D740A3C1D220D64007D29B3 /* LearningInfoPopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D740A3B1D220D64007D29B3 /* LearningInfoPopCell.m */; };
@@ -188,7 +186,6 @@
 		2DE2C84E1D0D2FF800310C4C /* SimCommonData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE2C84A1D0D2FF800310C4C /* SimCommonData.m */; };
 		2DE2C84F1D0D2FF800310C4C /* SimCommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE2C84C1D0D2FF800310C4C /* SimCommonTool.m */; };
 		2DE2C8531D0D309400310C4C /* SimImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE2C8521D0D309400310C4C /* SimImageCache.m */; };
-		2DE2C8551D0D370700310C4C /* 112233@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE2C8541D0D370700310C4C /* 112233@2x.png */; };
 		2DE2C85F1D0D3C1A00310C4C /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE2C85E1D0D3C1A00310C4C /* BaseVC.m */; };
 		2DE2C8721D0D495A00310C4C /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE2C8621D0D495A00310C4C /* NSStringAdditions.m */; };
 		2DE2C8731D0D495A00310C4C /* UIBarButtonItem+SimAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE2C8651D0D495A00310C4C /* UIBarButtonItem+SimAdditions.m */; };
@@ -558,8 +555,6 @@
 		2D6EEB1E1D17C75100954C63 /* VideoLearningDetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLearningDetModel.m; sourceTree = "<group>"; };
 		2D6EEB201D17D9D700954C63 /* list_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_left@2x.png"; sourceTree = "<group>"; };
 		2D6EEB211D17D9D700954C63 /* list_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_right@2x.png"; sourceTree = "<group>"; };
-		2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "americaflag@2x.png"; sourceTree = "<group>"; };
-		2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2D6EEB281D17DE3800954C63 /* VSicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VSicon@2x.png"; sourceTree = "<group>"; };
 		2D6EEB2A1D17DF4A00954C63 /* videolistBannerLabpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videolistBannerLabpic@2x.png"; sourceTree = "<group>"; };
 		2D740A3A1D220D64007D29B3 /* LearningInfoPopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoPopCell.h; sourceTree = "<group>"; };
@@ -705,7 +700,6 @@
 		2DE2C84D1D0D2FF800310C4C /* SimDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDefine.h; sourceTree = "<group>"; };
 		2DE2C8511D0D309400310C4C /* SimImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimImageCache.h; sourceTree = "<group>"; };
 		2DE2C8521D0D309400310C4C /* SimImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimImageCache.m; sourceTree = "<group>"; };
-		2DE2C8541D0D370700310C4C /* 112233@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112233@2x.png"; sourceTree = "<group>"; };
 		2DE2C85D1D0D3C1A00310C4C /* BaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseVC.h; sourceTree = "<group>"; };
 		2DE2C85E1D0D3C1A00310C4C /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		2DE2C8611D0D495A00310C4C /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
@@ -761,8 +755,6 @@
 		2DE94D6C1D123BED00E1508D /* icon_previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_previous@2x.png"; sourceTree = "<group>"; };
 		2DE94D6D1D123BED00E1508D /* simBackIcon_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simBackIcon_press@2x.png"; sourceTree = "<group>"; };
 		2DE94D6E1D123BED00E1508D /* simCloseIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simCloseIcon@2x.png"; sourceTree = "<group>"; };
-		2DE94D781D12570200E1508D /* americaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "americaflag@2x.png"; sourceTree = "<group>"; };
-		2DE94D791D12570200E1508D /* chinaflag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chinaflag@2x.png"; sourceTree = "<group>"; };
 		2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haolindemopic@2x.png"; sourceTree = "<group>"; };
 		2DE94D7F1D1291FA00E1508D /* ou1233aeer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ou1233aeer.png; sourceTree = "<group>"; };
 		2DF227DE1D20BD2F005E49A0 /* BaseRightDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRightDrawerVC.h; sourceTree = "<group>"; };
@@ -1244,12 +1236,8 @@
 				2D3422D61D2520C100AF6FAD /* guanzhu02@2x.png */,
 				2D6EEB281D17DE3800954C63 /* VSicon@2x.png */,
 				2DE94D7C1D12778E00E1508D /* haolindemopic@2x.png */,
-				2DE94D781D12570200E1508D /* americaflag@2x.png */,
-				2DE94D791D12570200E1508D /* chinaflag@2x.png */,
 				2DBB72621D11B1D3009BD38F /* homebannerplaceholder@2x.jpg */,
 				2D84EA471D11259000113404 /* leftswitchcellpic@2x.png */,
-				2D6EEB241D17D9ED00954C63 /* americaflag@2x.png */,
-				2D6EEB251D17D9ED00954C63 /* chinaflag@2x.png */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1643,7 +1631,6 @@
 				2DE94D681D123BED00E1508D /* Icons */,
 				2D84EA461D11259000113404 /* Home */,
 				2DAF7C361D104A8000B956CA /* LoadingView */,
-				2DE2C8541D0D370700310C4C /* 112233@2x.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -2471,7 +2458,6 @@
 				0AC7072C1D191BB8000B2E13 /* titleBg.jpg in Resources */,
 				2DE94D6F1D123BED00E1508D /* backiconblue@2x.png in Resources */,
 				9C05170C1D194797007F03A8 /* chatroom_bt_close@2x.png in Resources */,
-				2DE2C8551D0D370700310C4C /* 112233@2x.png in Resources */,
 				9C05174F1D194797007F03A8 /* player_ic_point@2x.png in Resources */,
 				9C0517441D194797007F03A8 /* player_bt_sound3_press@2x.png in Resources */,
 				2D3422D71D2520C100AF6FAD /* guanzhu01@2x.png in Resources */,
@@ -2499,7 +2485,6 @@
 				9C0517261D194797007F03A8 /* player_bt_airplay_press@2x.png in Resources */,
 				2DAF7C461D104A8000B956CA /* loading_00006@2x.png in Resources */,
 				9C0517191D194797007F03A8 /* live_expand_btn_chat_on@2x.png in Resources */,
-				2D6EEB271D17D9ED00954C63 /* chinaflag@2x.png in Resources */,
 				2D69ACA71D1942B700B5F52D /* hud_3@2x.png in Resources */,
 				0AC707241D19082B000B2E13 /* playerBg.jpg in Resources */,
 				9C0517381D194797007F03A8 /* player_bt_play_press@2x.png in Resources */,
@@ -2514,7 +2499,6 @@
 				9C0517451D194797007F03A8 /* player_bt_sound3_press@3x.png in Resources */,
 				9C0517221D194797007F03A8 /* player_bg_time@2x.png in Resources */,
 				9C0517021D194797007F03A8 /* bullet_operator_@2x.png in Resources */,
-				2D6EEB261D17D9ED00954C63 /* americaflag@2x.png in Resources */,
 				9C0517311D194797007F03A8 /* player_bt_pause_ipad.png in Resources */,
 				2D69ACAA1D1942B700B5F52D /* hud_6@2x.png in Resources */,
 				0AC707261D19082B000B2E13 /* womanPlayerBg.jpg in Resources */,

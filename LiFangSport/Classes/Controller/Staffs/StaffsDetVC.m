@@ -17,8 +17,9 @@
 }
 @property(nonatomic,strong)NSArray *dataArr;
 @property(nonatomic,strong)UIWebView *kwebView;
-@property(nonatomic,strong)StaffsInfoHeaderView *headerView;
+@property(nonatomic,strong)StaffsInfoHeaderView *headerInfoView;
 @property(nonatomic,strong)UIView *separateView;
+@property(nonatomic,strong)UIView *kheaderView;
 
 @end
 
@@ -64,15 +65,13 @@
 }
 -(void)dealWitaDataForUI{
     StaffsInfoModel *model = _dataArr[0];
-    _headerView = [[StaffsInfoHeaderView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 150) andDataModel:model];
-    [self.view addSubview:_headerView];
+    _headerInfoView = [[StaffsInfoHeaderView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 150) andDataModel:model];
     DefineWeak(self);
-    _headerView.clickBC = ^(void){
+    _headerInfoView.clickBC = ^(void){
         [Weak(self) likePerson];
     };
     _separateView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-    _separateView.top = _headerView.bottom+10;
-    [self.view addSubview:_separateView];
+    _separateView.top = _headerInfoView.bottom+10;
     UILabel *titleLab = [[UILabel alloc]initWithFrame:_separateView.bounds];
     titleLab.text = @"  个人介绍";
     titleLab.textAlignment = NSTextAlignmentLeft;
@@ -84,22 +83,30 @@
     [_separateView addSubview:titleLab];
     [_separateView addSubview:line];
     
-    _kwebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, _separateView.bottom, kScreenWidth, kScreenHeight-_headerView.height-_separateView.height-64)];
+    _kheaderView = [[UIView alloc]initWithFrame:CGRectMake(0, -170-64, kScreenWidth, 170)];
+    [_kheaderView addSubview:_headerInfoView];
+    [_kheaderView addSubview:_separateView];
+
+    _kwebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _kwebView.backgroundColor = kwhiteColor;
     [self.view addSubview:_kwebView];
     _kwebView.delegate = self;
+    _kwebView.scrollView.contentInset = UIEdgeInsetsMake(170+64, 0, 0, 0);
+
     NSURL *url = [NSURL URLWithString:model.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_kwebView loadRequest:request];
+
+    [_kwebView.scrollView addSubview:_kheaderView];
 }
 
 -(void)likePerson{//点赞
     NSDictionary *dic = @{@"type":@"staffs", @"target":self.personId, @"like":@1};
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
-        [_headerView.likeBtn setImage:[UIImage imageNamed:@"fired"] forState:UIControlStateNormal];
+        [_headerInfoView.likeBtn setImage:[UIImage imageNamed:@"fired"] forState:UIControlStateNormal];
 //        int like = [[dic objectForKey:@"likeNum"] intValue];
         likeNum ++;
-        [_headerView.likeBtn setTitle:[NSString stringWithFormat:@"%zd", likeNum] forState:UIControlStateNormal];
+        [_headerInfoView.likeBtn setTitle:[NSString stringWithFormat:@"%zd", likeNum] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
 
     }];

@@ -72,7 +72,7 @@
     _decisionLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, labHeight)];
     _decisionLab.top = _factorsLab.bottom + 5;
     _decisionLab.backgroundColor = labBackColor;
-    _decisionLab.text = @"判罚";
+    _decisionLab.text = @"判罚决定";
     _decisionLab.font = textFont;
     _decisionLab.textColor = kwhiteColor;
     _decisionLab.textAlignment = NSTextAlignmentCenter;
@@ -88,7 +88,7 @@
     _detailLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, labHeight)];
     _detailLab.top = _decisionLab.bottom + 5;
     _detailLab.backgroundColor = labBackColor;
-    _detailLab.text = @"说明";
+    _detailLab.text = @"解释说明";
     _detailLab.font = textFont;
     _detailLab.textColor = kwhiteColor;
     _detailLab.textAlignment = NSTextAlignmentCenter;
@@ -103,7 +103,7 @@
     _ruleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, labHeight)];
     _ruleLab.top = _detailLab.bottom + 5;
     _ruleLab.backgroundColor = labBackColor;
-    _ruleLab.text = @"规则";
+    _ruleLab.text = @"规则依据";
     _ruleLab.font = textFont;
     _ruleLab.textColor = kwhiteColor;
     _ruleLab.textAlignment = NSTextAlignmentCenter;

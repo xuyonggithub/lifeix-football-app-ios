@@ -338,6 +338,7 @@ static NSData *kPNGSignatureData = nil;
         _textView.frame = CGRectMake(0, 70, kScreenWidth-290, kScreenHeight-125);
         _textView.centerX = self.centerX;
         _textView.backgroundColor = [UIColor clearColor];
+        _textView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.1];
         _textView.editable = NO;
         _textView.selectable = NO;
         [self addSubview:_textView];

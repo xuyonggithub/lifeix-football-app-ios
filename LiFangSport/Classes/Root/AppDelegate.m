@@ -34,6 +34,7 @@
     [SDImageCache sharedImageCache].maxCacheAge = 60 * 60 * 24 * 30;
     [SDImageCache sharedImageCache].maxCacheSize = 1024 * 1024 * 100; // 100M
     [self setupUMengShare];
+    [NSThread sleepForTimeInterval:1.5]; // 启动页停留时间
     return YES;
 }
 

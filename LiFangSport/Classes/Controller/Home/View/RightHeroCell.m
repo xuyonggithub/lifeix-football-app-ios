@@ -43,8 +43,15 @@
     _nameLab.top = self.height - 15;
 }
 
--(void)setModel:(RightSwitchModel *)model{    
-    [_picView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.avatar]] placeholderImage:UIImageNamed(@"placeHold_player")];
+-(void)setModel:(RightSwitchModel *)model{
+    //七牛图片处理
+    if (IPHONE_5||IPHONE_4) {//85 100
+        [_picView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?imageView/1/w/%@/h/%@",kQiNiuHeaderPathPrifx,model.avatar,@(170),@(200)]] placeholderImage:UIImageNamed(@"placeHold_player")];
+
+    }else{//110,130
+        [_picView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?imageView/1/w/%@/h/%@",kQiNiuHeaderPathPrifx,model.avatar,@(220),@(260)]] placeholderImage:UIImageNamed(@"placeHold_player")];
+
+    }
     _nameLab.text = [NSString stringWithFormat:@"%@",model.name];
 }
 

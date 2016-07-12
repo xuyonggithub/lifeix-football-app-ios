@@ -19,7 +19,7 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 
-@interface CoachDetailVC ()<CoachInfoViewDelegate>
+@interface CoachDetailVC ()<CoachInfoViewDelegate, UIWebViewDelegate>
 
 @property(nonatomic, assign)int likeNum;
 @property(nonatomic, assign)BOOL isClick;
@@ -28,6 +28,8 @@
 @property(nonatomic, retain)NSMutableArray *shareArr;
 @property(nonatomic, retain)UIView *lbl;
 @property(nonatomic, copy)NSString *url;
+@property(nonatomic,strong)UIScrollView *scrollView;
+
 @end
 
 @implementation CoachDetailVC
@@ -36,6 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"教练介绍";
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 0)];
+    [self.view addSubview:_scrollView];
     // 分享
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.png"] target:self action:@selector(shareBtnClicked:)];
     
@@ -116,29 +120,31 @@
         country = @"-";
     }
     
-    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 150) andAvatar:[dict objectForKey:@"avatar"] andName:name andBirday:birthday andBirthplace:name andPart:part andClub:club andCountry:country];
+    CoachInfoView *coachView = [[CoachInfoView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150) andAvatar:[dict objectForKey:@"avatar"] andName:name andBirday:birthday andBirthplace:birthplace andPart:part andClub:club andCountry:country];
     coachView.delegate = self;
-    [self.view addSubview:coachView];
+    [self.scrollView addSubview:coachView];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom, 200, 100/3)];
     label.text = @"执教生涯";
     label.font = [UIFont systemFontOfSize:10];
     label.textColor = HEXRGBCOLOR(0x5f5f5f);
-    [self.view addSubview:label];
+    [self.scrollView addSubview:label];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
-    [self.view addSubview:lineView];
+    [self.scrollView addSubview:lineView];
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, lineView.bottom + 10, SCREEN_WIDTH, SCREEN_HEIGHT - lineView.bottom - 10)];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - lineView.bottom)];
     webView.backgroundColor = kwhiteColor;
+    webView.delegate = self;
+    webView.scrollView.scrollEnabled = false;
     if(![[dict objectForKey:@"url"] isEqual:[NSNull null]]){
         self.url = [NSString stringWithFormat:@"%@", [dict objectForKey:@"url"]];
         NSURL *url = [NSURL URLWithString:[dict objectForKey:@"url"]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
     }
-    [self.view addSubview:webView];
+    [self.scrollView addSubview:webView];
     [self requestLikes:coachView];
 }
 
@@ -162,6 +168,14 @@
     }];
     _isClick = YES;
     
+}
+
+#pragma mark - UIWebviewdelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    CGFloat webViewHeight=[[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"]floatValue];
+    webView.height = webViewHeight;
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, webViewHeight + webView.top);
 }
 
 /**

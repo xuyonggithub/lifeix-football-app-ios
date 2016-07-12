@@ -132,6 +132,7 @@
     _refereeView.showsVerticalScrollIndicator = NO;
     [_refereeView registerClass:[RefereeCell class] forCellReuseIdentifier:kReuseId];
     _refereeView.allowsSelection = NO;
+//    _refereeView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_refereeView];
 }
 
@@ -196,12 +197,14 @@
 
 -(void)clickBtn:(NSUInteger)tag{
     self.selectedIndex = tag;
-    [_selectedDataArr removeAllObjects];
-    [_selectedTitleArr removeAllObjects];
-    NSArray *ceteArr = [self.refereeArr objectAtIndex:tag];
+//    [_selectedDataArr removeAllObjects];
+//    [_selectedTitleArr removeAllObjects];
+    NSArray *ceteArr = [self.refereeArr objectAtIndex:self.selectedIndex];
     //获取所有分区标题
-    [self.selectedTitleArr addObjectsFromArray:[self.categoryNameArr objectAtIndex:tag]];
+    self.selectedTitleArr = [NSMutableArray array];
+    [self.selectedTitleArr addObjectsFromArray:[self.categoryNameArr objectAtIndex:self.selectedIndex]];
     //获取对应分区下列表
+    self.selectedDataArr = [NSMutableArray array];
     [_selectedDataArr addObjectsFromArray:ceteArr];
     
     [self.refereeView reloadData];

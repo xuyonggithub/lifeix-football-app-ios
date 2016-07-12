@@ -24,7 +24,10 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 
 #define kReuseId @"cell"
-@interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource, BaseInfoViewDelegate>
+#define kBaseViewTag 100036
+#define kWebViewTag 100037
+
+@interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource, BaseInfoViewDelegate, UIScrollViewDelegate>
 
 @property(nonatomic, retain)NSMutableArray *categoryArr;
 @property(nonatomic, retain)NSMutableArray *categoryUrlArr;
@@ -37,6 +40,11 @@
 
 @property(nonatomic, retain)NSMutableArray *shareArr;
 @property(nonatomic, retain)UIView *lbl;
+@property(nonatomic,strong)UIView *cateView;
+
+@property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)UIWebView *webView;
+@property(nonatomic,strong)UIScrollView *topScrollView;
 @end
 
 @implementation PlayerDetailVC
@@ -46,6 +54,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"球员介绍";
     // 分享
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.png"] target:self action:@selector(shareBtnClicked:)];
@@ -115,13 +124,13 @@
     
     NSString *position;
     if([[dict objectForKey:@"nationTeam"] isKindOfClass:[NSDictionary class]]){
-        position = [[dict objectForKey:@"nationTeam"] objectForKey:@"position"] != nil?[[dict objectForKey:@"nationTeam"] objectForKey:@"position"]:@"-";
+        position = ![[[dict objectForKey:@"nationTeam"] objectForKey:@"position"] isEqual:[NSNull null]]?[[dict objectForKey:@"nationTeam"] objectForKey:@"position"]:@"-";
     }else{
         position = @"-";
     }
     NSString *club;
     if([[dict objectForKey:@"club"] isKindOfClass:[NSDictionary class]]){
-        club = [[dict objectForKey:@"club"] objectForKey:@"name"] != nil?[[dict objectForKey:@"club"] objectForKey:@"name"]:@"-";
+        club = ![[[dict objectForKey:@"club"] objectForKey:@"name"] isEqual:[NSNull null]]?[[dict objectForKey:@"club"] objectForKey:@"name"]:@"-";
     }else{
         club = @"-";
     }
@@ -149,43 +158,88 @@
     
     BaseInfoView *baseView = [[BaseInfoView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 167) andAvatar:[dict objectForKey:@"avatar"] andName:name andBirday:birthday andHeight:height andWeight:weight andPosition:position andBirthplace:birthplace andClub:club];
     baseView.delegate = self;
+    baseView.tag = kBaseViewTag;
     [self.view addSubview:baseView];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, baseView.bottom, SCREEN_WIDTH, 1)];
+    self.cateView = [[UIView alloc] initWithFrame:CGRectMake(0, baseView.bottom, SCREEN_WIDTH, 34)];
+    [self.view addSubview:self.cateView];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
-    [self.view addSubview:lineView];
+    [self.cateView addSubview:lineView];
     // 类目栏
     DefineWeak(self);
     CategoryView *cateView = [[CategoryView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 32) category:self.categoryArr];
     cateView.ClickBtn = ^(CGFloat index){
         [Weak(self) clickBtn:(index)];
     };
-    [self.view addSubview:cateView];
+    [self.cateView addSubview:cateView];
     UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, cateView.bottom - 1, SCREEN_WIDTH, 1)];
     lineView1.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
-    [self.view addSubview:lineView1];
+    [self.cateView addSubview:lineView1];
     
     [self requestLikes:baseView];
     [self clickBtn:0];
 }
 
 -(void)clickBtn:(CGFloat)tag{
+    [self resetScrollViewTop];
     NSString *cate = [self.categoryArr objectAtIndex:tag];
     if([cate isEqualToString:@"高光时刻"]){
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264) style:UITableViewStylePlain];
-        [self.view addSubview:tableView];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
+        self.webView = nil;
+        if(!_tableView){
+            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264) style:UITableViewStylePlain];
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            [tableView registerClass:[PlayerVideoCell class] forCellReuseIdentifier:kReuseId];
+            [self.view addSubview:tableView];
+        }
+        [self.view bringSubviewToFront:_tableView];
     }else{
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264)];
-        [self.view addSubview:webView];
-        webView.delegate = self;
-        webView.backgroundColor = kwhiteColor;
+        self.tableView = nil;
+        if(!_webView){
+            _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264)];
+            [self.view addSubview:_webView];
+            _webView.delegate = self;
+            _webView.scrollView.delegate = self;
+            _webView.tag = kWebViewTag;
+            _webView.backgroundColor = kwhiteColor;
+        }
+        [self.view bringSubviewToFront:_webView];
         NSURL *url = [NSURL URLWithString:[self.categoryUrlArr objectAtIndex:tag]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
+        [_webView loadRequest:request];
     }
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if([scrollView isKindOfClass:[UITableView class]]){
+        return;
+    }
+    BaseInfoView *baseView = [self.view viewWithTag:kBaseViewTag];
+    UIWebView *webview = [self.view viewWithTag:kWebViewTag];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > baseView.height) {
+        baseView.top = 64 - baseView.height;
+    }else{
+        baseView.top = 64 - offsetY;
+    }
+    _cateView.top = baseView.bottom;
+    webview.top = _cateView.bottom;
+    webview.height = kScreenHeight - webview.top;
+}
+
+- (void)resetScrollViewTop
+{
+    BaseInfoView *baseView = [self.view viewWithTag:kBaseViewTag];
+    [self.view bringSubviewToFront:baseView];
+    [self.view bringSubviewToFront:_cateView];
+    //  复位
+    baseView.top = 64;
+    _cateView.top = baseView.bottom;
+    self.topScrollView.top = _cateView.bottom;
+    self.topScrollView.height = kScreenHeight - self.topScrollView.top;
+    self.topScrollView.contentOffset = CGPointMake(0, 0);
 }
 
 #pragma mark - BaseInfoViewDelegate
@@ -210,33 +264,8 @@
     
 }
 
-#pragma mark - UIWebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"+++webViewDidStartLoad");
-    //    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 274, SCREEN_WIDTH, SCREEN_HEIGHT - 274)];
-    //    _loadingView.backgroundColor = kwhiteColor;
-    //    [self.view addSubview:_loadingView];
-    //
-    //    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeHold_newsLoading.jpg"]];
-    //    imageView.center = CGPointMake(self.view.centerX, self.view.centerY - 310);
-    //    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    //    [_loadingView addSubview:imageView];
-    //
-    //    UILabel *reminderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom + 15, SCREEN_WIDTH, 20)];
-    //    reminderLabel.text = @"内容正飞奔在网络中";
-    //    reminderLabel.textAlignment = NSTextAlignmentCenter;
-    //    reminderLabel.font = [UIFont systemFontOfSize:14];
-    //    reminderLabel.textColor = HEXRGBCOLOR(0xd9d9d9);
-    //    [_loadingView addSubview:reminderLabel];
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSLog(@"succeed!");
-    //    [_loadingView removeFromSuperview];
-}
-
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    NSLog(@"error = %@", error);
+#pragma mark - UIWebviewdelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
 }
 
 #pragma mark - UITabView

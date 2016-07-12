@@ -114,19 +114,23 @@
         if ([model.status integerValue] == -1) {//完场
             _gameStatusBtn.hidden = NO;
             [_gameStatusBtn setTitle:@"已完场" forState:UIControlStateNormal];
-            if ([model.final_result[@"score_type"] integerValue]==3) {
+            [_gameStatusBtn setImage:nil forState:UIControlStateNormal];
+            [_gameStatusBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+
+            if (model.final_result) {
+              if ([model.final_result[@"score_type"] integerValue]==3) {
                 [_gameStatusBtn setTitle:@"已完场" forState:UIControlStateNormal];
                 [_gameStatusBtn setImage:UIImageNamed(@"overtime") forState:UIControlStateNormal];
 
                 [_gameStatusBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -_gameStatusBtn.imageView.size.width-3, 0, _gameStatusBtn.imageView.size.width)];
                 [_gameStatusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _gameStatusBtn.titleLabel.bounds.size.width+3, 0, -_gameStatusBtn.titleLabel.bounds.size.width)];
-            }else if ([model.final_result[@"score_type"] integerValue]==4) {
+              }else if ([model.final_result[@"score_type"] integerValue]==4) {
                 [_gameStatusBtn setTitle:@"已完场" forState:UIControlStateNormal];
                 [_gameStatusBtn setImage:UIImageNamed(@"penalty") forState:UIControlStateNormal];
                 [_gameStatusBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -_gameStatusBtn.imageView.size.width-3, 0, _gameStatusBtn.imageView.size.width)];
                 [_gameStatusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _gameStatusBtn.titleLabel.bounds.size.width+3, 0, -_gameStatusBtn.titleLabel.bounds.size.width)];
+              }
             }
-
         }else{
 
         }

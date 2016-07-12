@@ -70,8 +70,6 @@ const CGFloat topViewH = 180;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"backIconwhite"] target:self action:@selector(rollBack)];
-    
     self.title = @"正文";
     self.bgScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.likeBtn.frame.origin.y + 55);
     NSString *urlStr = self.media.url;
@@ -79,9 +77,6 @@ const CGFloat topViewH = 180;
     NSURLRequest *requset = [NSURLRequest requestWithURL:url];
     [self.contentWebView loadRequest:requset];
     self.isClick = NO;
-}
--(void)rollBack{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)requestLikes{

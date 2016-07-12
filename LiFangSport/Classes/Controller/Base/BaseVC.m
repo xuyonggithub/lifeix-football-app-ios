@@ -21,7 +21,7 @@
     
     self.navigationController.navigationBar.barTintColor = knavibarColor;
     [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont systemFontOfSize:22],
+     @{NSFontAttributeName:[UIFont systemFontOfSize:18],
        NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.view.backgroundColor = [UIColor whiteColor];
 }

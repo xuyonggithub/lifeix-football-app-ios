@@ -26,6 +26,7 @@
 @interface LeftCategoryVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *kTableView;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+
 @end
 
 @implementation LeftCategoryVC
@@ -56,13 +57,8 @@
         NSDictionary *notidic = [NSDictionary dictionaryWithObjectsAndKeys:model.KID, @"khomeKidNotiFicationStr", model.name, @"title", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:khomeKidNotiFicationStr object:nil userInfo:notidic];
     }
-    if (_dataArray.count > 0) {//重设主页面
-    HomeLeftCategModel *model = _dataArray[0];
-    if([model.page isEqualToString:@"medialist_page"]){
-        MediaCenterVC *mvc = [[MediaCenterVC alloc]init];
-    APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:mvc WithLeftVC:self];
-     }
-    }
+
+    [self resetHomePage];//重设主界面
 }
 -(void)createTableview{
     _kTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 550) style:UITableViewStylePlain];
@@ -143,6 +139,33 @@
     [self.sideMenuViewController hideMenuViewController];
 }
 
+-(void)resetHomePage{
+    if (_dataArray.count > 0) {//重设主页面
+        HomeLeftCategModel *model = _dataArray[0];
+        if([model.page isEqualToString:@"medialist_page"]){
+            MediaCenterVC *vc = [[MediaCenterVC alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }else if ([model.page isEqualToString:@"training_category_page"]){
+            VideoCenterVC *vc = [[VideoCenterVC alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }else if ([model.page isEqualToString:@"playerlist_page"]){
+            PlayerCenterViewController *vc = [[PlayerCenterViewController alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }else if ([model.page isEqualToString:@"refeerlist_page"]){
+            RefereeCenterVC *vc = [[RefereeCenterVC alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }else if ([model.page isEqualToString:@"coachlist_page"]){
+            CoachCenterVC *vc = [[CoachCenterVC alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }else if ([model.page isEqualToString:@"quiz_categroy_page"]){
+            SimulationCenterVC *vc = [[SimulationCenterVC alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }else if ([model.page isEqualToString:@"fraction_page"]){
+            CurrentlyScoreVC *vc = [[CurrentlyScoreVC alloc]init];
+            APP_DELEGATE.window.rootViewController = [SelectRootViewController resetRootViewControllerWithController:vc WithLeftVC:self];
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

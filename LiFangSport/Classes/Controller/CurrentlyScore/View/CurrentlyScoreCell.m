@@ -48,10 +48,10 @@
     _subTitleLab.textAlignment = NSTextAlignmentCenter;
     _titleLab.font = [UIFont systemFontOfSize:16];
     _subTitleLab.font = [UIFont systemFontOfSize:12];
-    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
+    _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 50)];
     [self addSubview:_hostTeamFlagView];
     
-    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 35)];
+    _awayTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 50)];
     [self addSubview:_awayTeamFlagView];
     
     _titleLab.textAlignment = NSTextAlignmentCenter;
@@ -142,10 +142,10 @@
     _titleLab.text = dataStr;
     NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[dateTimeArr[3] substringToIndex:5],model.cup_name];
     _subTitleLab.text = timeStr;
-
-    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kCurrentlyScoreCellPicHeaderPath,model.h_t[@"logo"]]]];
     
-    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kCurrentlyScoreCellPicHeaderPath,model.a_t[@"logo"]]]];
+    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?imageView/1/w/%@/h/%@",kCurrentlyScoreCellPicHeaderPath,model.h_t[@"logo"],@(100),@(100)]]];
+    
+    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?imageView/1/w/%@/h/%@",kCurrentlyScoreCellPicHeaderPath,model.a_t[@"logo"],@(100),@(100)]]];
 
     _hostTeamNameLab.text = model.h_t[@"name"];
     [_hostTeamNameLab sizeToFit];

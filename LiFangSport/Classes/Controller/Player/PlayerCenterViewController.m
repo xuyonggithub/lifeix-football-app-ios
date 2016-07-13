@@ -128,6 +128,10 @@
         [self.view bringSubviewToFront:_playerView];
     }
     [self.playerView reloadData];
+    if(_selectedDataArr.count){
+        NSIndexPath *indexpath = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self.playerView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
 }
 
 #pragma mark -- UICollectionViewDataSource

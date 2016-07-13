@@ -113,6 +113,10 @@
     [self.selectedTitleArr addObjectsFromArray:[self.categoryNameArr objectAtIndex:tag]];
     [_selectedDataArr addObjectsFromArray:cateArr];
     [self.coachView reloadData];
+    if(_selectedDataArr.count){
+        NSIndexPath *indexpath = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self.coachView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
 }
 
 #pragma mark -- UICollectionViewDataSource

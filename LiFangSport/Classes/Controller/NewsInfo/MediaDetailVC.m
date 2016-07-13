@@ -156,14 +156,13 @@ const CGFloat topViewH = 180;
 #pragma mark - webViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"+++webViewDidStartLoad");
-    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 44 - 64)];
+    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     _loadingView.backgroundColor = kwhiteColor;
     [self.view addSubview:_loadingView];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     imageView.image = [UIImage imageNamed:@"placeHold_newsLoading.jpg"];
     imageView.center = CGPointMake(self.view.centerX, self.view.centerY - 100);
-    imageView.contentMode = UIViewContentModeCenter;
     [_loadingView addSubview:imageView];
     
     UILabel *reminderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom + 15, SCREEN_WIDTH, 20)];

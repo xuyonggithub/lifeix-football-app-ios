@@ -72,6 +72,10 @@
 #pragma mark - popViewDelegate
 -(void)popViewDidSelectCategory:(NSString *)cate{
     self.title = cate;
+    if(_selectedTitleArr.count){
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.refereeView scrollToRowAtIndexPath:indexpath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
     [self requestDataWithCate:cate];
     [popKit dismiss:YES];
 }
@@ -206,8 +210,11 @@
     //获取对应分区下列表
     self.selectedDataArr = [NSMutableArray array];
     [_selectedDataArr addObjectsFromArray:ceteArr];
-    
     [self.refereeView reloadData];
+    if(_selectedDataArr.count){
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.refereeView scrollToRowAtIndexPath:indexpath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 #pragma mark - UITableViewDataSource

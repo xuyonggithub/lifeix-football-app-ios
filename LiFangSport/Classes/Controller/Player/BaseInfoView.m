@@ -46,7 +46,7 @@
         [self addSubview:self.likeBtn];
         
         NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"身高／体重", @"场上位置", @"出生地", @"俱乐部", nil];
-        NSString *bodyInfo = [NSString stringWithFormat:@"%@cm/%@kg", height, weight];
+        NSString *bodyInfo = [NSString stringWithFormat:@"%@/%@", height, weight];
         if (position==nil) {
             position = @"-";
         }

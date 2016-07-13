@@ -144,14 +144,14 @@
     
     NSString *height;
     if(![[dic objectForKey:@"height"] isEqual:[NSNull null]]){
-        height = [dict objectForKey:@"height"];
+        height = [NSString stringWithFormat:@"%@cm", [dict objectForKey:@"height"]];
     }else{
         height = @"-";
     }
     
     NSString *weight;
     if(![[dic objectForKey:@"weight"] isEqual:[NSNull null]]){
-        weight = [dict objectForKey:@"weight"];
+        weight = [NSString stringWithFormat:@"%@kg", [dict objectForKey:@"weight"]];
     }else{
         weight = @"-";
     }

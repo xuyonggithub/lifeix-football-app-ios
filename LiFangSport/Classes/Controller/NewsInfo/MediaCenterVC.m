@@ -90,6 +90,10 @@
     }
     self.title = name;
     self.date = nil;
+    if(self.dataArr.count){
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexpath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
     [self requestDataWithisHeaderRefresh:YES];
     [popKit dismiss:YES];
 }

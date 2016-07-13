@@ -16,12 +16,12 @@
 
 +(instancetype)provider
 {
-    @throw [NSException exceptionWithName:@"com.lesports.ajmediaplayer.subclassing.method.hook.required" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"com.ajmediaplayer.subclassing.method.hook.required" reason:@"" userInfo:nil];
 }
 
 - (void)loadPlayableItemWithMetadata:(AJMediaPlayerItem *)schedulingMetadata timeshift:(int)timeshift withParameter:(NSString *)parameter completionHandler:(void (^)(NSError *, AVPlayerItem *))completionHandler
 {
-    @throw [NSException exceptionWithName:@"com.lesports.ajmediaplayer.subclassing.method.hook.required" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"com.ajmediaplayer.subclassing.method.hook.required" reason:@"" userInfo:nil];
 }
 
 @end

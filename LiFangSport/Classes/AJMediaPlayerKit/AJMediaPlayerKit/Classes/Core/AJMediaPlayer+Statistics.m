@@ -9,11 +9,11 @@
 #import "AJMediaPlayer+Statistics.h"
 #import "AJMediaPlayerItem.h"
 
-#define StatisticsForRelease @"http://u.api.lesports.com/user/v1/actions/play?"
-#define StatisticsForDebug @"http://staging.u.api.lesports.com/user/v1/actions/play?"
+#define StatisticsForRelease @"http://u.api.com/user/v1/actions/play?"
+#define StatisticsForDebug @"http://staging.u.api.com/user/v1/actions/play?"
 
-#define LESPORT_BUNDLENAME @"com.lesports.ilivesports"
-#define LESPORT_HD_BUNDLENAME @"com.lesports.ilivesportshd"
+#define LESPORT_BUNDLENAME @"com."
+#define LESPORT_HD_BUNDLENAME @"com."
 
 @implementation AJMediaPlayer (Statistics)
 

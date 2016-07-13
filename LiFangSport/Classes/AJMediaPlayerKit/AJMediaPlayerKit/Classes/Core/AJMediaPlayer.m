@@ -24,9 +24,9 @@
 #import "AJFoundation.h"
 //#import <SSKeychain.h>
 
-NSString * const AJMediaPlayerErrorDomain = @"com.lesports.ajmediaplayer.error";
-NSString * const AJMediaPlayerStateChangedNotificationName = @"com.lesports.ajmediaplayer.state.changed";
-NSString * const AJVideoPlayerItemReadyToPlayNofiticationName = @"com.lesports.ajmediaplayer.item.readytoplay";
+NSString * const AJMediaPlayerErrorDomain = @"com.ajmediaplayer.error";
+NSString * const AJMediaPlayerStateChangedNotificationName = @"com.ajmediaplayer.state.changed";
+NSString * const AJVideoPlayerItemReadyToPlayNofiticationName = @"com.ajmediaplayer.item.readytoplay";
 
 NSString * const AVSystemController_SystemVolumeDidChangeNotification = @"AVSystemController_SystemVolumeDidChangeNotification";
 
@@ -60,7 +60,7 @@ static dispatch_queue_t mediaplayer_processing_queue() {
     static dispatch_queue_t aj_mediaplayer_processing_queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        aj_mediaplayer_processing_queue = dispatch_queue_create("com.lesports.ajmediaplayer.processing", DISPATCH_QUEUE_CONCURRENT);
+        aj_mediaplayer_processing_queue = dispatch_queue_create("com.ajmediaplayer.processing", DISPATCH_QUEUE_CONCURRENT);
     });
     return aj_mediaplayer_processing_queue;
 }

@@ -16,10 +16,10 @@
 #import "AJMediaPlayerAnalyticsEventReporter.h"
 //#import <SSKeychain.h>
 
-NSString * const AJMediaStreamSchedulingMetadataFetchErrorDomain = @"com.lesports.ajmediaplayer.metadata.fetcher.error";
+NSString * const AJMediaStreamSchedulingMetadataFetchErrorDomain = @"com.ajmediaplayer.metadata.fetcher.error";
 
-#define kLesportsPlayerReleaseAPIBaseURL @"http://static.api.sports.letv.com/sms/app/v1"
-#define kLesportsPlayerStagingAPIBaseURL @"http://staging.api.lesports.com/sms/app/v1"
+#define kLesportsPlayerReleaseAPIBaseURL @"http://static.api.com/sms/app/v1"
+#define kLesportsPlayerStagingAPIBaseURL @"http://staging.api.com/sms/app/v1"
 
 #define kFacadeVersion @"v1"
 #define kMetadataVODRouter @"/play/vod"

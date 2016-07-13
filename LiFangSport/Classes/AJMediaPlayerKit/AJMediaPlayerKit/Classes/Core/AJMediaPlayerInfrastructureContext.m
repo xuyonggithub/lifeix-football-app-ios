@@ -16,7 +16,7 @@
 
 #define kCDEServiceLogFileName @"cde-service.log"
 
-NSString * const CDEServiceErrorDomain = @"com.lesports.cde.error";
+NSString * const CDEServiceErrorDomain = @"com.cde.error";
 static volatile AJMediaPlayerInfrastructureContext *__aj_mediaplayer_infrastructure_ctxt;
 
 @interface AJCloudService ()

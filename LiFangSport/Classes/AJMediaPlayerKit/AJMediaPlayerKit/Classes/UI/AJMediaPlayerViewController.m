@@ -257,7 +257,7 @@
     }
     [self.view addSubview:_mediaPlayerView];
     
-    self.Q = dispatch_queue_create("com.lesports.ajmediaplayer.kit.queue", DISPATCH_QUEUE_SERIAL);
+    self.Q = dispatch_queue_create("com.ajmediaplayer.kit.queue", DISPATCH_QUEUE_SERIAL);
 }
 
 - (void)viewDidLoad {

@@ -25,4 +25,6 @@ pod 'RESideMenu', '~> 4.0.7'
 
 pod 'UMengSocialCOM', '~> 5.2.1'
 
+pod 'UMengAnalytics'
+
 end

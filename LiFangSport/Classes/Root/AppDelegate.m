@@ -19,6 +19,9 @@
 #import "UMSocialWechatHandler.h"
 #import "MediaCenterVC.h"
 
+#import <UMMobClick/MobClick.h>
+#import "UMessage.h"
+
 #define UmengAppkey @"5730424be0f55acd85001eef"
 @interface AppDelegate ()
 
@@ -33,7 +36,9 @@
     //SDImageCache设置缓存时间为30天
     [SDImageCache sharedImageCache].maxCacheAge = 60 * 60 * 24 * 30;
     [SDImageCache sharedImageCache].maxCacheSize = 1024 * 1024 * 100; // 100M
+    [self setupUMessage:launchOptions];
     [self setupUMengShare];
+    [self setupMobileAnalytics];
     [NSThread sleepForTimeInterval:1.5]; // 启动页停留时间
     return YES;
 }
@@ -60,6 +65,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
+}
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"noti:%@",notification);
+
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [UMessage didReceiveRemoteNotification:userInfo];
 }
 
 -(void)setupUIInterface{
@@ -94,7 +117,18 @@
     
 }
 
--(void)setupUMengShare{
+#pragma mark - UMessage
+- (void)setupUMessage:(NSDictionary *)launchOptions
+{
+    //设置 AppKey 及 LaunchOptions
+    [UMessage startWithAppkey:@"578599d1e0f55a1fc7000653" launchOptions:launchOptions];
+    //1.3.0版本开始简化初始化过程。如不需要交互式的通知，下面用下面一句话注册通知即可。
+    [UMessage registerForRemoteNotifications];
+}
+
+#pragma mark - UMengShare
+-(void)setupUMengShare
+{
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:UmengAppkey];
     //设置微信AppId、appSecret，分享url
@@ -109,17 +143,13 @@
     
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+#pragma mark - UMAnalytics
+- (void)setupMobileAnalytics
 {
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
-    if (result == FALSE) {
-        //调用其他SDK，例如支付宝SDK等
-    }
-    return result;
-}
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    NSLog(@"noti:%@",notification);
-
+    UMAnalyticsConfig *analyticsConfig = [UMAnalyticsConfig sharedInstance];
+    analyticsConfig.appKey = @"578599d1e0f55a1fc7000653";
+    analyticsConfig.channelId = @"App Store";
+    [MobClick startWithConfigure:analyticsConfig];//配置以上参数后调用此方法初始化SDK！
 }
 
 @end

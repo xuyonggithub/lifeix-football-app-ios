@@ -388,6 +388,7 @@
 		9CE136881D1A4AF60007A22D /* LFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136871D1A4AF60007A22D /* LFNavigationController.m */; };
 		9CE1368E1D1A66C90007A22D /* LFSimulationCenterQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1368D1D1A66C90007A22D /* LFSimulationCenterQuestionView.m */; };
 		9CE136911D1A68180007A22D /* LFSimulationQuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */; };
+		9CEAE2BD1D35DC7200AE7B17 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEAE2BB1D35DC7200AE7B17 /* libUMessage_Sdk_1.3.0.a */; };
 		EC4D3C221D1387E200285243 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C191D1387E200285243 /* CategoryView.m */; };
 		EC4D3C231D1387E200285243 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1B1D1387E200285243 /* PlayerCell.m */; };
 		EC4D3C241D1387E200285243 /* PlayerCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4D3C1D1D1387E200285243 /* PlayerCenterViewController.m */; };
@@ -993,6 +994,8 @@
 		9CE1368D1D1A66C90007A22D /* LFSimulationCenterQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterQuestionView.m; sourceTree = "<group>"; };
 		9CE1368F1D1A68180007A22D /* LFSimulationQuestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationQuestionModel.h; sourceTree = "<group>"; };
 		9CE136901D1A68180007A22D /* LFSimulationQuestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationQuestionModel.m; sourceTree = "<group>"; };
+		9CEAE2BB1D35DC7200AE7B17 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
+		9CEAE2BC1D35DC7200AE7B17 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		D0A7A1A5D17417213C535F06 /* Pods-LiFangSport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFangSport.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFangSport/Pods-LiFangSport.release.xcconfig"; sourceTree = "<group>"; };
 		EC4D3C181D1387E200285243 /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
 		EC4D3C191D1387E200285243 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
@@ -1032,6 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99D0CDED8D5BD7F1BE62BCBA /* libPods-LiFangSport.a in Frameworks */,
+				9CEAE2BD1D35DC7200AE7B17 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1583,6 +1587,7 @@
 		2DE2C8201D0D26CF00310C4C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				9CEAE2BA1D35DC7200AE7B17 /* UMessage_Sdk_1.3.0 */,
 				2DE2C8471D0D2FF800310C4C /* YDUtility */,
 			);
 			path = Library;
@@ -2243,6 +2248,15 @@
 				9CAF82851D19237F0025224F /* VTBulletView.m */,
 			);
 			path = VTBullet;
+			sourceTree = "<group>";
+		};
+		9CEAE2BA1D35DC7200AE7B17 /* UMessage_Sdk_1.3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				9CEAE2BB1D35DC7200AE7B17 /* libUMessage_Sdk_1.3.0.a */,
+				9CEAE2BC1D35DC7200AE7B17 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.3.0;
 			sourceTree = "<group>";
 		};
 		EC4D3C331D1392A800285243 /* Referee */ = {
@@ -3025,6 +3039,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiFangSport/Classes/AJMediaPlayerKit/AJMediaPlayerKit/Vendors",
+					"$(PROJECT_DIR)/LiFangSport/Classes/Library/UMessage_Sdk_1.3.0",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyi.LiFangSport;
@@ -3050,6 +3065,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiFangSport/Classes/AJMediaPlayerKit/AJMediaPlayerKit/Vendors",
+					"$(PROJECT_DIR)/LiFangSport/Classes/Library/UMessage_Sdk_1.3.0",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyi.LiFangSport;

@@ -44,7 +44,7 @@
         UILabel *headerViewLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, 44)];
         [headerV addSubview: headerViewLab];
         headerViewLab.font = [UIFont systemFontOfSize:11];
-        headerViewLab.text = @"文章的分类";
+        headerViewLab.text = @"文章分类";
         headerViewLab.centerY = 22;
         headerViewLab.textColor = HEXRGBCOLOR(0x929292);
         self.tableView.tableHeaderView = headerV;

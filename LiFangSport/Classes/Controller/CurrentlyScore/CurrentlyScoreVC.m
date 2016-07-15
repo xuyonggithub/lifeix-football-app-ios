@@ -103,7 +103,7 @@
         _kTableview.dataSource = self;
         _kTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         _kTableview.rowHeight = 130;
-        _kTableview.backgroundColor= [UIColor lightGrayColor];
+        _kTableview.backgroundColor= [UIColor whiteColor];
     }
     return _kTableview;
 }

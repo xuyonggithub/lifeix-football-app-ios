@@ -722,7 +722,8 @@
     _activityIndicatorView.backgroundColor = [UIColor clearColor];
     _activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
     _activityIndicatorView.hidesWhenStopped = YES;
-    _activityIndicatorView.tintColor = [UIColor colorWithRed:41.f/255 green:196.f/255 blue:198.f/255 alpha:1];
+    //_activityIndicatorView.tintColor = [UIColor colorWithRed:41.f/255 green:196.f/255 blue:198.f/255 alpha:1];
+    _activityIndicatorView.tintColor = knavibarColor;
     [self.mediaPlayerView addSubview:_activityIndicatorView];
     
     float activityViewHeight = apperenceStyle==AJMediaPlayerStyleForiPhone?25.0f:35.0f;
@@ -1874,7 +1875,7 @@
         if (weakSelf.mediaPlayerControlBar.isFullScreen) {
             [[UIApplication sharedApplication] setStatusBarHidden:shouldHide withAnimation:NO];
             weakSelf.backButton.hidden = shouldHide;
-            if (self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentFinished) {
+            if (self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentFinished && self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentBuffering && self.mediaPlayer.currentPlayState != AJMediaPlayerStateContentInit) {
                 _fastView.hidden = !shouldHide;
             }
             if (shouldHide) {

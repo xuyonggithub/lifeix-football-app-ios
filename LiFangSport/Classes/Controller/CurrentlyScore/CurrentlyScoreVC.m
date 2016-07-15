@@ -102,7 +102,7 @@
         _kTableview.delegate = self;
         _kTableview.dataSource = self;
         _kTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _kTableview.rowHeight = 130*kScreenRatioBase6Iphone;
+        _kTableview.rowHeight = 130;
     }
     return _kTableview;
 }

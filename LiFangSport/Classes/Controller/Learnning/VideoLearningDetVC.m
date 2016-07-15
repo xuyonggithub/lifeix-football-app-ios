@@ -112,7 +112,7 @@
     [self.view addSubview:_CategoryView];
     _CategoryView.backgroundColor = HEXRGBCOLOR(0x041337);
     
-    UIView *bview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _CategoryView.width, 20)];
+    UIView *bview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _CategoryView.width, 22)];
     bview.top = _CategoryView.bottom;
     bview.backgroundColor = HEXRGBCOLOR(0x041337);
     [self.view addSubview:bview];

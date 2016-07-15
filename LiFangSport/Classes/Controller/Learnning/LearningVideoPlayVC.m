@@ -150,7 +150,9 @@
     [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
 }
 - (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
-    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 //播放器控制栏即将出现
 - (void)mediaPlayerViewControllerPlaybackControlsWillAppear:(AJMediaPlayerViewController *)mediaPlayerViewController{

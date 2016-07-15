@@ -23,9 +23,11 @@
 #import "SelectRootViewController.h"
 #import "CurrentlyScoreVC.h"
 
-@interface LeftCategoryVC ()<UITableViewDataSource,UITableViewDelegate>
+@interface LeftCategoryVC ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong)UITableView *kTableView;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,strong)UIScrollView *baseScrollview;
+@property(nonatomic,strong)UIImageView *logoView;
 
 @end
 
@@ -35,8 +37,9 @@
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
     self.view.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
+    [self.view addSubview:self.baseScrollview];
     [self requestData];
-    [self createTableview];
+    [self createLogoViewAndTableview];
 }
 
 -(void)requestData{
@@ -60,13 +63,18 @@
 
     [self resetHomePage];//重设主界面
 }
--(void)createTableview{
+-(void)createLogoViewAndTableview{
+    _logoView = [[UIImageView alloc]initWithImage:UIImageNamed(@"C-FheaderLogo")];
+    _logoView.left = 30 ;
+    _logoView.top = 30;
+    [self.baseScrollview addSubview:_logoView];
+
     _kTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 550) style:UITableViewStylePlain];
     _kTableView.backgroundColor = kclearColor;
     _kTableView.delegate = self;
     _kTableView.dataSource = self;
     _kTableView.scrollEnabled =NO;
-    [self.view addSubview:_kTableView];
+    [self.baseScrollview addSubview:_kTableView];
     _kTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -100,7 +108,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_dataArray.count) {
         HomeLeftCategModel *model = _dataArray[indexPath.section];
             if ([model.page isEqualToString:@"competition_page"]) {
@@ -137,6 +145,19 @@
     LFNavigationController *Nav = [[LFNavigationController alloc]initWithRootViewController:controller];
     [self.sideMenuViewController setContentViewController:Nav animated:YES];
     [self.sideMenuViewController hideMenuViewController];
+}
+
+-(UIScrollView *)baseScrollview{
+    if (_baseScrollview==nil) {
+    _baseScrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    _baseScrollview.delegate = self;
+    _baseScrollview.showsVerticalScrollIndicator=NO;
+    _baseScrollview.showsHorizontalScrollIndicator=NO;
+    _baseScrollview.scrollsToTop=YES;
+    _baseScrollview.bounces=NO;
+    _baseScrollview.contentSize = CGSizeMake(self.view.width, 667) ;
+    }
+    return _baseScrollview;
 }
 
 -(void)resetHomePage{

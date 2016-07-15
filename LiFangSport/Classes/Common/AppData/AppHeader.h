@@ -28,6 +28,9 @@
 #define kTitleColor                  HEXRGBCOLOR(0x9a9a9a)
 #define kDetailTitleColor            HEXRGBCOLOR(0x5f5f5f)
 #define knavibarColor                HEXRGBACOLOR(0xce1126,1.0)
+#define kSwitchSelectColor           HEXRGBCOLOR(0xae141c)
+#define kGrayBannerColor             HEXRGBCOLOR(0xf1f1f1)
+
 #define kclearColor                  [UIColor clearColor]
 #define kwhiteColor                  [UIColor whiteColor]
 #define kBlackColor                  [UIColor blackColor]

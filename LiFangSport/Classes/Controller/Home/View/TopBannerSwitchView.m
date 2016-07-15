@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     [topBanner addSubview:_leftBtn];
     
     _leftLine = [[LineView alloc] initWithFrame:CGRectMake(3.5*0, _leftBtn.bottom - 3, _leftBtn.width - 7*0, 2)];
-    _leftLine.lineColor = kBasicColor;
+    _leftLine.lineColor = kSwitchSelectColor;
     _leftLine.hidden = NO;
     [topBanner addSubview:_leftLine];
     
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     
     _centerLine = [[LineView alloc] initWithFrame:CGRectMake(0, _centerBtn.bottom - 3, _centerBtn.width - 7*0, 2)];
     _centerLine.centerX = _centerBtn.centerX;
-    _centerLine.lineColor = kBasicColor;
+    _centerLine.lineColor = kSwitchSelectColor;
     _centerLine.hidden = YES;
     [topBanner addSubview:_centerLine];
     
@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, SelectedBtnIndex){
     _rightLine = [[LineView alloc] initWithFrame:CGRectMake(0, _rightBtn.bottom - 3, _rightBtn.width - 7*0, 2)];
 //    _rightLine.right = topBanner.right - 3.5*10;
     _rightLine.centerX = _rightBtn.centerX;
-    _rightLine.lineColor = kBasicColor;
+    _rightLine.lineColor = kSwitchSelectColor ;
     _rightLine.hidden = YES;
     [topBanner addSubview:_rightLine];
     

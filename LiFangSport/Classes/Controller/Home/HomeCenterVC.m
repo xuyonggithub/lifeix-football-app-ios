@@ -269,16 +269,16 @@
         _centerTableview.dataSource = self;
         _centerTableview.separatorStyle = UITableViewCellSelectionStyleNone;
         [self.view addSubview:_centerTableview];
-        centerBannerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 225)];
-        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, centerBannerView.width, 25)];
-        lab.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
+        centerBannerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 235)];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, centerBannerView.width, 35)];
+        lab.backgroundColor = kGrayBannerColor;
         lab.text = @"2018年世界杯预选赛亚洲区赛制方案";
-        lab.textColor = HEXRGBCOLOR(0x5f5f5f);
+        lab.textColor = kDetailTitleColor;
         lab.font = [UIFont systemFontOfSize:13];
         lab.textAlignment = NSTextAlignmentCenter;
         [centerBannerView addSubview:lab];
         
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 25, kScreenWidth, 200)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, lab.bottom, kScreenWidth, 200)];
         webView.scrollView.bounces = NO;
         webView.scrollView.alwaysBounceVertical = NO;
         webView.userInteractionEnabled = NO;
@@ -298,7 +298,7 @@
     CGFloat webViewHeight=[[webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]floatValue];
     CGRect newFrame=webView.frame;
     newFrame.size.height=webViewHeight+10;
-    centerBannerView.height = webViewHeight+25+10;
+    centerBannerView.height = webViewHeight+35+10;
     webView.frame=newFrame;
     _centerTableview.tableHeaderView = centerBannerView;
 
@@ -393,7 +393,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (tableView == _centerTableview) {
-        return 20;
+        return 35;
     }
     return 0;
 }
@@ -411,12 +411,12 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (tableView==_centerTableview) {
-        UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-        hview.backgroundColor = [UIColor lightGrayColor];
-        UILabel *hlab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+        UIView *hview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
+        hview.backgroundColor = kGrayBannerColor;
+        UILabel *hlab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
         hlab.textColor = kDetailTitleColor;
         hlab.textAlignment = NSTextAlignmentCenter;
-        hlab.font = [UIFont systemFontOfSize:12];
+        hlab.font = [UIFont systemFontOfSize:13];
         if (section==0) {
             hlab.text = @"亚洲十二强赛A组";
         }

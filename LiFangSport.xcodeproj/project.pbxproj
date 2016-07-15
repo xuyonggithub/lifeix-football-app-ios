@@ -171,6 +171,9 @@
 		2DD4FCF71D3391CC00CC9C16 /* penalty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DD4FCF31D3391CC00CC9C16 /* penalty@3x.png */; };
 		2DD6579D1D2562950075F0C8 /* LocalNotiPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6579C1D2562950075F0C8 /* LocalNotiPush.m */; };
 		2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */; };
+		2DDD5A1B1D3895EB0047A0A7 /* C-FheaderLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD5A191D3895EB0047A0A7 /* C-FheaderLogo@2x.png */; };
+		2DDD5A1C1D3895EB0047A0A7 /* C-FheaderLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD5A1A1D3895EB0047A0A7 /* C-FheaderLogo@3x.png */; };
+		2DDD5A1E1D3897680047A0A7 /* leftselecthongsetiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD5A1D1D3897680047A0A7 /* leftselecthongsetiao@2x.png */; };
 		2DE0BF4E1D1CDB2000FFA297 /* lppopselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */; };
 		2DE0BF4F1D1CDB2000FFA297 /* lppopunselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */; };
 		2DE0BF521D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0BF511D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m */; };
@@ -670,6 +673,9 @@
 		2DD6579C1D2562950075F0C8 /* LocalNotiPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotiPush.m; sourceTree = "<group>"; };
 		2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
 		2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
+		2DDD5A191D3895EB0047A0A7 /* C-FheaderLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-FheaderLogo@2x.png"; sourceTree = "<group>"; };
+		2DDD5A1A1D3895EB0047A0A7 /* C-FheaderLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-FheaderLogo@3x.png"; sourceTree = "<group>"; };
+		2DDD5A1D1D3897680047A0A7 /* leftselecthongsetiao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftselecthongsetiao@2x.png"; sourceTree = "<group>"; };
 		2DE0BF4C1D1CDB2000FFA297 /* lppopselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lppopselect@2x.png"; sourceTree = "<group>"; };
 		2DE0BF4D1D1CDB2000FFA297 /* lppopunselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lppopunselect@2x.png"; sourceTree = "<group>"; };
 		2DE0BF501D1D2EBC00FFA297 /* LearningPlayPopDeciModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningPlayPopDeciModel.h; sourceTree = "<group>"; };
@@ -1928,6 +1934,9 @@
 		2DE94D681D123BED00E1508D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				2DDD5A1D1D3897680047A0A7 /* leftselecthongsetiao@2x.png */,
+				2DDD5A191D3895EB0047A0A7 /* C-FheaderLogo@2x.png */,
+				2DDD5A1A1D3895EB0047A0A7 /* C-FheaderLogo@3x.png */,
 				2D6EEB201D17D9D700954C63 /* list_left@2x.png */,
 				2D6EEB211D17D9D700954C63 /* list_right@2x.png */,
 				2DE94D691D123BED00E1508D /* backiconblue@2x.png */,
@@ -2392,7 +2401,6 @@
 				TargetAttributes = {
 					2DE2C7E61D0D133800310C4C = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = F9M67666KU;
 					};
 					2DE2C7FF1D0D133800310C4C = {
 						CreatedOnToolsVersion = 7.2;
@@ -2482,6 +2490,7 @@
 				2DAF7C411D104A8000B956CA /* loading_00001@2x.png in Resources */,
 				0AC7072C1D191BB8000B2E13 /* titleBg.jpg in Resources */,
 				2DE94D6F1D123BED00E1508D /* backiconblue@2x.png in Resources */,
+				2DDD5A1C1D3895EB0047A0A7 /* C-FheaderLogo@3x.png in Resources */,
 				9C05170C1D194797007F03A8 /* chatroom_bt_close@2x.png in Resources */,
 				9C05174F1D194797007F03A8 /* player_ic_point@2x.png in Resources */,
 				9C0517441D194797007F03A8 /* player_bt_sound3_press@2x.png in Resources */,
@@ -2559,6 +2568,7 @@
 				9C0516F31D194797007F03A8 /* bt_share_press@3x.png in Resources */,
 				2DD4FCF41D3391CC00CC9C16 /* overtime@2x.png in Resources */,
 				9C05171F1D194797007F03A8 /* playback_image_bg@3x.png in Resources */,
+				2DDD5A1E1D3897680047A0A7 /* leftselecthongsetiao@2x.png in Resources */,
 				9C05171C1D194797007F03A8 /* miniplayer_bt_back_press@2x.png in Resources */,
 				9C05172F1D194797007F03A8 /* player_bt_pause@2x.png in Resources */,
 				2D69ACA21D1942B700B5F52D /* hud_27@2x.png in Resources */,
@@ -2641,6 +2651,7 @@
 				9C05170D1D194797007F03A8 /* chatroom_bt_close@3x.png in Resources */,
 				2D3422D81D2520C100AF6FAD /* guanzhu02@2x.png in Resources */,
 				0AC707221D19082B000B2E13 /* coachBg.jpg in Resources */,
+				2DDD5A1B1D3895EB0047A0A7 /* C-FheaderLogo@2x.png in Resources */,
 				9C05171D1D194797007F03A8 /* miniplayer_bt_back_press@3x.png in Resources */,
 				9C0517541D194797007F03A8 /* player_landscape_stream_bg@3x.png in Resources */,
 				2DD4FCF51D3391CC00CC9C16 /* overtime@3x.png in Resources */,
@@ -3041,6 +3052,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3054,8 +3066,9 @@
 					"$(PROJECT_DIR)/LiFangSport/Classes/Library/UMessage_Sdk_1.3.0",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyi.LiFangSport;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.l99.c-f";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -3067,6 +3080,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3080,8 +3094,9 @@
 					"$(PROJECT_DIR)/LiFangSport/Classes/Library/UMessage_Sdk_1.3.0",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhangyi.LiFangSport;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.l99.c-f";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;

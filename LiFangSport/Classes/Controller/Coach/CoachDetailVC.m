@@ -41,7 +41,7 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 0)];
     [self.view addSubview:_scrollView];
     // 分享
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.png"] target:self action:@selector(shareBtnClicked:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"shareItem"] target:self action:@selector(shareBtnClicked:)];
     
     [self requestData];
 }

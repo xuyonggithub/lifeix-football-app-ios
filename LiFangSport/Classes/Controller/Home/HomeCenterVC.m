@@ -67,7 +67,7 @@
     _centerDataArray = [NSMutableArray array];
     _rightDataArray = [NSMutableArray array];
     _mediaArray = [NSMutableArray array];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
     [self requestTopBannerSwitchData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRequest:) name:khomeKidNotiFicationStr object:nil];
@@ -82,7 +82,7 @@
     [self requestDataWithCaID:_kidStr];
 }
 -(void)requestDataWithCaID:(NSString *)string{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"wemedia/tops/?categoryIds=%@",string] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:[NSString stringWithFormat:@"wemedia/tops/?categoryIds=%@",string] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.topScrollView?self.topScrollView:self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         
@@ -91,7 +91,7 @@
 -(void)requestTopBannerSwitchData{
     //左
     NSString *leftPath = @"games/competitions/5/matches?teamId=1";
-    [CommonRequest requstPath:leftPath loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:leftPath loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.topScrollView?self.topScrollView:self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithLeftData:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
         

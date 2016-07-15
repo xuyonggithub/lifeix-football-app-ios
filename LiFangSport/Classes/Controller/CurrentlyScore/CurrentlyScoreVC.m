@@ -43,7 +43,7 @@
 
 }
 -(void)requestDataWithStart:(NSString *)startStr andWithEnd:(NSString *)endStr isHeaderRefresh:(BOOL)isHeaderRefresh{
-    [CommonRequest requstPath:[NSString stringWithFormat:@"%@start_time=%@&end_time=%@",kCurrentlyScorePath,startStr,endStr] loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:[NSString stringWithFormat:@"%@start_time=%@&end_time=%@",kCurrentlyScorePath,startStr,endStr] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithData:jsonDict isHeaderRefresh:isHeaderRefresh];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"+++error: %@", error);
@@ -102,7 +102,8 @@
         _kTableview.delegate = self;
         _kTableview.dataSource = self;
         _kTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _kTableview.rowHeight = 130*kScreenRatioBase6Iphone;
+        _kTableview.rowHeight = 130;
+        _kTableview.backgroundColor= [UIColor lightGrayColor];
     }
     return _kTableview;
 }

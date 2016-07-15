@@ -46,20 +46,24 @@ const CGFloat topViewH = 180;
 
 -(void)loadView{
     [super loadView];
-    
+   
     //分享
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.jpg"] target:self action:@selector(shareBtnClicked)];
+    
+    /*
     self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.shareBtn.frame = CGRectMake(0, self.view.height - 44, SCREEN_WIDTH, 44);
     [self.shareBtn setTitle:@"分享" forState: UIControlStateNormal];
-    [self.shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
+    [self.shareBtn setImage:[UIImage imageNamed:@"share.jpg"] forState:UIControlStateNormal];
     self.shareBtn.titleLabel.textColor = [UIColor whiteColor];
     self.shareBtn.titleLabel.font = kBasicBigTitleFont;
     self.shareBtn.backgroundColor = HEXRGBCOLOR(0xae1417);
     [self.shareBtn addTarget:self action:@selector(shareBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.shareBtn];
+    */
     
     //webView
-    self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - 108)];
+    self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - 64)];
     self.contentWebView.delegate = self;
     //    UIScrollView *tempView = self.contentWebView.scrollView;
     //    tempView.scrollEnabled = false;
@@ -67,6 +71,7 @@ const CGFloat topViewH = 180;
     //    [self.view addSubview: self.contentWebView];
     
 }
+
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -86,6 +91,11 @@ const CGFloat topViewH = 180;
         NSDictionary *dic = jsonDict;
         if(![[dic objectForKey:@"like"] isEqual:[NSNull null]]){
             self.isLike = [[dic objectForKey:@"like"] boolValue];
+            if(self.isLike){
+                [self.likeBtn setImage:[UIImage imageNamed:@"gooded.jpg"] forState:UIControlStateNormal];
+            }else{
+                [self.unLikeBtn setImage:[UIImage imageNamed:@"baded.jpg"] forState:UIControlStateNormal];
+            }
         }else{
             self.isLike = nil;
         }
@@ -124,6 +134,7 @@ const CGFloat topViewH = 180;
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"succeed!%@", jsonDict);
         [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
+        [self.likeBtn setImage:[UIImage imageNamed:@"gooded.jpg"] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error: %@", error);
     }];
@@ -147,6 +158,7 @@ const CGFloat topViewH = 180;
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"succeed!%@", jsonDict);
         [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", _unLikeNum + 1] forState:UIControlStateNormal];
+        [self.unLikeBtn setImage:[UIImage imageNamed:@"baded.jpg"] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error: %@", error);
     }];
@@ -183,31 +195,32 @@ const CGFloat topViewH = 180;
     self.contentWebView.frame = foo;
     
     // contentView
-    UIScrollView *mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, self.view.height - 108)];
+    UIScrollView *mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, self.view.height - 64)];
     [self.view addSubview:mainView];
     [mainView addSubview:self.contentWebView];
     
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, _contentWebView.bottom, SCREEN_WIDTH, 1)];
+    line.backgroundColor = HEXRGBCOLOR(0xdfdfdf);
+    [mainView addSubview:line];
     // 顶踩
     self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.likeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2, _contentWebView.bottom + 10, 100, 50);
+    self.likeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2, line.bottom + 15, 100, 50);
     [self.likeBtn addTarget:self action:@selector(likeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.likeBtn setTitle:@"顶" forState: UIControlStateNormal];
-    [self.likeBtn setImage:[UIImage imageNamed:@"good.png"] forState:UIControlStateNormal];
+    [self.likeBtn setImage:[UIImage imageNamed:@"good.jpg"] forState:UIControlStateNormal];
     [self.likeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [mainView addSubview:self.likeBtn];
     
     self.unLikeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.unLikeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2 + 110, _contentWebView.bottom + 10, 100, 50);
+    self.unLikeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2 + 110, line.bottom + 15, 100, 50);
     [self.unLikeBtn addTarget:self action:@selector(unLikeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.unLikeBtn setTitle:@"踩" forState: UIControlStateNormal];
-    [self.unLikeBtn setImage:[UIImage imageNamed:@"bad.png"] forState:UIControlStateNormal];
+    [self.unLikeBtn setImage:[UIImage imageNamed:@"bad.jpg"] forState:UIControlStateNormal];
     //    self.unLikeBtn.backgroundColor = HEXRGBCOLOR(0xae1417);
     [self.unLikeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [mainView addSubview:self.unLikeBtn];
     
     [self requestLikes];
     
-    mainView.contentSize = CGSizeMake(SCREEN_WIDTH, _unLikeBtn.bottom);
+    mainView.contentSize = CGSizeMake(SCREEN_WIDTH, _unLikeBtn.bottom + 15);
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
     NSLog(@"+++error:%@", error);

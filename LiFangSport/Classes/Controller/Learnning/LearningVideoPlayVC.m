@@ -302,8 +302,7 @@
         NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
         [self requestSingleVideoInfoWith:videoid];
     }else if(_currentPlayVideoIndex>=_videoIdsArr.count && _videoIdsArr.count<=_pageCount){
-    //请求下一组数据
-        // http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
+    //请求下一组数据http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
         _currentIndex ++;
         [CommonRequest requstPath:[NSString stringWithFormat:@"%@/%@%@%zd",kvideoListPath,_categoryID,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
             [self dealWithJason:jsonDict];

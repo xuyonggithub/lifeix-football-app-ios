@@ -22,20 +22,23 @@
         self.bgImgView.userInteractionEnabled = YES;
         [view addSubview:self.bgImgView];
         
+        // bottomView
+        UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(25/2, view.bottom, SCREEN_WIDTH - 25, 35)];
+        bottomView.backgroundColor = kwhiteColor;
+        bottomView.alpha = 0.9;
+        [self.contentView addSubview:bottomView];
+        // 时间
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 6, view.width - 25, 6)];
+        self.timeLabel.font = [UIFont systemFontOfSize:7];
+        [bottomView addSubview:_timeLabel];
         // 标题
-        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _bgImgView.height - 35, self.bgImgView.width, 35)];
-        titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, titleBgView.width - 20, 25)];
+//        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _bgImgView.bottom, self.bgImgView.width, 35)];
+//        titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 18, _timeLabel.width, 11)];
         self.titleLabel.font = kBasicBigDetailTitleFont;
-        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);
-        [titleBgView addSubview:self.titleLabel];
-        [self.bgImgView addSubview:titleBgView];
+        self.titleLabel.textColor = kBlackColor;
+        [bottomView addSubview:self.titleLabel];
         
-        // 分类
-        self.categorylabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-        self.categorylabel.font = kBasicSmallTitleFont;
-        self.categorylabel.textColor = [UIColor whiteColor];
-        [self.bgImgView addSubview:self.categorylabel];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -56,6 +59,31 @@
         [_bgImgView addSubview:playView];
     }
     self.titleLabel.text = media.title;
+    self.timeLabel.text = [self timeStampChangeTimeWithTimeStamp:[NSString stringWithFormat:@"%f", media.createTime] timeStyle:@"yyyy-MM-dd HH:mm"];
+}
+
+/**
+ *  时间戳转时间
+ *
+ *  @param timeStamp 时间戳 （eg:@"1296035591"）
+ *  @param timeStyle 时间格式（eg: @"YYYY-MM-dd HH:mm:ss" ）
+ *
+ *  @return 返回转化好格式的时间字符串
+ */
+-(NSString *)timeStampChangeTimeWithTimeStamp:(NSString *)timeStamp timeStyle:(NSString *)timeStyle{
+    NSTimeInterval interval = [timeStamp doubleValue]/1000.0;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:timeStyle];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSTimeZone *zoneOne = [NSTimeZone systemTimeZone];
+    NSInteger intervalOne = [zoneOne secondsFromGMTForDate:date];
+    //得到我国时区的时间
+    NSDate *locateDateOne = [date dateByAddingTimeInterval:-intervalOne];
+    NSString *strDate = [formatter stringFromDate:locateDateOne];
+    NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
+    return formatterStr;
 }
 
 @end

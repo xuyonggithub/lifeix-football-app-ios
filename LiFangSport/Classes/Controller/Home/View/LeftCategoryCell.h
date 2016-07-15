@@ -11,5 +11,6 @@
 
 @interface LeftCategoryCell : UITableViewCell
 @property(nonatomic,strong)HomeLeftCategModel *model;
+@property(nonatomic,strong)UIImageView *selectPicview;
 
 @end

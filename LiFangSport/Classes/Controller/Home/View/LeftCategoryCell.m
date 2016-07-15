@@ -29,6 +29,11 @@
 }
 
 -(void)createSubviews{
+    _selectPicview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 7, self.height)];
+    _selectPicview.image = UIImageNamed(@"leftselecthongsetiao");
+    [self addSubview:_selectPicview];
+    _selectPicview.hidden = YES;
+    
     _iconView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 30, 30)];
     _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 30)];
     _titleLab.left = _iconView.right + 15;
@@ -40,8 +45,7 @@
 
 }
 -(void)layoutSubviews{
-//    _iconView.centerY = self.centerY;
-//    _titleLab.centerY = self.centerY;
+
 }
 
 -(void)setModel:(HomeLeftCategModel *)model{
@@ -58,8 +62,11 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (selected) {
+        _selectPicview.hidden = NO;
+    }else{
+        _selectPicview.hidden = YES;
+    }
 }
 
 @end

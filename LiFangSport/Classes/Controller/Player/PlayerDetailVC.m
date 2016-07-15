@@ -57,7 +57,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"球员介绍";
     // 分享
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.jpg"] target:self action:@selector(shareBtnClicked:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"shareItem"] target:self action:@selector(shareBtnClicked:)];
     
     self.categoryArr = [NSMutableArray array];
     self.categoryUrlArr = [NSMutableArray array];

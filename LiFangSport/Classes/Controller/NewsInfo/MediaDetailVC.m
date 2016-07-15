@@ -46,9 +46,7 @@ const CGFloat topViewH = 180;
 
 -(void)loadView{
     [super loadView];
-    
-    // 返回 backIconwhite
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"back.jpg"] target:self action:@selector(back)];
+   
     //分享
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.jpg"] target:self action:@selector(shareBtnClicked)];
     
@@ -74,9 +72,6 @@ const CGFloat topViewH = 180;
     
 }
 
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)viewDidLoad{
     [super viewDidLoad];

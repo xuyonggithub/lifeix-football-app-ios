@@ -101,6 +101,11 @@
     //next
     if (_currentPlayVideoIndex < _pageCount-1) {
         [self.view addSubview:self.nextBtn];
+        self.nextBtn.hidden = NO;
+    }else{
+        if (_nextBtn) {
+            _nextBtn.hidden = YES;
+        }
     }
 }
 
@@ -157,7 +162,14 @@
 //播放器控制栏即将出现
 - (void)mediaPlayerViewControllerPlaybackControlsWillAppear:(AJMediaPlayerViewController *)mediaPlayerViewController{
     _ctrView.hidden = NO;
+    if (_currentPlayVideoIndex >= _pageCount-1) {
+        if (_nextBtn==nil) {
+            return;
+        }
+        _nextBtn.hidden = YES;
+    }else{
     _nextBtn.hidden = NO;
+    }
 }
 //播放器控制栏已经消失
 - (void)mediaPlayerViewControllerPlaybackControlsDidDisappear:(AJMediaPlayerViewController *)mediaPlayerViewController{

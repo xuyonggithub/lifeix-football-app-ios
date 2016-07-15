@@ -124,15 +124,21 @@
     coachView.delegate = self;
     [self.scrollView addSubview:coachView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom, 200, 100/3)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, coachView.bottom+10, self.view.width, 30)];
     label.text = @"执教生涯";
-    label.font = [UIFont systemFontOfSize:10];
+    label.font = [UIFont systemFontOfSize:14];
+    label.textAlignment = NSTextAlignmentCenter;
     label.textColor = HEXRGBCOLOR(0x5f5f5f);
     [self.scrollView addSubview:label];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
     [self.scrollView addSubview:lineView];
+    
+    UIView *toplineView = [[UIView alloc] initWithFrame:CGRectMake(0, label.top, SCREEN_WIDTH, 1)];
+    toplineView.backgroundColor = HEXRGBCOLOR(0x9a9a9a);
+    [self.scrollView addSubview:toplineView];
+
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - lineView.bottom)];
     webView.backgroundColor = kwhiteColor;

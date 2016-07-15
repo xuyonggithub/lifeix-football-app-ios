@@ -70,20 +70,25 @@
     _headerInfoView.clickBC = ^(void){
         [Weak(self) likePerson];
     };
-    _separateView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+    _separateView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
     _separateView.top = _headerInfoView.bottom+10;
     UILabel *titleLab = [[UILabel alloc]initWithFrame:_separateView.bounds];
-    titleLab.text = @"  个人介绍";
-    titleLab.textAlignment = NSTextAlignmentLeft;
+    titleLab.text = @"个人介绍";
+    titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.font = [UIFont systemFontOfSize:14];
-    titleLab.textColor = [UIColor blackColor];
+    titleLab.textColor = kDetailTitleColor;
+    LineView *topline = [[LineView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
+    topline.top = 0;
+    topline.lineColor = [UIColor lightGrayColor];
+
     LineView *line = [[LineView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
     line.bottom = _separateView.height;
     line.lineColor = [UIColor lightGrayColor];
     [_separateView addSubview:titleLab];
     [_separateView addSubview:line];
-    
-    _kheaderView = [[UIView alloc]initWithFrame:CGRectMake(0, -170-10-64, kScreenWidth, 170)];
+    [_separateView addSubview:topline];
+
+    _kheaderView = [[UIView alloc]initWithFrame:CGRectMake(0, -180-10-64, kScreenWidth, 170)];
     [_kheaderView addSubview:_headerInfoView];
     [_kheaderView addSubview:_separateView];
 
@@ -91,7 +96,7 @@
     _kwebView.backgroundColor = kwhiteColor;
     [self.view addSubview:_kwebView];
     _kwebView.delegate = self;
-    _kwebView.scrollView.contentInset = UIEdgeInsetsMake(170+10+64, 0, 0, 0);
+    _kwebView.scrollView.contentInset = UIEdgeInsetsMake(180+10+64, 0, 0, 0);
 
     NSURL *url = [NSURL URLWithString:model.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

@@ -31,12 +31,12 @@
     if(!_model.avatar){
         bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];
     }else{
-        NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/105/h/140", kQiNiuHeaderPathPrifx, _model.avatar];
+        NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/210/h/280", kQiNiuHeaderPathPrifx, _model.avatar];
         [bgImgView sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:[UIImage imageNamed:@"placeHold_player.jpg"]];
     }
     [self addSubview:bgImgView];
     
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 10, SCREEN_WIDTH - 140 - 120 - 15, 20)];
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 30, SCREEN_WIDTH - 140 - 120 - 15, 20)];
     nameLabel.font = [UIFont systemFontOfSize:15];
     nameLabel.textColor = HEXRGBCOLOR(0x000000);
     nameLabel.text = _model.name;
@@ -59,7 +59,7 @@
 
     NSArray *infoArr = [NSArray arrayWithObjects:@"生日", @"角色", @"所属单位", nil];
     for(int i = 0; i < 3; i++){
-        UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.left, nameLabel.bottom + 57 + (83/4+1) * i, 55, 83/4)];
+        UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.left, nameLabel.bottom + 17 + (83/4+1) * i, 55, 83/4)];
         birLbl.backgroundColor = HEXRGBCOLOR(0xbababa);
         birLbl.text = infoArr[i];
         birLbl.textColor = HEXRGBCOLOR(0xffffff);
@@ -67,7 +67,7 @@
         birLbl.textAlignment = NSTextAlignmentCenter;
         [self addSubview: birLbl];
         
-        UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, nameLabel.bottom + 57 + (83/4+1) * i, SCREEN_WIDTH - 205 + 15, 83/4)];
+        UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, nameLabel.bottom + 17 + (83/4+1) * i, SCREEN_WIDTH - 205 + 15, 83/4)];
         infoLbl.backgroundColor = HEXRGBCOLOR(0xf9f9f9);
         NSTimeInterval dateIN=(NSTimeInterval)[_model.birthday integerValue]/1000;
         NSDate * dateData=[NSDate dateWithTimeIntervalSince1970:dateIN];

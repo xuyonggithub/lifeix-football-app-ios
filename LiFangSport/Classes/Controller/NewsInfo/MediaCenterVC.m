@@ -63,6 +63,7 @@
     self.tableView.dataSource = self;
     [self.tableView registerClass:[MediaCell class] forCellReuseIdentifier:@"cell"];
     [self.tableView registerClass:[MediaCell class] forCellReuseIdentifier:@"cell1"];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 35, 0);
     [self requestDataWithisHeaderRefresh: YES];
     [self setupRefresh];
 }

@@ -26,6 +26,7 @@
 #define kReuseId @"cell"
 #define kBaseViewTag 100036
 #define kWebViewTag 100037
+#define kShareViewTag 1144
 
 @interface PlayerDetailVC ()<UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource, BaseInfoViewDelegate, UIScrollViewDelegate>
 
@@ -45,6 +46,8 @@
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIWebView *webView;
 @property(nonatomic,strong)UIScrollView *topScrollView;
+
+@property(nonatomic, retain)NSMutableArray *shareNameArr;
 @end
 
 @implementation PlayerDetailVC
@@ -63,6 +66,16 @@
     self.categoryUrlArr = [NSMutableArray array];
     self.playerVideosArr = [NSMutableArray array];
     [self requestData];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UIView *view = [self.view viewWithTag:kShareViewTag];
+    for(UITouch *touch in touches){
+        if([touch view] != view){
+            UIView *view = [self.view viewWithTag:12345];
+            [view removeFromSuperview];
+        }
+    }
 }
 
 -(void)requestData{
@@ -346,6 +359,7 @@
         [_lbl addSubview:lineView];
         UIView *wView = [[UIView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 175)];
         wView.backgroundColor = [UIColor whiteColor];
+        wView.tag = kShareViewTag;
         [_lbl addSubview:wView];
         CGFloat btnWidth = (SCREEN_WIDTH - 170)/4;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 58 - btnWidth)];
@@ -355,18 +369,23 @@
         label.textColor = HEXRGBCOLOR(0x9a9a9a);
         [wView addSubview:label];
         self.shareArr = [NSMutableArray array];
+        self.shareNameArr = [NSMutableArray array];
         if(![WXApi isWXAppInstalled]){
             if([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]){
                 [self.shareArr addObjectsFromArray:@[@"sina", @"Qzone"]];
+                [self.shareNameArr addObjectsFromArray:@[@"新浪微博", @"QQ空间"]];
             }else{
                 [self.shareArr addObjectsFromArray:@[@"sina"]];
+                [self.shareNameArr addObjectsFromArray:@[@"新浪微博"]];
             }
             
         }else{
             if([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]){
                 [self.shareArr addObjectsFromArray:@[@"wechat", @"timeline", @"sina", @"Qzone"]];
+                [self.shareNameArr addObjectsFromArray:@[@"微信好友", @"朋友圈", @"新浪微博", @"QQ空间"]];
             }else{
                 [self.shareArr addObjectsFromArray:@[@"wechat", @"timeline", @"sina"]];
+                [self.shareNameArr addObjectsFromArray:@[@"微信好友", @"朋友圈", @"新浪微博"]];
             }
         }
         for(int i = 0; i < self.shareArr.count; i++){
@@ -376,6 +395,11 @@
             [btn setImage:[UIImage imageNamed:self.shareArr[i]] forState:UIControlStateNormal];
             btn.tag = 1000 + i;
             [wView addSubview:btn];
+            UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(btn.left, btn.bottom + 10, btn.width, 10)];
+            lbl.text = self.shareNameArr[i];
+            lbl.font = [UIFont systemFontOfSize:10];
+            lbl.textAlignment = NSTextAlignmentCenter;
+            [wView addSubview:lbl];
         }
         UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 20 + btnWidth + 32, SCREEN_WIDTH, 1)];
         line2.backgroundColor = HEXRGBCOLOR(0xdfdfdf);

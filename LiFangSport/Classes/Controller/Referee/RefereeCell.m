@@ -17,14 +17,14 @@
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 110, 130)];
         self.bgImgView.userInteractionEnabled = YES;
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 130, 110, 20)];
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);
-        self.titleLabel.font = [UIFont systemFontOfSize:8];
-        self.titleLabel.backgroundColor = [UIColor blackColor];
-        self.titleLabel.alpha = 0.8;
+//        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 130, 110, 20)];
+//        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);
+//        self.titleLabel.font = [UIFont systemFontOfSize:8];
+//        self.titleLabel.backgroundColor = [UIColor blackColor];
+//        self.titleLabel.alpha = 0.8;
         [self addSubview:self.bgImgView];
-        [self addSubview:self.titleLabel];
+//        [self addSubview:self.titleLabel];
         
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 45, SCREEN_WIDTH - 135, 17.5/2)];
         self.nameLabel.font = [UIFont systemFontOfSize:10];
@@ -115,7 +115,7 @@
     self.topALabel.text = refereeModel.fifaTopANum?[NSString stringWithFormat:@"国际A级赛事场次:%@", refereeModel.fifaTopANum]:@"国际A级赛事场次:-";
     self.FIFAYearLabel.text = refereeModel.sinceInternational?[NSString stringWithFormat:@"FIFA起始年份:%@", refereeModel.sinceInternational]:@"FIFA起始年份:-";
     self.topLeagueLabel.text = refereeModel.topLeagueNum?[NSString stringWithFormat:@"中国顶级联赛场次:%@", refereeModel.topLeagueNum]:@"中国顶级联赛场次:-";
-    self.titleLabel.text = [NSString stringWithFormat:@"%@", refereeModel.name?refereeModel.name:@"-"];
+//    self.titleLabel.text = [NSString stringWithFormat:@"%@", refereeModel.name?refereeModel.name:@"-"];
     
     //like
     NSString *urlStr = [NSString stringWithFormat:@"like/likes/%@?type=referee", refereeModel.refefeeId];

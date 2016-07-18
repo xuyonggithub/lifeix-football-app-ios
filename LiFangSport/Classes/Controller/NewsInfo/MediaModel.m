@@ -23,6 +23,7 @@
                                                        @"status": @"status",
                                                        @"image": @"image",
                                                        @"url": @"url",
+                                                       @"shareUrl": @"shareUrl",
                                                        @"containVideo": @"containVideo"
                                                        }];
 }

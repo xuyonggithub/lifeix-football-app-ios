@@ -29,7 +29,7 @@
         }
         [self addSubview:_bgImgView];
         
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 10, SCREEN_WIDTH - 140 - 120 - 15, 20)];
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140 - 15, 10, SCREEN_WIDTH - 140 - 80 - 15, 20)];
         self.nameLabel.font = [UIFont systemFontOfSize:15];
         self.nameLabel.textColor = HEXRGBCOLOR(0x000000);
         self.nameLabel.text = name;

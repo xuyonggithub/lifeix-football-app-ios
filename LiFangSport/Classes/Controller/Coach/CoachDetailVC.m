@@ -156,6 +156,7 @@
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - lineView.bottom)];
     webView.backgroundColor = kwhiteColor;
     webView.delegate = self;
+    webView.dataDetectorTypes = UIDataDetectorTypeNone;
     webView.scrollView.scrollEnabled = false;
     if(![[dict objectForKey:@"url"] isEqual:[NSNull null]]){
         self.url = [NSString stringWithFormat:@"%@", [dict objectForKey:@"url"]];

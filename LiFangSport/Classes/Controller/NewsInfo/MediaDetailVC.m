@@ -330,7 +330,7 @@ const CGFloat topViewH = 180;
     NSString *snsName;
     NSString *shareTitle = @"中国足球网";
     NSString *shareText = [NSString stringWithFormat:@"%@", _media.title];
-    NSString *shareUrl = [NSString stringWithFormat:@"%@", _media.url] ;
+    NSString *shareUrl = [NSString stringWithFormat:@"%@", _media.shareUrl] ;
     
     NSString *avatarUrl = [NSString stringWithFormat:@"%@", _media.image];
     

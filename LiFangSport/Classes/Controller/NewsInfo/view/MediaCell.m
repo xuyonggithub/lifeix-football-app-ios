@@ -82,11 +82,11 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:timeStyle];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
-    NSTimeZone *zoneOne = [NSTimeZone systemTimeZone];
-    NSInteger intervalOne = [zoneOne secondsFromGMTForDate:date];
+//    NSTimeZone *zoneOne = [NSTimeZone systemTimeZone];
+//    NSInteger intervalOne = [zoneOne secondsFromGMTForDate:date];
     //得到我国时区的时间
-    NSDate *locateDateOne = [date dateByAddingTimeInterval:-intervalOne];
-    NSString *strDate = [formatter stringFromDate:locateDateOne];
+//    NSDate *locateDateOne = [date dateByAddingTimeInterval:intervalOne];
+    NSString *strDate = [formatter stringFromDate:date];
     NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
     return formatterStr;
 }

@@ -19,6 +19,8 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 
 const CGFloat topViewH = 180;
+#define kShareViewTag 1144
+
 @interface MediaDetailVC ()<UIWebViewDelegate>
 
 @property(nonatomic, retain)UIScrollView *bgScrollView;
@@ -40,13 +42,14 @@ const CGFloat topViewH = 180;
 @property(nonatomic, retain)UIView *loadingView;
 @property(nonatomic, retain)NSMutableArray *shareArr;
 @property(nonatomic, retain)UIView *lbl;
+@property(nonatomic, retain)NSMutableArray *shareNameArr;
 @end
 
 @implementation MediaDetailVC
 
 -(void)loadView{
     [super loadView];
-   
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //分享
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.jpg"] target:self action:@selector(shareBtnClicked)];
     
@@ -82,6 +85,16 @@ const CGFloat topViewH = 180;
     NSURLRequest *requset = [NSURLRequest requestWithURL:url];
     [self.contentWebView loadRequest:requset];
     self.isClick = NO;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UIView *view = [self.view viewWithTag:kShareViewTag];
+    for(UITouch *touch in touches){
+        if([touch view] != view){
+            UIView *view = [self.view viewWithTag:12345];
+            [view removeFromSuperview];
+        }
+    }
 }
 
 -(void)requestLikes{
@@ -252,6 +265,7 @@ const CGFloat topViewH = 180;
         lineView.backgroundColor = HEXRGBCOLOR(0xae1417);
         [_lbl addSubview:lineView];
         UIView *wView = [[UIView alloc] initWithFrame:CGRectMake(0, lineView.bottom, SCREEN_WIDTH, 175)];
+        wView.tag = kShareViewTag;
         wView.backgroundColor = [UIColor whiteColor];
         [_lbl addSubview:wView];
         CGFloat btnWidth = (SCREEN_WIDTH - 170)/4;
@@ -262,18 +276,23 @@ const CGFloat topViewH = 180;
         label.textColor = HEXRGBCOLOR(0x9a9a9a);
         [wView addSubview:label];
         self.shareArr = [NSMutableArray array];
+        self.shareNameArr = [NSMutableArray array];
         if(![WXApi isWXAppInstalled]){
             if([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]){
                 [self.shareArr addObjectsFromArray:@[@"sina", @"Qzone"]];
+                [self.shareNameArr addObjectsFromArray:@[@"新浪微博", @"QQ空间"]];
             }else{
                 [self.shareArr addObjectsFromArray:@[@"sina"]];
+                [self.shareNameArr addObjectsFromArray:@[@"新浪微博"]];
             }
             
         }else{
             if([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]){
                 [self.shareArr addObjectsFromArray:@[@"wechat", @"timeline", @"sina", @"Qzone"]];
+                [self.shareNameArr addObjectsFromArray:@[@"微信好友", @"朋友圈", @"新浪微博", @"QQ空间"]];
             }else{
                 [self.shareArr addObjectsFromArray:@[@"wechat", @"timeline", @"sina"]];
+                [self.shareNameArr addObjectsFromArray:@[@"微信好友", @"朋友圈", @"新浪微博"]];
             }
         }
         for(int i = 0; i < self.shareArr.count; i++){
@@ -283,6 +302,11 @@ const CGFloat topViewH = 180;
             [btn setImage:[UIImage imageNamed:self.shareArr[i]] forState:UIControlStateNormal];
             btn.tag = 1000 + i;
             [wView addSubview:btn];
+            UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(btn.left, btn.bottom + 10, btn.width, 10)];
+            lbl.text = self.shareNameArr[i];
+            lbl.font = [UIFont systemFontOfSize:10];
+            lbl.textAlignment = NSTextAlignmentCenter;
+            [wView addSubview:lbl];
         }
         UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, label.bottom + 20 + btnWidth + 32, SCREEN_WIDTH, 1)];
         line2.backgroundColor = HEXRGBCOLOR(0xdfdfdf);

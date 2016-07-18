@@ -52,7 +52,7 @@
         }
         NSArray *valueArr = [NSArray arrayWithObjects:birday, bodyInfo, position, birthplace, club, nil];
         for(int i = 0; i < 5; i++){
-            UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 10 + (83/4+1) * i, 55, 83/4)];
+            UILabel *birLbl = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 10 + (83/4+1) * i, 70, 83/4)];
             birLbl.backgroundColor = HEXRGBCOLOR(0xbababa);
             birLbl.text = infoArr[i];
             birLbl.textColor = HEXRGBCOLOR(0xffffff);
@@ -60,7 +60,7 @@
             birLbl.textAlignment = NSTextAlignmentCenter;
             [self addSubview: birLbl];
             
-            UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, _nameLabel.bottom + 10 + (83/4+1) * i, SCREEN_WIDTH - 205 + 15, 83/4)];
+            UILabel *infoLbl = [[UILabel alloc] initWithFrame:CGRectMake(birLbl.right, _nameLabel.bottom + 10 + (83/4+1) * i, SCREEN_WIDTH - 205, 83/4)];
             infoLbl.backgroundColor = HEXRGBCOLOR(0xf9f9f9);
             infoLbl.text = valueArr[i];
             infoLbl.textColor = HEXRGBCOLOR(0x333333);

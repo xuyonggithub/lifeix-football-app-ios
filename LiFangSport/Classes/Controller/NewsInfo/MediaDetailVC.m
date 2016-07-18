@@ -90,6 +90,7 @@ const CGFloat topViewH = 180;
         NSLog(@"data = %@", jsonDict);
         NSDictionary *dic = jsonDict;
         if(![[dic objectForKey:@"like"] isEqual:[NSNull null]]){
+            [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"like"] forKey:self.media.mediaId];
             self.isLike = [[dic objectForKey:@"like"] boolValue];
             if(self.isLike){
                 [self.likeBtn setImage:[UIImage imageNamed:@"gooded.jpg"] forState:UIControlStateNormal];
@@ -120,14 +121,16 @@ const CGFloat topViewH = 180;
 -(void)likeBtnClicked{
     NSLog(@"like");
     if(_isClick == YES){
-        [CommonLoading showTips:@"重复操作"];
+//        [CommonLoading showTips:@"重复操作"];
         return;
-    }else if (self.isLike != nil){
+    }else if ([[NSUserDefaults standardUserDefaults] objectForKey:self.media.mediaId] != nil){
+        /*
         if(_isLike == YES){
             [CommonLoading showTips:@"不能重复点赞"];
         }else{
             [CommonLoading showTips:@"重复操作"];
         }
+         */
         return;
     };
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@1};
@@ -144,14 +147,16 @@ const CGFloat topViewH = 180;
 -(void)unLikeBtnClicked{
     NSLog(@"unLike");
     if(_isClick == YES){
-        [CommonLoading showTips:@"重复操作"];
+//        [CommonLoading showTips:@"重复操作"];
         return;
-    }else if (_isLike != nil){
+    }else if ([[NSUserDefaults standardUserDefaults] objectForKey:self.media.mediaId] != nil){
+        /*
         if(_isLike == YES){
             [CommonLoading showTips:@"重复操作"];
         }else{
             [CommonLoading showTips:@"不能重复点踩"];
         }
+         */
         return;
     };
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@0};

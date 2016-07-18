@@ -15,10 +15,12 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(25/2, 10, SCREEN_WIDTH - 25, (SCREEN_WIDTH - 25) / 2.0)];
-        view.backgroundColor = kwhiteColor;
+        view.backgroundColor = kclearColor;
         [self.contentView addSubview:view];
+        self.backgroundColor = kclearColor;
+        self.contentView.alpha = 0.2;
         // 背景图
-        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 25 - 2, (SCREEN_WIDTH - 25) / 2.0 - 2)];
+        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 25, (SCREEN_WIDTH - 25) / 2.0)];
         self.bgImgView.userInteractionEnabled = YES;
         [view addSubview:self.bgImgView];
         
@@ -47,7 +49,10 @@
 -(void)displayCell:(MediaModel *)media{
     if(media.image != nil){
         NSString *str = [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", media.image, (int)(SCREEN_WIDTH - 25) * 2 - 2, (int)(SCREEN_WIDTH - 25 - 2)];
-        [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"]];
+        [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"] options:SDWebImageCacheMemoryOnly completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.contentView.alpha = 1.0;
+        }];
+        
     }else{
         self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];
     }

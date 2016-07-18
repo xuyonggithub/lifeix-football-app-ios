@@ -11,9 +11,10 @@
 #import "StaffsInfoModel.h"
 #import "StaffsInfoHeaderView.h"
 #import "LineView.h"
-
+#import "CommonLoading.h"
 @interface StaffsDetVC ()<UIWebViewDelegate>{
     NSInteger likeNum;
+    NSInteger isLike;
 }
 @property(nonatomic,strong)NSArray *dataArr;
 @property(nonatomic,strong)UIWebView *kwebView;
@@ -59,6 +60,7 @@
 -(void)dealWitkLikedata:(id)dic{
     StaffsInfoModel *model = _dataArr[0];
     model.like = [NSString stringWithFormat:@"%@",dic[@"like"]];
+    isLike = [model.like integerValue];
     model.likeNum = [NSString stringWithFormat:@"%@",dic[@"likeNum"]];
     likeNum = [model.likeNum integerValue];
     [self dealWitaDataForUI];
@@ -106,11 +108,15 @@
 }
 
 -(void)likePerson{//点赞
+    if (isLike) {
+        [CommonLoading showTips:@"不能重复点赞"];
+        return;
+    }
     NSDictionary *dic = @{@"type":@"staffs", @"target":self.personId, @"like":@1};
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
         [_headerInfoView.likeBtn setImage:[UIImage imageNamed:@"fired"] forState:UIControlStateNormal];
-//        int like = [[dic objectForKey:@"likeNum"] intValue];
         likeNum ++;
+        isLike = 1;
         [_headerInfoView.likeBtn setTitle:[NSString stringWithFormat:@"%zd", likeNum] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
 

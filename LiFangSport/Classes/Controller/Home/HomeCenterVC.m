@@ -43,6 +43,9 @@
 @property(nonatomic,strong)NSMutableArray *picArray;
 @property(nonatomic,strong)NSMutableArray *leftDataArray;
 @property(nonatomic,strong)NSMutableArray *centerDataArray;
+@property(nonatomic,strong)NSMutableArray *centerAListDataArray;
+@property(nonatomic,strong)NSMutableArray *centerBListDataArray;
+
 @property(nonatomic,strong)NSMutableArray *rightDataArray;
 @property(nonatomic,strong)NSMutableArray *mediaArray;
 @property(nonatomic,strong)TopBannerSwitchView *topBannnerView;
@@ -67,6 +70,8 @@
     _centerDataArray = [NSMutableArray array];
     _rightDataArray = [NSMutableArray array];
     _mediaArray = [NSMutableArray array];
+    _centerAListDataArray = [NSMutableArray array];
+    _centerBListDataArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     [self requestDataWithCaID:_kidStr ? _kidStr:@"8089916318445"];
     [self requestTopBannerSwitchData];
@@ -123,7 +128,13 @@
     _leftSubtitlePrifxStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"name"]];
     _centerDataArray = [CenterSwitchModel arrayOfModelsFromDictionaries:dic[@"matches"]];
     _ruleStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"rule"]];
-    
+    for (CenterSwitchModel *model in _centerDataArray) {
+        if ([model.group isEqualToString:@"A"]) {
+            [_centerAListDataArray addObject:model];
+        }else{
+            [_centerBListDataArray addObject:model];
+        }
+    }
     [_centerTableview reloadData];
 }
 -(void)dealWithRightData:(id )dic{
@@ -325,7 +336,12 @@
     if (tableView == _leftTableview) {
         return _leftDataArray.count;
     }else{
-        return _centerDataArray.count;
+        if (section==0) {
+            return _centerAListDataArray.count;
+        }else
+        {
+        return _centerBListDataArray.count;
+        }
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -378,7 +394,11 @@
             cell = [[CenterSwitchCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellidx];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = _centerDataArray[indexPath.row];
+        if (indexPath.section == 0) {
+            cell.model = _centerAListDataArray[indexPath.row];
+        }else{
+            cell.model = _centerBListDataArray[indexPath.row];
+        }
         return cell;
     }
     return nil;
@@ -436,6 +456,11 @@
         svc.title = [NSString stringWithFormat:@"%@%@%@",model.hostTeam[@"teamInfo"][@"name"],@"VS",model.awayTeam[@"teamInfo"][@"name"]];
         svc.urlStr = model.url;
         [self.navigationController pushViewController:svc animated:YES];
+    }else{
+        if (indexPath.section == 0) {
+            CenterSwitchModel *mode = _centerAListDataArray[indexPath.row];
+            NSLog(@"aamodel==%@",mode);
+        }
     }
 }
 

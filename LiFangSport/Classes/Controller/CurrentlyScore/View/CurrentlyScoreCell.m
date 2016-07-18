@@ -146,9 +146,9 @@
     NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[dateTimeArr[3] substringToIndex:5],model.cup_name];
     _subTitleLab.text = timeStr;
     
-    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?imageView/2/w/%@/h/%@",kCurrentlyScoreCellPicHeaderPath,model.h_t[@"logo"],@(100),@(100)]]];
+    [_hostTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@!icon?imageView/2/w/%@/h/%@",kCurrentlyScoreCellPicHeaderPath,model.h_t[@"logo"],@(100),@(100)]]];
     
-    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?imageView/2/w/%@/h/%@",kCurrentlyScoreCellPicHeaderPath,model.a_t[@"logo"],@(100),@(100)]]];
+    [_awayTeamFlagView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@!icon?imageView/2/w/%@/h/%@",kCurrentlyScoreCellPicHeaderPath,model.a_t[@"logo"],@(100),@(100)]]];
 
     
     _hostTeamNameLab.text = model.h_t[@"name"];

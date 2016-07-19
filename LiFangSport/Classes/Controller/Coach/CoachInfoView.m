@@ -21,6 +21,8 @@
 -(instancetype)initWithFrame:(CGRect)frame andAvatar:(NSString *)avatar andName:(NSString *)name andBirday:(NSString *)birday andBirthplace:(NSString *)birthplace andPart:(NSString *)part andClub:(NSString *)club andCountry:(NSString *)country{
     if(self = [super initWithFrame:frame]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 105, 140)];
+        self.bgImgView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImgView.clipsToBounds = YES;
         if(!avatar){
             self.bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];
         }else{

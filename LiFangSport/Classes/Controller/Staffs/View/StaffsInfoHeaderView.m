@@ -28,6 +28,8 @@
 -(void)createSubViews{
  
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 105, 140)];
+    bgImgView.contentMode = UIViewContentModeScaleAspectFill;
+    bgImgView.clipsToBounds = YES;
     if(!_model.avatar){
         bgImgView.image = [UIImage imageNamed:@"placeHold_player.jpg"];
     }else{

@@ -17,6 +17,8 @@
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 110, 130)];
         self.bgImgView.userInteractionEnabled = YES;
+        self.bgImgView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImgView.clipsToBounds = YES;
 //        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 130, 110, 20)];
 //        self.titleLabel.textAlignment = NSTextAlignmentCenter;
 //        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);

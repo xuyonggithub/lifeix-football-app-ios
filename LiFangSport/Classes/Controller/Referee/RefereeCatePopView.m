@@ -29,6 +29,7 @@
         self.tableView.backgroundColor = RGBCOLOR(240, 241, 242);
         [self.tableView setSeparatorColor:HEXRGBCOLOR(0xdcdcdc)];
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, barHeight, self.width, self.height - barHeight) style:UITableViewStylePlain];
+        self.tableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         [self.tableView registerClass:[MediaCategoryCell class] forCellReuseIdentifier:@"cell"];

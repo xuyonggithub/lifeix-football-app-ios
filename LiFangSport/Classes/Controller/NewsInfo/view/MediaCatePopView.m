@@ -30,6 +30,7 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, barHeight, self.width, self.height - barHeight) style:UITableViewStylePlain];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.tableView registerClass:[MediaCategoryCell class] forCellReuseIdentifier:@"cell"];
         self.dataArr = [NSMutableArray array];
         UIView *headerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 40)];

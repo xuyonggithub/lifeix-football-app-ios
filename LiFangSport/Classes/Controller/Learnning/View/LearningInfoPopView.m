@@ -36,6 +36,7 @@
         self.tableView.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
         [self.tableView setSeparatorColor:HEXRGBCOLOR(0xdbdbdb)];
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, barHeight, self.width, self.height - barHeight) style:UITableViewStylePlain];
+        self.tableView.tableFooterView = [UIButton buttonWithType:UIButtonTypeCustom];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         [self.tableView registerClass:[LearningInfoPopCell class] forCellReuseIdentifier:@"LearningInfoPopCellid"];

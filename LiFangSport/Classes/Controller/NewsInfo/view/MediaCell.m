@@ -20,9 +20,13 @@
         self.backgroundColor = kclearColor;
         self.contentView.alpha = 0.2;
         // 背景图
-        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 25, (SCREEN_WIDTH - 25) / 2.0)];
-        self.bgImgView.userInteractionEnabled = YES;
+        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        self.bgImgView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImgView.clipsToBounds = YES;
         [view addSubview:self.bgImgView];
+        [self.bgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(view);
+        }];
         
         // bottomView
         UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(25/2, view.bottom, SCREEN_WIDTH - 25, 35)];

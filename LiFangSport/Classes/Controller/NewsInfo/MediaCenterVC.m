@@ -126,9 +126,12 @@
             [_dataArr addObjectsFromArray:arr];
         }else{
             [_tableView ins_endInfinityScroll];
-            [_tableView ins_endInfinityScrollWithStoppingContentOffset:arr.count > 0];
+            //[_tableView ins_endInfinityScrollWithStoppingContentOffset:arr.count > 0];
             [_dataArr addObjectsFromArray:arr];
+            CGPoint pont = _tableView.contentOffset;
+            _tableView.contentOffset = CGPointMake(pont.x, pont.y + (arr.count > 0?40 : 80));
         }
+        [self.tableView ins_setInfinityScrollEnabled:arr.count > 0];
         self.date = nil;
         [self.tableView reloadData];
         

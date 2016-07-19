@@ -158,8 +158,9 @@
     }
     
     if(player.avatar != nil){
-        NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, player.avatar, (int)cell.bgImgView.width, (int)cell.bgImgView.height];
+        NSString *bgImageUrl = [NSString stringWithFormat:@"%@%@?imageView/1/w/%d/h/%d", kQiNiuHeaderPathPrifx, player.avatar, (int)cell.bgImgView.width * 2, (int)cell.bgImgView.height * 2];
         [cell.bgImgView sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:placehold];
+        NSLog(@"++++++++++++++++++++++++++++++++playerName:%@；imageUrl:%@\n", player.name, bgImageUrl);
     }else{
         cell.bgImgView.image = placehold;
     }

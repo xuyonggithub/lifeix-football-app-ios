@@ -52,7 +52,7 @@
         [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"placeholder_media.jpg"] options:SDWebImageCacheMemoryOnly completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             self.contentView.alpha = 1.0;
         }];
-        
+        NSLog(@"++++++++++++++++++++++++++++++++title:%@；imageUrl:%@\n", media.title, str);
     }else{
         self.bgImgView.image = [UIImage imageNamed:@"placeholder_media.jpg"];
     }

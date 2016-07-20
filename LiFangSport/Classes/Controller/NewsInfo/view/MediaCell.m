@@ -45,6 +45,11 @@
         self.titleLabel.textColor = kBlackColor;
         [bottomView addSubview:self.titleLabel];
         
+        self.cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 49, 5, 35, 18)];
+        [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:9]];
+        self.cateLabel.textColor = HEXRGBCOLOR(0xffffff);
+        [bottomView addSubview:self.cateLabel];
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -69,6 +74,22 @@
     }
     self.titleLabel.text = media.title;
     self.timeLabel.text = [self timeStampChangeTimeWithTimeStamp:[NSString stringWithFormat:@"%f", media.createTime] timeStyle:@"yyyy-MM-dd HH:mm"];
+    if(media.categories.count != 0){
+        NSString *cateStr = (NSString *)media.categories[0];
+        if([cateStr isEqualToString:@"男足"]){
+            self.cateLabel.backgroundColor = HEXRGBCOLOR(0xce1126);
+        }else if ([cateStr isEqualToString:@"女足"]){
+            self.cateLabel.backgroundColor = HEXRGBCOLOR(0xe71b64);
+        }else if ([cateStr isEqualToString:@"裁判"]){
+            self.cateLabel.backgroundColor = HEXRGBCOLOR(0x000000);
+        }else if ([cateStr isEqualToString:@"教练"]){
+            self.cateLabel.backgroundColor = HEXRGBCOLOR(0x004c7f);
+        }else{
+            self.cateLabel.backgroundColor = [UIColor grayColor];
+        }
+        self.cateLabel.text = cateStr;
+    }
+    
 }
 
 /**

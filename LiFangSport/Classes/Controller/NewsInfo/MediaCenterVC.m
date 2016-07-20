@@ -37,15 +37,6 @@
     [self.view addSubview:self.tableView];
     
     self.bgImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"allBg.jpg"]];
-    if([self.title isEqualToString:@"男足"]){
-        self.bgImgView.image = [UIImage imageNamed:@"playerBg.jpg"];
-    }else if ([self.title isEqualToString:@"女足"]){
-        self.bgImgView.image = [UIImage imageNamed:@"womanPlayerBg.jpg"];
-    }else if ([self.title isEqualToString:@"裁判"]){
-        self.bgImgView.image = [UIImage imageNamed:@"refereeBg.jpg"];
-    }else if ([self.title isEqualToString:@"教练"]){
-        self.bgImgView.image = [UIImage imageNamed:@"coachBg.jpg"];
-    }
     
     self.bgImgView.frame = self.view.bounds;
     self.bgImgView.userInteractionEnabled = YES;
@@ -90,6 +81,16 @@
         name = @"资讯";
     }
     self.title = name;
+    if([self.title isEqualToString:@"男足"]){
+        self.bgImgView.image = [UIImage imageNamed:@"playerBg.jpg"];
+    }else if ([self.title isEqualToString:@"女足"]){
+        self.bgImgView.image = [UIImage imageNamed:@"womanPlayerBg.jpg"];
+    }else if ([self.title isEqualToString:@"裁判"]){
+        self.bgImgView.image = [UIImage imageNamed:@"refereeBg.jpg"];
+    }else if ([self.title isEqualToString:@"教练"]){
+        self.bgImgView.image = [UIImage imageNamed:@"coachBg.jpg"];
+    }
+    
     self.date = nil;
     if(self.dataArr.count){
         NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];

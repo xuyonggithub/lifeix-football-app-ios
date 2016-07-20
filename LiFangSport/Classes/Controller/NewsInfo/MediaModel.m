@@ -24,7 +24,8 @@
                                                        @"image": @"image",
                                                        @"url": @"url",
                                                        @"shareUrl": @"shareUrl",
-                                                       @"containVideo": @"containVideo"
+                                                       @"containVideo": @"containVideo",
+                                                       @"categories": @"categories"
                                                        }];
 }
 

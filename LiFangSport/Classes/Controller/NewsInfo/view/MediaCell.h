@@ -15,6 +15,7 @@
 @property(nonatomic, retain)UIImageView *bgImgView;
 @property(nonatomic, retain)UILabel *titleLabel;
 @property(nonatomic, retain)UILabel *timeLabel;
+@property(nonatomic, retain)UILabel *cateLabel;
 
 -(void)displayCell:(MediaModel *)media;
 @end

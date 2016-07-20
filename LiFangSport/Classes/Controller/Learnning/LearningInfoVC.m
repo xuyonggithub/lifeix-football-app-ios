@@ -19,6 +19,7 @@
 @property(nonatomic,strong)UIWebView *bwebView;
 @property(nonatomic,strong)LearningInfoPopView *rightView;
 
+@property(nonatomic, retain)UIView *loadingView;
 @end
 
 @implementation LearningInfoVC
@@ -65,10 +66,27 @@
 }
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
+    if(self.loadingView == nil){
+        self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _loadingView.backgroundColor = kwhiteColor;
+        [self.view addSubview:_loadingView];
+    }
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    imageView.image = [UIImage imageNamed:@"placeHold_newsLoading.jpg"];
+    imageView.center = CGPointMake(self.view.centerX, self.view.centerY - 100);
+    [_loadingView addSubview:imageView];
     
+    UILabel *reminderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom + 15, SCREEN_WIDTH, 20)];
+    reminderLabel.text = @"内容正飞奔在网络中";
+    reminderLabel.textAlignment = NSTextAlignmentCenter;
+    reminderLabel.font = [UIFont systemFontOfSize:14];
+    reminderLabel.textColor = HEXRGBCOLOR(0xd9d9d9);
+    [_loadingView addSubview:reminderLabel];
+
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
     

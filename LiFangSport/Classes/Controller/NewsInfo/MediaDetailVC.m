@@ -30,12 +30,9 @@ const CGFloat topViewH = 180;
 @property(nonatomic, retain)UILabel *contentlbl;
 @property(nonatomic, retain)UIWebView *contentWebView;
 @property(nonatomic, retain)UIButton *likeBtn;
-@property(nonatomic, retain)UIButton *unLikeBtn;
 @property(nonatomic, retain)UIButton *shareBtn;
-@property(nonatomic, copy)NSString *htmlStr;
 
 @property(nonatomic, assign)int likeNum;
-@property(nonatomic, assign)int unLikeNum;
 @property(nonatomic, assign)BOOL isClick;
 @property(nonatomic, assign)BOOL isLike;
 
@@ -53,26 +50,9 @@ const CGFloat topViewH = 180;
     //分享
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcons:@[@"share.jpg"] target:self action:@selector(shareBtnClicked)];
     
-    /*
-    self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.shareBtn.frame = CGRectMake(0, self.view.height - 44, SCREEN_WIDTH, 44);
-    [self.shareBtn setTitle:@"分享" forState: UIControlStateNormal];
-    [self.shareBtn setImage:[UIImage imageNamed:@"share.jpg"] forState:UIControlStateNormal];
-    self.shareBtn.titleLabel.textColor = [UIColor whiteColor];
-    self.shareBtn.titleLabel.font = kBasicBigTitleFont;
-    self.shareBtn.backgroundColor = HEXRGBCOLOR(0xae1417);
-    [self.shareBtn addTarget:self action:@selector(shareBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.shareBtn];
-    */
-    
     //webView
     self.contentWebView = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - 64)];
     self.contentWebView.delegate = self;
-    //    UIScrollView *tempView = self.contentWebView.scrollView;
-    //    tempView.scrollEnabled = false;
-    
-    //    [self.view addSubview: self.contentWebView];
-    
 }
 
 
@@ -107,18 +87,13 @@ const CGFloat topViewH = 180;
             self.isLike = [[dic objectForKey:@"like"] boolValue];
             if(self.isLike){
                 [self.likeBtn setImage:[UIImage imageNamed:@"gooded.jpg"] forState:UIControlStateNormal];
-            }else{
-                [self.unLikeBtn setImage:[UIImage imageNamed:@"baded.jpg"] forState:UIControlStateNormal];
             }
         }else{
             self.isLike = nil;
         }
         int like = [[dic objectForKey:@"likeNum"] intValue];
-        int unLike = [[dic objectForKey:@"unlikeNum"] intValue];
         self.likeNum = like;
-        self.unLikeNum = unLike;
         [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
-        [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", unLike] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error = %@", error);
     }];
@@ -134,16 +109,10 @@ const CGFloat topViewH = 180;
 -(void)likeBtnClicked{
     NSLog(@"like");
     if(_isClick == YES){
-//        [CommonLoading showTips:@"重复操作"];
+        
         return;
     }else if ([[NSUserDefaults standardUserDefaults] objectForKey:self.media.mediaId] != nil){
-        /*
-        if(_isLike == YES){
-            [CommonLoading showTips:@"不能重复点赞"];
-        }else{
-            [CommonLoading showTips:@"重复操作"];
-        }
-         */
+
         return;
     };
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@1};
@@ -151,32 +120,6 @@ const CGFloat topViewH = 180;
         NSLog(@"succeed!%@", jsonDict);
         [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
         [self.likeBtn setImage:[UIImage imageNamed:@"gooded.jpg"] forState:UIControlStateNormal];
-    } failure:^(CommonRequest *request, NSError *error) {
-        NSLog(@"error: %@", error);
-    }];
-    _isClick = YES;
-}
-
--(void)unLikeBtnClicked{
-    NSLog(@"unLike");
-    if(_isClick == YES){
-//        [CommonLoading showTips:@"重复操作"];
-        return;
-    }else if ([[NSUserDefaults standardUserDefaults] objectForKey:self.media.mediaId] != nil){
-        /*
-        if(_isLike == YES){
-            [CommonLoading showTips:@"重复操作"];
-        }else{
-            [CommonLoading showTips:@"不能重复点踩"];
-        }
-         */
-        return;
-    };
-    NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@0};
-    [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
-        NSLog(@"succeed!%@", jsonDict);
-        [self.unLikeBtn setTitle:[NSString stringWithFormat:@"%d", _unLikeNum + 1] forState:UIControlStateNormal];
-        [self.unLikeBtn setImage:[UIImage imageNamed:@"baded.jpg"] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error: %@", error);
     }];
@@ -220,25 +163,17 @@ const CGFloat topViewH = 180;
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, _contentWebView.bottom, SCREEN_WIDTH, 1)];
     line.backgroundColor = HEXRGBCOLOR(0xdfdfdf);
     [mainView addSubview:line];
-    // 顶踩
+    // 顶
     self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.likeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2, line.bottom + 15, 100, 50);
+    self.likeBtn.frame = CGRectMake((SCREEN_WIDTH - 100)/2, line.bottom + 15, 100, 50);
     [self.likeBtn addTarget:self action:@selector(likeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.likeBtn setImage:[UIImage imageNamed:@"good.jpg"] forState:UIControlStateNormal];
     [self.likeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [mainView addSubview:self.likeBtn];
     
-    self.unLikeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.unLikeBtn.frame = CGRectMake((SCREEN_WIDTH - 210)/2 + 110, line.bottom + 15, 100, 50);
-    [self.unLikeBtn addTarget:self action:@selector(unLikeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.unLikeBtn setImage:[UIImage imageNamed:@"bad.jpg"] forState:UIControlStateNormal];
-    //    self.unLikeBtn.backgroundColor = HEXRGBCOLOR(0xae1417);
-    [self.unLikeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [mainView addSubview:self.unLikeBtn];
-    
     [self requestLikes];
     
-    mainView.contentSize = CGSizeMake(SCREEN_WIDTH, _unLikeBtn.bottom + 15);
+    mainView.contentSize = CGSizeMake(SCREEN_WIDTH, _likeBtn.bottom + 15);
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
     NSLog(@"+++error:%@", error);

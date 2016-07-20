@@ -24,4 +24,5 @@
 @property(nonatomic, retain)NSString<Optional> *url;
 @property(nonatomic, retain)NSString<Optional> *shareUrl;
 @property(nonatomic, assign)BOOL containVideo;
+@property(nonatomic, retain)NSArray<Optional> *categories;
 @end

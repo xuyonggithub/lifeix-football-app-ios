@@ -200,6 +200,9 @@
     }
     cell.backgroundColor = kclearColor;
     [cell displayCell:media];
+    if(![self.title isEqualToString:@"资讯"]){
+        cell.cateLabel.hidden = YES;
+    }
     return cell;
 }
 

@@ -45,9 +45,10 @@
         self.titleLabel.textColor = kBlackColor;
         [bottomView addSubview:self.titleLabel];
         
-        self.cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 49, 5, 35, 18)];
-        [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:9]];
+        self.cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(bottomView.width - 49, 5, 35, 18)];
+        [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:8]];
         self.cateLabel.textColor = HEXRGBCOLOR(0xffffff);
+        self.cateLabel.textAlignment = NSTextAlignmentCenter;
         [bottomView addSubview:self.cateLabel];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -75,7 +76,7 @@
     self.titleLabel.text = media.title;
     self.timeLabel.text = [self timeStampChangeTimeWithTimeStamp:[NSString stringWithFormat:@"%f", media.createTime] timeStyle:@"yyyy-MM-dd HH:mm"];
     if(media.categories.count != 0){
-        NSString *cateStr = (NSString *)media.categories[0];
+        NSString *cateStr = [media.categories[0] objectForKey:@"name"];
         if([cateStr isEqualToString:@"男足"]){
             self.cateLabel.backgroundColor = HEXRGBCOLOR(0xce1126);
         }else if ([cateStr isEqualToString:@"女足"]){

@@ -36,6 +36,7 @@
 {
     UILabel *ruleLab;
     UIView *centerBannerView;
+    CGFloat _offsetTop;
 }
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 @property(nonatomic,strong)NSMutableArray *dataArray;
@@ -240,14 +241,17 @@
     _topBannnerView.centerTitleStr = @"赛事介绍";
     _topBannnerView.rightTitleStr = @"英雄榜";
     _topBannnerView.clickLeftBtn = ^(void){
+        _offsetTop = _cycleScrollView.top;
         [Weak(self) createLeftView];
         [Weak(self) resetScrollViewTop];
     };
     _topBannnerView.clickCenterBtn = ^(void){
+        _offsetTop = _cycleScrollView.top;
         [Weak(self) createCenterView];
         [Weak(self) resetScrollViewTop];
     };
     _topBannnerView.clickRightBtn = ^(void){
+        _offsetTop = _cycleScrollView.top;
         [Weak(self) createRightView];
         [Weak(self) resetScrollViewTop];
     };
@@ -543,17 +547,20 @@
 #pragma mark- UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    NSLog(@"%@", @(scrollView.contentOffset.y));
     if (scrollView.contentOffset.y < _cycleScrollView.height + _topBannnerView.height + 64 && [scrollView isEqual:self.topScrollView]) {
         if (scrollView.contentOffset.y > 0) {
             //  向上拖动
-            _cycleScrollView.top = 64-scrollView.contentOffset.y;
+            _cycleScrollView.top = _offsetTop -scrollView.contentOffset.y;
         }else {
             //  向下拖动
             _cycleScrollView.top = 64;
+            _offsetTop = 64;
         }
         _topBannnerView.top = _cycleScrollView.bottom;
         if (_topBannnerView.top < 64) {
             _topBannnerView.top = 64;
+            
         }
         scrollView.top = _topBannnerView.bottom;
 //        if (scrollView.top < 64) {
@@ -569,11 +576,11 @@
     [self.view bringSubviewToFront:_topBannnerView];
     
     //  复位
-    _cycleScrollView.top = 64;
-    _topBannnerView.top = _cycleScrollView.bottom;
+    //_cycleScrollView.top = 64;
+    //_topBannnerView.top = _cycleScrollView.bottom;
     self.topScrollView.top = _topBannnerView.bottom;
     self.topScrollView.height = kScreenHeight - self.topScrollView.top;
-    self.topScrollView.contentOffset = CGPointMake(0, 0);
+    //self.topScrollView.contentOffset = CGPointMake(0, 0);
 }
 
 @end

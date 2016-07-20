@@ -5,6 +5,7 @@
 //  Created by 张毅 on 16/6/13.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
+//  十二强赛
 
 #import "CenterViewController.h"
 #import "BaseMenuCenterVC.h"

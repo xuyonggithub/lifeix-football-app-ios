@@ -388,13 +388,14 @@
         __weak typeof(tableView) weakTableView = tableView;
         
         cell.selectedBlock = ^(id object) {
-            NSInteger lastSelectedIndex = _leftSelectedIndex;
+//            NSInteger lastSelectedIndex = _leftSelectedIndex;
             _leftSelectedIndex = [object boolValue] ? indexPath.row : -1;
-            if (lastSelectedIndex >= 0) {
-                [weakTableView beginUpdates];
-                [weakTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastSelectedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                [weakTableView endUpdates];
-            }
+//            if (lastSelectedIndex >= 0) {
+//                [weakTableView beginUpdates];
+//                [weakTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastSelectedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//                [weakTableView endUpdates];
+//            }
+            [weakTableView reloadData];
             if (_rightSelectedIndex != -1) {
                 //  两道题都已选择
                 [weakSelf judgementAnswer];
@@ -429,13 +430,14 @@
             __weak typeof(tableView) weakTableView = tableView;
             
             cell.selectedBlock = ^(id object) {
-                NSInteger lastSelectedIndex = _leftSelectedIndex;
+//                NSInteger lastSelectedIndex = _leftSelectedIndex;
                 _rightSelectedIndex = [object boolValue] ? indexPath.row : -1;
-                if (_rightSelectedIndex >= 0) {
-                    [weakTableView beginUpdates];
-                    [weakTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastSelectedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                    [weakTableView endUpdates];
-                }
+//                if (_rightSelectedIndex >= 0) {
+//                    [weakTableView beginUpdates];
+//                    [weakTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastSelectedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//                    [weakTableView endUpdates];
+//                }
+                [weakTableView reloadData];
                 if (_leftSelectedIndex != -1) {
                     //  两道题都已选择
                     [weakSelf judgementAnswer];

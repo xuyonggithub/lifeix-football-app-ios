@@ -20,6 +20,7 @@
         self.image = [images firstObject];
 
         self.animationImages = [[images objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(21, 9)]] arrayByAddingObjectsFromArray:[images objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 20)]]];
+        self.animationDuration = 2.5;
     }
     return self;
 }

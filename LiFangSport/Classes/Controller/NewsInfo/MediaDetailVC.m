@@ -30,6 +30,7 @@ const CGFloat topViewH = 180;
 @property(nonatomic, retain)UILabel *contentlbl;
 @property(nonatomic, retain)UIWebView *contentWebView;
 @property(nonatomic, retain)UIButton *likeBtn;
+@property(nonatomic, retain)UILabel *likeLable;
 @property(nonatomic, retain)UIButton *shareBtn;
 
 @property(nonatomic, assign)int likeNum;
@@ -93,7 +94,8 @@ const CGFloat topViewH = 180;
         }
         int like = [[dic objectForKey:@"likeNum"] intValue];
         self.likeNum = like;
-        [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
+//        [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", like] forState:UIControlStateNormal];
+        self.likeLable.text = [NSString stringWithFormat:@"%d", like];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error = %@", error);
     }];
@@ -118,7 +120,8 @@ const CGFloat topViewH = 180;
     NSDictionary *dic = @{@"type":@"post", @"target":self.media.mediaId, @"like":@1};
     [CommonRequest requstPath:@"like/likes" loadingDic:nil postParam:dic success:^(CommonRequest *request, id jsonDict) {
         NSLog(@"succeed!%@", jsonDict);
-        [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
+//        [self.likeBtn setTitle:[NSString stringWithFormat:@"%d", _likeNum + 1] forState:UIControlStateNormal];
+        self.likeLable.text = [NSString stringWithFormat:@"%d", _likeNum + 1];
         [self.likeBtn setImage:[UIImage imageNamed:@"gooded.jpg"] forState:UIControlStateNormal];
     } failure:^(CommonRequest *request, NSError *error) {
         NSLog(@"error: %@", error);
@@ -168,7 +171,12 @@ const CGFloat topViewH = 180;
     self.likeBtn.frame = CGRectMake((SCREEN_WIDTH - 100)/2, line.bottom + 15, 100, 50);
     [self.likeBtn addTarget:self action:@selector(likeBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.likeBtn setImage:[UIImage imageNamed:@"good.jpg"] forState:UIControlStateNormal];
-    [self.likeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [self.likeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.likeLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 28, 60, 16)];
+    self.likeLable.font = [UIFont systemFontOfSize:8];
+    self.likeLable.textColor = [UIColor whiteColor];
+    self.likeLable.textAlignment = NSTextAlignmentCenter;
+    [self.likeBtn addSubview:self.likeLable];
     [mainView addSubview:self.likeBtn];
     
     [self requestLikes];

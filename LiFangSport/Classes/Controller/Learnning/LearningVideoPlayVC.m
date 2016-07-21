@@ -15,48 +15,56 @@
 #import "LearningPlayPopView.h"
 #import "CommonLoading.h"
 #import "VideoLearningUnitModel.h"
+
 #define offsideHard  @"offsideTypeHard"
 
-@interface LearningVideoPlayVC ()<AJMediaViewControllerDelegate>
+@interface LearningVideoPlayVC ()
+    <AJMediaViewControllerDelegate>
 {
     BOOL _isFullScreen;
     NSInteger _currentPlayVideoIndex;
     PopViewKit *popKit;
     LearningPlayPopView *rview;
 }
+
 //播放器
 @property (nonatomic, strong) AJMediaPlayerViewController *mediaPlayerViewController;
 @property (nonatomic, strong) UIView *disPlayView;
 @property (nonatomic, strong) NSMutableArray *constraintList;
 @property (nonatomic, strong) AJMediaPlayRequest *playRequest;
 @property (nonatomic, strong) NSArray *videoInfoArr;
-@property(nonatomic,strong)LearningPlayControlView *ctrView;
-@property(nonatomic,strong)UIButton *nextBtn;
-@property(nonatomic,strong)NSMutableArray *videoIdsArr;
+@property (nonatomic, strong) LearningPlayControlView *ctrView;
+@property (nonatomic, strong) UIButton *nextBtn;
+@property (nonatomic, strong) NSMutableArray *videoIdsArr;
 @property (nonatomic, strong) NSArray *updateNextVideoArr;//超出原有数组后请求的
 
 @end
 
 @implementation LearningVideoPlayVC
+#pragma mark - View Life Cycle
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewDidDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
--(void)viewWillDisappear:(BOOL)animated{
+-(void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     if (self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentPlaying||self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentLoading||self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentInit||self.mediaPlayerViewController.currentMediaPlayerState == AJMediaPlayerStateContentBuffering) {
         [self.mediaPlayerViewController stop];
     }
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     _videoInfoArr = [NSArray array];
     _videoIdsArr = [NSMutableArray array];
@@ -77,10 +85,51 @@
 
     _currentPlayVideoIndex = [_videoIdsArr indexOfObject:_videoId];;
     [self requestSingleVideoInfoWith:_videoId];
-
 }
 
--(void)requestSingleVideoInfoWith:(NSString *)videoStr{
+- (void)dealloc
+{
+    [self resignFullScreen];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Responder Methods
+- (void)nextPlay
+{
+    _currentPlayVideoIndex ++;
+    if (_currentPlayVideoIndex<_videoIdsArr.count) {
+        NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
+        [self requestSingleVideoInfoWith:videoid];
+    }else if(_currentPlayVideoIndex>=_videoIdsArr.count && _videoIdsArr.count<=_pageCount){
+        //请求下一组数据http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
+        _currentIndex ++;
+        [CommonRequest requstPath:[NSString stringWithFormat:@"%@/%@%@%zd",kvideoListPath,_categoryID,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+            [self dealWithJason:jsonDict];
+            
+        } failure:^(CommonRequest *request, NSError *error) {
+            
+        }];
+        
+    }else{
+        [CommonLoading showTips:@"没有更多视频了"];
+    }
+}
+
+//超出原有数组的下一个数据处理
+-(void)dealWithJason:(id )dic
+{
+    _updateNextVideoArr = [VideoLearningUnitModel modelDealDataFromWithDic:dic];
+    VideoLearningUnitModel *model = _updateNextVideoArr[0];
+    [self requestSingleVideoInfoWith:model.videos[0][@"id"]];
+}
+
+- (void)requestSingleVideoInfoWith:(NSString *)videoStr
+{
     [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@",kvideoSinglePath,videoStr] loadingDic:@{kLoadingType : @(RLT_None), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithSingleVideoData:jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {
@@ -88,7 +137,8 @@
     }];
 }
 
--(void)dealWithSingleVideoData:(id )dic{
+- (void)dealWithSingleVideoData:(id)dic
+{
     _videoInfoArr = [VideoSingleInfoModel modelDealDataFromWithDic:dic];
     if (_isOffsideHard!=nil) {
         for (VideoSingleInfoModel *model in _videoInfoArr) {
@@ -110,19 +160,6 @@
 }
 
 #pragma mark - FullScreen
-- (void)showFullScreen
-{
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        int val = UIInterfaceOrientationLandscapeRight;
-        [invocation setArgument:&val atIndex:2];
-        [invocation invoke];
-    }
-}
-
 - (void)resignFullScreen
 {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
@@ -154,13 +191,17 @@
     self.mediaPlayerViewController.isAddtionView = YES;
     [self.mediaPlayerViewController showPlaybackControlsWhenPlayEnd];
 }
-- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController {
+
+- (void)mediaPlayerViewControllerWillDismiss:(AJMediaPlayerViewController *)mediaPlayerViewController
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
     });
 }
+
 //播放器控制栏即将出现
-- (void)mediaPlayerViewControllerPlaybackControlsWillAppear:(AJMediaPlayerViewController *)mediaPlayerViewController{
+- (void)mediaPlayerViewControllerPlaybackControlsWillAppear:(AJMediaPlayerViewController *)mediaPlayerViewController
+{
     _ctrView.hidden = NO;
     if (_currentPlayVideoIndex >= _pageCount-1) {
         if (_nextBtn==nil) {
@@ -171,11 +212,14 @@
     _nextBtn.hidden = NO;
     }
 }
+
 //播放器控制栏已经消失
-- (void)mediaPlayerViewControllerPlaybackControlsDidDisappear:(AJMediaPlayerViewController *)mediaPlayerViewController{
+- (void)mediaPlayerViewControllerPlaybackControlsDidDisappear:(AJMediaPlayerViewController *)mediaPlayerViewController
+{
     _ctrView.hidden = YES;
     _nextBtn.hidden = YES;
 }
+
 #pragma mark - UIViewControllerRotation
 - (BOOL)shouldAutorotate
 {
@@ -297,7 +341,8 @@
     return _ctrView;
 }
 
--(UIButton *)nextBtn{
+- (UIButton *)nextBtn
+{
     if (!_nextBtn) {
         _nextBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 70, 30)];
         _nextBtn.right = kScreenWidth-10;
@@ -310,40 +355,5 @@
     }
     return _nextBtn;
 }
--(void)nextPlay{
-    _currentPlayVideoIndex ++;
-    if (_currentPlayVideoIndex<_videoIdsArr.count) {
-        NSString *videoid = [NSString stringWithFormat:@"%@",_videoIdsArr[_currentPlayVideoIndex]];
-        [self requestSingleVideoInfoWith:videoid];
-    }else if(_currentPlayVideoIndex>=_videoIdsArr.count && _videoIdsArr.count<=_pageCount){
-    //请求下一组数据http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
-        _currentIndex ++;
-        [CommonRequest requstPath:[NSString stringWithFormat:@"%@/%@%@%zd",kvideoListPath,_categoryID,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
-            [self dealWithJason:jsonDict];
-            
-        } failure:^(CommonRequest *request, NSError *error) {
-            
-        }];
-        
-    }else{
-        [CommonLoading showTips:@"没有更多视频了"];
-    }
-}
-//超出原有数组的下一个数据处理
--(void)dealWithJason:(id )dic{
-    _updateNextVideoArr = [VideoLearningUnitModel modelDealDataFromWithDic:dic];
-    VideoLearningUnitModel *model = _updateNextVideoArr[0];
-    [self requestSingleVideoInfoWith:model.videos[0][@"id"]];
-
-}
--(void)dealloc{
-    [self resignFullScreen];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end

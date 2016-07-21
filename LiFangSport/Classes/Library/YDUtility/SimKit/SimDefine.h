@@ -119,6 +119,8 @@ Stuff\
 #define SECOND_HOUR     (60 * SECOND_MINUTE)
 #define SECOND_DAY      (24 * SECOND_HOUR)
 
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;   //  weak self
+
 //Block
 #define Weak(__Obj__) weak_##__Obj__
 #define DefineWeak(__Obj__) __weak typeof(__Obj__) Weak(__Obj__) = __Obj__

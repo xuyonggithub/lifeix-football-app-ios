@@ -58,6 +58,7 @@ static NSData *kPNGSignatureData = nil;
     if (self.closeBc) {
         self.closeBc();
     }
+    [self removeFromSuperview];
 }
 
 -(void)addSubviewOfDECISIONType:(VideoSingleInfoModel *)model {

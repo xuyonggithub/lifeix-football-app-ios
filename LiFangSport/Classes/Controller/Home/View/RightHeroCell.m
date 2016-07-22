@@ -27,13 +27,14 @@
 -(void)createUI{
     if (!self.picView) {
         _picView = [[UIImageView alloc]initWithFrame:self.bounds];
+        _picView.height = self.height - 15;
         [self addSubview:_picView];
     }
     if (!self.nameLab) {
         _nameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 85, self.bounds.size.width, 15)];
         _nameLab.backgroundColor = [UIColor whiteColor];
         _nameLab.textAlignment = NSTextAlignmentCenter;
-        _nameLab.textColor = [UIColor blackColor];
+        _nameLab.textColor = HEXRGBCOLOR(0x353d46);
         _nameLab.font = [UIFont systemFontOfSize:12];
         [self addSubview:_nameLab];
     }

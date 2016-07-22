@@ -15,12 +15,13 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         self.bgImgView = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.bgImgView.height = self.height - 18;
         self.bgImgView.userInteractionEnabled = YES;
         self.bgImgView.contentMode = UIViewContentModeScaleAspectFill;
         self.bgImgView.clipsToBounds = YES;
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 18, self.width, 18)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.textColor = [UIColor blackColor];
+        self.titleLabel.textColor = HEXRGBCOLOR(0x353d46);
         self.titleLabel.font = [UIFont systemFontOfSize:8];
         self.titleLabel.backgroundColor = HEXRGBCOLOR(0xffffff);
 //        self.titleLabel.alpha = 0.8;

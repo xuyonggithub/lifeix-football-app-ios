@@ -79,7 +79,7 @@
 
 }
 - (void)updateRequest:(NSNotification *)noti {
-    
+        
     NSDictionary *dic = [NSDictionary dictionary];
     dic = noti.userInfo;
     _kidStr = dic[@"khomeKidNotiFicationStr"];
@@ -309,12 +309,13 @@
     
 
 }
-#pragma mark-webviewdelegate
+#pragma mark-webviewdelegate  
+//document.body.offsetHeight
 -(void)webViewDidFinishLoad:(UIWebView*)webView{
-    CGFloat webViewHeight=[[webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]floatValue];
+    CGFloat webViewHeight=[[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"]floatValue];
     CGRect newFrame=webView.frame;
-    newFrame.size.height=webViewHeight+10;
-    centerBannerView.height = webViewHeight+35+10;
+    newFrame.size.height=webViewHeight;
+    centerBannerView.height = webViewHeight+35;
     webView.frame=newFrame;
     _centerTableview.tableHeaderView = centerBannerView;
 
@@ -473,9 +474,9 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (IPHONE_5||IPHONE_4) {
-        return CGSizeMake(85,100);
+        return CGSizeMake(85,100 + 15);
     }else{
-        return CGSizeMake(110*kScreenRatioBase6Iphone,130*kScreenRatioBase6Iphone);
+        return CGSizeMake(110*kScreenRatioBase6Iphone,130*kScreenRatioBase6Iphone + 15);
     }
 }
 

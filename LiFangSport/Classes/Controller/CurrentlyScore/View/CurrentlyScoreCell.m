@@ -10,8 +10,8 @@
 #import "UIImageView+WebCache.h"
 #define kCurrentlyScoreCellPicHeaderPath  @"http://roi.skst.cn/logo/"
 @interface CurrentlyScoreCell ()
-@property(nonatomic,strong)UIImageView *picView;
-@property(nonatomic,strong)UILabel *titleLab;
+@property(nonatomic,strong)UIImageView *picView; // 标题
+//@property(nonatomic,strong)UILabel *titleLab;
 @property(nonatomic,strong)UILabel *subTitleLab;
 @property(nonatomic,strong)UIImageView *hostTeamFlagView;
 @property(nonatomic,strong)UIImageView *awayTeamFlagView;
@@ -19,7 +19,7 @@
 @property(nonatomic,strong)UILabel *awayTeamNameLab;
 @property(nonatomic,strong)NSDictionary *weekDic;
 @property(nonatomic,strong)NSDictionary *monthDic;
-@property(nonatomic,strong)UILabel *normalScoreLab;
+@property(nonatomic,strong)UILabel *normalScoreLab; //比分 0-0
 @property(nonatomic,strong)UIButton *gameStatusBtn;
 
 @end
@@ -34,20 +34,26 @@
     return self;
 }
 -(void)initSubviews{
-    _picView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    line.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
+    [self addSubview:line];
+    
+    _picView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 110)/2, 0, 110, 20)];
     [self addSubview:_picView];
-    _picView.image = [UIImage imageNamed:@"leftswitchcellpic"];
-    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, kScreenWidth, 30)];
-    [self addSubview:_titleLab];
+    _picView.image = [UIImage imageNamed:@"subtitle"];
+    
+//    _titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, kScreenWidth, 30)];
+//    [self addSubview:_titleLab];
     _subTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-    _subTitleLab.top = _titleLab.bottom-3;
+//    _subTitleLab.top = _titleLab.bottom-3;
     [self addSubview:_subTitleLab];
-    _titleLab.textColor = kBlackColor;
-    _subTitleLab.textColor = kBlackColor;
-    _titleLab.textAlignment = NSTextAlignmentCenter;
+//    _titleLab.textColor = kBlackColor;
+    _subTitleLab.textColor = HEXRGBCOLOR(0x666666);
+//    _titleLab.textAlignment = NSTextAlignmentCenter;
     _subTitleLab.textAlignment = NSTextAlignmentCenter;
-    _titleLab.font = [UIFont systemFontOfSize:16];
-    _subTitleLab.font = [UIFont systemFontOfSize:12];
+//    _titleLab.font = [UIFont systemFontOfSize:16];
+    
+    _subTitleLab.font = [UIFont systemFontOfSize:11];
     _hostTeamFlagView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, 50, 50)];
     [self addSubview:_hostTeamFlagView];
     
@@ -57,7 +63,7 @@
     _hostTeamFlagView.contentMode = UIViewContentModeScaleAspectFit;
     _awayTeamFlagView.contentMode = UIViewContentModeScaleAspectFit;
 
-    _titleLab.textAlignment = NSTextAlignmentCenter;
+//    _titleLab.textAlignment = NSTextAlignmentCenter;
     _subTitleLab.textAlignment = NSTextAlignmentCenter;
     _hostTeamFlagView.top = _picView.bottom;
     _awayTeamFlagView.top = _hostTeamFlagView.top;
@@ -142,7 +148,7 @@
     NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model.start_time]];
     NSString *dataStr = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
     
-    _titleLab.text = dataStr;
+//    _titleLab.text = dataStr;
     NSString *timeStr = [NSString stringWithFormat:@"%@ %@",[dateTimeArr[3] substringToIndex:5],model.cup_name];
     _subTitleLab.text = timeStr;
     

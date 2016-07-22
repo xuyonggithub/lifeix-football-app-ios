@@ -24,7 +24,9 @@
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,strong)NSString *startStr;
 @property(nonatomic,strong)NSString *endStr;
-
+@property(nonatomic,strong)NSMutableArray *dataSourceArray;
+@property(nonatomic,strong)NSDictionary *weekDic;
+@property(nonatomic,strong)NSDictionary *monthDic;
 @end
 
 @implementation CurrentlyScoreVC
@@ -57,7 +59,28 @@
 
 -(void)dealWithData:(id )dic isHeaderRefresh:(BOOL)isHeaderRefresh{
     [self.dataArray removeAllObjects];
-    self.dataArray = [CurrentlyScoreModel arrayOfModelsFromDictionaries:dic[@"data"][@"contests"]];
+    self.dataSourceArray = [CurrentlyScoreModel arrayOfModelsFromDictionaries:dic[@"data"][@"contests"]];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:_dataSourceArray];
+    for(int i = 0; i < array.count; i++){
+        CurrentlyScoreModel *model = array[i];
+        NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model.start_time]];
+        NSString *dataStr = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
+        NSMutableArray *tempArray = [@[] mutableCopy];
+        [tempArray addObject:model];
+        
+        for(int j = i + 1; j < array.count; j++){
+            CurrentlyScoreModel *model1 = array[j];
+            NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model1.start_time]];
+            NSString *dataStr1 = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
+            if([dataStr1 isEqualToString:dataStr]){
+                [tempArray addObject:model1];
+                [array removeObjectAtIndex:j];
+                j--;
+            }
+        }
+        [self.dataArray addObject:tempArray];
+    }
+    
     if (isHeaderRefresh) {
         [self.kTableview ins_endPullToRefresh];
 
@@ -69,9 +92,33 @@
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    NSLog(@"分区：%lu", (unsigned long)_dataArray.count);
+    return self.dataArray.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    NSArray *arr = self.dataArray[section];
+    return arr.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+    titleLabel.backgroundColor = HEXRGBCOLOR(0xf1f1f1);
+    NSArray *arr = self.dataArray[section];
+    CurrentlyScoreModel *model = arr[0];
+    NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model.start_time]];
+    NSString *dataStr = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
+    titleLabel.text = dataStr;
+    titleLabel.font = [UIFont systemFontOfSize:13];
+    titleLabel.textColor = HEXRGBCOLOR(0x666666);
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    return titleLabel;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,7 +130,8 @@
         cell = [[CurrentlyScoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    CurrentlyScoreModel *model = self.dataArray[indexPath.row];
+    NSArray *arr = self.dataArray[indexPath.section];
+    CurrentlyScoreModel *model = arr[indexPath.row];
     cell.model = model;
     return cell;
 }
@@ -102,7 +150,7 @@
         _kTableview.delegate = self;
         _kTableview.dataSource = self;
         _kTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _kTableview.rowHeight = 130;
+        _kTableview.rowHeight = 100;
         _kTableview.backgroundColor= [UIColor whiteColor];
     }
     return _kTableview;
@@ -112,6 +160,13 @@
         _dataArray = [NSMutableArray new];
     }
     return _dataArray;
+}
+
+-(NSMutableArray *)dataSourceArray{
+    if (!_dataSourceArray) {
+        _dataSourceArray = [NSMutableArray new];
+    }
+    return _dataSourceArray;
 }
 
 -(NSString *)getOneDayDate:(NSInteger)dateIndex{
@@ -167,6 +222,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+// 解析数据工具
+-(NSDictionary *)weekDic{
+    NSDictionary* dic = @{@"Mon":@"周一",@"Tue":@"周二",@"Wed":@"周三",@"Thu":@"周四",@"Fri":@"周五",@"Sat":@"周六",@"Sun":@"周日"};
+    if (!_weekDic) {
+        _weekDic = [[NSDictionary alloc]initWithDictionary:dic];
+    }
+    return _weekDic;
+}
+-(NSDictionary *)monthDic{
+    NSDictionary* monthDic = @{@"Jan":@"01",@"Feb":@"02",@"Mar":@"03",@"Apr":@"04",@"May":@"05",@"Jun":@"06",@"Jul":@"07",@"Aug":@"08",@"Sep":@"09",@"Oct":@"10",@"Nov":@"11",@"Dec":@"12"};
+    if (_monthDic==nil) {
+        _monthDic = [[NSDictionary alloc]initWithDictionary:monthDic];
+    }
+    return _monthDic;
+}
 
+-(NSArray *)dateTimeArrFromOfStr:(NSString *)str{
+    NSArray* ndateTimeArr = [str componentsSeparatedByString:@" "];
+    return ndateTimeArr;
+}
 
 @end

@@ -96,12 +96,12 @@
 
 -(void)dealWithCateData:(id)jsonDict{
     NSArray *jsonArr = jsonDict;
-    NSDictionary *dict = [jsonArr objectAtIndex:1];
+//    NSDictionary *dict = [jsonArr objectAtIndex:1];
     _selectedTitleArr = [NSMutableArray array];
     _selectedDataArr = [NSMutableArray array];
     //分组
-    NSArray *a = [dict objectForKey:@"referees"];
-    if(a.count != 0){
+//    NSArray *a = [dict objectForKey:@"referees"];
+    if(jsonArr.count > 1){
         for(NSDictionary *dic in jsonArr){
             [_selectedTitleArr addObject:[dic objectForKey:@"categoryName"]];
             NSArray *referees = [dic objectForKey:@"referees"];

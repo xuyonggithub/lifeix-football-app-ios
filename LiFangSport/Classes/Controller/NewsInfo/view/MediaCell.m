@@ -45,11 +45,11 @@
         self.titleLabel.textColor = kBlackColor;
         [bottomView addSubview:self.titleLabel];
         
-        self.cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(bottomView.width - 49, 5, 35, 18)];
+        self.cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 45 - 25/2, (SCREEN_WIDTH - 25) / 2.0 + 10 - 25/4, 45, 25/2)];
         [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:8]];
         self.cateLabel.textColor = HEXRGBCOLOR(0xffffff);
         self.cateLabel.textAlignment = NSTextAlignmentCenter;
-        [bottomView addSubview:self.cateLabel];
+        [self.contentView addSubview:self.cateLabel];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }

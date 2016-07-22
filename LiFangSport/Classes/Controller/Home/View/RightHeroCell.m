@@ -31,9 +31,9 @@
     }
     if (!self.nameLab) {
         _nameLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 85, self.bounds.size.width, 15)];
-        _nameLab.backgroundColor = [UIColor blackColor];
+        _nameLab.backgroundColor = [UIColor whiteColor];
         _nameLab.textAlignment = NSTextAlignmentCenter;
-        _nameLab.textColor = [UIColor whiteColor];
+        _nameLab.textColor = [UIColor blackColor];
         _nameLab.font = [UIFont systemFontOfSize:12];
         [self addSubview:_nameLab];
     }

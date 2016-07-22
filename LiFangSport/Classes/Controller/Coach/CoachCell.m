@@ -20,10 +20,10 @@
         self.bgImgView.clipsToBounds = YES;
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 18, self.width, 18)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.textColor = HEXRGBCOLOR(0xffffff);
+        self.titleLabel.textColor = [UIColor blackColor];
         self.titleLabel.font = [UIFont systemFontOfSize:8];
-        self.titleLabel.backgroundColor = [UIColor blackColor];
-        self.titleLabel.alpha = 0.8;
+        self.titleLabel.backgroundColor = HEXRGBCOLOR(0xffffff);
+//        self.titleLabel.alpha = 0.8;
         [self addSubview:self.bgImgView];
         [self addSubview:self.titleLabel];
     }

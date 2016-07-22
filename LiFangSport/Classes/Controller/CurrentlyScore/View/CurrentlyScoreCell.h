@@ -12,6 +12,6 @@
 
 @property(nonatomic,strong)CurrentlyScoreModel *model;
 @property(nonatomic,strong)NSString *leftSubtitlePrifxStr;
-@property(nonatomic,strong)UIImageView *likeView;
+@property(nonatomic,strong)UIImageView *likeView; //VS图标
 
 @end

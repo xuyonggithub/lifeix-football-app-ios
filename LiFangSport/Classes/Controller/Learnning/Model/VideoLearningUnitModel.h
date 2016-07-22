@@ -11,8 +11,8 @@
 @interface VideoLearningUnitModel : JSONModel
 @property(nonatomic,strong)NSString<Optional> *KID;
 @property(nonatomic,strong)NSString<Optional> *title;
-@property(nonatomic,assign)NSInteger type;
-@property(nonatomic,strong)NSArray<Optional> *videos;
+//@property(nonatomic,assign)NSInteger type;
+@property(nonatomic,strong)NSDictionary<Optional> *video;
 
 +(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic;
 

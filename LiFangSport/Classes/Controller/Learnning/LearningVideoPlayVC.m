@@ -77,7 +77,7 @@
     self.playControlItems = [NSMutableArray arrayWithCapacity:0];
     self.videoIdsArr = [NSMutableArray arrayWithCapacity:0];
     for (VideoLearningUnitModel *mod in _videosArr) {
-        NSString *str = [NSString stringWithFormat:@"%@",mod.videos[0][@"id"]];
+        NSString *str = [NSString stringWithFormat:@"%@",mod.video[@"id"]];
         [self.videoIdsArr addObject:str];
     }
     
@@ -123,7 +123,7 @@
     }else if(_currentPlayVideoIndex>=self.videoIdsArr.count && self.videoIdsArr.count<=_pageCount){
         //请求下一组数据http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/pages/{index}
         _currentIndex ++;
-        [CommonRequest requstPath:[NSString stringWithFormat:@"%@/%@%@%zd",kvideoListPath,_categoryID,@"/pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+        [CommonRequest requstPath:[NSString stringWithFormat:@"%@/%@%@%zd",kvideoListPath,_categoryID,@"/video_pages/",_currentIndex] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
             [self dealWithJason:jsonDict];
             
         } failure:^(CommonRequest *request, NSError *error) {
@@ -140,7 +140,7 @@
 {
     _updateNextVideoArr = [VideoLearningUnitModel modelDealDataFromWithDic:dic];
     VideoLearningUnitModel *model = _updateNextVideoArr[0];
-    [self requestSingleVideoInfoWith:model.videos[0][@"id"]];
+    [self requestSingleVideoInfoWith:model.video[@"id"]];
 }
 
 - (void)requestSingleVideoInfoWith:(NSString *)videoStr
@@ -163,6 +163,7 @@
     [self toPlayWithAJMediaPlayerItem];
     //操控
     //[self.view addSubview:self.ctrView];
+    [self.playControlItems removeAllObjects];
     
     [self.playControlItems addObject:@"重放"];
     

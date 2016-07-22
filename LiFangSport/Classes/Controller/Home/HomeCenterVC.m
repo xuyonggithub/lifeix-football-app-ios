@@ -127,7 +127,7 @@
     [_centerDataArray removeAllObjects];
     _leftSubtitlePrifxStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"name"]];
     _centerDataArray = [CenterSwitchModel arrayOfModelsFromDictionaries:dic[@"matches"]];
-    _ruleStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"rule"]];
+    _ruleStr = [NSString stringWithFormat:@"%@",dic[@"competitionCategory"][@"ruleHtmlUrl"]];
     for (CenterSwitchModel *model in _centerDataArray) {
         if ([model.group isEqualToString:@"A"]) {
             [_centerAListDataArray addObject:model];
@@ -296,7 +296,9 @@
         webView.scrollView.bounces = NO;
         webView.scrollView.alwaysBounceVertical = NO;
         webView.userInteractionEnabled = NO;
-        [webView loadHTMLString:_ruleStr baseURL:nil];
+        NSURL *url = [NSURL URLWithString:_ruleStr];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
         webView.delegate = self;
         [centerBannerView addSubview:webView];
         centerBannerView.backgroundColor = [UIColor whiteColor];

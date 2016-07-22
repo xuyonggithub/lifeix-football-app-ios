@@ -38,13 +38,11 @@
         self.timeLabel.font = [UIFont systemFontOfSize:7];
         [bottomView addSubview:_timeLabel];
         // 标题
-//        UIImageView *titleBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _bgImgView.bottom, self.bgImgView.width, 35)];
-//        titleBgView.image = [UIImage imageNamed:@"titleBg.jpg"];
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 18, _timeLabel.width, 11)];
         self.titleLabel.font = kBasicBigDetailTitleFont;
         self.titleLabel.textColor = kBlackColor;
         [bottomView addSubview:self.titleLabel];
-        
+        // 分类
         self.cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 45 - 25/2, (SCREEN_WIDTH - 25) / 2.0 + 10 - 25/4, 45, 25/2)];
         [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:8]];
         self.cateLabel.textColor = HEXRGBCOLOR(0xffffff);
@@ -76,19 +74,22 @@
     self.titleLabel.text = media.title;
     self.timeLabel.text = [self timeStampChangeTimeWithTimeStamp:[NSString stringWithFormat:@"%f", media.createTime] timeStyle:@"yyyy-MM-dd HH:mm"];
     if(media.categories.count != 0){
+        [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:8]];
+        self.cateLabel.textColor = HEXRGBCOLOR(0xffffff);
+        self.cateLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:self.cateLabel];
+        
         NSString *cateStr = [media.categories[0] objectForKey:@"name"];
-        if([cateStr isEqualToString:@"男足"]){
-            self.cateLabel.backgroundColor = HEXRGBCOLOR(0xce1126);
-        }else if ([cateStr isEqualToString:@"女足"]){
-            self.cateLabel.backgroundColor = HEXRGBCOLOR(0xe71b64);
-        }else if ([cateStr isEqualToString:@"裁判"]){
-            self.cateLabel.backgroundColor = HEXRGBCOLOR(0x000000);
-        }else if ([cateStr isEqualToString:@"教练"]){
-            self.cateLabel.backgroundColor = HEXRGBCOLOR(0x004c7f);
-        }else{
-            self.cateLabel.backgroundColor = [UIColor grayColor];
-        }
         self.cateLabel.text = cateStr;
+        if(![[media.categories[0] objectForKey:@"color"] isEqual:[NSNull null]]){
+            self.cateLabel.backgroundColor = [self colorWithHexString:[media.categories[0] objectForKey:@"color"]];
+        }else{
+//            self.cateLabel.backgroundColor = kBlackColor;
+        }
+        
+        [self addSubview:_cateLabel];
+    }else{
+        [self.cateLabel removeFromSuperview];
     }
     
 }
@@ -115,6 +116,30 @@
     NSString *strDate = [formatter stringFromDate:date];
     NSString *formatterStr = [strDate stringByReplacingOccurrencesOfString:@"+08:00" withString:@"Z"];
     return formatterStr;
+}
+
+- (UIColor*)colorWithHexString:(NSString*)stringToConvert{
+    if([stringToConvert hasPrefix:@"#"])
+    {
+        stringToConvert = [stringToConvert substringFromIndex:1];
+    }
+    NSScanner *scanner = [NSScanner scannerWithString:stringToConvert];
+    unsigned hexNum;
+    if(![scanner scanHexInt:&hexNum])
+    {
+        return nil;
+    }
+    return[self colorWithRGBHex:hexNum];
+}
+
+- (UIColor *)colorWithRGBHex:(UInt32)hex{
+    int r = (hex >>16) &0xFF;
+    int g = (hex >>8) &0xFF;
+    int b = (hex) &0xFF;
+    return[UIColor colorWithRed:r /255.0f
+                         green:g /255.0f
+                          blue:b /255.0f
+                         alpha:1.0f];
 }
 
 @end

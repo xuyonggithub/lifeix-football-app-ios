@@ -75,7 +75,7 @@
         _offsideTypeHard = nil;
     }
     _categoryID = [NSString stringWithFormat:@"%@",model.KID];
-    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/pages?start=%zd&limit=%zd",kvideodetPath,model.KID,startNum,limitNum] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/video_pages?start=%zd&limit=%zd",kvideodetPath,model.KID,startNum,limitNum] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict isHeaderRefresh:isHeaderRefresh];
         
     } failure:^(CommonRequest *request, NSError *error) {
@@ -219,7 +219,7 @@
     VideoLearningUnitModel *model = _dataArr[indexPath.row];
 
     LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
-    LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.videos[0][@"id"]];
+    LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.video[@"id"]];
     LearningPlayVC.videosArr = [NSArray arrayWithArray:_dataArr];
     LearningPlayVC.pageCount = _pageCount;
     LearningPlayVC.isOffsideHard = _offsideTypeHard;

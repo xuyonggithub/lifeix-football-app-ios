@@ -18,10 +18,10 @@
 //    model.text = dict[@"text"];
 //    model.type = dict[@"type"];
     model.questionId = dict[@"id"];
-    NSArray *videoArray = dict[@"videos"];
-    if ([videoArray isKindOfClass:[NSArray class]] && videoArray.count > 0) {
-        NSDictionary *videoDict = videoArray[0];
-        
+    NSDictionary *videoDict = dict[@"video"];
+//    if ([videoArray isKindOfClass:[NSArray class]] && videoArray.count > 0) {
+//        NSDictionary *videoDict = videoArray[0];
+    
         NSArray *leftArray = videoDict[@"r1"];
         NSMutableArray *leftMutableArray = [NSMutableArray arrayWithCapacity:0];
         NSMutableArray *leftImageMutableArray = [NSMutableArray arrayWithCapacity:0];
@@ -48,7 +48,7 @@
         model.rightQuestionArray = [NSArray arrayWithArray:rightMutableArray];
         
         model.videoPath = videoDict[@"videoPath"];
-    }
+//    }
     
     
 //    id = 5769f022e385fdde342569cb;

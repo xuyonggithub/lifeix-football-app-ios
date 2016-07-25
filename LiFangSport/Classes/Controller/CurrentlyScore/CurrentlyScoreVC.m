@@ -58,27 +58,26 @@
 }
 
 -(void)dealWithData:(id )dic isHeaderRefresh:(BOOL)isHeaderRefresh{
-    [self.dataArray removeAllObjects];
+    NSMutableArray *tmpDataArray = [NSMutableArray arrayWithCapacity:0];
     self.dataSourceArray = [CurrentlyScoreModel arrayOfModelsFromDictionaries:dic[@"data"][@"contests"]];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:_dataSourceArray];
-    for(int i = 0; i < array.count; i++){
-        CurrentlyScoreModel *model = array[i];
+    for(int i = 0; i < self.dataSourceArray.count; i++){
+        CurrentlyScoreModel *model = self.dataSourceArray[i];
         NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model.start_time]];
         NSString *dataStr = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
         NSMutableArray *tempArray = [@[] mutableCopy];
         [tempArray addObject:model];
         
-        for(int j = i + 1; j < array.count; j++){
-            CurrentlyScoreModel *model1 = array[j];
+        for(int j = i + 1; j < self.dataSourceArray.count; j++){
+            CurrentlyScoreModel *model1 = self.dataSourceArray[j];
             NSArray *dateTimeArr = [[NSArray alloc]initWithArray:[self dateTimeArrFromOfStr:model1.start_time]];
             NSString *dataStr1 = [NSString stringWithFormat:@"%@月%@日 %@",[self.monthDic objectForKey:dateTimeArr[1]],dateTimeArr[2],[self.weekDic objectForKey:dateTimeArr[0]]];
             if([dataStr1 isEqualToString:dataStr]){
                 [tempArray addObject:model1];
-                [array removeObjectAtIndex:j];
+                [self.dataSourceArray removeObjectAtIndex:j];
                 j--;
             }
         }
-        [self.dataArray addObject:tempArray];
+        [tmpDataArray addObject:tempArray];
     }
     
     if (isHeaderRefresh) {
@@ -88,6 +87,7 @@
         [self.kTableview ins_endInfinityScroll];
         [self.kTableview ins_endInfinityScrollWithStoppingContentOffset:self.dataArray.count > 0];
     }
+    self.dataArray = tmpDataArray;
     [self.kTableview reloadData];
 }
 
@@ -134,13 +134,6 @@
     CurrentlyScoreModel *model = arr[indexPath.row];
     cell.model = model;
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    CurrentlyScoreModel *model = self.dataArray[indexPath.row];
-
 }
 
 #pragma mark - Getter and Setter

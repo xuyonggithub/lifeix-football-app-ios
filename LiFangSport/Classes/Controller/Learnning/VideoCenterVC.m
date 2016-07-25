@@ -84,8 +84,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VideoListModel *model = _dataArray[indexPath.row];
-    if (model.type == 1) {//视频列表
+    if (model.type == 1 || model.type == 4) {//视频列表
         VideoLearningDetVC *dVC = [[VideoLearningDetVC alloc]init];
+        dVC.learningType = model.type;
         dVC.catsArr = [VideoLearningDetModel arrayOfModelsFromDictionaries:model.cats];
         dVC.title = model.name;
         [self.navigationController pushViewController:dVC animated:YES];

@@ -170,7 +170,6 @@
 		2DD4FCF61D3391CC00CC9C16 /* penalty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DD4FCF21D3391CC00CC9C16 /* penalty@2x.png */; };
 		2DD4FCF71D3391CC00CC9C16 /* penalty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DD4FCF31D3391CC00CC9C16 /* penalty@3x.png */; };
 		2DD6579D1D2562950075F0C8 /* LocalNotiPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6579C1D2562950075F0C8 /* LocalNotiPush.m */; };
-		2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */; };
 		2DDD5A1B1D3895EB0047A0A7 /* C-FheaderLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD5A191D3895EB0047A0A7 /* C-FheaderLogo@2x.png */; };
 		2DDD5A1C1D3895EB0047A0A7 /* C-FheaderLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD5A1A1D3895EB0047A0A7 /* C-FheaderLogo@3x.png */; };
 		2DDD5A1E1D3897680047A0A7 /* leftselecthongsetiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD5A1D1D3897680047A0A7 /* leftselecthongsetiao@2x.png */; };
@@ -335,6 +334,7 @@
 		9C4D6C831D17F4BA00417565 /* LFSimulationCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */; };
 		9C57CA4B1D2616E6002F3C5E /* fastForward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C57CA491D2616E6002F3C5E /* fastForward@2x.png */; };
 		9C57CA4C1D2616E6002F3C5E /* fastReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C57CA4A1D2616E6002F3C5E /* fastReverse@2x.png */; };
+		9C6411171D45B6A600A8B986 /* VideoExerciseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6411161D45B6A600A8B986 /* VideoExerciseModel.m */; };
 		9C658B6D1D1A7D9B0005215D /* LFSimulationCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C658B6C1D1A7D9B0005215D /* LFSimulationCategoryModel.m */; };
 		9C658B6E1D1A87BC0005215D /* loading_00005@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF7C3C1D104A8000B956CA /* loading_00005@2x.png */; };
 		9C93FAE71D1B9A76008BBB3A /* LFSimulationQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C93FAE61D1B9A76008BBB3A /* LFSimulationQuestionCell.m */; };
@@ -671,8 +671,6 @@
 		2DD4FCF31D3391CC00CC9C16 /* penalty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "penalty@3x.png"; sourceTree = "<group>"; };
 		2DD6579B1D2562950075F0C8 /* LocalNotiPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotiPush.h; sourceTree = "<group>"; };
 		2DD6579C1D2562950075F0C8 /* LocalNotiPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotiPush.m; sourceTree = "<group>"; };
-		2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
-		2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
 		2DDD5A191D3895EB0047A0A7 /* C-FheaderLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-FheaderLogo@2x.png"; sourceTree = "<group>"; };
 		2DDD5A1A1D3895EB0047A0A7 /* C-FheaderLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-FheaderLogo@3x.png"; sourceTree = "<group>"; };
 		2DDD5A1D1D3897680047A0A7 /* leftselecthongsetiao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftselecthongsetiao@2x.png"; sourceTree = "<group>"; };
@@ -884,6 +882,8 @@
 		9C4D6C821D17F4BA00417565 /* LFSimulationCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCenterCell.m; sourceTree = "<group>"; };
 		9C57CA491D2616E6002F3C5E /* fastForward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fastForward@2x.png"; sourceTree = "<group>"; };
 		9C57CA4A1D2616E6002F3C5E /* fastReverse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fastReverse@2x.png"; sourceTree = "<group>"; };
+		9C6411151D45B6A600A8B986 /* VideoExerciseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoExerciseModel.h; sourceTree = "<group>"; };
+		9C6411161D45B6A600A8B986 /* VideoExerciseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoExerciseModel.m; sourceTree = "<group>"; };
 		9C658B6B1D1A7D9B0005215D /* LFSimulationCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationCategoryModel.h; sourceTree = "<group>"; };
 		9C658B6C1D1A7D9B0005215D /* LFSimulationCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSimulationCategoryModel.m; sourceTree = "<group>"; };
 		9C93FAE51D1B9A76008BBB3A /* LFSimulationQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSimulationQuestionCell.h; sourceTree = "<group>"; };
@@ -1297,6 +1297,8 @@
 				2D69ACF31D1A5E8E00B5F52D /* VideoSingleInfoModel.m */,
 				2DE0BF501D1D2EBC00FFA297 /* LearningPlayPopDeciModel.h */,
 				2DE0BF511D1D2EBC00FFA297 /* LearningPlayPopDeciModel.m */,
+				9C6411151D45B6A600A8B986 /* VideoExerciseModel.h */,
+				9C6411161D45B6A600A8B986 /* VideoExerciseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1502,8 +1504,6 @@
 		2DDAF8191D1854D0002E5D59 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				2DDAF81A1D1854D0002E5D59 /* VideoPlayerManager.h */,
-				2DDAF81B1D1854D0002E5D59 /* VideoPlayerManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2792,6 +2792,7 @@
 				2D84EA5D1D11688100113404 /* VideoLearningCell.m in Sources */,
 				2D84EA361D10F4EE00113404 /* LeftSwitchModel.m in Sources */,
 				0AA9A6B11D211AE40015786F /* MediaCatePopView.m in Sources */,
+				9C6411171D45B6A600A8B986 /* VideoExerciseModel.m in Sources */,
 				9CAF823C1D190F560025224F /* AJMediaPlayer+Analytics.m in Sources */,
 				2DE2C82B1D0D26CF00310C4C /* ViewController.m in Sources */,
 				2DE2C8791D0D495A00310C4C /* UIWindowAddition.m in Sources */,
@@ -2818,7 +2819,6 @@
 				2DE2C8311D0D27E300310C4C /* main.m in Sources */,
 				2D84EA3F1D10FE6700113404 /* RightHeroCell.m in Sources */,
 				0AC707701D1A8DDB000B2E13 /* PlayerDetailVC.m in Sources */,
-				2DDAF81C1D1854D0002E5D59 /* VideoPlayerManager.m in Sources */,
 				2D8D09B31D0DA032008771AA /* UIFont+Level.m in Sources */,
 				9CAF82591D190F560025224F /* AJMediaPlayerProgressView.m in Sources */,
 				9CE136881D1A4AF60007A22D /* LFNavigationController.m in Sources */,

@@ -16,6 +16,8 @@
 #define kApplicationTop (ABOVE_IOS7 ? 0 : 20)  //App显示，对于屏幕的实际Y坐标。
 #define kAppRenderTop (ABOVE_IOS7 ? 20 : 0)    //View的绘制需要的起始Y坐标
 
+#define LFToString(x)  [NSString stringWithFormat:@"%@", (((!x) || [x isKindOfClass:[NSNull class]]) ? @"" : x)]    //  ToString
+
 #define ALDFullScreenHorizontal(x)      (x * SCREEN_WIDTH/667.0)    //  横屏x比例
 #define ALDFullScreenVertical(y)      (y * SCREEN_HEIGHT/375.0)    //  横屏y比例
 #define LFFullScreenFont(size) [UIFont systemFontOfSize:ALDFullScreenVertical(size)]

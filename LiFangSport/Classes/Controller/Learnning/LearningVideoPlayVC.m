@@ -15,6 +15,7 @@
 #import "LearningPlayPopView.h"
 #import "CommonLoading.h"
 #import "VideoLearningUnitModel.h"
+#import "VideoExerciseModel.h"
 
 #define offsideHard  @"offsideTypeHard"
 
@@ -41,7 +42,6 @@
 @property (nonatomic, strong) UITextView *contentTextView;
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) NSMutableArray *videoIdsArr;
-@property (nonatomic, strong) NSArray *updateNextVideoArr;//超出原有数组后请求的
 
 @end
 
@@ -138,8 +138,7 @@
 //超出原有数组的下一个数据处理
 -(void)dealWithJason:(id )dic
 {
-    _updateNextVideoArr = [VideoLearningUnitModel modelDealDataFromWithDic:dic];
-    VideoLearningUnitModel *model = _updateNextVideoArr[0];
+    VideoLearningUnitModel *model = [[VideoLearningUnitModel alloc] initWithDictionary:dic error:nil];
     [self requestSingleVideoInfoWith:model.video[@"id"]];
 }
 

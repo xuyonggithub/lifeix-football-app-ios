@@ -8,6 +8,8 @@
 
 #import "VideoLearningDetCell.h"
 #import "UIImageView+WebCache.h"
+#import "VideoLearningUnitModel.h"
+#import "VideoExerciseModel.h"
 
 @interface VideoLearningDetCell (){
     UIImageView *playView;
@@ -49,17 +51,23 @@
     playView.center = _picView.center;
 //    playView.centerY = _picView.centerY-8;
     [self addSubview:playView];
-    playView.hidden = YES;
 }
 -(void)layoutSubviews{
     _nameLab.bottom = self.height;
 }
 
--(void)setModel:(VideoLearningUnitModel *)model{
+- (void)refreshContentWithVideoLearningUnitModel:(VideoLearningUnitModel *)model
+{
     NSString *picstr = [NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.video[@"imagePath"]];
     [_picView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"videosingleplacehoder")];
     _nameLab.text = model.title;
-    playView.hidden = NO;
+}
+
+- (void)refreshContentWithVideoExerciseModel:(VideoExerciseModel *)model
+{
+    NSString *picstr = [NSString stringWithFormat:@"%@%@",kQiNiuHeaderPathPrifx,model.image];
+    [_picView sd_setImageWithURL:[NSURL URLWithString:picstr] placeholderImage:UIImageNamed(@"videosingleplacehoder")];
+    _nameLab.text = model.title;
 }
 
 @end

@@ -11,6 +11,7 @@
 
 @interface LearningVideoPlayVC : BaseVC
 
+@property (nonatomic, assign) NSInteger learningType;
 @property (nonatomic, copy) NSString *videoId;
 @property (nonatomic, strong) NSArray *videosArr;
 @property (nonatomic, assign) NSInteger pageCount;

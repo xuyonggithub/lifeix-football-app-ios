@@ -1,14 +1,14 @@
 //
-//  VideoLearningUnitModel.m
+//  VideoExerciseModel.m
 //  LiFangSport
 //
-//  Created by 张毅 on 16/6/21.
+//  Created by Zhangqibin on 16/7/25.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
 
-#import "VideoLearningUnitModel.h"
+#import "VideoExerciseModel.h"
 
-@implementation VideoLearningUnitModel
+@implementation VideoExerciseModel
 
 + (JSONKeyMapper *)keyMapper
 {

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VideoLearningUnitModel.h"
+
+@class VideoLearningUnitModel;
+@class VideoExerciseModel;
 
 @interface VideoLearningDetCell : UICollectionViewCell
-@property(nonatomic,strong)VideoLearningUnitModel *model;
+
+- (void)refreshContentWithVideoLearningUnitModel:(VideoLearningUnitModel *)model;
+- (void)refreshContentWithVideoExerciseModel:(VideoExerciseModel *)model;
 
 @end

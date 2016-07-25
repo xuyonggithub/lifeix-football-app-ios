@@ -74,24 +74,13 @@
     self.titleLabel.text = media.title;
     self.timeLabel.text = [self timeStampChangeTimeWithTimeStamp:[NSString stringWithFormat:@"%f", media.createTime] timeStyle:@"yyyy-MM-dd HH:mm"];
     if(media.categories.count != 0){
-        [self.cateLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:8]];
-        self.cateLabel.textColor = HEXRGBCOLOR(0xffffff);
-        self.cateLabel.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:self.cateLabel];
-        
-        NSString *cateStr = [media.categories[0] objectForKey:@"name"];
-        self.cateLabel.text = cateStr;
-        if(![[media.categories[0] objectForKey:@"color"] isEqual:[NSNull null]]){
-            self.cateLabel.backgroundColor = [self colorWithHexString:[media.categories[0] objectForKey:@"color"]];
-        }else{
-//            self.cateLabel.backgroundColor = kBlackColor;
-        }
-        
-        [self addSubview:_cateLabel];
+        NSDictionary *category = media.categories[0];
+        self.cateLabel.text = LFToString(category[@"name"]);
+        self.cateLabel.backgroundColor = [self colorWithHexString:LFToString(category[@"color"])];
+        self.cateLabel.hidden = self.cateLabel.text.length == 0;
     }else{
-        [self.cateLabel removeFromSuperview];
+        self.cateLabel.hidden = YES;
     }
-    
 }
 
 /**
@@ -119,6 +108,9 @@
 }
 
 - (UIColor*)colorWithHexString:(NSString*)stringToConvert{
+    if (stringToConvert.length == 0) {
+        return nil;
+    }
     if([stringToConvert hasPrefix:@"#"])
     {
         stringToConvert = [stringToConvert substringFromIndex:1];

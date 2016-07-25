@@ -5,15 +5,15 @@
 //  Created by 张毅 on 16/6/21.
 //  Copyright © 2016年 zhangyi. All rights reserved.
 //
+//  规则培训视频Model
 
 #import <JSONModel/JSONModel.h>
 
 @interface VideoLearningUnitModel : JSONModel
-@property(nonatomic,strong)NSString<Optional> *KID;
-@property(nonatomic,strong)NSString<Optional> *title;
-//@property(nonatomic,assign)NSInteger type;
-@property(nonatomic,strong)NSDictionary<Optional> *video;
 
-+(NSArray *)modelDealDataFromWithDic:(NSDictionary *)dic;
+@property(nonatomic, copy) NSString<Optional> *KID;
+@property(nonatomic, copy) NSString<Optional> *title;
+//@property(nonatomic,assign)NSInteger type;
+@property(nonatomic, strong) NSDictionary<Optional> *video;
 
 @end

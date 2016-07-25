@@ -11,10 +11,10 @@
 #import "UIBarButtonItem+SimAdditions.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
-#import "VideoPlayerManager.h"
 #import "CommonRequest.h"
 #import "VideoLearningDetModel.h"
 #import "VideoLearningUnitModel.h"
+#import "VideoExerciseModel.h"
 #import "CategoryView.h"
 #import "UIScrollView+INSPullToRefresh.h"
 #import "VideoSingleInfoModel.h"
@@ -75,7 +75,10 @@
         _offsideTypeHard = nil;
     }
     _categoryID = [NSString stringWithFormat:@"%@",model.KID];
-    [CommonRequest requstPath:[NSString stringWithFormat:@"%@%@/video_pages?start=%zd&limit=%zd",kvideodetPath,model.KID,startNum,limitNum] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
+    
+    http://api.c-f.com:8000/football/elearning/training_categories/{categoryId}/exercise_pages
+    
+    [CommonRequest requstPath:self.learningType == 4 ? [NSString stringWithFormat:@"elearning/training_categories/%@/exercise_pages?start=%zd&limit=%zd",model.KID,startNum,limitNum] : [NSString stringWithFormat:@"%@%@/video_pages?start=%zd&limit=%zd",kvideodetPath,model.KID,startNum,limitNum] loadingDic:@{kLoadingType : @(RLT_OverlayLoad), kLoadingView : (self.view)} queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithJason:jsonDict isHeaderRefresh:isHeaderRefresh];
         
     } failure:^(CommonRequest *request, NSError *error) {
@@ -87,7 +90,7 @@
     }];
 }
 -(void)dealWithJason:(id )dic isHeaderRefresh:(BOOL)isHeaderRefresh{
-    NSArray *dataList = [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
+    NSArray *dataList = self.learningType == 4 ? [VideoExerciseModel arrayOfModelsFromDictionaries:dic] : [VideoLearningUnitModel arrayOfModelsFromDictionaries:dic];
     if (isHeaderRefresh) {
         [_videoCollectionview ins_endPullToRefresh];
         [_dataArr removeAllObjects];
@@ -193,9 +196,15 @@
     static NSString *identify = kvideoCollectionviewcellid;
     VideoLearningDetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
-    if (_dataArr.count) {
-        cell.model = _dataArr[indexPath.item];
+    if (self.learningType == 4) {
+        [cell refreshContentWithVideoExerciseModel:self.dataArr[indexPath.row]];
+    }else {
+        [cell refreshContentWithVideoLearningUnitModel:self.dataArr[indexPath.row]];
     }
+//    if (_dataArr.count) {
+//        cell.model = _dataArr[indexPath.item];
+//    }
+    
     return cell;
 }
 #pragma mark --UICollectionViewDelegateFlowLayout
@@ -216,20 +225,27 @@
 #pragma mark --UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    VideoLearningUnitModel *model = _dataArr[indexPath.row];
-
-    LearningVideoPlayVC *LearningPlayVC = [[LearningVideoPlayVC alloc] init];
-    LearningPlayVC.videoId = [NSString stringWithFormat:@"%@",model.video[@"id"]];
-    LearningPlayVC.videosArr = [NSArray arrayWithArray:_dataArr];
-    LearningPlayVC.pageCount = _pageCount;
-    LearningPlayVC.isOffsideHard = _offsideTypeHard;
-    if (_pageCount<limitNum) {
-    LearningPlayVC.currentIndex = _pageCount;
-    }else{
-    LearningPlayVC.currentIndex = startNum+limitNum;
+    LearningVideoPlayVC *learningPlayVC = [[LearningVideoPlayVC alloc] init];
+    
+    JSONModel *model = _dataArr[indexPath.row];
+    if ([model isKindOfClass:[VideoLearningUnitModel class]]) {
+        VideoLearningUnitModel *unitModel = (VideoLearningUnitModel *)model;
+        learningPlayVC.videoId = [NSString stringWithFormat:@"%@",unitModel.video[@"id"]];
+    }else if ([model isKindOfClass:[VideoExerciseModel class]]) {
+        VideoExerciseModel *exerciseModel = (VideoExerciseModel *)model;
+        learningPlayVC.videoId = [NSString stringWithFormat:@"%@",exerciseModel.exercise[@"id"]];
     }
-    LearningPlayVC.categoryID = _categoryID;
-    [self.navigationController pushViewController:LearningPlayVC animated:YES];
+
+    learningPlayVC.videosArr = [NSArray arrayWithArray:_dataArr];
+    learningPlayVC.pageCount = _pageCount;
+    learningPlayVC.isOffsideHard = _offsideTypeHard;
+    if (_pageCount<limitNum) {
+    learningPlayVC.currentIndex = _pageCount;
+    }else{
+    learningPlayVC.currentIndex = startNum+limitNum;
+    }
+    learningPlayVC.categoryID = _categoryID;
+    [self.navigationController pushViewController:learningPlayVC animated:YES];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

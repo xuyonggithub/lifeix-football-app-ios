@@ -66,13 +66,22 @@
     }
     VideoLearningDetModel *model = [self.newdataArr objectAtIndex:indexPath.row];
     cell.titleLab.text = model.name;
+    cell.titleLab.numberOfLines = 0;
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = HEXRGBCOLOR(0x951c22);
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    VideoLearningDetModel *model = [self.newdataArr objectAtIndex:indexPath.row];
+    NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize: 11] forKey:NSFontAttributeName];
+    CGRect contnentRect = [model.name boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
+    CGSize size = contnentRect.size;
+    if(size.width < 140){
+        return 44;
+    }
+    int num = size.width / 140 + 1;
+    return 44 + size.height/num*(num-1);
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

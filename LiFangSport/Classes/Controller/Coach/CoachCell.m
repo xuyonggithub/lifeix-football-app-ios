@@ -22,7 +22,7 @@
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 18, self.width, 18)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.textColor = HEXRGBCOLOR(0x353d46);
-        self.titleLabel.font = [UIFont systemFontOfSize:8];
+        self.titleLabel.font = [UIFont systemFontOfSize:11];
         self.titleLabel.backgroundColor = HEXRGBCOLOR(0xffffff);
 //        self.titleLabel.alpha = 0.8;
         [self addSubview:self.bgImgView];

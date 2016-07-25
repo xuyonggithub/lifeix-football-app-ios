@@ -44,6 +44,7 @@
         [self.likeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
         [self.likeBtn setImage:[UIImage imageNamed:@"fired.png"] forState:UIControlStateSelected];
         [self.likeBtn setTitleColor:HEXRGBCOLOR(0x5f5f5f) forState:UIControlStateNormal];
+//        self.likeBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
         [self.likeBtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         self.likeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:self.likeBtn];

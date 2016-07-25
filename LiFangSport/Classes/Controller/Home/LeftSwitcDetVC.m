@@ -19,6 +19,7 @@
     [super viewDidLoad];
     _bwebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _bwebView.delegate = self;
+    _bwebView .backgroundColor = kwhiteColor;
     NSURL *url = [NSURL URLWithString:_urlStr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_bwebView loadRequest:request];

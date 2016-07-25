@@ -217,6 +217,7 @@
     }else{
         if (!_cycleScrollView) {
             _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, kScreenWidth, kScreenWidth*9 / 16.0) imageURLsGroup:imagesURL];
+            _cycleScrollView.backgroundColor = [UIColor whiteColor];
             [self.view addSubview:_cycleScrollView];
             _cycleScrollView.titlesGroup = titleArr;
 

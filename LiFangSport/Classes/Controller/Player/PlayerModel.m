@@ -15,7 +15,7 @@
                                                        @"position": @"position",
                                                        @"avatar": @"avatar",
                                                        @"name": @"name",
-                                                       @"id": @"playerId"
+                                                       @"id": @"playerId",
                                                        }];
 }
 

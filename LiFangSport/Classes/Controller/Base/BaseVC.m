@@ -31,13 +31,13 @@
 #pragma mark - UIBarButtonItem
 - (UIView <INSPullToRefreshBackgroundViewDelegate> *)pullToRefreshViewFromCurrentStyle {
     
-    CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
+    CGRect defaultFrame = CGRectMake(0, 0, 48, 48);
     return [[INSLappsyPullToRefresh alloc] initWithFrame:defaultFrame];
 }
 
 - (UIView <INSAnimatable> *)infinityIndicatorViewFromCurrentStyle {
     
-    CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
+    CGRect defaultFrame = CGRectMake(0, 0, 48, 48);
     return [[INSLappsyInfiniteIndicator alloc] initWithFrame:defaultFrame];
 }
 

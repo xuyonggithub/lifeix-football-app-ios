@@ -79,7 +79,7 @@
 }
 
 -(void)requestData{
-    NSString *urlStr = [NSString stringWithFormat:@"games/players/%@/basic", self.playerId];
+    NSString *urlStr = [NSString stringWithFormat:@"games/players/%@/basic?nationalLevel=%d", self.playerId, self.nationalLevel];
     [CommonRequest requstPath:urlStr loadingDic:nil queryParam:nil success:^(CommonRequest *request, id jsonDict) {
         [self dealWithDic: jsonDict];
     } failure:^(CommonRequest *request, NSError *error) {

@@ -26,6 +26,9 @@
 @property(nonatomic, retain)CategoryView *CategoryView;
 @property(nonatomic, assign)NSInteger selectedIndex;
 
+@property(nonatomic, retain)NSMutableArray *nationalLevelArr;
+@property(nonatomic, retain)NSMutableArray *selectedNationalLevelArr;
+@property(nonatomic, assign)int nationalLevel;
 @end
 
 @implementation PlayerCenterViewController
@@ -37,6 +40,8 @@
     _selectedTitleArr = [NSMutableArray array];
     _categoryNameArr = [NSMutableArray array];
     _playerArr = [NSMutableArray array];
+    _nationalLevelArr = [NSMutableArray array];
+    _selectedNationalLevelArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     [self requestData];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -57,8 +62,10 @@
         NSArray *categoryArr = [dic objectForKey:@"category"];
         NSMutableArray *titleCategoryArr = [NSMutableArray array];
         NSMutableArray *playerArr = [NSMutableArray array];
+        NSMutableArray *nationalLvArr = [NSMutableArray array];
         for(int i = 0; i < categoryArr.count; i++){
             [titleCategoryArr addObject:[categoryArr[i] objectForKey:@"categoryName"]];
+            [nationalLvArr addObject:[categoryArr[i] objectForKey:@"nationalLevel"]];
             NSArray *players = [categoryArr[i] objectForKey:@"players"];
             NSMutableArray *sectionPlayerArr = [NSMutableArray array];
             for(int j = 0; j < players.count; j++){
@@ -69,6 +76,7 @@
             [playerArr addObject:sectionPlayerArr];
         }
         [_categoryNameArr addObject:titleCategoryArr];
+        [_nationalLevelArr addObject:nationalLvArr];
         [_playerArr addObject:playerArr];
     }
     
@@ -81,8 +89,10 @@
     NSArray *arr;
     if([category isEqualToString:@"中国男足"]){
         arr = [NSArray arrayWithArray:self.categoryNameArr[0]];
+        self.selectedNationalLevelArr = [NSMutableArray arrayWithArray:self.nationalLevelArr[0]];
     }else{
         arr = [NSArray arrayWithArray:self.categoryNameArr[1]];
+        self.selectedNationalLevelArr = [NSMutableArray arrayWithArray:self.nationalLevelArr[1]];
     }
     _CategoryView = [[CategoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 32) category:arr];
     _CategoryView.ClickBtn = ^(CGFloat index){
@@ -107,6 +117,7 @@
 
 -(void)clickBtn:(CGFloat)tag{
     self.selectedIndex = tag;
+    self.nationalLevel = [self.selectedNationalLevelArr[self.selectedIndex] intValue];
     [_selectedDataArr removeAllObjects];
     NSArray *arr;
     if([self.title isEqualToString:@"中国男足"]){
@@ -187,6 +198,7 @@
     playerDetVC.playerId = player.playerId;
     playerDetVC.playerName = player.name;
     playerDetVC.player = player;
+    playerDetVC.nationalLevel = self.nationalLevel;
     [self.navigationController pushViewController:playerDetVC animated:YES];
 }
 

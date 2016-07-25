@@ -14,4 +14,5 @@
 @property(nonatomic, copy)NSString *playerId;
 @property(nonatomic, copy)NSString *playerName;
 @property(nonatomic, retain)PlayerModel *player;
+@property(nonatomic, assign)int nationalLevel;
 @end
